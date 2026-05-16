@@ -27,7 +27,7 @@ Mr. Đào CHỈ làm việc trên `main` branch + folder gốc, KHÔNG dùng git
 - ❌ **TUYỆT ĐỐI KHÔNG** spawn subagent với `isolation: "worktree"` — tạo `.claude/worktrees/<random>/` rác
 - ❌ **KHÔNG** gõ `claude --worktree`
 - ❌ **KHÔNG** dùng slash command `/branch` để switch branch khác
-- ✅ Mọi `Read/Edit/Write/Bash` PHẢI trỏ folder gốc của repo (`/Users/user/Desktop/work-space/cong-nghe/web-lifestyle/...`), KHÔNG sửa file trong `.claude/worktrees/`
+- ✅ Mọi `Read/Edit/Write/Bash` PHẢI trỏ folder gốc của repo `web-lifestyle/...`, KHÔNG sửa file trong `.claude/worktrees/`
 
 ### 🚫 KHÔNG tự push code
 

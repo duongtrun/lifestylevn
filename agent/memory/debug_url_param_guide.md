@@ -1,65 +1,76 @@
-# 🧪 iruka-app — Debug URL Param (Xem Màn Hình Nhanh Không Cần Luồng Thật)
+# 🧪 Debug URL Param — Xem màn hình nhanh không cần đi qua luồng thật
 
-Tài liệu này hướng dẫn cách sử dụng kỹ thuật Preview UI bằng tham số URL để tăng tốc độ phát triển và kiểm tra giao diện mà không ảnh hưởng đến logic Production.
+> Kỹ thuật Preview UI bằng tham số URL để tăng tốc phát triển và kiểm tra giao diện, **không ảnh hưởng logic Production**.
 
 ---
 
 ## 1. Vấn đề & Giải pháp
 
-**Vấn đề:** Khi cần chỉnh sửa UI của một màn hình nằm sâu trong luồng (ví dụ: màn hình Loading sau khi nộp khảo sát), developer phải thực hiện lại toàn bộ các bước: Đăng nhập → Chọn môn → Làm khảo sát → Nộp → Xem kết quả. Việc này gây mất thời gian khi phải chỉnh sửa pixel-perfect.
+**Vấn đề:** Khi cần chỉnh UI một màn hình nằm sâu trong luồng (ví dụ: trang Cảm ơn sau khi gửi form liên hệ), dev phải làm lại toàn bộ các bước: vào trang Liên hệ → điền form → submit → xem trang cảm ơn. Tốn thời gian khi cần chỉnh pixel-perfect nhiều lần.
 
-**Giải pháp:** Thêm một tham số "ảo" (Debug Param) vào URL để cưỡng bức ứng dụng hiển thị màn hình mong muốn ngay lập tức, bỏ qua các bước kiểm tra (redirect) trung gian.
+**Giải pháp:** Thêm một tham số "ảo" (Debug Param) vào URL để cưỡng bức ứng dụng hiển thị màn hình mong muốn ngay lập tức, **bỏ qua các bước kiểm tra trung gian**.
 
 ---
 
 ## 2. Quy trình thực hiện (4 bước an toàn)
 
-Mẫu code dưới đây đảm bảo tính năng debug **chỉ hoạt động ở localhost** và **không thể kích hoạt trên môi trường Production**.
+Mẫu code dưới đây đảm bảo tính năng debug **chỉ hoạt động ở localhost** và **không thể kích hoạt trên Production**.
 
 ### Bước 1: Khai báo biến debug
-Sử dụng `isDev` để bảo vệ, đảm bảo dù người dùng thật có gõ URL này trên web thật cũng không có tác dụng.
+
+Dùng `isDev` để bảo vệ — dù người dùng thật có gõ URL này trên web Production cũng không có tác dụng.
 
 ```tsx
-// Chỉ bật ở localhost (NODE_ENV=development)
+'use client';
+
+import { useSearchParams } from 'next/navigation';
+
 const isDev = process.env.NODE_ENV === 'development';
-const previewLoading = isDev && searchParams.get('preview_loading') === '1';
+const searchParams = useSearchParams();
+const previewThankYou = isDev && searchParams.get('preview_thank_you') === '1';
 ```
 
 ### Bước 2: Bypass guard redirect
-Ngăn không cho các hiệu ứng chuyển trang (redirect) tự động kích hoạt khi đang ở chế độ preview.
+
+Ngăn các hiệu ứng chuyển trang tự động kích hoạt khi đang ở chế độ preview.
 
 ```tsx
 useEffect(() => {
-  if (previewLoading) return; // << Debug mode: ở lại màn hình để xem UI
-  if (!childId) {
-    router.replace('/onboarding/create-child');
+  if (previewThankYou) return; // Debug mode: ở lại màn hình để xem UI
+
+  // Logic redirect thật
+  if (!hasSubmittedForm) {
+    router.replace('/contact');
   }
-}, [childId, previewLoading]);
+}, [hasSubmittedForm, previewThankYou]);
 ```
 
 ### Bước 3: Gắn điều kiện hiển thị UI
-Thêm điều kiện `|| previewLoading` vào khối logic render giao diện.
+
+Thêm điều kiện `|| previewThankYou` vào khối logic render giao diện.
 
 ```tsx
-// Hiển thị màn hình loading khi AI đang xử lý HOẶC khi đang preview
-if (generating || previewLoading) {
-  const childName = currentChild?.full_name ?? 'Tubi'; // Fallback dữ liệu mẫu
-  return <LoadingScreen childName={childName} />;
+// Hiển thị màn hình Cảm ơn khi form đã submit thật HOẶC đang preview
+if (hasSubmittedForm || previewThankYou) {
+  const userName = userInfo?.name ?? 'Anh/Chị'; // Fallback dữ liệu mẫu khi preview
+  return <ThankYouScreen userName={userName} />;
 }
 ```
 
-### Bước 4: Xử lý Side Effects (Animation)
-Nếu màn hình có hiệu ứng (như thanh Progress bar), cần cho phép hiệu ứng chạy khi preview.
+### Bước 4: Xử lý hiệu ứng phụ (Animation)
+
+Nếu màn hình có animation (vd fade-in confetti), cho phép animation chạy khi preview.
 
 ```tsx
 useEffect(() => {
-  // Chỉ reset về 0 khi không phải đang xử lý thật VÀ không phải đang preview
-  if (!generating && !previewLoading) {
-    setFakeProgress(0);
+  // Reset animation về 0 khi không phải submit thật VÀ không phải preview
+  if (!hasSubmittedForm && !previewThankYou) {
+    setConfettiActive(false);
     return;
   }
-  // Logic animation chạy bình thường...
-}, [generating, previewLoading]);
+  // Logic animation chạy bình thường
+  setConfettiActive(true);
+}, [hasSubmittedForm, previewThankYou]);
 ```
 
 ---
@@ -76,16 +87,58 @@ useEffect(() => {
 
 ## 4. Cách sử dụng
 
-Khi cần test màn hình Loading của khảo sát, truy cập URL:
-`http://localhost:3003/onboarding/survey?preview_loading=1`
+Khi cần test màn hình "Cảm ơn" sau khi submit form liên hệ:
 
-**Thông lệ đặt tên:**
-- `preview_loading=1`
-- `preview_report=1`
-- `preview_empty=1`
+```
+http://localhost:3005/contact?preview_thank_you=1
+```
+
+**Thông lệ đặt tên (snake_case):**
+
+- `preview_thank_you=1` — màn hình cảm ơn
+- `preview_loading=1` — màn hình đang xử lý
+- `preview_error=1` — màn hình báo lỗi
+- `preview_empty=1` — màn hình trống (chưa có dữ liệu)
+- `preview_success=1` — màn hình thành công
 
 ---
 
-## 5. Dọn dẹp (Clean up)
+## 5. Áp dụng cho nhiều màn hình khác nhau
 
-Sau khi hoàn tất việc chỉnh sửa UI, nếu muốn làm sạch code, chỉ cần tìm từ khóa `preview_` và xóa 4 điểm chạm đã nêu ở phần 2. Xóa các biến này không gây ảnh hưởng đến logic nghiệp vụ chính.
+### Ví dụ: Toggle nhiều state cùng lúc
+
+```tsx
+const previewLoading = isDev && searchParams.get('state') === 'loading';
+const previewError = isDev && searchParams.get('state') === 'error';
+const previewEmpty = isDev && searchParams.get('state') === 'empty';
+```
+
+URL gọi:
+```
+http://localhost:3005/blog?state=loading
+http://localhost:3005/blog?state=error
+http://localhost:3005/blog?state=empty
+```
+
+---
+
+## 6. Dọn dẹp (Clean up)
+
+Sau khi hoàn tất chỉnh UI:
+
+- Nếu muốn giữ lại debug param (để dev sau dùng tiếp) → **giữ nguyên** (an toàn vì có `isDev` chặn)
+- Nếu muốn xoá → tìm từ khoá `preview_` và xoá 4 điểm chạm ở Bước 1-4
+
+> ✅ **Khuyến nghị:** Giữ lại các debug param — vì có `isDev` chặn nên không có rủi ro trên Production, và lần sau dev khác dùng tiếp được.
+
+---
+
+## 7. ❌ KHÔNG được làm
+
+- ❌ Tạo debug param **không có** `isDev` chặn → Khách có thể truy cập màn hình ẩn trên Production
+- ❌ Dùng debug param để **bypass authentication** thật trên Production → Lỗ hổng bảo mật nghiêm trọng
+- ❌ Hardcode dữ liệu fake quá phức tạp trong preview → khó maintain, dùng `fallback` ngắn gọn
+
+---
+
+*Phiên bản: v1.0-FE | Cập nhật: 2026-05-16 | Web Lifestyle Debug URL Param Guide*

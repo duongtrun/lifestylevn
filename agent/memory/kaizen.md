@@ -1,8 +1,10 @@
-# ⚡ Kaizen Log — IruKa AI Continuous Improvement
+# ⚡ Kaizen Log — Best Practice tích lũy (FE Only)
 
 > **Kaizen (改善):** Cải tiến liên tục — không phải sửa sai, mà là làm tốt hơn mỗi ngày.
-> File này lưu các **Best Practice, Trick hay, Pattern thông minh** được đúc kết qua công việc thực tế.
-> Antigravity PHẢI đọc file này trước khi bắt đầu task để kế thừa tinh hoa từ các phiên làm việc trước.
+>
+> File này lưu các **Best Practice, Trick hay, Pattern thông minh** đúc kết qua công việc thực tế FE.
+>
+> AI Agent / FE Dev PHẢI đọc file này trước khi bắt đầu task để kế thừa tinh hoa từ các phiên trước.
 
 ---
 
@@ -12,113 +14,139 @@
 |---|---|---|
 | **Mục tiêu** | Tránh lặp lỗi cũ | Làm tốt hơn chủ động |
 | **Câu hỏi** | "Tôi đã sai gì?" | "Tôi có thể làm gọn hơn không?" |
-| **Tông điệu** | Phòng thủ | Tấn công / Tiến hóa |
+| **Tông điệu** | Phòng thủ | Tấn công / Tiến hoá |
 | **Ghi nhận** | Sau khi có lỗi | Sau khi hoàn thành tốt |
 
 ---
 
 ## 📋 Index
 
-| ID | Tiêu đề | Domain | Ngày | Trạng thái |
-|----|---------|--------|------|------------|
-| K-01 | Xoá tàn dư HTML/CSS cũ khi nâng cấp lên SDK/Framework mới | Frontend / UI | 2026-04-06 | Active |
-| K-02 | Mổ xẻ game mẫu đầu tiên trước khi viết game mới | Game SDK | 2026-04-06 | Active |
+| ID | Tiêu đề | Domain | Trạng thái |
+|----|---------|--------|------------|
+| K-FE-01 | "Xây mới — Đập cũ" — Pattern nâng cấp Component/Library an toàn | Frontend / Refactor | Active |
+| K-FE-02 | "Mổ xẻ - Sao chép - Biến tấu" — Quy trình code component mới chuẩn | Frontend / Component | Active |
 
 ---
 
-## 📝 Chi Tiết Kaizen
+## 📝 Chi tiết Kaizen
 
-### [K-01] "Xây mới — Đập cũ" — Pattern nâng cấp SDK/Framework an toàn
+### [K-FE-01] "Xây mới — Đập cũ" — Pattern nâng cấp Component/Library an toàn
 
-- **Ngày:** 2026-04-06
-- **Domain:** Frontend / UI (Game SDK)
-- **Đúc kết từ task:** Tích hợp DOM Buttons SDK v2 vào `game_pronounce`
+- **Domain:** Frontend / Refactor
+- **Đúc kết từ:** Quy trình thay 1 thư viện UI cũ bằng thư viện mới
 
-**Pattern chuẩn:** Khi chuyển từ UI tĩnh (HTML hardcode) sang UI động (SDK/Framework inject):
+**Pattern chuẩn:** Khi chuyển từ component cũ sang component mới (ví dụ thay button HTML thuần sang component Button cva, thay react-icons sang lucide-react):
 
 ```
-Bước 1 → Cài API mới (createDOMButtons / Component mới...)
+Bước 1 → Tạo component / cài thư viện mới
 Bước 2 → NGAY LẬP TỨC: grep toàn project tìm tàn dư cũ
-          Ví dụ: grep -r "btn-" . --include="*.html" --include="*.css"
-Bước 3 → Xóa sạch HTML tag + CSS style cũ
-Bước 4 → Verify: chỉ còn 1 nguồn render duy nhất
+          Ví dụ:
+            grep -r "react-icons" src/
+            grep -r "<button class=" src/
+            grep -r "import.*old-component" src/
+Bước 3 → Xoá sạch import cũ + tag/class cũ
+Bước 4 → Verify: chỉ còn 1 nguồn duy nhất
+          - 1 cách import icon (lucide-react)
+          - 1 cách render button (component Button)
+Bước 5 → Build + test responsive 3 cỡ
 ```
 
-**Lý do quan trọng:** Nếu bỏ qua Bước 2-3, UI sẽ render **double** — xuất hiện cùng lúc 2 nút/component xếp chồng lên nhau gây loạn giao diện.
+**Lý do quan trọng:** Nếu bỏ qua Bước 2-3, UI sẽ tồn tại 2 hệ song song — bundle phình to, style không đồng nhất, dev sau dễ dùng nhầm cái cũ.
 
-**Checklist nhanh khi nâng cấp UI:**
-- [ ] Grep các class/ID cũ (`btn-`, `ui-btn`, `old-component`)
-- [ ] Kiểm tra `index.html`, `*.css`, `style.css`
-- [ ] Xác nhận chỉ còn 1 nguồn render duy nhất (SDK hoặc code — chọn 1)
+**Checklist nhanh khi nâng cấp UI library:**
+
+- [ ] Grep các class/component/import cũ
+- [ ] Kiểm tra `src/**/*.{tsx,ts,css}`
+- [ ] Xác nhận chỉ còn 1 nguồn duy nhất
+- [ ] Bundle size không phình to bất thường (`pnpm build` → check `.next/static/chunks/`)
 
 ---
 
-### [K-02] "Mổ xẻ - Sao chép - Biến tấu" — Quy trình làm game mới chứng khỏi sai logic
+### [K-FE-02] "Mổ xẻ - Sao chép - Biến tấu" — Quy trình code component mới chuẩn
 
-- **Ngày:** 2026-04-06
-- **Domain:** Game SDK
-- **Đúc kết từ task:** Làm game template `game_pronounce` bị sai logic SDK vì code “mướt” không tham khảo game mẫu chạy được
+- **Domain:** Frontend / Component
+- **Đúc kết từ:** Khi viết component mới không tham khảo component cũ → đặt tên prop, cấu trúc, thứ tự khác chuẩn dự án
 
-**Vấn đề cốt lõi:** Khi AI viết một game template mới từ đầu, nó dễ tự đặt ra các cấu trúc hàm, tên biến, thứ tự gọi *khác với chuẩn SDK* — dẫn đến sai logic âm thầm, khó debug sau.
+**Vấn đề cốt lõi:** Khi AI/dev viết một component mới từ đầu, dễ tự đặt ra cấu trúc props, naming, file structure **khác với chuẩn dự án** — dẫn đến code không đồng nhất, dev sau bối rối, refactor mất thời gian.
 
-**Pattern chuẩn — BẮt buộc 3 bước trước khi viết game mới:**
+**Pattern chuẩn — BẮT BUỘC 3 bước trước khi viết component mới:**
 
 ```
-Bước 1 — MỔ XẺ� (Dissect)
-  Tìm game mẫu gần nhất đang chạy đúng (g_trace, o_speak_game, game_drag...)
-  Đọc TUẦN TỰ: main.ts → SceneBase.ts → Scene chính
-  Liệt kê toàn bộ hàm SDK được gọi và THỨ TỰ gọi chúnh xác
+Bước 1 — MỔ XẺ (Dissect)
+  Tìm component tương tự gần nhất trong project (vd Button khi viết IconButton)
+  Đọc TUẦN TỰ: file gốc → file types → file index
+  Liệt kê:
+    - Cấu trúc props (interface, optional/required)
+    - Cách dùng cva (variants, size)
+    - Cách dùng forwardRef
+    - Cách export (named vs default)
+    - File location (ui/, sections/, shared/)
 
 Bước 2 — SAO CHÉP (Clone)
-  Copy y chang cấu trúc khủng vần từ game mẫu:
-    - cấu hình Phaser (transparent canvas)
-    - cách gọi createDOMButtons
-    - cách dùng irukaTool.bg.changeBackground
-    - thứ tự khởi tạo scene (create → setupSDK → setupUI → startGame)
-  CHỈ ĐỔI phần logic game (nội dung game)
+  Copy y chang cấu trúc khung sườn từ component mẫu:
+    - Header file 3 dòng (Luồng/Vai trò/Khi nào dùng)
+    - Import order (React → libs → components → utils → types)
+    - Cách định nghĩa variants với cva
+    - Cách dùng cn() để merge class
+    - Pattern forwardRef + displayName
+  CHỈ ĐỔI phần riêng (tên component, variants riêng)
 
 Bước 3 — BIẾN TẤU (Customize)
-  Sau khi cấu trúc đúng rồi mới đem logic riêng của game mới đặt vào
-  Test ngay sau mỗi lớp biến tấu, không viết hết rồi mới test
+  Sau khi cấu trúc đúng → thêm logic riêng
+  Test ngay sau mỗi lớp biến tấu, KHÔNG viết hết rồi mới test
 ```
 
-**Game mẫu chuẩn của IruKa để tham khảo (theo độ ưu tiên):**
+**Component mẫu chuẩn của web-lifestyle để tham khảo:**
 
-| Game | Lý do chọn để tham khảo |
+| Component | Lý do tham khảo |
 |---|---|
-| `game_trace` | Chuẩn SDK v2 mới nhất — luôn tham khảo đầu tiên |
-| `o_speak_game` | Chuẩn cho game phát âm / ghi âm (VoiceClient) |
-| `game_drag` | Chuẩn cho game kéo thả |
+| `Button` trong `components/ui/` | Chuẩn cva + forwardRef + variants |
+| `Card` trong `components/ui/` | Chuẩn compound component (Card.Header, Card.Body) |
+| `ContactForm` trong `components/sections/` | Chuẩn dùng react-hook-form + zod |
 
-**Dấu hiệu bị sị khi đã bỏ qua K-02:**
-- Background bị cắt (lẹm 2 bên)
-- Double nút render
-- Canvas không transparent
-- DOM Buttons không hiện
-- VoiceClient session bị leak khi thoát game
+**Dấu hiệu bỏ qua K-FE-02:**
+
+- Component mới có cấu trúc props khác lạ so với component khác
+- Naming convention khác (vd `onSubmit` vs `onSubmitForm`)
+- Không có header file 3 dòng
+- Không dùng cva khi cần variants
+- Quên `forwardRef` cho component cần ref (input, button)
 
 ---
 
-## 📌 Hướng dẫn ghi nhận Kaizen mới
+## 📌 Hướng dẫn ghi Kaizen mới
 
 > Kaizen được ghi NGAY KHI phát hiện — không cần đợi cuối ngày.
-> AI đề xuất → Anh Đào duyệt → Ghi vào file này.
+> AI / FE Dev đề xuất → Mr. Đào duyệt → Mr. Đào append vào file này.
 
 **Format chuẩn một điểm Kaizen:**
 
 ```markdown
-### [K-XX] Tên gọi ngắn — mô tả phong cách
+### [K-FE-XX] Tên gọi ngắn — mô tả phong cách
 
-- **Ngày:** YYYY-MM-DD
-- **Domain:** Lĩnh vực áp dụng
-- **Đúc kết từ task:** Mô tả ngắn task gốc
+- **Domain:** Lĩnh vực áp dụng (UI / State / Performance / SEO / ...)
+- **Đúc kết từ:** Mô tả ngắn task gốc
 
 **Pattern chuẩn / Trick hay:**
 [Mô tả kỹ thuật/cách làm thông minh hơn]
 
 **Lý do:** [Tại sao cách này tốt hơn cách cũ]
+
+**Code mẫu (nếu có):**
+\`\`\`tsx
+// ...
+\`\`\`
 ```
 
 ---
 
-*Cập nhật lần cuối: 2026-04-06 | Phiên bản: 1.1 | IruKa Kaizen System*
+## 🚫 KHÔNG được làm gì với file này
+
+- ❌ Tự append kaizen khi chưa được Mr. Đào duyệt
+- ❌ Sửa nội dung kaizen cũ (chỉ Mr. Đào sửa)
+- ❌ Xoá kaizen cũ — kể cả khi nghĩ nó hết relevant
+- ❌ Copy kaizen từ dự án khác (BE, Game) vào đây — file này CHỈ DÀNH CHO FE
+
+---
+
+*Phiên bản: v1.0-FE | Cập nhật: 2026-05-16 | Web Lifestyle Kaizen — Phiên bản FE-only*

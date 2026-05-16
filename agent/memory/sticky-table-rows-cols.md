@@ -1,15 +1,14 @@
 # 📌 BÀI HỌC: Cố định hàng & cột trong bảng (Sticky Header + Frozen Columns)
 
-> **Ngày:** 2026-05-06 · **Áp dụng:** kpi-webapp (Next.js + React)
-> **Tham khảo:** `kpi-webapp/src/app/(employee)/staff-list/page.tsx` + `kpi-webapp/src/app/discipline/discipline.css`
+> Kỹ thuật làm bảng dài & rộng có header trên + cột trái dính cố định khi cuộn — giống tính năng "Freeze Panes" của Excel.
 
 ---
 
 ## 🎯 Mục tiêu (giống Excel "Freeze Panes")
 
-Khi bảng có nhiều hàng + nhiều cột (vd 50 NV × 31 ngày):
-- **Cuộn DỌC** → header (STT, Họ tên, ngày 1-31, ...) **GIỮ NGUYÊN ở trên cùng**
-- **Cuộn NGANG** → cột STT/Họ tên/Vị trí **GIỮ NGUYÊN bên trái**
+Khi bảng có nhiều hàng + nhiều cột (ví dụ 50 dòng × 31 cột):
+- **Cuộn DỌC** → header (STT, Tiêu đề, cột 1-31, ...) **GIỮ NGUYÊN ở trên cùng**
+- **Cuộn NGANG** → các cột đầu (STT/Tên/Loại) **GIỮ NGUYÊN bên trái**
 - **Góc trên trái** (giao của 2 vùng sticky) → **GIỮ NGUYÊN cả 2 chiều**
 
 ---
@@ -47,7 +46,7 @@ Khi bảng có nhiều hàng + nhiều cột (vd 50 NV × 31 ngày):
 
 ### Lớp 3: Sticky HÀNG (header) — top stacking
 
-Bảng có 3 hàng header (rowSpan=2 cho cột chính + rowSpan title + ngày + weekday):
+Bảng có 3 hàng header (rowSpan=2 cho cột chính + rowSpan tiêu đề + cột con + nhãn):
 
 ```css
 .bang thead th {
@@ -64,27 +63,27 @@ Bảng có 3 hàng header (rowSpan=2 cho cột chính + rowSpan title + ngày + 
 
 ### Lớp 4: Sticky CỘT (frozen left) — left stacking
 
-3 cột đầu (STT/Họ tên/Vị trí) freeze:
+3 cột đầu (STT / Tên / Loại) freeze:
 
 ```css
 /* Cột STT — left:0, width:30 */
-.bang .stt-cell {
+.bang .col-stt {
   position: sticky;
   left: 0;
   width: 30px; min-width: 30px;
   z-index: 3;                            /* body sticky cell */
   background: white;                     /* opaque, không lộ data sau */
 }
-/* Cột Họ tên — left:30 (sau STT), width:170 */
-.bang .nv-cell {
+/* Cột Tên — left:30 (sau STT), width:170 */
+.bang .col-ten {
   position: sticky;
   left: 30px;                            /* = width của STT */
   width: 170px; min-width: 170px;
   z-index: 3;
   background: white;
 }
-/* Cột Vị trí — left:200 (30+170), width:70 */
-.bang .pos-cell {
+/* Cột Loại — left:200 (30+170), width:70 */
+.bang .col-loai {
   position: sticky;
   left: 200px;
   width: 70px; min-width: 70px;
@@ -103,25 +102,25 @@ Bảng có 3 hàng header (rowSpan=2 cho cột chính + rowSpan title + ngày + 
 Khi sticky-header + sticky-column gặp nhau ở **góc trên trái**, cần z-index cao nhất để không bị che:
 
 ```
-Layer 7+  →  Header sticky-corner (sticky top + sticky left): STT-th, Họ tên-th, Vị trí-th
-Layer 5   →  Header sticky-top thường: ngày 1-31, meta cols
-Layer 3   →  Body sticky-left thường: STT-cell, NV-cell, Vị trí-cell mỗi NV
-Layer 1   →  Body cells regular (ngày + meta totals)
+Layer 7+  →  Header sticky-corner (sticky top + sticky left): STT-th, Tên-th, Loại-th
+Layer 5   →  Header sticky-top thường: cột 1-31, meta cols
+Layer 3   →  Body sticky-left thường: STT-cell, Tên-cell, Loại-cell mỗi dòng
+Layer 1   →  Body cells regular (cột giá trị + meta totals)
 ```
 
 ```css
 /* Body sticky-left cell */
-.bang .stt-cell { z-index: 3; }
-.bang .nv-cell  { z-index: 3; }
-.bang .pos-cell { z-index: 3; }
+.bang .col-stt  { z-index: 3; }
+.bang .col-ten  { z-index: 3; }
+.bang .col-loai { z-index: 3; }
 
 /* Header sticky body cells (chỉ sticky-top) */
 .bang thead th  { z-index: 5; }
 
 /* Header sticky-corner (sticky top + sticky left) — z-index CAO NHẤT */
-.bang .stt-cell-th { z-index: 7; }
-.bang .nv-cell-th  { z-index: 7; }
-.bang .pos-cell-th { z-index: 7; }
+.bang th.col-stt  { z-index: 7; }
+.bang th.col-ten  { z-index: 7; }
+.bang th.col-loai { z-index: 7; }
 ```
 
 **Quy tắc**: layer cao hơn 2 đơn vị mỗi khi thêm sticky direction (3 → 5 → 7).
@@ -173,7 +172,7 @@ Layer 1   →  Body cells regular (ngày + meta totals)
 
 **Nguyên nhân**: dùng `thead th:nth-child(N)` áp cho row có rowSpan/colSpan → match sai row 2/3.
 
-**Fix**: dùng class names rõ ràng (`.stt-cell-th`, `.nv-cell-th`...) thay vì nth-child.
+**Fix**: dùng class names rõ ràng (`.col-stt`, `.col-ten`, `.col-loai`...) thay vì nth-child.
 
 ---
 
@@ -191,15 +190,6 @@ Layer 1   →  Body cells regular (ngày + meta totals)
 
 ---
 
-## 📦 VÍ DỤ CỤ THỂ TRONG REPO
-
-| Pattern | File |
-|---|---|
-| Sticky header + sticky 6 cột (NV list) | `kpi-webapp/src/app/(employee)/staff-list/page.tsx` |
-| Sticky 3 hàng header + sticky 3 cột (chấm công) | `kpi-webapp/src/app/discipline/discipline.css` |
-
----
-
 ## 🎓 GHI NHỚ NGẮN
 
 > **Sticky table = wrapper scroll container + cells dán theo top/left của wrapper, không phải viewport**
@@ -210,4 +200,4 @@ Layer 1   →  Body cells regular (ngày + meta totals)
 
 ---
 
-*Bài học từ: 2026-05-06 — Mr. Đào yêu cầu cố định header bảng chấm công discipline*
+*Phiên bản: v1.0-FE | Cập nhật: 2026-05-16 | Web Lifestyle Sticky Table Pattern*

@@ -34,14 +34,14 @@ AI gửi bản Draft này cho Mr. Đào với câu hỏi:
 > TUYỆT ĐỐI KHÔNG ĐƯỢC tự ý dùng tool `write_to_file` hay `replace_file_content` để sửa Memory khi chưa nhận được xác nhận "Duyệt" cho chính bản Draft vừa gửi.
 
 ### 4. Cập nhật Memory
-Sau khi Mr. Đào xem Draft và đồng ý ("Duyệt", "Lưu đi", "OK"), AI mới tiến hành ghi đè hoặc append vào các file:
-- `file:///Users/user/Desktop/work-space/cong-nghe/.agent/memory/lessons-learned.md`
-- `file:///Users/user/Desktop/work-space/cong-nghe/.agent/memory/anti-patterns.md`
-- `file:///Users/user/Desktop/work-space/cong-nghe/.agent/memory/useful-commands.md`
-- `file:///Users/user/Desktop/work-space/cong-nghe/.agent/memory/kaizen.md` ← *Ghi Best Practice & Pattern mới phát hiện hôm nay*
+Sau khi Mr. Đào xem Draft và đồng ý ("Duyệt", "Lưu đi", "OK"), AI mới tiến hành append vào các file:
+- `agent/memory/lessons-learned.md`
+- `agent/memory/anti-patterns.md`
+- `agent/memory/useful-commands.md`
+- `agent/memory/kaizen.md` ← *Ghi Best Practice & Pattern mới phát hiện hôm nay*
 
-### 5. Tự động hóa tiến hóa (Self-Improvement)
-Nếu có bài học nào làm thay đổi cách thức thực hiện một Workflow hiện có, AI sẽ đề xuất chạy tiếp Workflow `/9-self-improve` để cập nhật trực tiếp file `.md` của workflow đó.
+### 5. Tự động hoá tiến hoá (Self-Improvement)
+Nếu có bài học nào làm thay đổi cách thực hiện một Workflow hiện có, AI sẽ ĐỀ XUẤT (không tự sửa) thay đổi cho Mr. Đào duyệt. **FE Dev không được tự sửa workflow.**
 
 ---
-*Ghi chú: Nếu máy Mac hiện thông báo nhắc nhở lúc 17:30, hãy gõ lệnh này ngay để tối ưu hóa bộ não của AI.*
+*Ghi chú: Gõ lệnh này vào cuối ngày để tối ưu hoá bộ não của AI cho ngày mai.*
