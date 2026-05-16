@@ -119,11 +119,11 @@ Khi gặp vấn đề **bất kể nhỏ hay lớn**, KHÔNG được im lặng.
 **Ví dụ thực tế:**
 ```
 ⚠️ Em đang bị tắc ở Scope 2
-🔍 Vấn đề: Không biết số port MCP server cần test (18790 hay khác?)
-❓ Lý do: Thiếu thông tin từ file .env
+🔍 Vấn đề: Không rõ URL endpoint API gọi từ FE
+❓ Lý do: Thiếu thông tin trong .env.local
 💡 Đề xuất:
-   A) Dùng port 18790 mặc định trong discord-mcp-server-plan.md
-   B) Anh xác nhận port thực tế đang dùng
+   A) Dùng URL mặc định trong TECH_STACK.md
+   B) Anh xác nhận URL backend thực tế
 → Anh chọn phương án nào?
 ```
 
@@ -185,7 +185,7 @@ Khi hoàn thành Scope cuối, báo cáo đầy đủ:
 ## VÍ DỤ THỰC TẾ — FULL FLOW
 
 ```
-Anh Đào: "Viết test-checklist.md đầy đủ cho discord-bot"
+Anh Đào: "Viết test-checklist.md đầy đủ cho tính năng Liên Hệ"
 
 [AI phân tích]
 → Tổng ước lượng: ~700 dòng / 44 TC → Task Lớn → Phải chia Scope

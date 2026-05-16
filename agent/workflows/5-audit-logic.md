@@ -12,11 +12,11 @@ Soi toàn bộ logic của 1 tính năng (đã code xong hoặc đang lên kế 
 
 1. **Logic ĐÃ CÓ** trong code: chính xác làm gì?
 2. **Logic ĐANG CÓ** mà chưa hoàn thiện: chỗ nào dở dang, có TODO/FIXME, có placeholder?
-3. **Logic CÒN THIẾU**: case/edge nào chưa xử lý? Use case nào HR/CEO/NV cần nhưng không có?
+3. **Logic CÒN THIẾU**: case/edge nào chưa xử lý? Use case nào User/Admin/Guest cần nhưng không có?
 4. **Logic SAI/MẪU THUẪN**: có chỗ nào nghiệp vụ nói A nhưng code làm B không?
 5. **Đề xuất bổ sung**: phương án cụ thể để bịt lỗ hổng — ưu tiên theo mức độ rủi ro.
 
-**KHÁC** với `/5-audit-frontend` (chỉ UI) và `/5-audit-discord-bot` (chỉ bot logic):
+**KHÁC** với `/5-audit-frontend` (chỉ UI):
 - Audit-logic xét **toàn bộ pipeline** từ user action → logic xử lý → data lưu → output cho user
 - Bao gồm cả frontend logic (state machine, validation), backend logic (compute, permission), data flow, edge cases
 - KHÔNG đi sâu vào UI layout/CSS hay UX visual — đó là việc của `/5-audit-frontend`
@@ -25,7 +25,7 @@ Soi toàn bộ logic của 1 tính năng (đã code xong hoặc đang lên kế 
 
 ## Điều kiện thất bại (KHÔNG được thiếu)
 
-- Không liệt kê đủ actor (HR/CEO/NV/Manager/System/Cron)
+- Không liệt kê đủ actor (User/Admin/Guest/System/Cron)
 - Không vẽ sơ đồ luồng nghiệp vụ
 - Đề xuất chung chung, không chỉ rõ file/dòng/scope sửa
 - Không phân loại mức độ rủi ro (CRITICAL/HIGH/MEDIUM/LOW)
@@ -39,9 +39,9 @@ Soi toàn bộ logic của 1 tính năng (đã code xong hoặc đang lên kế 
 ### 1. Tổng quan tính năng
 
 ```
-- Tên feature: [vd "discipline-sheet review by HR"]
+- Tên feature: [vd "Form Liên Hệ trang Contact"]
 - Mục đích nghiệp vụ: [1-2 câu]
-- Actors: [HR / CEO / NV / Manager / Cron / System]
+- Actors: [User / Admin / Guest / Cron / System]
 - Status hiện tại: [Đã code xong / Đang code / Mới có plan / Có bug đang nghi ngờ]
 - Files liên quan: [bot, webapp, data, mockup — list ngắn]
 ```
@@ -52,13 +52,13 @@ Vẽ flow tổng thể từ trigger ban đầu → kết thúc:
 
 ```mermaid
 graph TD
-    A["Trigger: HR đánh /command"] --> B["Backend: validate input"]
-    B -->|"OK"| C["Lưu data + DM target"]
-    B -->|"Sai"| D["Báo lỗi"]
-    C --> E["User action tiếp theo"]
-    E --> F{"Decision branch"}
-    F -->|"Approve"| G["State: approved"]
-    F -->|"Reject"| H["State: rejected → quay lại"]
+    A["Trigger: User submit form"] --> B["FE: validate bằng zod"]
+    B -->|"OK"| C["Gọi API + lưu state thành công"]
+    B -->|"Sai"| D["Hiện báo lỗi inline"]
+    C --> E["Hiển thị toast thành công"]
+    E --> F{"User click nút?"}
+    F -->|"Tiếp tục"| G["Redirect về Home"]
+    F -->|"Đóng"| H["Ở lại trang Contact"]
 ```
 
 Đánh dấu rõ:
@@ -153,10 +153,10 @@ Liệt kê các case business RÕ RÀNG cần có nhưng KHÔNG tìm thấy tron
 - [ ] Page load + edit cùng lúc → state có sync không?
 
 #### E. External dependencies
-- [ ] Bot offline → webapp action có fail gracefully không?
-- [ ] API ngoài (Discord, GAS) timeout → có fallback không?
-- [ ] Disk full / file corrupt → có handle không?
-- [ ] Database lock → có retry không?
+- [ ] Backend API offline → FE có fail gracefully không (hiện toast lỗi thân thiện)?
+- [ ] API ngoài timeout → có fallback không?
+- [ ] Image CDN chết → có placeholder không?
+- [ ] LocalStorage full → có handle không?
 
 #### F. UX feedback
 - [ ] Mọi action đều có loading indicator không?
@@ -272,7 +272,7 @@ Test 1 — [Tên scenario]
 - **KHÔNG dùng cho**:
   - UI layout / CSS bugs → dùng `/5-audit-frontend`
   - Performance / latency → dùng `/7-optimize`
-  - Security / auth deep dive → dùng `/5-security-backend` hoặc `/5-security-frontend`
+  - Security / auth deep dive → dùng `/5-security-frontend`
 
 - **Sau khi audit xong**:
   - Lưu bản audit vào `docs/audit/<feature>-<date>.md`
