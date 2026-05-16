@@ -32,7 +32,6 @@ description: Sửa lệch giao diện thực tế so với thiết kế chuẩn 
 | `/4-frontend-mockup-fidelity`  | **Code TỪ mockup HTML** lần đầu (chưa có code)                                    |
 | `/4-figma-to-ui`               | **Code TỪ Figma** lần đầu (đắp UI Figma vào code có sẵn logic, không vỡ cấu trúc) |
 | `/5-audit-frontend`            | Audit luồng màn hình + logic UX (không so từng pixel với thiết kế)                |
-| `/test-ui-phu-huynh`           | Test UI theo persona phụ huynh (góc nhìn người dùng, không cần thiết kế chuẩn)    |
 | **`/6-fix-design-fidelity`**   | **Đã có code → so 1-1 với THIẾT KẾ gốc (bất kỳ nguồn nào) → fix luôn chỗ lệch**   |
 
 ---
