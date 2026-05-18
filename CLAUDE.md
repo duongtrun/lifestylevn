@@ -1,1 +1,1 @@
-agent/GEMINI.md
+@AGENTS.md
