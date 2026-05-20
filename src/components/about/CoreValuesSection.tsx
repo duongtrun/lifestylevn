@@ -7,7 +7,7 @@
 // Dùng khi: Người dùng cuộn xuống phần Giá trị cốt lõi.
 
 import React from 'react';
-import { motion } from 'framer-motion';
+import { motion, Variants } from 'framer-motion';
 import { Heart, Lightbulb, TrendingUp, Target, Home, HeartHandshake } from 'lucide-react';
 
 // Dữ liệu 6 giá trị cốt lõi
@@ -50,7 +50,7 @@ const coreValues = [
   },
 ];
 
-const containerVariants = {
+const containerVariants: Variants = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
@@ -58,7 +58,7 @@ const containerVariants = {
   },
 };
 
-const itemVariants = {
+const itemVariants: Variants = {
   hidden: { opacity: 0, y: 36 },
   visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: 'easeOut' } },
 };

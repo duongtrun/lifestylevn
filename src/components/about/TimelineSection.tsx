@@ -14,45 +14,64 @@ import Image from 'next/image';
 const TIMELINE_DATA = [
   {
     year: 2017,
-    title: 'Khởi nguồn những bước đi đầu tiên',
+    title: 'Khởi đầu khiêm tốn nhưng đầy định hướng',
     content: [
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-      'Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.',
+      'LifeStyle Việt Nam được thành lập trong giai đoạn đầu còn non trẻ, hoạt động chủ yếu trong lĩnh vực phân phối các sản phẩm chăm sóc tóc cao cấp Kasa.',
+      'Mục tiêu trọng tâm lúc bấy giờ không phải mở rộng ngay lập tức, mà là:',
+      '• Hoàn thiện bộ máy nhân sự\n• Thiết lập quy định – quy trình làm việc chuyên nghiệp và hiệu quả\n• Xây dựng văn hóa – chế độ phúc lợi chuẩn mực\n• Tích lũy nguồn vốn và nguồn khách hàng',
+      'Đây là nền móng quan trọng giúp công ty có đủ nội lực để bước vào giai đoạn phát triển sản phẩm riêng trong tương lai.'
     ]
   },
   {
     year: 2019,
-    title: 'Mở rộng thị trường & khẳng định chất lượng',
+    title: 'Chuyển hướng chiến lược: Ra mắt Babego',
     content: [
-      'Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium.',
-      'Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt.'
+      'Sau hai năm xây nền, LifeStyle chính thức chuyển sang giai đoạn phát triển sản phẩm dinh dưỡng cho trẻ nhỏ với thương hiệu Babego.',
+      'Từ đây, công ty bắt đầu đặt những viên gạch đầu tiên cho mục tiêu dài hạn “phục vụ sức khỏe và sự phát triển của trẻ em Việt Nam”.',
+      'Babego nhanh chóng tạo dấu ấn nhờ:',
+      '• Công thức phù hợp sinh lý tiêu hóa trẻ Việt\n• Hiệu quả rõ rệt trong cải thiện tiêu hóa – tăng cân\n• Hệ thống phân phối ngày càng mở rộng'
     ]
   },
   {
     year: 2021,
+    title: 'Mở rộng thêm dòng sản phẩm Mamigo',
+    content: [
+      'Mamigo được ghi nhận là một trong những sản phẩm dinh dưỡng hỗ trợ kiểm soát đường huyết an toàn, phù hợp với người tiểu đường tại thị trường Việt Nam.',
+      'Sản phẩm đã nhận được nhiều phản hồi tích cực từ cộng đồng người bệnh tiểu đường về hiệu quả hỗ trợ ổn định đường huyết và dễ tiêu hóa.',
+      'Năm 2022, nhãn hàng Mamigo đã vượt qua hàng ngàn đề cử, vinh dự được vinh danh trong TOP 100 “Thương hiệu mạnh, sản phẩm, dịch vụ chất lượng cao Asean 2022”.'
+    ]
+  },
+  {
+    year: 2024,
     title: 'Manh nha ý tưởng về một hệ sinh thái Mẹ & Bé toàn diện',
     content: [
       'Sau 5 năm phát triển, Babego trở thành thương hiệu cốt lõi của công ty, nhận nhiều giải thưởng uy tín, trở thành thương hiệu quen thuộc của hàng chục nghìn bà mẹ Việt.',
       'Từ nền tảng thành công của Babego, ban lãnh đạo LifeStyle nhận thấy xu hướng phát triển dài hạn của ngành mẹ & bé cần vượt xa hơn chỉ một sản phẩm dinh dưỡng.',
       'Công ty bắt đầu nghiên cứu, lên ý tưởng và đặt những viên gạch đầu tiên cho mô hình hệ sinh thái Mẹ & Bé đa trụ cột, bao gồm:',
-      '• Dinh dưỡng\n• Giáo dục\n• Vệ sinh - an toàn',
+      '• Dinh dưỡng\n• Giáo dục\n• Vệ sinh – an toàn',
       'Đây là bước chuyển tư duy chiến lược quan trọng.'
     ]
   },
   {
-    year: 2024,
-    title: 'Hiện thực hóa Hệ sinh thái, vươn tầm cao mới',
+    year: 2025,
+    title: 'Hình thành mô hình 3 trụ cột phát triển',
     content: [
-      'Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem.',
-      'Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur?'
+      'Năm 2025 đánh dấu bước ngoặt lớn khi LifeStyle chính thức xây dựng và triển khai 3 thương hiệu trong hệ sinh thái Mẹ & Bé toàn diện:',
+      '• Babego – Dinh dưỡng & sức khỏe\nThương hiệu chủ lực với các sản phẩm dinh dưỡng cho trẻ nhỏ.',
+      '• Iruka Edu – Giáo dục & phát triển tư duy\nỨng dụng công nghệ AI và phương pháp học thông minh cho trẻ 3–10 tuổi.\nDự án nhanh chóng chứng minh tiềm năng khi lọt Top 8 cuộc thi AI Innovation tại Nhật Bản năm 2025.',
+      '• Iruka Care – Sản phẩm vệ sinh & an toàn cho trẻ\nGiải pháp chăm sóc – bảo vệ làn da và vệ sinh cá nhân an toàn cho trẻ nhỏ.',
+      'Năm 2025 cũng là năm công ty bắt đầu tái xây dựng hình ảnh thương hiệu, định vị doanh nghiệp theo hướng công nghệ – giáo dục – chăm sóc toàn diện.'
     ]
   },
   {
-    year: 2025,
-    title: 'Tầm nhìn dẫn đầu thị trường Mẹ & Bé Việt Nam',
+    year: 2026,
+    title: 'Mở rộng hệ sinh thái mạnh mẽ hơn',
     content: [
-      'Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?',
-      'At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident.'
+      'Dựa trên nền tảng 3 trụ cột đã được định hình, LifeStyle dự kiến:',
+      '• Mở rộng thêm các sản phẩm chăm sóc sức khỏe & dinh dưỡng chuyên sâu\n• Bổ sung danh mục sản phẩm vệ sinh – chăm sóc da\n• Nâng cấp hệ thống giáo dục Iruka Edu phiên bản 2.0\n• Tăng cường hợp tác với các đối tác – nhà đầu tư chiến lược\n• Mở rộng độ phủ thương hiệu trên toàn quốc',
+      'Mục tiêu dài hạn: Trở thành hệ sinh thái Mẹ & Bé tiên phong và uy tín hàng đầu tại Việt Nam.',
+      'LifeStyle Việt Nam tin rằng hành trình nuôi dạy con là một hành trình dài – đầy yêu thương và thử thách.',
+      'Chúng tôi lựa chọn đồng hành cùng mẹ bằng những sản phẩm chất lượng, những giải pháp giáo dục hiện đại và một hệ sinh thái toàn diện cho sự phát triển của trẻ.'
     ]
   }
 ];
@@ -75,7 +94,7 @@ export default function TimelineSection() {
       {/* Background image */}
       <div className="absolute inset-0 z-0 pointer-events-none">
         <Image 
-          src="/img_about_us/bg_timeline.svg"
+          src="/img_about_us/bg_timeline.webp"
           alt="Timeline background"
           fill
           className="object-cover object-center opacity-30"

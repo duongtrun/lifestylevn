@@ -20,7 +20,7 @@ const products = [
     name: 'Iruka EDU',
     tagline: 'Nền tảng giáo dục ứng dụng AI cho trẻ 3–10 tuổi',
     desc: 'Iruka Edu mang đến môi trường học tập hiện đại, cá nhân hoá và đầy hứng thú cho con, ứng dụng AI, game hoá và nhiều tính năng chuyên gia.',
-    image: '/img_about_us/iruka_img.svg',
+    image: '/img_about_us/iruka_img.webp',
     href: '/he-sinh-thai/iruka-edu',
     // Màu chủ đạo #008BBD — biến thể đầy đủ nhất
     gradientFrom: '#008BBD',
@@ -35,7 +35,7 @@ const products = [
     name: 'Iruka CARE',
     tagline: 'Giải pháp vệ sinh & an toàn cho trẻ từ sơ sinh đến 10 tuổi',
     desc: 'Iruka Care ra đời từ mong muốn bảo vệ trẻ nhỏ trước vi khuẩn và tác nhân gây hại hằng ngày, thương hiệu uy tín tại các chuỗi siêu thị lớn.',
-    image: '/img_about_us/iruka_care.svg',
+    image: '/img_about_us/iruka_care.webp',
     href: '/he-sinh-thai/iruka-care',
     // Biến thể sangle hơn một chút — #00AEDA (cyan sáng)
     gradientFrom: '#00AEDA',
@@ -50,7 +50,7 @@ const products = [
     name: 'Babego GOLD',
     tagline: 'Dinh dưỡng tập trung vào tiêu hoá & tăng trưởng cho trẻ nhỏ',
     desc: 'Babego Gold là dòng sữa dinh dưỡng phát triển dành riêng cho trẻ có nhu cầu hỗ trợ tiêu hoá và tăng cân, được công nhận ở nhiều giải thưởng chuyên ngành.',
-    image: '/img_about_us/babego.svg',
+    image: '/img_about_us/babego.webp',
     href: '/he-sinh-thai/babego',
     // Biến thể đậm hơn — #006FA0 (navy xanh)
     gradientFrom: '#006FA0',
@@ -68,7 +68,7 @@ export default function EcosystemSection() {
       {/* === NỀN BG_ECOSYS === */}
       <div className="absolute inset-0 z-0">
         <Image
-          src="/img_about_us/bg_ecosys.svg"
+          src="/img_about_us/bg_ecosys.webp"
           alt="Ecosystem Background"
           fill
           className="object-cover"

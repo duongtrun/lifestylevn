@@ -102,7 +102,7 @@ export default function LeadershipSection() {
             Xin trân trọng cảm ơn sự tin yêu và đồng hành của Quý vị.&rdquo;
           </p>
           <p className="mt-6 md:mt-8 text-base md:text-lg font-bold text-[#008BBD] uppercase tracking-wide">
-            CEO Vũ Ngọc Đảo
+            CEO Vũ Ngọc Đào
           </p>
         </motion.div>
       </div>

@@ -3,6 +3,8 @@ import { Manrope } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
+import ScrollToTop from "@/components/layout/ScrollToTop";
+import { Toaster } from "sonner";
 
 const manrope = Manrope({
   variable: "--font-manrope",
@@ -28,7 +30,16 @@ export default function RootLayout({
       <body className="min-h-full flex flex-col">
         <Header />
         {children}
+        <ScrollToTop />
         <Footer />
+        {/* Hiển thị thông báo toast (pop-up nhỏ góc màn hình) cho toàn bộ website */}
+        <Toaster
+          position="top-center"
+          richColors
+          toastOptions={{
+            duration: 4000,
+          }}
+        />
       </body>
     </html>
   );

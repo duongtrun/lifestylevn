@@ -16,7 +16,7 @@ export default function NewsSection() {
         
         <div className="w-full max-w-6xl mx-auto flex justify-center">
           <Image 
-            src="/images/hot_news_img.svg"
+            src="/images/hot_news_img.webp"
             alt="Tin tức nổi bật"
             width={1200}
             height={800}

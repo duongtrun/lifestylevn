@@ -59,7 +59,7 @@ export default function AchievementSection() {
                 >
                   <div className="relative w-full h-full rounded-xl overflow-hidden shadow-lg group/card">
                     <Image 
-                      src="/images/achieve.svg"
+                      src="/images/achieve.webp"
                       alt={item.title}
                       fill
                       className="object-cover group-hover/card:scale-105 transition-transform duration-700 pointer-events-none"

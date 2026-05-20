@@ -1,7 +1,7 @@
 'use client';
 
 import Image from "next/image";
-import { motion } from "framer-motion";
+import { motion, Variants } from "framer-motion";
 
 // File: src/components/home/EcosystemSection.tsx
 // Luồng: Trang chủ (/)
@@ -9,7 +9,7 @@ import { motion } from "framer-motion";
 // Dùng khi: Hiển thị trên trang chủ ngay dưới phần About.
 
 export default function EcosystemSection() {
-  const containerVariants = {
+  const containerVariants: Variants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
@@ -19,7 +19,7 @@ export default function EcosystemSection() {
     },
   };
 
-  const itemVariants = {
+  const itemVariants: Variants = {
     hidden: { opacity: 0, y: 40 },
     visible: { 
       opacity: 1, 
@@ -66,7 +66,7 @@ export default function EcosystemSection() {
           {/* Vòng lặp 3 Card Thương Hiệu */}
           {[
             { id: 'iruka_edu', src: '/images/iruka_edu.svg', alt: 'IruKa Edu', delay: 0 },
-            { id: 'babego', src: '/images/babego.svg', alt: 'Babego', delay: 0.1 },
+            { id: 'babego', src: '/images/babego.webp', alt: 'Babego', delay: 0.1 },
             { id: 'iruka_care', src: '/images/iruka_care.svg', alt: 'IruKa Care', delay: 0.2 },
           ].map((item) => (
             <motion.div 

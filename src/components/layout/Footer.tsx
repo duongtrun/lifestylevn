@@ -102,7 +102,7 @@ export default function Footer() {
             </h3>
             <div className="w-full rounded-xl overflow-hidden shadow-sm border border-gray-100">
               <Image
-                src="/images/map.svg"
+                src="/images/map.webp"
                 alt="Bản đồ vị trí Lifestyle Việt Nam"
                 width={500}
                 height={300}

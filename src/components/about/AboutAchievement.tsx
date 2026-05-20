@@ -27,12 +27,12 @@ export default function AboutAchievement() {
 
   // 6 ảnh thành tựu từ thư mục public/img_about_us/
   const achievements = [
-    { id: 1, title: 'Thành tựu nổi bật 1', image: '/img_about_us/achieve_1.svg' },
-    { id: 2, title: 'Thành tựu nổi bật 2', image: '/img_about_us/achieve_2.svg' },
-    { id: 3, title: 'Thành tựu nổi bật 3', image: '/img_about_us/achieve_3.svg' },
-    { id: 4, title: 'Thành tựu nổi bật 4', image: '/img_about_us/achieve_4.svg' },
-    { id: 5, title: 'Thành tựu nổi bật 5', image: '/img_about_us/achieve_5.svg' },
-    { id: 6, title: 'Thành tựu nổi bật 6', image: '/img_about_us/achieve_6.svg' },
+    { id: 1, title: 'Thành tựu nổi bật 1', image: '/img_about_us/achieve_1.webp' },
+    { id: 2, title: 'Thành tựu nổi bật 2', image: '/img_about_us/achieve_2.webp' },
+    { id: 3, title: 'Thành tựu nổi bật 3', image: '/img_about_us/achieve_3.webp' },
+    { id: 4, title: 'Thành tựu nổi bật 4', image: '/img_about_us/achieve_4.webp' },
+    { id: 5, title: 'Thành tựu nổi bật 5', image: '/img_about_us/achieve_5.webp' },
+    { id: 6, title: 'Thành tựu nổi bật 6', image: '/img_about_us/achieve_6.webp' },
   ];
 
   return (

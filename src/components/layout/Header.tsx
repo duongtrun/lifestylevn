@@ -17,11 +17,11 @@ export default function Header() {
   return (
     <header className="sticky top-0 z-50 w-full border-b border-gray-100 bg-white">
       <div className="container mx-auto px-4 h-20 flex items-center justify-between">
-        {/* Logo — bấm vào cuộn mượt lên đầu trang */}
-        <button 
-          onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+        {/* Logo — bấm vào về trang chủ */}
+        <Link 
+          href="/"
           className="flex items-center group cursor-pointer"
-          aria-label="Về đầu trang"
+          aria-label="Về trang chủ"
         >
           <Image 
             src="/images/logo.svg" 
@@ -31,7 +31,7 @@ export default function Header() {
             className="h-10 w-auto transition-transform group-hover:scale-105"
             priority
           />
-        </button>
+        </Link>
 
         {/* Desktop Navigation */}
         <nav className="hidden md:flex items-center gap-8">
@@ -63,7 +63,7 @@ export default function Header() {
                 </DropdownMenu.Item>
                 
                 <DropdownMenu.Item asChild>
-                  <Link href="/he-sinh-thai/iruka-acre" className="flex items-center gap-3 p-2.5 rounded-xl outline-none cursor-pointer hover:bg-primary/5 group transition-all duration-200 mt-0.5">
+                  <Link href="/he-sinh-thai/iruka-care" className="flex items-center gap-3 p-2.5 rounded-xl outline-none cursor-pointer hover:bg-primary/5 group transition-all duration-200 mt-0.5">
                     <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-amber-50 text-amber-600 group-hover:bg-amber-500 group-hover:text-white transition-colors duration-300 shadow-sm">
                       <Leaf className="w-4 h-4" />
                     </div>
@@ -75,7 +75,7 @@ export default function Header() {
                 </DropdownMenu.Item>
                 
                 <DropdownMenu.Item asChild>
-                  <Link href="/he-sinh-thai/babegp" className="flex items-center gap-3 p-2.5 rounded-xl outline-none cursor-pointer hover:bg-primary/5 group transition-all duration-200 mt-0.5">
+                  <Link href="/he-sinh-thai/babego" className="flex items-center gap-3 p-2.5 rounded-xl outline-none cursor-pointer hover:bg-primary/5 group transition-all duration-200 mt-0.5">
                     <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-rose-50 text-rose-500 group-hover:bg-rose-500 group-hover:text-white transition-colors duration-300 shadow-sm">
                       <Baby className="w-4 h-4" />
                     </div>

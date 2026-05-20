@@ -1,6 +1,6 @@
 'use client';
 
-import { motion } from "framer-motion";
+import { motion, Variants } from "framer-motion";
 import { Lightbulb, BookOpen, ShieldCheck, Leaf, Sparkles } from "lucide-react";
 
 // File: src/components/home/DifferenceSection.tsx
@@ -51,7 +51,7 @@ const cards = [
 ];
 
 // Cấu hình animation (hiệu ứng mọc lên tuần tự khi cuộn tới)
-const containerVariants = {
+const containerVariants: Variants = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
@@ -59,7 +59,7 @@ const containerVariants = {
   },
 };
 
-const cardVariants = {
+const cardVariants: Variants = {
   hidden: { opacity: 0, y: 30 },
   visible: {
     opacity: 1,
@@ -72,7 +72,7 @@ export default function DifferenceSection() {
   return (
     <section
       className="relative w-full py-24 lg:py-32 bg-cover bg-center bg-fixed overflow-hidden"
-      style={{ backgroundImage: "url('/images/bg_different.svg')" }}
+      style={{ backgroundImage: "url('/images/bg_different.webp')" }}
     >
       {/* Lớp phủ tối gradient để chữ trắng nổi bật trên nền ảnh */}
       <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/60 to-black/70"></div>

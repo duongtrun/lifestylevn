@@ -8,7 +8,7 @@
 
 import React, { useState } from 'react';
 import Image from 'next/image';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence, Variants } from 'framer-motion';
 import { Eye, Compass, Lightbulb } from 'lucide-react';
 
 // --- DỮ LIỆU 3 TAB ---
@@ -17,39 +17,39 @@ const tabs = [
     id: 'vision',
     label: 'Tầm nhìn',
     icon: Eye,
-    bg: '/img_about_us/bg_vision.svg',
+    bg: '/img_about_us/bg_vision.webp',
     heading: 'TẦM NHÌN',
     content:
-      '"Trở thành doanh nghiệp tiên phong trong việc xây dựng hệ sinh thái Mẹ & Bé toàn diện tại Việt Nam – nơi công nghệ, dinh dưỡng, giáo dục và sức khỏe kết hợp để mang đến giải pháp nuôi dạy con toàn diện và bền vững."',
+      'Trở thành doanh nghiệp tiên phong trong việc xây dựng hệ sinh thái Mẹ & Bé toàn diện tại Việt Nam – nơi công nghệ, dinh dưỡng, giáo dục và sức khỏe kết hợp để mang đến giải pháp nuôi dạy con toàn diện và bền vững.',
   },
   {
     id: 'mission',
     label: 'Sứ mệnh',
     icon: Compass,
-    bg: '/img_about_us/bg_su_menh.svg',
+    bg: '/img_about_us/bg_su_menh.webp',
     heading: 'SỨ MỆNH',
     content:
-      '"Đồng hành cùng hàng triệu gia đình Việt Nam trong hành trình nuôi dưỡng và phát triển thế hệ tương lai, bằng những sản phẩm & dịch vụ chất lượng cao, lấy sức khỏe và hạnh phúc của Mẹ & Bé làm trọng tâm."',
+      'Mang đến giải pháp toàn diện và đáng tin cậy giúp trẻ phát triển khỏe mạnh – hạnh phúc – an toàn trong những năm đầu đời, đồng hành cùng các bà mẹ trong hành trình nuôi dạy con khôn lớn.\n\nChúng tôi cam kết tạo ra các sản phẩm và dịch vụ vừa an toàn, chất lượng, vừa mang lại giá trị thực cho gia đình Việt.',
   },
   {
     id: 'philosophy',
     label: 'Triết lý kinh doanh',
     icon: Lightbulb,
-    bg: '/img_about_us/bg_triet_ly.svg',
+    bg: '/img_about_us/bg_triet_ly.webp',
     heading: 'TRIẾT LÝ KINH DOANH',
     content:
-      '"Phát triển bền vững trên nền tảng giá trị con người. Chúng tôi tin rằng một doanh nghiệp thực sự thành công khi tạo ra giá trị không chỉ cho cổ đông, mà còn cho nhân viên, đối tác, khách hàng và toàn xã hội."',
+      '• Hợp tác – Phát triển – Chia sẻ lợi nhuận\n• Khách hàng là người bạn đồng hành, không chỉ là người mua hàng\n• Cam kết cung cấp giá trị thật, minh bạch và bền vững\n• Tôn trọng đạo đức kinh doanh – tuân thủ pháp luật\n• Liên tục đổi mới để mang lại chất lượng vượt trội',
   },
 ];
 
 // --- HIỆU ỨNG ANIMATION ---
-const contentVariants = {
+const contentVariants: Variants = {
   hidden: { opacity: 0, x: 30 },
   visible: { opacity: 1, x: 0, transition: { duration: 0.55, ease: 'easeOut' } },
   exit: { opacity: 0, x: -30, transition: { duration: 0.3, ease: 'easeIn' } },
 };
 
-const bgVariants = {
+const bgVariants: Variants = {
   hidden: { opacity: 0, scale: 1.04 },
   visible: { opacity: 1, scale: 1, transition: { duration: 0.7, ease: 'easeOut' } },
   exit: { opacity: 0, scale: 0.98, transition: { duration: 0.35 } },
@@ -125,8 +125,8 @@ export default function VisionMissionSection() {
           {/* Thanh xanh PHẢI — to hơn, cao hơn, nhô ra ngoài rõ */}
           <div className="absolute right-0 bottom-6 w-14 md:w-16 h-[55%] bg-[#009fe3] z-0" />
 
-          {/* Hộp ảnh chính — chiều cao cố định, không quá to */}
-          <div className="relative z-10 rounded-2xl overflow-hidden shadow-2xl h-[260px] md:h-[340px]">
+          {/* Hộp ảnh chính — tăng chiều cao để text dài không bị tràn */}
+          <div className="relative z-10 rounded-2xl overflow-hidden shadow-2xl h-[360px] md:h-[420px]">
             
             {/* Ảnh nền — AnimatePresence để chuyển mượt khi đổi tab */}
             <AnimatePresence mode="wait">
@@ -159,9 +159,9 @@ export default function VisionMissionSection() {
                 initial="hidden"
                 animate="visible"
                 exit="exit"
-                className="absolute top-1/2 -translate-y-1/2 left-6 md:left-10 z-20 max-w-xs md:max-w-sm"
+                className="absolute top-1/2 -translate-y-1/2 left-6 md:left-10 z-20 max-w-xs md:max-w-md w-[85%] md:w-auto"
               >
-                <div className="bg-white/25 backdrop-blur-md border border-white/40 rounded-xl p-6 shadow-xl">
+                <div className="bg-white/30 backdrop-blur-md border border-white/40 rounded-2xl p-5 md:p-6 shadow-xl">
                   {/* Icon + Tiêu đề */}
                   <div className="flex items-center gap-2 mb-3">
                     <Icon className="w-5 h-5" style={{ color: '#273F68' }} />
@@ -169,8 +169,8 @@ export default function VisionMissionSection() {
                       {currentTab.heading}
                     </h3>
                   </div>
-                  {/* Nội dung văn bản */}
-                  <p className="text-sm md:text-base leading-relaxed font-medium" style={{ color: '#273F68' }}>
+                  {/* Nội dung văn bản - thêm class whitespace-pre-line để hỗ trợ xuống dòng */}
+                  <p className="text-sm md:text-base leading-relaxed font-medium whitespace-pre-line" style={{ color: '#273F68' }}>
                     {currentTab.content}
                   </p>
                 </div>
