@@ -58,8 +58,9 @@ export default function ContactForm() {
                 name="fullName"
                 type="text"
                 required
+                maxLength={50}
                 className="w-full rounded-xl border border-white/20 bg-white/20 px-4 py-3 text-white placeholder-white/50 outline-none transition-all focus:bg-white/30 focus:ring-2 focus:ring-white/50"
-                placeholder="Nhập họ và tên"
+                placeholder="Nhập họ và tên (tối đa 50 ký tự)"
               />
             </div>
 

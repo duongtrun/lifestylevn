@@ -18,8 +18,20 @@ interface ApplicationFormProps {
 export default function ApplicationForm({ positionTitle, onSuccess }: ApplicationFormProps) {
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const [isPending, setIsPending] = useState(false);
+  const [errors, setErrors] = useState<Record<string, string>>({});
   const fileInputRef = useRef<HTMLInputElement>(null);
   const formRef = useRef<HTMLFormElement>(null);
+
+  // Xóa thông báo lỗi khi người dùng chỉnh sửa trường
+  const handleInputChange = (fieldName: string) => {
+    if (errors[fieldName]) {
+      setErrors((prev) => {
+        const next = { ...prev };
+        delete next[fieldName];
+        return next;
+      });
+    }
+  };
 
   // Xử lý khi user chọn file
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -39,6 +51,7 @@ export default function ApplicationForm({ positionTitle, onSuccess }: Applicatio
       }
       
       setSelectedFile(file);
+      handleInputChange('cvFile');
     }
   };
 
@@ -67,6 +80,7 @@ export default function ApplicationForm({ positionTitle, onSuccess }: Applicatio
       }
       
       setSelectedFile(file);
+      handleInputChange('cvFile');
       // Đồng bộ file đã kéo thả vào ô input ẩn
       if (fileInputRef.current) {
         const dataTransfer = new DataTransfer();
@@ -86,20 +100,42 @@ export default function ApplicationForm({ positionTitle, onSuccess }: Applicatio
     const phone = (form.elements.namedItem('phone') as HTMLInputElement)?.value.trim();
     const email = (form.elements.namedItem('email') as HTMLInputElement)?.value.trim();
 
+    // Reset lại toàn bộ lỗi trước khi validate
+    setErrors({});
+    const newErrors: Record<string, string> = {};
+
     if (!fullName) {
-      toast.error('Vui lòng điền Họ và tên');
-      return;
+      newErrors.fullName = 'Họ và tên không được để trống.';
+    } else if (fullName.length > 100) {
+      newErrors.fullName = 'Họ và tên không được vượt quá 100 ký tự.';
     }
+
     if (!phone) {
-      toast.error('Vui lòng điền Số điện thoại');
-      return;
+      newErrors.phone = 'Số điện thoại không được để trống.';
+    } else {
+      const phoneRegex = /^(0[3|5|7|8|9])+([0-9]{8})$/;
+      if (!phoneRegex.test(phone.replace(/\s+/g, ''))) {
+        newErrors.phone = 'Số điện thoại không hợp lệ (phải gồm 10 chữ số, bắt đầu bằng 03, 05, 07, 08 hoặc 09).';
+      }
     }
+
     if (!email) {
-      toast.error('Vui lòng điền Email liên hệ');
-      return;
+      newErrors.email = 'Email liên hệ không được để trống.';
+    } else {
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailRegex.test(email)) {
+        newErrors.email = 'Địa chỉ email không đúng định dạng.';
+      }
     }
+
     if (!selectedFile) {
-      toast.error('Vui lòng đính kèm CV (Hồ sơ năng lực) của bạn');
+      newErrors.cvFile = 'Vui lòng đính kèm file CV của bạn.';
+    }
+
+    // Nếu có lỗi thì hiển thị thông báo cụ thể dưới từng trường và dừng lại
+    if (Object.keys(newErrors).length > 0) {
+      setErrors(newErrors);
+      toast.error('Vui lòng kiểm tra và sửa lại các trường bị nhập sai.');
       return;
     }
 
@@ -109,7 +145,7 @@ export default function ApplicationForm({ positionTitle, onSuccess }: Applicatio
     formData.append('phone', phone);
     formData.append('email', email);
     formData.append('position', positionTitle);
-    formData.append('cv-file', selectedFile); // File gốc, không bị hash
+    formData.append('cv-file', selectedFile!); // File gốc, không bị hash
 
     setIsPending(true);
 
@@ -128,9 +164,31 @@ export default function ApplicationForm({ positionTitle, onSuccess }: Applicatio
         setSelectedFile(null);
         if (fileInputRef.current) fileInputRef.current.value = '';
         formRef.current?.reset();
+        setErrors({});
         if (onSuccess) onSuccess();
       } else {
-        toast.error(result.message);
+        // Nếu server trả về các trường validate sai cụ thể từ Contact Form 7
+        if (result.invalidFields && result.invalidFields.length > 0) {
+          const serverErrors: Record<string, string> = {};
+          result.invalidFields.forEach((item: any) => {
+            const fieldName = item.field;
+            if (fieldName === 'your-name' || fieldName === 'fullName') {
+              serverErrors.fullName = item.message;
+            } else if (fieldName === 'your-tel' || fieldName === 'phone') {
+              serverErrors.phone = item.message;
+            } else if (fieldName === 'your-email' || fieldName === 'email') {
+              serverErrors.email = item.message;
+            } else if (fieldName === 'cv-file') {
+              serverErrors.cvFile = item.message;
+            } else {
+              toast.error(item.message);
+            }
+          });
+          setErrors(serverErrors);
+          toast.error('Gửi CV thất bại. Vui lòng kiểm tra thông báo lỗi bên dưới các trường nhập liệu.');
+        } else {
+          toast.error(result.message || 'Lỗi khi gửi dữ liệu lên hệ thống.');
+        }
       }
     } catch {
       toast.error('Không thể kết nối đến máy chủ. Vui lòng kiểm tra kết nối mạng và thử lại.');
@@ -156,8 +214,16 @@ export default function ApplicationForm({ positionTitle, onSuccess }: Applicatio
               name="fullName"
               disabled={isPending}
               placeholder="Nguyễn Văn A"
-              className="w-full px-3 py-2.5 rounded-xl border border-neutral-200 bg-neutral-50/50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-all text-neutral-900 disabled:opacity-60"
+              onChange={() => handleInputChange('fullName')}
+              className={`w-full px-3 py-2.5 rounded-xl border bg-neutral-50/50 focus:bg-white focus:outline-none focus:ring-2 transition-all text-neutral-900 disabled:opacity-60 ${
+                errors.fullName
+                  ? 'border-rose-500 focus:ring-rose-500/20 focus:border-rose-500'
+                  : 'border-neutral-200 focus:ring-blue-500/20 focus:border-blue-500'
+              }`}
             />
+            {errors.fullName && (
+              <p className="text-xs text-rose-500 font-medium mt-1">{errors.fullName}</p>
+            )}
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
@@ -171,8 +237,16 @@ export default function ApplicationForm({ positionTitle, onSuccess }: Applicatio
                 name="phone"
                 disabled={isPending}
                 placeholder="09xx xxx xxx"
-                className="w-full px-3 py-2.5 rounded-xl border border-neutral-200 bg-neutral-50/50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-all text-neutral-900 disabled:opacity-60"
+                onChange={() => handleInputChange('phone')}
+                className={`w-full px-3 py-2.5 rounded-xl border bg-neutral-50/50 focus:bg-white focus:outline-none focus:ring-2 transition-all text-neutral-900 disabled:opacity-60 ${
+                  errors.phone
+                    ? 'border-rose-500 focus:ring-rose-500/20 focus:border-rose-500'
+                    : 'border-neutral-200 focus:ring-blue-500/20 focus:border-blue-500'
+                }`}
               />
+              {errors.phone && (
+                <p className="text-xs text-rose-500 font-medium mt-1">{errors.phone}</p>
+              )}
             </div>
 
             <div>
@@ -185,8 +259,16 @@ export default function ApplicationForm({ positionTitle, onSuccess }: Applicatio
                 name="email"
                 disabled={isPending}
                 placeholder="email@example.com"
-                className="w-full px-3 py-2.5 rounded-xl border border-neutral-200 bg-neutral-50/50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-all text-neutral-900 disabled:opacity-60"
+                onChange={() => handleInputChange('email')}
+                className={`w-full px-3 py-2.5 rounded-xl border bg-neutral-50/50 focus:bg-white focus:outline-none focus:ring-2 transition-all text-neutral-900 disabled:opacity-60 ${
+                  errors.email
+                    ? 'border-rose-500 focus:ring-rose-500/20 focus:border-rose-500'
+                    : 'border-neutral-200 focus:ring-blue-500/20 focus:border-blue-500'
+                }`}
               />
+              {errors.email && (
+                <p className="text-xs text-rose-500 font-medium mt-1">{errors.email}</p>
+              )}
             </div>
           </div>
 
@@ -211,7 +293,9 @@ export default function ApplicationForm({ positionTitle, onSuccess }: Applicatio
               className={`w-full border-2 border-dashed rounded-2xl p-4 text-center transition-all ${
                 selectedFile 
                   ? 'border-blue-500 bg-blue-50/50' 
-                  : 'border-neutral-300 hover:border-blue-400 hover:bg-neutral-50'
+                  : errors.cvFile
+                    ? 'border-rose-500 bg-rose-50/50 hover:bg-rose-50'
+                    : 'border-neutral-300 hover:border-blue-400 hover:bg-neutral-50'
               } ${isPending ? 'opacity-60 pointer-events-none' : 'cursor-pointer'}`}
               onClick={() => fileInputRef.current?.click()}
               onDragOver={handleDragOver}
@@ -266,6 +350,9 @@ export default function ApplicationForm({ positionTitle, onSuccess }: Applicatio
                 )}
               </AnimatePresence>
             </div>
+            {errors.cvFile && (
+              <p className="text-xs text-rose-500 font-medium mt-1">{errors.cvFile}</p>
+            )}
           </div>
         </div>
 

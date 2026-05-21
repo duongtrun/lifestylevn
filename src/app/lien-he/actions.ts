@@ -17,6 +17,11 @@ export async function submitContactForm(prevState: any, formData: FormData) {
       return { success: false, message: 'Vui lòng điền đầy đủ thông tin.' };
     }
 
+    // Giới hạn phần tên không quá 50 ký tự
+    if (fullName.length > 50) {
+      return { success: false, message: 'Họ và tên không được vượt quá 50 ký tự.' };
+    }
+
     // URL của WordPress API (Đường dẫn kết nối đến hệ thống WordPress) và các headers cần thiết để đi qua tunnel
     const { url: wpApiUrl, headers: wpHeaders } = getWpRequestDetails();
     

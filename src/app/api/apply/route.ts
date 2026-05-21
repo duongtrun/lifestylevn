@@ -79,7 +79,11 @@ export async function POST(request: NextRequest) {
     console.log('WP Response:', result);
 
     if (response.status !== 200 || result.status === 'validation_failed' || result.status === 'mail_failed') {
-      return NextResponse.json({ success: false, message: result.message || 'Lỗi khi gửi dữ liệu.' }, { status: 500 });
+      return NextResponse.json({ 
+        success: false, 
+        message: result.message || 'Lỗi khi gửi dữ liệu.',
+        invalidFields: result.invalid_fields || []
+      }, { status: response.status === 200 ? 400 : response.status });
     }
 
     return NextResponse.json({ success: true, message: 'Gửi CV thành công! HR IruKa sẽ liên hệ với bạn sớm nhất.' });
