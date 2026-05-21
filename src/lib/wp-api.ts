@@ -19,7 +19,35 @@ try {
   }
 } catch (e) {
   // Bỏ qua nếu parse lỗi
-}// Domain nội bộ mà WordPress tự gắn vào URL ảnh
+}
+
+/**
+ * Hàm tiện ích giúp các Server Actions tự động làm sạch URL và trích xuất header Authorization (nếu URL chứa basic auth)
+ */
+export function getWpRequestDetails(customUrl?: string) {
+  const rawUrl = customUrl || process.env.NEXT_PUBLIC_WP_API_URL || 'http://localhost:10004/wp-json';
+  let cleanUrl = rawUrl;
+  const headers: Record<string, string> = {
+    'Bypass-Tunnel-Reminder': 'true', // Bỏ qua màn hình cảnh báo của Localtunnel
+  };
+  
+  try {
+    const parsedUrl = new URL(rawUrl);
+    if (parsedUrl.username || parsedUrl.password) {
+      const authString = `${parsedUrl.username}:${parsedUrl.password}`;
+      headers['Authorization'] = `Basic ${typeof btoa !== 'undefined' ? btoa(authString) : Buffer.from(authString).toString('base64')}`;
+      parsedUrl.username = '';
+      parsedUrl.password = '';
+      cleanUrl = parsedUrl.toString().replace(/\/$/, '');
+    }
+  } catch (e) {
+    // Bỏ qua
+  }
+  
+  return { url: cleanUrl, headers };
+}
+
+// Domain nội bộ mà WordPress tự gắn vào URL ảnh
 const WP_INTERNAL_ORIGIN = 'http://lifestyleadminvn.local';
 
 // Tự động phân tích và lấy domain thực tế từ đường dẫn API được cấu hình
@@ -33,12 +61,20 @@ const getPublicOrigin = (): string => {
 };
 const WP_PUBLIC_ORIGIN = getPublicOrigin();
 
-/**
- * Chuyển đổi URL ảnh từ domain nội bộ WordPress sang domain truy cập được
- */
 export function fixImageUrl(url: string | undefined): string {
   if (!url) return '';
-  return url.replace(WP_INTERNAL_ORIGIN, WP_PUBLIC_ORIGIN);
+  
+  // Nếu là ảnh nội bộ (mock data) bắt đầu bằng dấu / thì giữ nguyên
+  if (url.startsWith('/')) {
+    return url;
+  }
+  
+  const wpContentIndex = url.indexOf('/wp-content/');
+  if (wpContentIndex !== -1) {
+    return WP_PUBLIC_ORIGIN + url.substring(wpContentIndex);
+  }
+  
+  return url;
 }
 
 /**

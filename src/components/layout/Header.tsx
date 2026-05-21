@@ -35,13 +35,13 @@ export default function Header() {
 
         {/* Desktop Navigation */}
         <nav className="hidden md:flex items-center gap-8">
-          <Link href="/gioi-thieu" className="text-sm font-medium text-gray-600 hover:text-primary transition-colors">
+          <Link href="/gioi-thieu" className="text-lg font-medium text-gray-600 hover:text-primary transition-colors">
             Giới thiệu
           </Link>
 
           {/* Ecosystem Dropdown */}
           <DropdownMenu.Root>
-            <DropdownMenu.Trigger className="flex items-center gap-1 text-sm font-medium text-gray-600 hover:text-primary transition-colors outline-none data-[state=open]:text-primary group">
+            <DropdownMenu.Trigger className="flex items-center gap-1 text-lg font-medium text-gray-600 hover:text-primary transition-colors outline-none data-[state=open]:text-primary group">
               Hệ sinh thái <ChevronDown className="w-4 h-4 group-data-[state=open]:rotate-180 transition-transform" />
             </DropdownMenu.Trigger>
             <DropdownMenu.Portal>
@@ -89,13 +89,13 @@ export default function Header() {
             </DropdownMenu.Portal>
           </DropdownMenu.Root>
 
-          <Link href="/dau-tu" className="text-sm font-medium text-gray-600 hover:text-primary transition-colors">
+          <Link href="/dau-tu" className="text-lg font-medium text-gray-600 hover:text-primary transition-colors">
             Đầu tư
           </Link>
-          <Link href="/tin-tuc" className="text-sm font-medium text-gray-600 hover:text-primary transition-colors">
+          <Link href="/tin-tuc" className="text-lg font-medium text-gray-600 hover:text-primary transition-colors">
             Tin tức
           </Link>
-          <Link href="/tuyen-dung" className="text-sm font-medium text-gray-600 hover:text-primary transition-colors">
+          <Link href="/tuyen-dung" className="text-lg font-medium text-gray-600 hover:text-primary transition-colors">
             Tuyển dụng
           </Link>
         </nav>
@@ -104,7 +104,7 @@ export default function Header() {
         <div className="hidden md:block">
           <Link 
             href="/lien-he" 
-            className="inline-flex h-10 items-center justify-center rounded-full bg-primary px-6 text-sm font-medium text-primary-foreground hover:bg-primary/90 transition-colors shadow-sm"
+            className="inline-flex h-11 items-center justify-center rounded-full bg-primary px-6 text-lg font-medium text-primary-foreground hover:bg-primary/90 transition-colors shadow-sm"
           >
             Liên hệ
           </Link>
@@ -134,31 +134,31 @@ export default function Header() {
           <Link 
             href="/gioi-thieu" 
             onClick={() => setIsMobileMenuOpen(false)} 
-            className="block text-sm font-medium text-gray-600"
+            className="block text-lg font-medium text-gray-600"
           >
             Giới thiệu
           </Link>
           <div className="space-y-2">
-            <span className="block text-sm font-medium text-gray-600">Hệ sinh thái</span>
+            <span className="block text-lg font-medium text-gray-600">Hệ sinh thái</span>
             <div className="pl-4 border-l-2 border-primary/20 space-y-3">
               <Link 
                 href="/he-sinh-thai/iruka-edu" 
                 onClick={() => setIsMobileMenuOpen(false)} 
-                className="block text-sm text-gray-500 hover:text-primary"
+                className="block text-base text-gray-500 hover:text-primary"
               >
                 IruKa Edu
               </Link>
               <Link 
                 href="/he-sinh-thai/iruka-care" 
                 onClick={() => setIsMobileMenuOpen(false)} 
-                className="block text-sm text-gray-500 hover:text-primary"
+                className="block text-base text-gray-500 hover:text-primary"
               >
                 IruKa Care
               </Link>
               <Link 
                 href="/he-sinh-thai/babego" 
                 onClick={() => setIsMobileMenuOpen(false)} 
-                className="block text-sm text-gray-500 hover:text-primary"
+                className="block text-base text-gray-500 hover:text-primary"
               >
                 Babego
               </Link>
@@ -167,28 +167,28 @@ export default function Header() {
           <Link 
             href="/dau-tu" 
             onClick={() => setIsMobileMenuOpen(false)} 
-            className="block text-sm font-medium text-gray-600"
+            className="block text-lg font-medium text-gray-600"
           >
             Đầu tư
           </Link>
           <Link 
             href="/tin-tuc" 
             onClick={() => setIsMobileMenuOpen(false)} 
-            className="block text-sm font-medium text-gray-600"
+            className="block text-lg font-medium text-gray-600"
           >
             Tin tức
           </Link>
           <Link 
             href="/tuyen-dung" 
             onClick={() => setIsMobileMenuOpen(false)} 
-            className="block text-sm font-medium text-gray-600"
+            className="block text-lg font-medium text-gray-600"
           >
             Tuyển dụng
           </Link>
           <Link 
             href="/lien-he" 
             onClick={() => setIsMobileMenuOpen(false)} 
-            className="flex w-full h-10 items-center justify-center rounded-full bg-primary text-sm font-medium text-white mt-4"
+            className="flex w-full h-11 items-center justify-center rounded-full bg-primary text-lg font-medium text-white mt-4"
           >
             Liên hệ
           </Link>

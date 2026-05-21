@@ -7,6 +7,7 @@
 // Dùng khi: Người dùng gửi bài viết từ trang /dong-gop.
 
 import { z } from 'zod';
+import { getWpRequestDetails } from '@/lib/wp-api';
 
 // Schema xác thực dữ liệu gửi lên (không bao gồm File vì File được validate trực tiếp)
 const ContributionSchema = z.object({
@@ -49,7 +50,7 @@ export async function submitContribution(formData: FormData) {
     });
 
     // 3. Lấy thông số cấu hình WordPress API từ biến môi trường
-    const WP_API_URL = process.env.NEXT_PUBLIC_WP_API_URL || 'http://localhost:10004/wp-json';
+    const { url: cleanWpApiUrl, headers: tunnelHeaders } = getWpRequestDetails();
     const username = process.env.WP_AUTH_USERNAME;
     const appPassword = process.env.WP_AUTH_APPLICATION_PASSWORD;
 
@@ -70,8 +71,17 @@ export async function submitContribution(formData: FormData) {
       };
     }
 
-    // 5. Mã hóa thông tin đăng nhập Basic Auth
-    const credentials = Buffer.from(`${username}:${appPassword}`).toString('base64');
+    // 5. Mã hóa thông tin đăng nhập Basic Auth cho WordPress REST API
+    const wpCredentials = Buffer.from(`${username}:${appPassword}`).toString('base64');
+    
+    // Gộp headers của tunnel (nếu có) và headers xác thực WordPress
+    // Lưu ý: Nếu sử dụng LocalWP Live Link (có Basic Auth của tunnel), 
+    // việc ghi đè header Authorization bằng WordPress credentials có thể khiến request bị chặn ở cổng Live Link (lỗi 401).
+    // Khuyến khích sử dụng Localtunnel (loca.lt) hoặc Ngrok không cài basic auth để tính năng này hoạt động ổn định.
+    const requestHeaders: Record<string, string> = {
+      ...tunnelHeaders,
+      'Authorization': `Basic ${wpCredentials}`,
+    };
 
     // 6. Xử lý UPLOAD FILE HÌNH ẢNH LÊN WORDPRESS trước (nếu người dùng có tải ảnh lên)
     let mediaId: number | undefined = undefined;
@@ -86,13 +96,12 @@ export async function submitContribution(formData: FormData) {
         const buffer = Buffer.from(arrayBuffer);
 
         // Gọi API WordPress /wp/v2/media để upload ảnh
-        const mediaRes = await fetch(`${WP_API_URL}/wp/v2/media`, {
+        const mediaRes = await fetch(`${cleanWpApiUrl}/wp/v2/media`, {
           method: 'POST',
           headers: {
-            // Đặt tiêu đề Content-Disposition chứa tên tệp tin để WordPress lưu đúng tên
             'Content-Disposition': `attachment; filename="${encodeURIComponent(imageFile.name)}"`,
             'Content-Type': imageFile.type || 'image/jpeg',
-            'Authorization': `Basic ${credentials}`,
+            ...requestHeaders,
           },
           body: buffer,
           signal: AbortSignal.timeout(12000), // Cho phép upload trong tối đa 12 giây
@@ -162,19 +171,19 @@ export async function submitContribution(formData: FormData) {
     } else {
       // Tìm hoặc tạo chuyên mục "Góp ý" (slug: gop-y) cho các lựa chọn khác
       try {
-        const catRes = await fetch(`${WP_API_URL}/wp/v2/categories?slug=gop-y`, {
-          headers: { 'Authorization': `Basic ${credentials}` },
+        const catRes = await fetch(`${cleanWpApiUrl}/wp/v2/categories?slug=gop-y`, {
+          headers: requestHeaders,
         });
         if (catRes.ok) {
           const catList = await catRes.json();
           if (catList.length > 0) {
             categoryId = catList[0].id;
           } else {
-            const createCatRes = await fetch(`${WP_API_URL}/wp/v2/categories`, {
+            const createCatRes = await fetch(`${cleanWpApiUrl}/wp/v2/categories`, {
               method: 'POST',
               headers: {
                 'Content-Type': 'application/json',
-                'Authorization': `Basic ${credentials}`,
+                ...requestHeaders,
               },
               body: JSON.stringify({ name: 'Góp ý', slug: 'gop-y' }),
             });
@@ -192,19 +201,19 @@ export async function submitContribution(formData: FormData) {
     // Tự động tìm hoặc tạo thẻ (tag) "Góp ý" (slug: gop-y) để gắn vào bài viết
     let tagId: number | undefined = undefined;
     try {
-      const tagSearchRes = await fetch(`${WP_API_URL}/wp/v2/tags?slug=gop-y`, {
-        headers: { 'Authorization': `Basic ${credentials}` },
+      const tagSearchRes = await fetch(`${cleanWpApiUrl}/wp/v2/tags?slug=gop-y`, {
+        headers: requestHeaders,
       });
       if (tagSearchRes.ok) {
         const tagsList = await tagSearchRes.json();
         if (tagsList.length > 0) {
           tagId = tagsList[0].id;
         } else {
-          const tagCreateRes = await fetch(`${WP_API_URL}/wp/v2/tags`, {
+          const tagCreateRes = await fetch(`${cleanWpApiUrl}/wp/v2/tags`, {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',
-              'Authorization': `Basic ${credentials}`,
+              ...requestHeaders,
             },
             body: JSON.stringify({ name: 'Góp ý', slug: 'gop-y' }),
           });
@@ -243,11 +252,11 @@ export async function submitContribution(formData: FormData) {
       postBody.featured_media = mediaId;
     }
 
-    const res = await fetch(`${WP_API_URL}/wp/v2/posts`, {
+    const res = await fetch(`${cleanWpApiUrl}/wp/v2/posts`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': `Basic ${credentials}`,
+        ...requestHeaders,
       },
       body: JSON.stringify(postBody),
       signal: AbortSignal.timeout(8000), // Timeout sau 8 giây

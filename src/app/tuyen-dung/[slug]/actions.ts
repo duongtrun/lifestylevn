@@ -1,5 +1,7 @@
 'use server';
 
+import { getWpRequestDetails } from '@/lib/wp-api';
+
 // File này: Server Actions xử lý form ứng tuyển (nộp CV).
 // Vai trò: Nhận dữ liệu từ form ở client (bao gồm file CV), gọi API WordPress để lưu thông tin.
 // Dùng khi: Người dùng bấm "Gửi ứng tuyển" trên trang chi tiết công việc.
@@ -27,8 +29,8 @@ export async function submitApplicationForm(prevState: any, formData: FormData) 
        return { success: false, message: 'Dung lượng file CV không được vượt quá 5MB.' };
     }
 
-    // URL của WordPress API
-    const wpApiUrl = process.env.NEXT_PUBLIC_WP_API_URL || 'http://localhost:10004/wp-json';
+    // URL của WordPress API và các headers cần thiết để đi qua tunnel
+    const { url: wpApiUrl, headers: wpHeaders } = getWpRequestDetails();
     
     // Khởi tạo FormData mới đúng chuẩn mà Contact Form 7 yêu cầu
     const wpFormData = new FormData();
@@ -64,6 +66,7 @@ export async function submitApplicationForm(prevState: any, formData: FormData) 
     // Gửi request tới Contact Form 7 REST API
     const response = await fetch(`${wpApiUrl}/contact-form-7/v1/contact-forms/${formId}/feedback`, {
       method: 'POST',
+      headers: wpHeaders,
       body: wpFormData,
     });
 

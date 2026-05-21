@@ -1,5 +1,7 @@
 'use server';
 
+import { getWpRequestDetails } from '@/lib/wp-api';
+
 // File này: Server Actions xử lý form liên hệ.
 // Vai trò: Nhận dữ liệu từ form ở client, gọi API WordPress để lưu thông tin.
 // Dùng khi: Người dùng bấm "Gửi yêu cầu" trên form /lien-he.
@@ -15,8 +17,8 @@ export async function submitContactForm(prevState: any, formData: FormData) {
       return { success: false, message: 'Vui lòng điền đầy đủ thông tin.' };
     }
 
-    // URL của WordPress API (Đường dẫn kết nối đến hệ thống WordPress)
-    const wpApiUrl = process.env.NEXT_PUBLIC_WP_API_URL || 'http://localhost:10004/wp-json';
+    // URL của WordPress API (Đường dẫn kết nối đến hệ thống WordPress) và các headers cần thiết để đi qua tunnel
+    const { url: wpApiUrl, headers: wpHeaders } = getWpRequestDetails();
     
     // Khởi tạo FormData mới đúng chuẩn mà Contact Form 7 yêu cầu
     const wpFormData = new FormData();
@@ -36,11 +38,18 @@ export async function submitContactForm(prevState: any, formData: FormData) {
     wpFormData.append('your-tel', phone);
     wpFormData.append('tel-phone', phone); // Một số template dùng tên này
     
+    // Gửi email mặc định/đại diện để tránh lỗi validate bắt buộc nhập email trên WordPress CF7
+    wpFormData.append('email', 'no-reply@lifestyle.vn');
+    wpFormData.append('your-email', 'no-reply@lifestyle.vn');
+    
     wpFormData.append('request', request); // Dùng trường request thay cho email cũ theo Contact Form 7 mới
+    wpFormData.append('your-message', request); // Đề phòng WP CF7 cấu hình dùng [textarea your-message]
+    wpFormData.append('message', request);
 
     // Gửi request (yêu cầu gọi API) tới Contact Form 7 REST API
     const response = await fetch(`${wpApiUrl}/contact-form-7/v1/contact-forms/49/feedback`, {
       method: 'POST',
+      headers: wpHeaders,
       body: wpFormData,
     });
 

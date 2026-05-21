@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import axios from 'axios';
 import NodeFormData from 'form-data';
+import { getWpRequestDetails } from '@/lib/wp-api';
 
 export async function POST(request: NextRequest) {
   try {
@@ -34,7 +35,7 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ success: false, message: 'Vui lòng đính kèm CV.' }, { status: 400 });
     }
 
-    const wpApiUrl = process.env.NEXT_PUBLIC_WP_API_URL || 'http://localhost:10004/wp-json';
+    const { url: wpApiUrl, headers: wpHeaders } = getWpRequestDetails();
     const formId = '53';
 
     const wpFormData = new NodeFormData();
@@ -67,6 +68,7 @@ export async function POST(request: NextRequest) {
       {
         headers: {
           ...wpFormData.getHeaders(),
+          ...wpHeaders,
           'Accept': 'application/json'
         },
         validateStatus: () => true 
