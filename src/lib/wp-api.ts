@@ -5,7 +5,9 @@
 const RAW_WP_API_URL = process.env.NEXT_PUBLIC_WP_API_URL || 'http://localhost:10004/wp-json';
 
 let WP_API_URL = RAW_WP_API_URL;
-const FETCH_HEADERS: HeadersInit = {};
+const FETCH_HEADERS: HeadersInit = {
+  'Bypass-Tunnel-Reminder': 'true',
+};
 
 // Sửa lỗi TypeError của Node Fetch khi URL chứa mật khẩu (như Live Link của LocalWP)
 try {
