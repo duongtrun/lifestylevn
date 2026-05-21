@@ -39,8 +39,9 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
 // --- Tạo sẵn danh sách đường dẫn tĩnh (giúp trang tải nhanh hơn) ---
 export async function generateStaticParams() {
-  const posts = await getPosts(50);
-  return posts.map((post) => ({ slug: post.slug }));
+  // Trả về mảng rỗng để tránh gửi hàng loạt request đồng thời lên Localtunnel lúc build (gây lỗi 429).
+  // Các trang chi tiết sẽ được tự động tạo và lưu bộ nhớ đệm (ISR) vào lần đầu tiên người dùng truy cập.
+  return [];
 }
 
 // --- Trang chính ---
