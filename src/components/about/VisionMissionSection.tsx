@@ -80,8 +80,8 @@ export default function VisionMissionSection() {
         </motion.div>
 
         {/* --- THANH TAB --- */}
-        <div className="flex justify-center mb-8">
-          <div className="inline-flex bg-slate-100 rounded-full p-1.5 shadow-inner gap-1">
+        <div className="flex justify-center mb-8 px-4 relative z-20">
+          <div className="flex bg-slate-100 rounded-full p-1.5 shadow-inner gap-1 overflow-x-auto max-w-full hide-scrollbar">
             {tabs.map((tab) => {
               const TabIcon = tab.icon;
               const isActive = activeTab === tab.id;
