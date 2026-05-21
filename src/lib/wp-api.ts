@@ -6,8 +6,17 @@ const WP_API_URL = process.env.NEXT_PUBLIC_WP_API_URL || 'http://localhost:10004
 
 // Domain nội bộ mà WordPress tự gắn vào URL ảnh
 const WP_INTERNAL_ORIGIN = 'http://lifestyleadminvn.local';
-// Domain thực tế mà Next.js server truy cập được
-const WP_PUBLIC_ORIGIN = 'http://localhost:10004';
+
+// Tự động phân tích và lấy domain thực tế từ đường dẫn API được cấu hình
+const getPublicOrigin = (): string => {
+  try {
+    const parsedUrl = new URL(WP_API_URL);
+    return parsedUrl.origin;
+  } catch (error) {
+    return 'http://localhost:10004';
+  }
+};
+const WP_PUBLIC_ORIGIN = getPublicOrigin();
 
 /**
  * Chuyển đổi URL ảnh từ domain nội bộ WordPress sang domain truy cập được

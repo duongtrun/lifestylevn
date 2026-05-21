@@ -1,0 +1,20 @@
+# File này: Cấu hình Docker Compose để dễ dàng chạy môi trường Production
+# Vai trò: Gộp lệnh build và run thành 1 file đơn giản
+# Dùng khi: Chạy thử trên máy local bằng lệnh `docker compose up -d`
+
+version: '3.8'
+
+services:
+  web-lifestyle:
+    container_name: web-lifestyle-prod
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      # Map cổng 3005 của máy host vào cổng 3005 của container
+      - "3005:3005"
+    restart: always
+    environment:
+      # Nếu có biến môi trường nào (.env.local), bạn có thể khai báo thêm ở đây
+      - NODE_ENV=production
+      - NEXT_PUBLIC_WP_API_URL=http://host.docker.internal:10004/wp-json

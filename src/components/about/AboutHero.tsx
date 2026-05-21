@@ -15,13 +15,22 @@ export default function AboutHero() {
   return (
     <section className="relative w-full h-[60vh] min-h-[420px] lg:h-[70vh] flex flex-col justify-end overflow-hidden">
 
-      {/* ===== Ảnh nền (placeholder — anh thay bằng ảnh thật sau) ===== */}
-      <div className="absolute inset-0 z-0">
+      {/* ===== Ảnh nền tự thích ứng (Responsive) theo thiết bị di động & máy tính ===== */}
+      <div className="absolute inset-0 z-0 bg-[#EEF8FC]">
+        {/* Ảnh banner dành riêng cho thiết bị di động (Mobile) */}
+        <Image
+          src="/img_about_us/about_us_banner_mobile.svg"
+          alt="Banner giới thiệu Lifestyle Việt Nam di động"
+          fill
+          className="object-cover object-center md:hidden"
+          priority
+        />
+        {/* Ảnh banner dành riêng cho máy tính (Desktop/Tablet) */}
         <Image
           src="/img_about_us/banner.svg"
-          alt="Đội ngũ Lifestyle Việt Nam trong cuộc họp"
+          alt="Đội ngũ Lifestyle Việt Nam trong cuộc họp máy tính"
           fill
-          className="object-cover object-center"
+          className="object-cover object-center hidden md:block"
           priority
         />
       </div>
@@ -96,12 +105,12 @@ export default function AboutHero() {
       </div>
 
       {/* ===== Sóng lượn dưới đáy section (chuyển tiếp mềm sang section dưới) ===== */}
-      <div className="absolute -bottom-[1px] left-0 right-0 z-20 overflow-hidden leading-none">
+      <div className="absolute -bottom-[2px] left-0 right-0 z-20 overflow-hidden leading-none">
         <svg
           viewBox="0 0 1440 60"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
-          className="w-full h-12 md:h-16 block scale-105"
+          className="w-full h-12 md:h-16 block scale-105 translate-y-[2px]"
           preserveAspectRatio="none"
         >
           <path

@@ -50,7 +50,7 @@ export default function Hero() {
             className="pt-6"
           >
             <Link 
-              href="/kham-pha" 
+              href="/gioi-thieu" 
               className="inline-flex h-14 items-center justify-center gap-2 rounded-full bg-primary px-8 text-base font-medium text-white hover:bg-primary/90 hover:scale-105 transition-all shadow-xl shadow-primary/25 group"
             >
               Khám phá ngay <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />

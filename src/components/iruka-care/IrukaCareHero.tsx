@@ -22,7 +22,7 @@ export default function IrukaCareHero() {
         }}
       >
         <Image
-          src="/img_iruka_care/iruka_care_banner.webp"
+          src="/img_iruka_care/iruka_care_banner.svg"
           alt="Iruka Care Banner Background"
           fill
           className="object-cover object-center"
@@ -43,7 +43,7 @@ export default function IrukaCareHero() {
             src="/img_iruka_care/iruka_care_blur_banner.svg" 
             alt="Iruka Care Blur Background" 
             fill 
-            className="object-contain drop-shadow-[0_10px_30px_rgba(0,0,0,0.2)]" 
+            className="object-contain drop-shadow-[0_20px_50px_rgba(0,0,0,0.8)]" 
             priority
           />
 
@@ -54,7 +54,7 @@ export default function IrukaCareHero() {
             </h1>
             
             <h2 className="text-sm sm:text-base md:text-xl lg:text-2xl font-semibold text-white tracking-wide drop-shadow-md max-w-2xl">
-              GIẢI PHÁP VỆ SINH & AN TOÀN CHO TRẺ TỪ SƠ SINH
+              GIẢI PHÁP VỆ SINH & AN TOÀN CHO TRẺ <br></br> TỪ SƠ SINH
             </h2>
           </div>
         </motion.div>

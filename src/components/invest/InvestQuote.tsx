@@ -14,10 +14,10 @@ export default function InvestQuote() {
       <div className="container mx-auto px-4 max-w-5xl relative z-10 flex justify-center items-center">
         
         {/* Vòng cung oval bao quanh */}
-        <div className="relative w-full max-w-[1026px] aspect-[1026/462] flex items-center justify-center p-8 md:p-16">
+        <div className="relative w-full max-w-[1026px] md:aspect-[1026/462] flex items-center justify-center py-10 px-4 md:p-16">
           
           {/* Ảnh oval background */}
-          <div className="absolute inset-0 z-10 pointer-events-none">
+          <div className="absolute inset-0 z-10 pointer-events-none hidden md:block">
             <Image 
               src="/invest_img/bg_investment.svg" 
               alt="Oval frame" 
@@ -44,18 +44,21 @@ export default function InvestQuote() {
               
               <div className="text-gray-800 text-[13px] md:text-[15px] leading-relaxed space-y-3 mt-4 text-left font-medium">
                 <p>
-                  Hôm nay, khi công nghệ thay đổi thế giới, chúng tôi lựa chọn bước đi mạnh mẽ hơn:<br className="hidden md:block" />
+                  Hôm nay, khi công nghệ thay đổi thế giới, chúng tôi lựa chọn bước đi mạnh mẽ hơn:{" "}
+                  <br className="hidden md:block" />
                   ứng dụng AI và mô hình hệ sinh thái để mang đến giải pháp toàn diện cho trẻ nhỏ.
                 </p>
                 <p>
-                  Chúng tôi tin rằng LifeStyle Việt Nam đang đứng trước thời cơ quan trọng để bứt phá,<br className="hidden md:block" />
+                  Chúng tôi tin rằng LifeStyle Việt Nam đang đứng trước thời cơ quan trọng để bứt phá,{" "}
+                  <br className="hidden md:block" />
                   và chúng tôi mong muốn được đồng hành cùng những nhà đầu tư có chung tầm nhìn:
                 </p>
                 <p className="font-bold text-black text-[15px] md:text-[16px]">
                   Tạo ra giá trị thật, bền vững và nhân văn cho xã hội.
                 </p>
                 <p>
-                  Rất mong được hợp tác cùng Quý vị trên hành trình xây dựng tương lai tốt đẹp hơn cho<br className="hidden md:block" />
+                  Rất mong được hợp tác cùng Quý vị trên hành trình xây dựng tương lai tốt đẹp hơn cho{" "}
+                  <br className="hidden md:block" />
                   thế hệ trẻ.
                 </p>
               </div>

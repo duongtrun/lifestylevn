@@ -28,7 +28,7 @@ export default function IrukaEduHero() {
 
           {/* --- Overlay nội dung: text trái + mascot phải --- */}
           <div className="absolute inset-0 z-10 flex items-center">
-            <div className="container mx-auto px-6 md:px-10 flex flex-col md:flex-row items-center justify-between gap-8 -mt-[250px]">
+            <div className="container mx-auto px-6 md:px-10 flex flex-col md:flex-row items-center justify-between gap-8 mt-0 md:-mt-[250px]">
 
               {/* Bên trái: Tiêu đề + tagline */}
               <motion.div
@@ -67,9 +67,10 @@ export default function IrukaEduHero() {
       </section>
 
       {/* ====== CÂU CHUYỆN THƯƠNG HIỆU — đè lên banner ====== */}
-      <div className="relative z-20 w-full flex justify-center -mt-[250px] pb-16">
-        {/* Khối nền trắng chỉ bắt đầu từ nửa dưới của tờ giấy trở đi, để không che mất banner ở hai bên */}
-        <div className="absolute top-[250px] left-0 right-0 bottom-0 bg-white -z-10" />
+      {/* Mobile: -mt-[100px] để tạo khoảng cách ~30-50px dưới mascot; Desktop: -mt-[250px] giữ nguyên thiết kế gốc */}
+      <div className="relative z-20 w-full flex justify-center -mt-[100px] md:-mt-[250px] pb-16">
+        {/* Nền trắng bắt đầu từ 100px (mobile) / 250px (desktop) trở đi */}
+        <div className="absolute top-[100px] md:top-[250px] left-0 right-0 bottom-0 bg-white -z-10" />
         
         <section className="relative z-10 w-full max-w-[1200px] h-auto bg-white py-10 lg:py-14 px-10 md:px-16 rounded-[10px] shadow-[0_0px_40px_rgba(0,0,0,0.08)] mx-4">
 
@@ -86,8 +87,8 @@ export default function IrukaEduHero() {
               Câu chuyện thương hiệu iruKa
             </h2>
 
-            {/* Nội dung */}
-            <div className="space-y-5 text-sm md:text-base text-[#273F68]/80 leading-relaxed">
+            {/* Nội dung: tăng cỡ chữ lên text-base (16px) trên mobile cho dễ đọc, text-lg (18px) trên desktop */}
+            <div className="space-y-5 text-base md:text-lg text-[#273F68]/80 leading-relaxed">
               <p>
                 Trong văn hóa Nhật Bản, cá heo – &quot;iruKa&quot; là biểu tượng của trí tuệ, sự dẫn dắt và bảo vệ.
                 Cá heo nuôi dạy con bằng cách học qua chơi, bằng sự tương tác tự nhiên và kiên nhẫn –

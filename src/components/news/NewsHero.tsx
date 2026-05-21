@@ -16,11 +16,20 @@ export default function NewsHero() {
 
       {/* Ảnh nền banner */}
       <div className="absolute inset-0 z-0">
+        {/* Banner cho thiết bị di động */}
+        <Image
+          src="/img_news/banner_mobile.svg"
+          alt="Tin tức - Lifestyle Việt Nam"
+          fill
+          className="object-cover object-center block md:hidden"
+          priority
+        />
+        {/* Banner cho máy tính và máy tính bảng */}
         <Image
           src="/img_news/news_banner.svg"
           alt="Tin tức - Lifestyle Việt Nam"
           fill
-          className="object-cover object-center lg:object-[center_top]"
+          className="object-cover object-center lg:object-[center_top] hidden md:block"
           priority
         />
       </div>
@@ -54,6 +63,21 @@ export default function NewsHero() {
         >
           TIN TỨC
         </motion.h1>
+
+        {/* Nút đóng góp bài viết */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.3 }}
+          className="mt-6 flex flex-wrap gap-4"
+        >
+          <Link
+            href="/dong-gop"
+            className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-white/20 hover:bg-white/30 backdrop-blur-md text-white font-semibold border border-white/20 shadow-lg hover:shadow-xl transition-all hover:-translate-y-0.5 active:translate-y-0 text-sm md:text-base group"
+          >
+            <span>✍️ Góp ý của bạn (Đăng bài)</span>
+          </Link>
+        </motion.div>
 
       </div>
 

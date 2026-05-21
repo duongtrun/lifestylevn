@@ -11,10 +11,11 @@ import useEmblaCarousel from 'embla-carousel-react';
 import { ArrowLeft, ArrowRight } from 'lucide-react';
 
 export default function AchievementSection() {
+  // Cấu hình Embla Carousel: Tắt dragFree (trượt tự do) để bắt buộc snap (khớp) từng ảnh trượt trên mobile.
   const [emblaRef, emblaApi] = useEmblaCarousel({ 
     align: 'start',
     loop: true,
-    dragFree: true
+    dragFree: false
   });
 
   const scrollPrev = useCallback(() => {
@@ -55,7 +56,8 @@ export default function AchievementSection() {
               {achievements.map((item) => (
                 <div 
                   key={item.id}
-                  className="pl-6 relative flex-none w-[85%] sm:w-[60%] md:w-[45%] lg:w-[30%] min-w-0 aspect-[3/4]"
+                  // Trên di động (mobile) chiếm đúng 100% bề ngang slider (flex-[0_0_100%]) để chỉ hiển thị duy nhất 1 ảnh.
+                  className="pl-6 relative flex-[0_0_100%] sm:flex-[0_0_60%] md:flex-[0_0_45%] lg:flex-[0_0_30%] min-w-0 aspect-[3/4]"
                 >
                   <div className="relative w-full h-full rounded-xl overflow-hidden shadow-lg group/card">
                     <Image 
@@ -82,7 +84,7 @@ export default function AchievementSection() {
           {/* Nút Điều Hướng Trái */}
           <button 
             onClick={scrollPrev}
-            className="absolute -left-4 md:-left-6 top-1/2 -translate-y-1/2 w-12 h-12 flex items-center justify-center rounded-full bg-white text-[#98C04A] hover:bg-[#98C04A] hover:text-white border-2 border-[#98C04A] hover:scale-110 active:scale-95 transition-all shadow-xl z-10 opacity-90 group-hover:opacity-100"
+            className="absolute -left-4 md:-left-6 top-1/2 -translate-y-1/2 w-12 h-12 hidden md:flex items-center justify-center rounded-full bg-white text-[#98C04A] hover:bg-[#98C04A] hover:text-white border-2 border-[#98C04A] hover:scale-110 active:scale-95 transition-all shadow-xl z-10 opacity-90 group-hover:opacity-100"
             aria-label="Trượt sang trái"
           >
             <ArrowLeft size={24} strokeWidth={2.5} />
@@ -91,7 +93,7 @@ export default function AchievementSection() {
           {/* Nút Điều Hướng Phải */}
           <button 
             onClick={scrollNext}
-            className="absolute -right-4 md:-right-6 top-1/2 -translate-y-1/2 w-12 h-12 flex items-center justify-center rounded-full bg-white text-[#98C04A] hover:bg-[#98C04A] hover:text-white border-2 border-[#98C04A] hover:scale-110 active:scale-95 transition-all shadow-xl z-10 opacity-90 group-hover:opacity-100"
+            className="absolute -right-4 md:-right-6 top-1/2 -translate-y-1/2 w-12 h-12 hidden md:flex items-center justify-center rounded-full bg-white text-[#98C04A] hover:bg-[#98C04A] hover:text-white border-2 border-[#98C04A] hover:scale-110 active:scale-95 transition-all shadow-xl z-10 opacity-90 group-hover:opacity-100"
             aria-label="Trượt sang phải"
           >
             <ArrowRight size={24} strokeWidth={2.5} />

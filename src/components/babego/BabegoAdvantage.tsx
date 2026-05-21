@@ -46,7 +46,7 @@ export default function BabegoAdvantage() {
 
         {/* Cards Container */}
         <div className="container mx-auto px-6 md:px-4 max-w-[1100px]">
-          <div className="flex flex-wrap lg:flex-nowrap justify-center gap-6 lg:gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
             {ADVANTAGES.map((item, index) => (
               <motion.div
                 key={index}
@@ -54,7 +54,7 @@ export default function BabegoAdvantage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
-                className="relative w-full sm:w-[calc(50%-12px)] lg:w-[calc(25%-24px)] flex-1"
+                className="relative w-full"
               >
                 {/* Thẻ viền xanh */}
                 <div className="relative h-full min-h-[160px] lg:min-h-[180px] bg-white border-[2px] border-[#6FBD44] rounded-lg flex flex-col p-5 md:p-6 shadow-sm hover:shadow-md transition-shadow duration-300">

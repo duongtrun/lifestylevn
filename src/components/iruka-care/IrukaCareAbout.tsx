@@ -71,8 +71,8 @@ export default function IrukaCareAbout() {
             className="object-cover"
           />
         </div>
-        <div className="relative z-10 container mx-auto px-6 md:px-10 py-16 md:py-24 lg:py-32">
-          <div className="flex flex-col md:flex-row items-center justify-between gap-10 md:gap-20 lg:gap-32 max-w-6xl mx-auto">
+        <div className="relative z-10 container mx-auto px-6 md:px-10 pt-10 pb-4 md:py-24 lg:py-32">
+          <div className="flex flex-col md:flex-row items-center justify-between gap-6 md:gap-20 lg:gap-32 max-w-6xl mx-auto">
             {/* Bên trái: Mascot 1 */}
             <motion.div
               initial={{ opacity: 0, x: -40 }}
@@ -89,27 +89,26 @@ export default function IrukaCareAbout() {
               />
             </motion.div>
 
-            {/* Bên phải: Text */}
             <motion.div
               initial={{ opacity: 0, x: 40 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.7, delay: 0.15 }}
-              className="flex-1 text-white"
+              className="flex-1"
             >
-              <h2 className="text-3xl md:text-4xl lg:text-5xl font-extrabold mb-6 drop-shadow-sm">
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-extrabold mb-6 drop-shadow-sm text-[#005A8C] md:text-white">
                 iruKa Care là gì?
               </h2>
-              <p className="text-sm md:text-base leading-relaxed mb-4 font-medium opacity-90">
+              <p className="text-sm md:text-base leading-relaxed mb-4 font-medium text-gray-700 md:text-white/90">
                 iruKa Care là thương hiệu vệ sinh - chăm sóc - bảo vệ dành cho trẻ từ sơ sinh đến 10 tuổi, được phát triển trên nền tảng:
               </p>
-              <ul className="list-disc pl-5 space-y-2 text-sm md:text-base leading-relaxed font-medium opacity-90">
+              <ul className="list-disc pl-5 space-y-2 text-sm md:text-base leading-relaxed font-medium text-gray-700 md:text-white/90">
                 <li>Công thức sạch - an toàn tuyệt đối</li>
                 <li>Nguồn thành phần lành tính, có chọn lọc</li>
                 <li>Ứng dụng công nghệ đạt chuẩn Nhật - Châu Âu</li>
                 <li>Kiểm nghiệm nghiêm ngặt bởi đội ngũ chuyên môn</li>
               </ul>
-              <p className="text-sm md:text-base leading-relaxed mt-4 font-medium opacity-90">
+              <p className="text-sm md:text-base leading-relaxed mt-4 font-medium text-gray-700 md:text-white/90">
                 iruKa Care hướng đến mục tiêu trở thành dòng sản phẩm vệ sinh đáng tin cậy nhất cho các gia đình Việt, đồng hành cùng hành trình lớn khôn của trẻ.
               </p>
             </motion.div>
@@ -118,9 +117,9 @@ export default function IrukaCareAbout() {
       </section>
 
       {/* ====== SECTION 3: Vì sao chúng tôi xây dựng iruKa Care ? ====== */}
-      <section className="relative w-full bg-white py-16 md:py-24 lg:py-32">
+      <section className="relative w-full bg-white pt-4 pb-10 md:py-24 lg:py-32">
         <div className="container mx-auto px-6 md:px-10">
-          <div className="flex flex-col md:flex-row-reverse items-center justify-between gap-10 md:gap-20 lg:gap-32 max-w-6xl mx-auto">
+          <div className="flex flex-col md:flex-row-reverse items-center justify-between gap-6 md:gap-20 lg:gap-32 max-w-6xl mx-auto">
             {/* Bên phải: Mascot 2 */}
             <motion.div
               initial={{ opacity: 0, x: 40 }}

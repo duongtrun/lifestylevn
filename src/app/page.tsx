@@ -8,7 +8,7 @@ import PartnerSection from "@/components/home/PartnerSection";
 
 export default function Home() {
   return (
-    <main className="flex-1 w-full flex flex-col">
+    <main className="flex-1 w-full flex flex-col overflow-hidden">
       <Hero />
       <AboutSection />
       <EcosystemSection />

@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ChevronUp, ChevronDown } from 'lucide-react';
+import { ChevronUp, ChevronDown, ChevronLeft, ChevronRight } from 'lucide-react';
 import Image from 'next/image';
 
 // File: src/components/babego/BabegoOrigin.tsx
@@ -92,24 +92,80 @@ export default function BabegoOrigin() {
       <div className="container mx-auto px-4 relative z-10">
         <div className="max-w-5xl mx-auto flex flex-col md:flex-row items-stretch gap-8 lg:gap-16">
           
-          {/* Cột trái: Danh sách Năm (Years) */}
-          <div className="flex-none flex flex-col items-center justify-center w-full md:w-48 gap-4 py-10">
+          {/* Cột trái: Danh sách Năm (Years) - BẢN TRƯỢT NGANG CHO MOBILE */}
+          <div className="flex md:hidden flex-row items-center justify-center w-full gap-4 py-6 z-10">
+            {/* Nút sang trái */}
+            <button 
+              onClick={handlePrev}
+              disabled={activeIndex === 0}
+              className={`p-2 transition-colors ${activeIndex === 0 ? 'text-gray-300 cursor-not-allowed' : 'text-[#00724C] hover:text-[#2D7A3A] cursor-pointer'}`}
+              aria-label="Năm trước"
+            >
+              <ChevronLeft size={32} strokeWidth={2.5} />
+            </button>
+
+            {/* Các năm hiển thị nằm ngang */}
+            <div className="flex items-center justify-center h-20 w-[240px] relative overflow-hidden">
+              {TIMELINE_DATA.map((item, index) => {
+                const isActive = index === activeIndex;
+                const offset = index - activeIndex; // Khoảng cách chênh lệch index (-1, 0, 1)
+                
+                // Chỉ hiển thị năm hiện tại và 2 năm lân cận
+                if (Math.abs(offset) > 1) return null;
+
+                return (
+                  <motion.div
+                    key={item.year}
+                    layout
+                    initial={false}
+                    animate={{ 
+                      scale: isActive ? 1 : 0.65,
+                      opacity: isActive ? 1 : 0.4,
+                      x: offset * 80, // Giãn cách ngang giữa các năm
+                      zIndex: isActive ? 10 : 1
+                    }}
+                    transition={{ type: "spring", stiffness: 300, damping: 30 }}
+                    className="absolute cursor-pointer"
+                    onClick={() => setActiveIndex(index)}
+                  >
+                    <span className={`font-bold transition-colors duration-300 ${isActive ? 'text-[#00724C] text-4xl' : 'text-gray-400 text-3xl hover:text-gray-600'}`}>
+                      {item.year}
+                    </span>
+                  </motion.div>
+                );
+              })}
+            </div>
+
+            {/* Nút sang phải */}
+            <button 
+              onClick={handleNext}
+              disabled={activeIndex === TIMELINE_DATA.length - 1}
+              className={`p-2 transition-colors ${activeIndex === TIMELINE_DATA.length - 1 ? 'text-gray-300 cursor-not-allowed' : 'text-[#00724C] hover:text-[#2D7A3A] cursor-pointer'}`}
+              aria-label="Năm sau"
+            >
+              <ChevronRight size={32} strokeWidth={2.5} />
+            </button>
+          </div>
+
+          {/* Cột trái: Danh sách Năm (Years) - BẢN DỌC TRÊN DESKTOP */}
+          <div className="hidden md:flex flex-none flex-col items-center justify-center w-48 gap-4 py-10 z-10">
             {/* Nút lên */}
             <button 
               onClick={handlePrev}
               disabled={activeIndex === 0}
               className={`p-2 transition-colors ${activeIndex === 0 ? 'text-gray-300 cursor-not-allowed' : 'text-[#00724C] hover:text-[#2D7A3A] cursor-pointer'}`}
+              aria-label="Lên trên"
             >
               <ChevronUp size={40} strokeWidth={2.5} />
             </button>
 
-            {/* Các năm */}
+            {/* Các năm xếp dọc */}
             <div className="flex flex-col items-center justify-center h-[280px] w-full relative">
               {TIMELINE_DATA.map((item, index) => {
                 const isActive = index === activeIndex;
-                const offset = index - activeIndex; // -1, 0, 1
+                const offset = index - activeIndex; // Khoảng cách chênh lệch index (-1, 0, 1)
                 
-                // Ẩn nếu nằm ngoài khoảng nhìn thấy (-1, 0, 1)
+                // Chỉ hiển thị năm hiện tại và 2 năm lân cận
                 if (Math.abs(offset) > 1) return null;
 
                 return (
@@ -120,7 +176,7 @@ export default function BabegoOrigin() {
                     animate={{ 
                       scale: isActive ? 1 : 0.6,
                       opacity: isActive ? 1 : 0.4,
-                      y: offset * 80, // Khoảng cách giãn cách giữa các năm
+                      y: offset * 80, // Giãn cách dọc giữa các năm
                       zIndex: isActive ? 10 : 1
                     }}
                     transition={{ type: "spring", stiffness: 300, damping: 30 }}
@@ -140,6 +196,7 @@ export default function BabegoOrigin() {
               onClick={handleNext}
               disabled={activeIndex === TIMELINE_DATA.length - 1}
               className={`p-2 transition-colors ${activeIndex === TIMELINE_DATA.length - 1 ? 'text-gray-300 cursor-not-allowed' : 'text-[#00724C] hover:text-[#2D7A3A] cursor-pointer'}`}
+              aria-label="Xuống dưới"
             >
               <ChevronDown size={40} strokeWidth={2.5} />
             </button>

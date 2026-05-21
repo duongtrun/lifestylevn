@@ -8,14 +8,14 @@ export async function submitContactForm(prevState: any, formData: FormData) {
   try {
     const fullName = formData.get('fullName')?.toString();
     const phone = formData.get('phone')?.toString();
-    const email = formData.get('email')?.toString();
+    const request = formData.get('request')?.toString();
 
-    // Validate cơ bản trên server
-    if (!fullName || !phone || !email) {
+    // Kiểm tra dữ liệu người dùng nhập có trống hay không trên server (phương án dự phòng)
+    if (!fullName || !phone || !request) {
       return { success: false, message: 'Vui lòng điền đầy đủ thông tin.' };
     }
 
-    // URL của WordPress API
+    // URL của WordPress API (Đường dẫn kết nối đến hệ thống WordPress)
     const wpApiUrl = process.env.NEXT_PUBLIC_WP_API_URL || 'http://localhost:10004/wp-json';
     
     // Khởi tạo FormData mới đúng chuẩn mà Contact Form 7 yêu cầu
@@ -26,9 +26,9 @@ export async function submitContactForm(prevState: any, formData: FormData) {
     wpFormData.append('_wpcf7_unit_tag', 'wpcf7-f49-p0-o1'); // Mã định danh form (bắt buộc)
     wpFormData.append('_wpcf7_container_post', '0');
 
-    // Chuyển các field từ Next.js form sang (cần khớp tên biến trong WP)
-    // Lưu ý: Nếu trong WP anh đặt là [text* your-name] thì ở đây phải là your-name
-    // Tạm thời truyền cả 2 kiểu để chắc chắn WP nhận được
+    // Chuyển các field (trường thông tin) từ Next.js form sang (cần khớp tên biến trong WordPress)
+    // Lưu ý: Nếu trong WordPress anh đặt là [text* your-name] thì ở đây phải là your-name
+    // Tạm thời truyền cả 2 kiểu để chắc chắn WordPress nhận được
     wpFormData.append('fullName', fullName);
     wpFormData.append('your-name', fullName);
     
@@ -36,10 +36,9 @@ export async function submitContactForm(prevState: any, formData: FormData) {
     wpFormData.append('your-tel', phone);
     wpFormData.append('tel-phone', phone); // Một số template dùng tên này
     
-    wpFormData.append('email', email);
-    wpFormData.append('your-email', email);
+    wpFormData.append('request', request); // Dùng trường request thay cho email cũ theo Contact Form 7 mới
 
-    // Gửi request tới Contact Form 7 REST API
+    // Gửi request (yêu cầu gọi API) tới Contact Form 7 REST API
     const response = await fetch(`${wpApiUrl}/contact-form-7/v1/contact-forms/49/feedback`, {
       method: 'POST',
       body: wpFormData,

@@ -12,7 +12,8 @@ import { motion } from 'framer-motion';
 export default function IrukaEduSlogan() {
   return (
     <section className="w-full bg-white py-16 md:py-24 flex justify-center items-center overflow-hidden">
-      <div className="relative w-full max-w-[900px] px-4 flex justify-center items-center min-h-[300px] md:min-h-[400px]">
+      {/* Tăng min-h trên mobile lên 420px để hình tròn có đủ chiều cao chứa chữ bên trong */}
+      <div className="relative w-full max-w-[900px] px-4 flex justify-center items-center min-h-[420px] md:min-h-[400px]">
         
         {/* Khung viền vẽ tay - Giao diện Desktop */}
         <div className="absolute inset-0 w-full h-full z-0 pointer-events-none hidden md:block">
@@ -42,8 +43,9 @@ export default function IrukaEduSlogan() {
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="relative z-10 flex flex-col items-center text-center px-6 sm:px-10 md:px-24 py-12 md:py-16"
+          className="relative z-10 flex flex-col items-center text-center px-14 sm:px-10 md:px-24 py-14 md:py-16"
         >
+          {/* px-14 trên mobile đẩy chữ vào vùng an toàn của hình tròn (tránh phần cong cắt góc) */}
           {/* Logo */}
           <div className="relative w-[80px] h-[60px] md:w-[130px] md:h-[90px] mb-3 md:mb-4">
             <Image 
@@ -60,7 +62,8 @@ export default function IrukaEduSlogan() {
           </h2>
 
           {/* Lời hứa */}
-          <p className="text-xs sm:text-sm md:text-base text-gray-600 max-w-[260px] sm:max-w-[320px] md:max-w-[600px] leading-relaxed md:leading-loose">
+          {/* max-w-[190px] trên mobile để chữ không chạm viền cong của hình tròn */}
+          <p className="text-xs sm:text-sm md:text-base text-gray-600 max-w-[190px] sm:max-w-[300px] md:max-w-[600px] leading-relaxed md:leading-loose">
             Đó không chỉ là slogan, mà là triết lý sống của dự án — cũng là lời
             hứa của chúng tôi gửi đến mỗi gia đình và mỗi đứa trẻ.
           </p>

@@ -101,13 +101,20 @@ export default function Footer() {
               Bản đồ
             </h3>
             <div className="w-full rounded-xl overflow-hidden shadow-sm border border-gray-100">
-              <Image
-                src="/images/map.webp"
-                alt="Bản đồ vị trí Lifestyle Việt Nam"
-                width={500}
-                height={300}
-                className="w-full h-auto object-contain"
-              />
+              <Link 
+                href="https://www.google.com/maps/place/NHS+Complex+Trung+V%C4%83n/@20.9893507,105.7795463,922m/data=!3m2!1e3!4b1!4m6!3m5!1s0x3135ad2a0c43458d:0x8524981e488d70b1!8m2!3d20.9893507!4d105.7821212!16s%2Fg%2F11s5d98hjr?entry=ttu&g_ep=EgoyMDI2MDUxMy4wIKXMDSoASAFQAw%3D%3D"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="block hover:opacity-90 transition-opacity"
+              >
+                <Image
+                  src="/images/map.svg"
+                  alt="Bản đồ vị trí Lifestyle Việt Nam"
+                  width={500}
+                  height={300}
+                  className="w-full h-auto object-contain"
+                />
+              </Link>
             </div>
           </div>
 

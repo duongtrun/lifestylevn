@@ -15,7 +15,7 @@ export default function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b border-gray-100 bg-white">
+    <header className="fixed top-0 left-0 z-50 w-full border-b border-gray-100 bg-white/95 backdrop-blur-md">
       <div className="container mx-auto px-4 h-20 flex items-center justify-between">
         {/* Logo — bấm vào về trang chủ */}
         <Link 
@@ -120,23 +120,74 @@ export default function Header() {
         </button>
       </div>
 
+      {/* Lớp nền mờ phía sau (Backdrop Overlay) - Bấm ra ngoài để đóng menu di động */}
+      {isMobileMenuOpen && (
+        <div 
+          className="fixed inset-0 top-20 z-40 bg-black/30 backdrop-blur-sm md:hidden animate-in fade-in duration-200"
+          onClick={() => setIsMobileMenuOpen(false)}
+        />
+      )}
+
       {/* Mobile Menu Dropdown */}
       {isMobileMenuOpen && (
-        <div className="md:hidden border-t border-gray-100 bg-white px-4 py-4 space-y-4 shadow-lg animate-in slide-in-from-top-4">
-          <Link href="/gioi-thieu" className="block text-sm font-medium text-gray-600">Giới thiệu</Link>
+        <div className="relative z-50 md:hidden border-t border-gray-100 bg-white px-4 py-4 space-y-4 shadow-lg animate-in slide-in-from-top-4">
+          <Link 
+            href="/gioi-thieu" 
+            onClick={() => setIsMobileMenuOpen(false)} 
+            className="block text-sm font-medium text-gray-600"
+          >
+            Giới thiệu
+          </Link>
           <div className="space-y-2">
             <span className="block text-sm font-medium text-gray-600">Hệ sinh thái</span>
             <div className="pl-4 border-l-2 border-primary/20 space-y-3">
-              <Link href="/he-sinh-thai/iruka-edu" className="block text-sm text-gray-500 hover:text-primary">IruKa Edu</Link>
-              <Link href="/he-sinh-thai/iruka-acre" className="block text-sm text-gray-500 hover:text-primary">IruKa Acre</Link>
-              <Link href="/he-sinh-thai/babegp" className="block text-sm text-gray-500 hover:text-primary">BabeGP</Link>
+              <Link 
+                href="/he-sinh-thai/iruka-edu" 
+                onClick={() => setIsMobileMenuOpen(false)} 
+                className="block text-sm text-gray-500 hover:text-primary"
+              >
+                IruKa Edu
+              </Link>
+              <Link 
+                href="/he-sinh-thai/iruka-care" 
+                onClick={() => setIsMobileMenuOpen(false)} 
+                className="block text-sm text-gray-500 hover:text-primary"
+              >
+                IruKa Care
+              </Link>
+              <Link 
+                href="/he-sinh-thai/babego" 
+                onClick={() => setIsMobileMenuOpen(false)} 
+                className="block text-sm text-gray-500 hover:text-primary"
+              >
+                Babego
+              </Link>
             </div>
           </div>
-          <Link href="/dau-tu" className="block text-sm font-medium text-gray-600">Đầu tư</Link>
-          <Link href="/tin-tuc" className="block text-sm font-medium text-gray-600">Tin tức</Link>
-          <Link href="/tuyen-dung" className="block text-sm font-medium text-gray-600">Tuyển dụng</Link>
+          <Link 
+            href="/dau-tu" 
+            onClick={() => setIsMobileMenuOpen(false)} 
+            className="block text-sm font-medium text-gray-600"
+          >
+            Đầu tư
+          </Link>
+          <Link 
+            href="/tin-tuc" 
+            onClick={() => setIsMobileMenuOpen(false)} 
+            className="block text-sm font-medium text-gray-600"
+          >
+            Tin tức
+          </Link>
+          <Link 
+            href="/tuyen-dung" 
+            onClick={() => setIsMobileMenuOpen(false)} 
+            className="block text-sm font-medium text-gray-600"
+          >
+            Tuyển dụng
+          </Link>
           <Link 
             href="/lien-he" 
+            onClick={() => setIsMobileMenuOpen(false)} 
             className="flex w-full h-10 items-center justify-center rounded-full bg-primary text-sm font-medium text-white mt-4"
           >
             Liên hệ

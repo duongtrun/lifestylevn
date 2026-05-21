@@ -73,22 +73,24 @@ export default function EcosystemSection() {
               key={item.id}
               variants={itemVariants}
               whileHover={{ y: -10, scale: 1.02 }}
-              className="relative group flex flex-col items-center w-full max-w-[320px] aspect-[4/5]"
+              // Thay đổi aspect-[4/5] (quá cao) thành aspect-[1.6] (hình chữ nhật nằm ngang) giúp ôm sát logo nằm ngang hơn
+              className="relative group flex flex-col items-center w-full max-w-[320px] aspect-[1.6]"
             >
               {/* Thẻ nền trắng bo góc mềm, bóng đổ sang trọng */}
-              <div className="absolute inset-0 bg-white rounded-[40px] shadow-[0_20px_60px_rgba(0,0,0,0.06)] border border-gray-100 group-hover:shadow-[0_30px_70px_rgba(152,192,74,0.15)] group-hover:border-primary/20 transition-all duration-500"></div>
+              <div className="absolute inset-0 bg-white rounded-[24px] shadow-[0_15px_45px_rgba(0,0,0,0.05)] border border-gray-100 group-hover:shadow-[0_25px_55px_rgba(152,192,74,0.12)] group-hover:border-primary/20 transition-all duration-500"></div>
               
               {/* Nội dung bên trong thẻ */}
-              <div className="relative z-10 w-full h-full flex flex-col justify-center items-center p-10">
-                <div className="relative w-full aspect-square flex items-center justify-center">
+              <div className="relative z-10 w-full h-full flex flex-col justify-center items-center p-6">
+                <div className="relative w-full h-full flex items-center justify-center">
                   {/* Glow mờ đằng sau logo */}
-                  <div className="absolute inset-4 bg-primary/5 rounded-full blur-[20px] group-hover:bg-primary/10 transition-colors duration-500"></div>
+                  <div className="absolute w-[80%] h-[80%] bg-primary/5 rounded-full blur-[20px] group-hover:bg-primary/10 transition-colors duration-500"></div>
                   <Image 
                     src={item.src}
                     alt={item.alt}
-                    width={220}
-                    height={220}
-                    className="relative z-10 w-full h-auto object-contain drop-shadow-sm group-hover:scale-105 transition-transform duration-500"
+                    width={200}
+                    height={80}
+                    // Loại bỏ aspect-square của khung chứa cũ, cho logo chiếm tỉ lệ w-[75%] để lấp đầy khoảng trống vừa vặn
+                    className="relative z-10 w-[75%] h-auto object-contain drop-shadow-sm group-hover:scale-105 transition-transform duration-500"
                   />
                 </div>
               </div>

@@ -48,7 +48,7 @@ export default function IrukaCareTechnology() {
       {/* Background Tech - Phủ toàn bộ section, không có nền trắng */}
       <div className="absolute inset-0 z-0 bg-[#0F2A4A]"> {/* Màu nền dự phòng nếu hình chưa load */}
         <Image
-          src="/img_iruka_care/bg_tech.webp"
+          src="/img_iruka_care/bg_tech.svg"
           alt="Technology Background"
           fill
           className="object-cover object-top"

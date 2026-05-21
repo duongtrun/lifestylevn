@@ -29,6 +29,8 @@ export default function RootLayout({
     >
       <body className="min-h-full flex flex-col">
         <Header />
+        {/* Khoảng đệm bù cho header cố định (fixed) — cao bằng đúng header h-20 = 80px */}
+        <div className="h-20" />
         {children}
         <ScrollToTop />
         <Footer />

@@ -14,7 +14,7 @@ export default function AboutIntroSection() {
   return (
     <section className="relative w-full py-20 lg:py-28 overflow-hidden bg-[#EEF8FC]">
       {/* Blob trang trí — làm phong phú nền xanh dương nhạt */}
-      <div className="absolute -top-[10%] -right-[5%] w-[500px] h-[500px] rounded-full bg-[#008BBD]/10 blur-[80px] pointer-events-none"></div>
+      <div className="absolute top-[5%] -right-[5%] w-[500px] h-[500px] rounded-full bg-[#008BBD]/10 blur-[80px] pointer-events-none"></div>
       <div className="absolute -bottom-[10%] -left-[5%] w-[450px] h-[450px] rounded-full bg-[#008BBD]/10 blur-[80px] pointer-events-none"></div>
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[300px] rounded-full bg-white/40 blur-[60px] pointer-events-none"></div>
       {/* Đường kẻ trang trí nhẹ bên trái */}
@@ -97,7 +97,7 @@ export default function AboutIntroSection() {
                 <p className="text-gray-700 leading-relaxed">
                   Với triết lý{" "}
                   <span className="font-bold text-[#008BBD]">
-                    "làm từ tế"
+                    &quot;làm từ tế&quot;
                   </span>
                   , LifeStyle luôn đặt chất lượng sản phẩm và giá trị thật lên hàng đầu, lấy nhu cầu của trẻ và sự đồng hành từ mẹ làm trung tâm.
                 </p>

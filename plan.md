@@ -12,16 +12,16 @@ Xây dựng trang **Iruka Care** tại route `/he-sinh-thai/iruka-care`, kế th
 
 Trang Iruka Care có **8 section** tương ứng gần như 1:1 với Iruka EDU:
 
-| # | Section Iruka EDU | → Section Iruka Care | Mức kế thừa |
-|---|---|---|---|
-| 1 | **IrukaEduHero** | **IrukaCareHero** | 🟢 Clone 95% — thay ảnh banner, mascot, text |
-| 2 | **IrukaEduAbout** | **IrukaCareAbout** | 🟢 Clone 95% — thay ảnh mascot, text |
-| 3 | **IrukaEduWorkflow** | **IrukaCareWorkflow** | 🟢 Clone 90% — thay ảnh workflow, text |
-| 4 | **IrukaEduTech** | **IrukaCareTech** | 🟢 Clone 90% — thay text, icon |
-| 5 | **IrukaEduCoreContent** | **IrukaCareProducts** | 🟡 Thiết kế mới 60% — Layout dạng Timeline 2026-2027 |
-| 6 | **IrukaEduPotential** | **IrukaCarePotential** | 🟢 Clone 95% — thay text |
-| 7 | **IrukaEduMission** | **IrukaCareMission** | 🟢 Clone 90% — thay ảnh, text |
-| 8 | **IrukaEduSlogan** | **IrukaCareSlogan** | 🟢 Clone 95% — thay text, logo |
+| #   | Section Iruka EDU       | → Section Iruka Care   | Mức kế thừa                                         |
+| -----| -------------------------| ------------------------| -----------------------------------------------------|
+| 1   | **IrukaEduHero**        | **IrukaCareHero**      | 🟢 Clone 95% — thay ảnh banner, mascot, text         |
+| 2   | **IrukaEduAbout**       | **IrukaCareAbout**     | 🟢 Clone 95% — thay ảnh mascot, text                 |
+| 3   | **IrukaEduWorkflow**    | **IrukaCareWorkflow**  | 🟢 Clone 90% — thay ảnh workflow, text               |
+| 4   | **IrukaEduTech**        | **IrukaCareTech**      | 🟢 Clone 90% — thay text, icon                       |
+| 5   | **IrukaEduCoreContent** | **IrukaCareProducts**  | 🟡 Thiết kế mới 60% — Layout dạng Timeline 2026-2027 |
+| 6   | **IrukaEduPotential**   | **IrukaCarePotential** | 🟢 Clone 95% — thay text                             |
+| 7   | **IrukaEduMission**     | **IrukaCareMission**   | 🟢 Clone 90% — thay ảnh, text                        |
+| 8   | **IrukaEduSlogan**      | **IrukaCareSlogan**    | 🟢 Clone 95% — thay text, logo                       |
 
 ---
 

@@ -61,7 +61,7 @@ const products = [
   },
 ];
 
-export default function EcosystemSection() {
+export default function EcosystemSection() { // Hàm hiển thị phần Hệ sinh thái IruKa với 3 thẻ sản phẩm EDU, CARE, và Babego GOLD
   return (
     <section className="relative w-full overflow-hidden py-20 lg:py-28">
 
@@ -119,7 +119,7 @@ export default function EcosystemSection() {
             >
               {/* --- VÙNG ẢNH (phần trên card) --- */}
               <div
-                className="relative h-52 overflow-hidden flex items-end justify-center px-4 pt-6 pb-0"
+                className="relative h-52 overflow-hidden"
                 style={{
                   background: `linear-gradient(135deg, ${product.gradientFrom}, ${product.gradientTo})`,
                 }}
@@ -129,17 +129,17 @@ export default function EcosystemSection() {
                 <div className="absolute -left-6 -bottom-6 w-28 h-28 rounded-full bg-white/10 blur-md" />
 
                 {/* Badge tag sản phẩm */}
-                <div className={`absolute top-4 left-4 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider ${product.tagBg} ${product.tagText} border ${product.border} backdrop-blur-sm`}>
+                <div className={`absolute top-4 left-4 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider ${product.tagBg} ${product.tagText} border ${product.border} backdrop-blur-sm z-20`}>
                   {product.tag}
                 </div>
 
                 {/* Ảnh mascot/logo sản phẩm — nhô lên khỏi card */}
-                <div className="relative w-48 h-44 transform group-hover:scale-105 group-hover:-translate-y-2 transition-transform duration-500 z-10">
+                <div className="absolute -inset-[1.5px] transform group-hover:scale-105 transition-transform duration-500 z-10">
                   <Image
                     src={product.image}
                     alt={product.name}
                     fill
-                    className="object-contain drop-shadow-2xl"
+                    className="object-cover drop-shadow-2xl"
                   />
                 </div>
               </div>

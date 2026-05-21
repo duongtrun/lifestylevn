@@ -56,7 +56,7 @@ export default function IrukaCareWorkflow() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="text-2xl md:text-3xl lg:text-4xl font-extrabold text-white text-center mb-16 md:mb-24 drop-shadow-md"
+          className="text-2xl md:text-3xl lg:text-4xl font-extrabold text-[#005A8C] text-center mb-16 md:mb-24 drop-shadow-sm"
         >
           iruKa Care hoạt động như thế nào?
         </motion.h2>
@@ -85,10 +85,10 @@ export default function IrukaCareWorkflow() {
                 </div>
 
                 {/* Text Nội dung */}
-                <h3 className="text-sm md:text-base lg:text-lg font-bold text-white mb-3 whitespace-pre-line drop-shadow-sm min-h-[40px] md:min-h-[60px] flex items-end justify-center">
+                <h3 className="text-sm md:text-base lg:text-lg font-bold text-[#005A8C] mb-3 whitespace-pre-line drop-shadow-sm min-h-[40px] md:min-h-[60px] flex items-end justify-center">
                   {item.title}
                 </h3>
-                <p className="text-xs md:text-sm text-white/90 leading-relaxed font-medium px-2">
+                <p className="text-xs md:text-sm text-[#273F68] leading-relaxed font-medium px-2">
                   {item.desc}
                 </p>
               </motion.div>
@@ -97,9 +97,9 @@ export default function IrukaCareWorkflow() {
               {index < workflowData.length - 1 && (
                 <div className="hidden md:flex flex-1 items-center justify-center mt-[40px] lg:mt-[50px] opacity-80">
                   <div className="w-full flex items-center">
-                    <div className="w-2 h-2 rounded-full bg-white shadow-sm"></div>
-                    <div className="flex-1 border-t-2 border-dashed border-white mx-1 shadow-sm"></div>
-                    <div className="w-0 h-0 border-t-[5px] border-t-transparent border-l-[8px] border-l-white border-b-[5px] border-b-transparent drop-shadow-sm"></div>
+                    <div className="w-2 h-2 rounded-full bg-[#005A8C]/80 shadow-sm"></div>
+                    <div className="flex-1 border-t-2 border-dashed border-[#005A8C]/60 mx-1 shadow-sm"></div>
+                    <div className="w-0 h-0 border-t-[5px] border-t-transparent border-l-[8px] border-l-[#005A8C]/80 border-b-[5px] border-b-transparent drop-shadow-sm"></div>
                   </div>
                 </div>
               )}

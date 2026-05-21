@@ -117,7 +117,7 @@ export default function IrukaEduTech() {
       {/* Background Image: tech_different.svg */}
       <div className="absolute inset-0 z-0">
         <Image
-          src="/img_iruka_edu/tech_different.webp"
+          src="/img_iruka_edu/tech_different.svg"
           alt="Tech Different Background"
           fill
           className="object-cover object-top opacity-90"

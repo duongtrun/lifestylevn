@@ -115,7 +115,7 @@ export default function InvestHero() {
           viewBox="0 0 1440 60"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
-          className="w-full h-12 md:h-16 block scale-105"
+          className="w-full h-12 md:h-16 block scale-105 translate-y-[2px]"
           preserveAspectRatio="none"
         >
           <path

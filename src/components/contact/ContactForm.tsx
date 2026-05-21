@@ -1,5 +1,5 @@
 // File này: Component Form Liên hệ
-// Vai trò: Hiển thị form gồm Tên, SĐT, Email với giao diện Glassmorphism mờ đục. Có validate dữ liệu đầu vào.
+// Vai trò: Hiển thị form gồm Tên, SĐT, Nội dung yêu cầu với giao diện Glassmorphism mờ đục. Có validate dữ liệu đầu vào.
 // Dùng khi: Nhúng vào trang /lien-he.
 
 'use client';
@@ -79,18 +79,18 @@ export default function ContactForm() {
             </div>
           </div>
 
-          {/* Cột Email */}
+          {/* Cột Yêu cầu (thay thế cho cột Email cũ) */}
           <div className="space-y-2">
-            <label htmlFor="email" className="text-sm font-medium text-white/90">
-              Email <span className="text-red-400">*</span>
+            <label htmlFor="request" className="text-sm font-medium text-white/90">
+              Nội dung yêu cầu <span className="text-red-400">*</span>
             </label>
-            <input
-              id="email"
-              name="email"
-              type="email"
+            <textarea
+              id="request"
+              name="request"
               required
-              className="w-full rounded-xl border border-white/20 bg-white/20 px-4 py-3 text-white placeholder-white/50 outline-none transition-all focus:bg-white/30 focus:ring-2 focus:ring-white/50"
-              placeholder="Nhập email của bạn"
+              rows={4}
+              className="w-full rounded-xl border border-white/20 bg-white/20 px-4 py-3 text-white placeholder-white/50 outline-none transition-all focus:bg-white/30 focus:ring-2 focus:ring-white/50 resize-none"
+              placeholder="Nhập nội dung yêu cầu của bạn"
             />
           </div>
 

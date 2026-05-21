@@ -14,7 +14,7 @@ export default function AboutAchievement() {
   const [emblaRef, emblaApi] = useEmblaCarousel({ 
     align: 'start',
     loop: true,
-    dragFree: true
+    dragFree: false
   });
 
   const scrollPrev = useCallback(() => {
@@ -57,7 +57,7 @@ export default function AboutAchievement() {
               {achievements.map((item) => (
                 <div 
                   key={item.id}
-                  className="pl-6 relative flex-none w-[85%] sm:w-[60%] md:w-[45%] lg:w-[30%] min-w-0 aspect-[4/5]"
+                  className="pl-6 relative flex-none w-full sm:w-[60%] md:w-[45%] lg:w-[30%] min-w-0 aspect-[4/5]"
                 >
                   {/* Card màu trắng, chứa SVG ảnh */}
                   <div className="relative w-full h-full rounded-xl overflow-hidden shadow-lg group/card bg-white">
