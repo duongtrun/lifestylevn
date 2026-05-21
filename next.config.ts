@@ -19,6 +19,22 @@ const nextConfig: NextConfig = {
         hostname: 'localhost',
         port: '10004',
       },
+      {
+        protocol: 'https',
+        hostname: '*.localsite.io',
+      },
+      {
+        protocol: 'https',
+        hostname: '*.loca.lt',
+      },
+      {
+        protocol: 'https',
+        hostname: '*.ngrok-free.app',
+      },
+      {
+        protocol: 'https',
+        hostname: '*.ngrok.io',
+      },
     ],
   },
 };
