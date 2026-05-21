@@ -8,7 +8,7 @@
 import { useTransition, useState } from 'react';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
-import { ArrowLeft, User, Phone, Heading, ListFilter, FileText, Send, CheckCircle2, AlertCircle, Loader2, Upload, X } from 'lucide-react';
+import { ArrowLeft, User, Phone, Heading, ListFilter, FileText, Send, CheckCircle2, AlertCircle, Loader2, Upload, X, Eye, EyeOff } from 'lucide-react';
 import { submitContribution } from './actions';
 
 export default function ContributionPage() {
@@ -19,6 +19,7 @@ export default function ContributionPage() {
   const [imagePreviewUrl, setImagePreviewUrl] = useState<string | null>(null);
 
   const [isDragActive, setIsDragActive] = useState(false); // Quản lý trạng thái đang kéo file trên ô tải ảnh
+  const [publishMode, setPublishMode] = useState<'public' | 'anonymous'>('public'); // Chế độ đăng bài: công khai hoặc ẩn danh
 
   // Hàm dùng chung: Kiểm tra và nạp file ảnh hiển thị preview
   const processFile = (file: File) => {
@@ -120,6 +121,9 @@ export default function ContributionPage() {
     } else {
       formData.delete('imageFile');
     }
+
+    // Truyền chế độ đăng bài (public / anonymous)
+    formData.set('publishMode', publishMode);
 
     // Gọi Server Action để gửi bài sang WordPress
     startTransition(async () => {
@@ -230,6 +234,49 @@ export default function ContributionPage() {
                   />
                 </div>
               </div>
+            </div>
+
+            {/* CHẾ ĐỘ ĐĂNG BÀI: Công khai / Ẩn danh */}
+            <div className="bg-white/5 border border-white/10 p-5 rounded-2xl space-y-3">
+              <h3 className="text-white font-semibold flex items-center gap-2 border-b border-white/10 pb-2 text-base">
+                <span>🔒 Chế độ hiển thị</span>
+              </h3>
+              <p className="text-white/60 text-xs leading-relaxed">
+                Chọn cách hiển thị tên của bạn khi bài viết được duyệt và đăng công khai trên trang tin tức.
+              </p>
+              <div className="grid grid-cols-2 gap-3">
+                {/* Nút Đăng công khai */}
+                <button
+                  type="button"
+                  onClick={() => setPublishMode('public')}
+                  className={`flex items-center justify-center gap-2 rounded-xl px-4 py-3 font-semibold text-sm transition-all border ${
+                    publishMode === 'public'
+                      ? 'bg-[#008BBD]/30 border-[#008BBD] text-white shadow-[0_0_12px_rgba(0,139,189,0.3)]'
+                      : 'bg-white/5 border-white/10 text-white/60 hover:bg-white/10 hover:text-white/80'
+                  }`}
+                >
+                  <Eye className="w-4 h-4" />
+                  Đăng công khai
+                </button>
+                {/* Nút Đăng ẩn danh */}
+                <button
+                  type="button"
+                  onClick={() => setPublishMode('anonymous')}
+                  className={`flex items-center justify-center gap-2 rounded-xl px-4 py-3 font-semibold text-sm transition-all border ${
+                    publishMode === 'anonymous'
+                      ? 'bg-[#FF8C42]/30 border-[#FF8C42] text-white shadow-[0_0_12px_rgba(255,140,66,0.3)]'
+                      : 'bg-white/5 border-white/10 text-white/60 hover:bg-white/10 hover:text-white/80'
+                  }`}
+                >
+                  <EyeOff className="w-4 h-4" />
+                  Đăng ẩn danh
+                </button>
+              </div>
+              <p className="text-white/50 text-xs">
+                {publishMode === 'public'
+                  ? '👁️ Tên của bạn sẽ hiển thị công khai dưới bài viết khi được duyệt.'
+                  : '🕶️ Bài viết sẽ hiển thị là "Ẩn danh" — không ai biết bạn là ai.'}
+              </p>
             </div>
 
             {/* NỘI DUNG BÀI VIẾT */}

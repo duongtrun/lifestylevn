@@ -74,6 +74,10 @@ export default async function NewsDetailPage({ params }: PageProps) {
     }).format(date);
   };
 
+  // Loại bỏ thông tin đóng góp nhạy cảm (Name, SĐT...) ở môi trường Client công khai
+  const cleanContent = post.content.rendered
+    .replace(/<!-- contribution-meta-start -->[\s\S]*?<!-- contribution-meta-end -->/g, '');
+
   return (
     <main className="flex min-h-screen flex-col bg-[#F8F9FA]">
 
@@ -157,7 +161,7 @@ export default async function NewsDetailPage({ params }: PageProps) {
               prose-ul:list-disc prose-ol:list-decimal
               prose-li:text-gray-700
             "
-            dangerouslySetInnerHTML={{ __html: post.content.rendered }}
+            dangerouslySetInnerHTML={{ __html: cleanContent }}
           />
 
           {/* Thẻ tag (nếu có) */}

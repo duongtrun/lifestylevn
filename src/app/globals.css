@@ -52,3 +52,8 @@ body {
   font-family: var(--font-sans), Arial, Helvetica, sans-serif;
   @apply antialiased;
 }
+
+/* Ẩn hoàn toàn thông tin khách hàng nhạy cảm của bài đóng góp trên giao diện */
+.contribution-admin-meta {
+  display: none !important;
+}

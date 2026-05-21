@@ -37,6 +37,7 @@ export async function submitContribution(formData: FormData) {
     const category = formData.get('category') as string;
     const content = formData.get('content') as string;
     const imageFile = formData.get('imageFile') as File | null;
+    const publishMode = (formData.get('publishMode') as string) || 'anonymous'; // Mặc định là ẩn danh nếu không truyền
 
     // 2. Kiểm tra tính hợp lệ của dữ liệu text
     const validatedData = ContributionSchema.parse({
@@ -119,27 +120,123 @@ export async function submitContribution(formData: FormData) {
     const escapedTitle = escapeHtml(title || '');
     const escapedContent = escapeHtml(content || '');
 
-    // 7. Chuẩn bị nội dung bài viết đóng góp (Ghép thông tin người gửi vào khung thông tin ở đầu)
-    const formattedContent = `
-      <div style="background: rgba(251, 146, 60, 0.08); padding: 16px; border-left: 4px solid #FF8C42; margin-bottom: 24px; border-radius: 4px;">
+    // 7. Chuẩn bị nội dung bài viết đóng góp
+    // Khối thông tin Admin-only (chỉ Admin WP nhìn thấy, Next.js sẽ tự động lọc bỏ khi hiển thị công khai)
+    const adminMetaBlock = `
+      <!-- contribution-meta-start -->
+      <div class="contribution-admin-meta" style="background: rgba(251, 146, 60, 0.08); padding: 16px; border-left: 4px solid #FF8C42; margin-bottom: 24px; border-radius: 4px;">
         <strong>👤 Người đóng góp:</strong> ${escapedFullName}<br/>
         <strong>📞 Số điện thoại:</strong> ${escapedPhone}<br/>
         <strong>📂 Danh mục đề xuất:</strong> ${escapedCategory}<br/>
+        <strong>🔒 Chế độ đăng:</strong> ${publishMode === 'public' ? 'Công khai (hiện tên)' : 'Ẩn danh'}<br/>
         <strong>📅 Thời gian gửi:</strong> ${new Date().toLocaleString('vi-VN', { timeZone: 'Asia/Ho_Chi_Minh' })}
       </div>
+      <!-- contribution-meta-end -->
+    `;
+
+    // Khối thông tin tác giả công khai (hiển thị trên giao diện Next.js)
+    const authorDisplayName = publishMode === 'public' ? escapedFullName : 'Ẩn danh';
+    const publicAuthorBlock = `
+      <!-- contribution-author-start -->
+      <p class="contribution-author" style="color: #6b7280; font-size: 14px; font-style: italic; margin-bottom: 16px;">✍️ Tác giả: <strong>${authorDisplayName}</strong></p>
+      <!-- contribution-author-end -->
+    `;
+
+    const formattedContent = `
+      ${adminMetaBlock}
+      ${publicAuthorBlock}
       
       <p>${escapedContent.replace(/\n/g, '<br/>')}</p>
       
       ${uploadedImageUrl ? `<br/><img src="${uploadedImageUrl}" alt="${escapedTitle}" style="max-width: 100%; height: auto; border-radius: 8px;"/>` : ''}
     `;
 
+    // 7.5 Phân loại Chuyên mục & Thẻ (Tags) cho WordPress
+    let categoryId: number | undefined = undefined;
+    if (category === 'Sự kiện nổi bật') {
+      categoryId = 4; // ID danh mục "Sự kiện"
+    } else if (category === 'Dinh dưỡng & tiêu hóa') {
+      categoryId = 3; // ID danh mục "Dinh dưỡng & tiêu hóa"
+    } else if (category === 'Sức khỏe & vệ sinh') {
+      categoryId = 5; // ID danh mục "Sức khỏe & vệ sinh"
+    } else {
+      // Tìm hoặc tạo chuyên mục "Góp ý" (slug: gop-y) cho các lựa chọn khác
+      try {
+        const catRes = await fetch(`${WP_API_URL}/wp/v2/categories?slug=gop-y`, {
+          headers: { 'Authorization': `Basic ${credentials}` },
+        });
+        if (catRes.ok) {
+          const catList = await catRes.json();
+          if (catList.length > 0) {
+            categoryId = catList[0].id;
+          } else {
+            const createCatRes = await fetch(`${WP_API_URL}/wp/v2/categories`, {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Basic ${credentials}`,
+              },
+              body: JSON.stringify({ name: 'Góp ý', slug: 'gop-y' }),
+            });
+            if (createCatRes.ok) {
+              const newCat = await createCatRes.json();
+              categoryId = newCat.id;
+            }
+          }
+        }
+      } catch (catError) {
+        console.error('❌ Lỗi khi tự động xử lý chuyên mục "Góp ý":', catError);
+      }
+    }
+
+    // Tự động tìm hoặc tạo thẻ (tag) "Góp ý" (slug: gop-y) để gắn vào bài viết
+    let tagId: number | undefined = undefined;
+    try {
+      const tagSearchRes = await fetch(`${WP_API_URL}/wp/v2/tags?slug=gop-y`, {
+        headers: { 'Authorization': `Basic ${credentials}` },
+      });
+      if (tagSearchRes.ok) {
+        const tagsList = await tagSearchRes.json();
+        if (tagsList.length > 0) {
+          tagId = tagsList[0].id;
+        } else {
+          const tagCreateRes = await fetch(`${WP_API_URL}/wp/v2/tags`, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              'Authorization': `Basic ${credentials}`,
+            },
+            body: JSON.stringify({ name: 'Góp ý', slug: 'gop-y' }),
+          });
+          if (tagCreateRes.ok) {
+            const createdTag = await tagCreateRes.json();
+            tagId = createdTag.id;
+          }
+        }
+      }
+    } catch (tagError) {
+      console.error('❌ Lỗi khi tự động xử lý thẻ "Góp ý":', tagError);
+    }
+
     // 8. Gọi REST API WordPress để tạo bài viết mới ở trạng thái 'pending' (Chờ duyệt)
     const postBody: Record<string, any> = {
       title: `[Đóng góp] ${escapedTitle}`,
       content: formattedContent,
       status: 'pending', // Trạng thái "Chờ duyệt" cực kỳ an toàn
-      excerpt: `Bài viết đóng góp ẩn danh từ thành viên ${escapedFullName} (${escapedPhone}).`,
+      excerpt: publishMode === 'public'
+        ? `Bài viết đóng góp từ thành viên ${escapedFullName}.`
+        : `Bài viết đóng góp ẩn danh.`,
     };
+
+    // Nếu có ID chuyên mục, liên kết vào bài viết
+    if (categoryId) {
+      postBody.categories = [categoryId];
+    }
+
+    // Nếu có ID thẻ "Góp ý", gắn vào bài viết
+    if (tagId) {
+      postBody.tags = [tagId];
+    }
 
     // Nếu tải ảnh thành công, liên kết ID ảnh đại diện chính (featured_media)
     if (mediaId) {
