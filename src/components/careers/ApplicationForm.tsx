@@ -106,8 +106,8 @@ export default function ApplicationForm({ positionTitle, onSuccess }: Applicatio
 
     if (!fullName) {
       newErrors.fullName = 'Họ và tên không được để trống.';
-    } else if (fullName.length > 100) {
-      newErrors.fullName = 'Họ và tên không được vượt quá 100 ký tự.';
+    } else if (fullName.length > 50) {
+      newErrors.fullName = 'Họ và tên không được vượt quá 50 ký tự.';
     }
 
     if (!phone) {
@@ -213,7 +213,8 @@ export default function ApplicationForm({ positionTitle, onSuccess }: Applicatio
               id="fullName"
               name="fullName"
               disabled={isPending}
-              placeholder="Nguyễn Văn A"
+              maxLength={50}
+              placeholder="Nguyễn Văn A (tối đa 50 ký tự)"
               onChange={() => handleInputChange('fullName')}
               className={`w-full px-3 py-2.5 rounded-xl border bg-neutral-50/50 focus:bg-white focus:outline-none focus:ring-2 transition-all text-neutral-900 disabled:opacity-60 ${
                 errors.fullName
