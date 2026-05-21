@@ -63,7 +63,7 @@ export default function BabegoHero() {
           />
         </div>
 
-        <div className="relative z-10 w-full max-w-[1200px] flex flex-col md:flex-row items-center justify-end px-4 md:px-8 mt-10 md:mt-20">
+        <div className="relative z-10 w-full max-w-[1200px] flex flex-col lg:flex-row items-center justify-end px-4 md:px-8 mt-10 lg:mt-20">
           
           {/* Mascot bên trái (to hơn và đè lên viền hộp) */}
           <motion.div
@@ -71,7 +71,7 @@ export default function BabegoHero() {
             whileInView={{ opacity: 1, x: 0, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.7 }}
-            className="w-[260px] sm:w-[320px] md:w-[450px] lg:w-[500px] flex-shrink-0 relative z-20 md:absolute md:left-[-50px] lg:left-[-100px] md:bottom-0 mb-[-30px] md:mb-0"
+            className="w-[260px] sm:w-[320px] md:w-[400px] lg:w-[500px] flex-shrink-0 relative z-20 lg:absolute lg:left-[-50px] xl:left-[-100px] lg:bottom-0 mb-[-30px] lg:mb-0"
           >
             <Image
               src="/img_babego/babego_mascot.svg"
@@ -88,10 +88,10 @@ export default function BabegoHero() {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.7, delay: 0.2 }}
-            className="w-full md:w-[736px] bg-white rounded-[15px] pt-16 pb-8 px-6 sm:px-8 md:p-12 lg:p-12 shadow-[0_15px_50px_rgba(45,122,58,0.15)] relative z-10 md:ml-auto"
+            className="w-full lg:w-[736px] bg-white rounded-[15px] pt-16 pb-8 px-6 sm:px-8 md:p-12 lg:p-12 shadow-[0_15px_50px_rgba(45,122,58,0.15)] relative z-10 lg:ml-auto"
           >
             {/* Logo Babego (Nổi ra ngoài góc phải trên) */}
-            <div className="absolute top-[-30px] right-[-40px] md:top-[-100px] md:right-[-120px] w-[180px] h-[120px] md:w-[329px] md:h-[269px] z-20 pointer-events-none">
+            <div className="absolute top-[-30px] right-[-10px] md:top-[-60px] md:right-[-20px] lg:top-[-100px] lg:right-[-120px] w-[140px] h-[95px] md:w-[220px] md:h-[160px] lg:w-[329px] lg:h-[269px] z-20 pointer-events-none">
               <Image 
                 src="/img_babego/babego_logo.svg" 
                 alt="Babego Logo" 

@@ -59,7 +59,7 @@ export default function BabegoAchievement() {
         </div>
 
         {/* === DESKTOP: SVG đường lượn + các mốc absolute === */}
-        <div className="hidden md:block relative w-full" style={{ height: 380 }}>
+        <div className="hidden lg:block relative w-full" style={{ height: 380 }}>
 
           {/* Đường lượn sóng SVG */}
           <svg
@@ -148,7 +148,7 @@ export default function BabegoAchievement() {
         </div>
 
         {/* === MOBILE: Dạng thẻ dọc === */}
-        <div className="md:hidden flex flex-col gap-8 mt-8">
+        <div className="lg:hidden flex flex-col gap-8 mt-8">
           {ACHIEVEMENTS.map((item, index) => (
             <div
               key={index}

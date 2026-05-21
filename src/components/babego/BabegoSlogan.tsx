@@ -15,7 +15,7 @@ export default function BabegoSlogan() {
       <div className="relative w-full max-w-[1000px] px-4 flex justify-center items-center min-h-[420px] md:min-h-[400px]">
         
         {/* Khung viền vẽ tay (Oval) - Giao diện Desktop */}
-        <div className="absolute inset-0 w-[90%] md:w-[85%] lg:w-[80%] h-full z-0 pointer-events-none mx-auto opacity-100 hidden md:block">
+        <div className="absolute inset-0 w-[90%] lg:w-[80%] h-full z-0 pointer-events-none mx-auto opacity-100 hidden lg:block">
           <Image 
             src="/img_babego/bg_slogan.svg" 
             alt="Babego Background Outline Desktop" 
@@ -26,7 +26,7 @@ export default function BabegoSlogan() {
         </div>
 
         {/* Khung viền vẽ tay (Oval) - Giao diện Mobile */}
-        <div className="absolute inset-0 w-full h-full z-0 pointer-events-none block md:hidden opacity-95">
+        <div className="absolute inset-0 w-full h-full z-0 pointer-events-none block lg:hidden opacity-95">
           <Image 
             src="/img_iruka_edu/bg_slogan_moblie.svg" 
             alt="Babego Background Outline Mobile" 
@@ -42,7 +42,7 @@ export default function BabegoSlogan() {
           whileInView={{ opacity: 1, x: 70 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.2 }}
-          className="absolute right-0 md:right-[-5%] lg:right-[-2%] top-1/2 -translate-y-1/2 w-[180px] h-[240px] md:w-[310px] md:h-[400px] lg:w-[410px] lg:h-[500px] z-20 pointer-events-none hidden md:block"
+          className="absolute right-0 lg:right-[-2%] top-1/2 -translate-y-1/2 w-[180px] h-[240px] lg:w-[410px] lg:h-[500px] z-20 pointer-events-none hidden lg:block"
         >
           <Image 
             src="/img_babego/babego_mascot_2.webp" 
@@ -58,7 +58,7 @@ export default function BabegoSlogan() {
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="relative z-10 flex flex-col items-center text-center px-14 sm:px-12 md:px-28 py-14 md:py-16 mt-4 w-full md:w-[85%] lg:w-[80%]"
+          className="relative z-10 flex flex-col items-center text-center px-14 sm:px-12 lg:px-28 py-14 md:py-16 mt-4 w-full lg:w-[80%]"
         >
           {/* Logo Babego Gold */}
           <div className="relative w-[120px] h-[60px] md:w-[180px] md:h-[80px] mb-4 md:mb-6">
