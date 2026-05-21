@@ -52,7 +52,7 @@ export default function BabegoHero() {
       </section>
 
       {/* ====== CÂU CHUYỆN THƯƠNG HIỆU ====== */}
-      <section className="relative w-full py-16 md:py-24 overflow-visible flex justify-center mt-[-2px]">
+      <section className="relative w-full py-16 md:py-24 overflow-hidden flex justify-center mt-[-2px]">
         {/* Nền xanh blur */}
         <div className="absolute inset-0 z-0 flex justify-center">
           <Image 

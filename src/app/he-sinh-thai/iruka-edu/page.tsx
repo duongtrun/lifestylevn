@@ -21,7 +21,7 @@ export const metadata = {
 
 export default function IrukaEduPage() {
   return (
-    <main className="flex-1 w-full flex flex-col">
+    <main className="flex-1 w-full flex flex-col overflow-x-hidden">
       {/* Hero Banner + Câu chuyện thương hiệu */}
       <IrukaEduHero />
 

@@ -14,7 +14,7 @@ export const metadata: Metadata = {
 
 export default function BabegoPage() {
   return (
-    <main className="w-full flex flex-col bg-[#F5FBF5]">
+    <main className="w-full flex flex-col bg-[#F5FBF5] overflow-x-hidden">
       <BabegoHero />
       <BabegoOrigin />
       <BabegoAchievement />
