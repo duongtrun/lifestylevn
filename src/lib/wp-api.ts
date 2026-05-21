@@ -2,9 +2,24 @@
 // Vai trò: Lấy dữ liệu bài viết, danh mục từ LocalWP backend, tích hợp dữ liệu giả lập cao cấp làm phương án dự phòng (fallback) khi máy chủ WordPress ngoại tuyến.
 // Dùng khi: Cần fetch data hiển thị ra màn hình trang danh sách và trang chi tiết Tin tức.
 
-const WP_API_URL = process.env.NEXT_PUBLIC_WP_API_URL || 'http://localhost:10004/wp-json';
+const RAW_WP_API_URL = process.env.NEXT_PUBLIC_WP_API_URL || 'http://localhost:10004/wp-json';
 
-// Domain nội bộ mà WordPress tự gắn vào URL ảnh
+let WP_API_URL = RAW_WP_API_URL;
+const FETCH_HEADERS: HeadersInit = {};
+
+// Sửa lỗi TypeError của Node Fetch khi URL chứa mật khẩu (như Live Link của LocalWP)
+try {
+  const parsedUrl = new URL(RAW_WP_API_URL);
+  if (parsedUrl.username || parsedUrl.password) {
+    const authString = `${parsedUrl.username}:${parsedUrl.password}`;
+    FETCH_HEADERS['Authorization'] = `Basic ${typeof btoa !== 'undefined' ? btoa(authString) : Buffer.from(authString).toString('base64')}`;
+    parsedUrl.username = '';
+    parsedUrl.password = '';
+    WP_API_URL = parsedUrl.toString().replace(/\/$/, '');
+  }
+} catch (e) {
+  // Bỏ qua nếu parse lỗi
+}// Domain nội bộ mà WordPress tự gắn vào URL ảnh
 const WP_INTERNAL_ORIGIN = 'http://lifestyleadminvn.local';
 
 // Tự động phân tích và lấy domain thực tế từ đường dẫn API được cấu hình
@@ -314,6 +329,7 @@ export const MOCK_POSTS: WPPost[] = [
 export async function getPosts(limit: number = 9): Promise<WPPost[]> {
   try {
     const res = await fetch(`${WP_API_URL}/wp/v2/posts?_embed=true&per_page=${limit}`, {
+      headers: FETCH_HEADERS,
       // Revalidate mỗi 60 giây (ISR — tự động làm mới dữ liệu)
       next: { revalidate: 60 },
       signal: AbortSignal.timeout(4000) // Tự động ngắt kết nối sau 4 giây nếu máy chủ không phản hồi
@@ -345,6 +361,7 @@ export async function getPosts(limit: number = 9): Promise<WPPost[]> {
 export async function getPostBySlug(slug: string): Promise<WPPost | null> {
   try {
     const res = await fetch(`${WP_API_URL}/wp/v2/posts?slug=${slug}&_embed=true`, {
+      headers: FETCH_HEADERS,
       next: { revalidate: 60 },
       signal: AbortSignal.timeout(4000)
     });
@@ -409,6 +426,7 @@ export const MOCK_JOBS: WPJob[] = [
 export async function getJobs(limit: number = 10): Promise<WPJob[]> {
   try {
     const res = await fetch(`${WP_API_URL}/wp/v2/tuyen_dung?per_page=${limit}`, {
+      headers: FETCH_HEADERS,
       next: { revalidate: 60 },
       signal: AbortSignal.timeout(4000)
     });
@@ -436,6 +454,7 @@ export async function getJobs(limit: number = 10): Promise<WPJob[]> {
 export async function getJobBySlug(slug: string): Promise<WPJob | null> {
   try {
     const res = await fetch(`${WP_API_URL}/wp/v2/tuyen_dung?slug=${slug}`, {
+      headers: FETCH_HEADERS,
       next: { revalidate: 60 },
       signal: AbortSignal.timeout(4000)
     });
