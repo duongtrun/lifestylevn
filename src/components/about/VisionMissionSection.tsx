@@ -81,36 +81,20 @@ export default function VisionMissionSection() {
 
         {/* --- THANH TAB --- */}
         <div className="flex justify-center mb-8 px-4 relative z-20">
-          <div className="flex bg-slate-100 rounded-full p-1.5 shadow-inner gap-1 overflow-x-auto max-w-full hide-scrollbar">
+          <div className="flex bg-gray-100/80 p-1.5 rounded-full shadow-inner border border-gray-200 overflow-x-auto max-w-full hide-scrollbar">
             {tabs.map((tab) => {
-              const TabIcon = tab.icon;
               const isActive = activeTab === tab.id;
               return (
                 <button
                   key={tab.id}
                   onClick={() => setActiveTab(tab.id)}
-                  className={`
-                    relative flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-semibold
-                    transition-all duration-300 whitespace-nowrap
-                    ${isActive
+                  className={`relative px-5 py-2.5 md:px-10 md:py-3 rounded-full text-sm md:text-base font-semibold transition-all duration-300 whitespace-nowrap ${
+                    isActive
                       ? 'bg-white text-[#009fe3] shadow-md'
                       : 'text-slate-500 hover:text-[#009fe3]'
-                    }
-                  `}
+                  }`}
                 >
-                  {/* Gạch chân active */}
-                  {isActive && (
-                    <motion.div
-                      layoutId="activeTabIndicator"
-                      className="absolute inset-0 bg-white rounded-full shadow-md"
-                      style={{ zIndex: 0 }}
-                      transition={{ type: 'spring', stiffness: 400, damping: 35 }}
-                    />
-                  )}
-                  <span className="relative z-10 flex items-center gap-1.5">
-                    <TabIcon size={15} />
-                    {tab.label}
-                  </span>
+                  {tab.label}
                 </button>
               );
             })}
