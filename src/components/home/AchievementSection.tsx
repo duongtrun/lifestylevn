@@ -56,8 +56,8 @@ export default function AchievementSection() {
               {achievements.map((item) => (
                 <div 
                   key={item.id}
-                  // Trên di động (mobile) chiếm đúng 100% bề ngang slider (flex-[0_0_100%]) để chỉ hiển thị duy nhất 1 ảnh.
-                  className="pl-6 relative flex-[0_0_100%] sm:flex-[0_0_60%] md:flex-[0_0_45%] lg:flex-[0_0_30%] min-w-0 aspect-[3/4]"
+                  // Chia đều 100% bề ngang slider (flex-[0_0_100%] trên mobile, 50% trên tablet, 33.333% trên desktop) để hiển thị đầy đủ không bị vỡ.
+                  className="pl-6 relative flex-[0_0_100%] sm:flex-[0_0_50%] lg:flex-[0_0_33.333333%] min-w-0 aspect-[3/4]"
                 >
                   <div className="relative w-full h-full rounded-xl overflow-hidden shadow-lg group/card">
                     <Image 

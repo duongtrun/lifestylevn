@@ -23,7 +23,7 @@ export default function NewsCategorySlider({ title, posts }: NewsCategorySliderP
     { 
       align: 'start',
       loop: true,
-      dragFree: true
+      dragFree: false
     },
     [Autoplay({ delay: 3000, stopOnInteraction: false, stopOnMouseEnter: true })]
   );
@@ -96,13 +96,13 @@ export default function NewsCategorySlider({ title, posts }: NewsCategorySliderP
               const cleanTitle = post.title.rendered;
 
               return (
-                <div key={post.id} className="pl-6 flex-none">
+                <div key={post.id} className="pl-6 flex-none w-full sm:w-1/2 lg:w-1/3">
                   <motion.div
                     initial={{ opacity: 0, x: 50 }}
                     whileInView={{ opacity: 1, x: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.5, delay: idx * 0.08 }}
-                    className="w-[290px] sm:w-[330px] lg:w-[360px] h-[190px] sm:h-[230px] lg:h-[250px] relative rounded-3xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-500 border border-gray-100/30 bg-black group"
+                    className="w-full h-[190px] sm:h-[230px] lg:h-[250px] relative rounded-3xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-500 border border-gray-100/30 bg-black group"
                   >
                     <Link href={`/tin-tuc/${post.slug}`} className="absolute inset-0 z-20" />
 

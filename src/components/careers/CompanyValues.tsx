@@ -117,13 +117,11 @@ export default function CompanyValues() {
         {/* overflow-hidden: ẩn phần thừa — đặt trên wrapper ngoài để Embla tính đúng khoảng cách */}
         <div className="overflow-hidden" ref={emblaRef}>
           {/* ml-[-20px] bu bù phần padding của slide đầu tiên, giữ layout sạch */}
-          <div className="flex" style={{ marginLeft: '-20px' }}>
+          <div className="flex -ml-5">
             {COMPANY_VALUES.map((value, index) => (
-              // Mỗi slide: pl-5 tạo khoảng cách đều giữa các card (chuẩn Embla)
               <div
                 key={index}
-                className="flex-none min-w-0"
-                style={{ paddingLeft: '20px', width: 'calc(33.333%)' }}
+                className="flex-none min-w-0 pl-5 w-full sm:w-1/2 lg:w-1/3"
               >
                 {/* Card ảnh với overlay text phía dưới */}
                 <div className="relative h-[320px] md:h-[360px] rounded-2xl overflow-hidden group cursor-pointer">
