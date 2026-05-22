@@ -66,7 +66,7 @@ const itemVariants: Variants = {
 export default function CoreValuesSection() {
   return (
     // Nền sáng #EEF8FC — đồng bộ với toàn trang Giới thiệu
-    <section className="relative w-full py-12 md:py-16 lg:py-20 bg-[#EEF8FC] overflow-hidden">
+    <section className="relative w-full py-10 bg-[#EEF8FC] overflow-hidden">
 
       {/* Họa tiết blob mờ trang trí góc — cùng tông màu chủ đạo */}
       <div className="absolute -top-20 -right-20 w-80 h-80 rounded-full bg-[#008BBD]/10 blur-3xl pointer-events-none" />
