@@ -105,6 +105,13 @@ export interface WPPost {
   excerpt: {
     rendered: string;
   };
+  acf?: {
+    title?: string;
+    noi_dung_chinh?: string;
+    anh?: string;
+    nguoi_dang_bai?: string;
+    [key: string]: any;
+  };
   _embedded?: {
     'wp:featuredmedia'?: Array<{
       source_url: string;
@@ -198,6 +205,16 @@ export const MOCK_POSTS: WPPost[] = [
       <blockquote>Dinh dưỡng khoa học là nền tảng vững chắc để trẻ tự do khám phá và phát triển toàn diện cả thể chất lẫn trí tuệ.</blockquote>
     ` },
     excerpt: { rendered: 'Hội thảo dinh dưỡng giới thiệu giải pháp đột phá từ chùm ngây giúp trẻ hấp thụ tối đa dưỡng chất, ngừa táo bón và tăng cân tự nhiên khỏe mạnh.' },
+    acf: {
+      'title': 'Babego - Ứng dụng công nghệ Nano Hoa Kỳ chiết xuất thảo dược chùm ngây',
+      'noi_dung_chinh': `
+        <p>Sự kiện đã diễn ra vô cùng thành công với sự tham gia của hơn 500 gia đình và các chuyên gia y tế, dinh dưỡng hàng đầu. Tại buổi hội thảo, các bác sĩ đã chia sẻ những kiến thức vô cùng bổ ích về tầm quan trọng của dinh dưỡng đối với trẻ nhỏ.</p>
+        <p>Công nghệ Nano Hoa Kỳ giúp phân tách các chất dinh dưỡng từ chùm ngây thành các phân tử siêu nhỏ, giúp cơ thể trẻ hấp thụ tối đa chất dinh dưỡng gấp 300 lần bình thường. Đây là giải pháp đột phá giúp bé ăn ngon miệng, ngừa táo bón và tăng cân khoa học tự nhiên.</p>
+        <blockquote>Dinh dưỡng khoa học là nền tảng vững chắc để trẻ tự do khám phá và phát triển toàn diện cả thể chất lẫn trí tuệ.</blockquote>
+      `,
+      'anh': '<p>Dưới đây là hình ảnh nổi bật ghi nhận được tại sự kiện ra mắt:</p><img src="/images/hot_news_img.webp" alt="Hội thảo Babego" class="rounded-xl shadow-md my-4" />',
+      'nguoi_dang_bai': 'Ban Biên Tập Lifestyle'
+    },
     _embedded: {
       'wp:featuredmedia': [{ source_url: '/images/hot_news_img.webp', alt_text: 'Hội thảo Babego' }],
       'wp:term': [[{ name: 'Sự kiện', slug: 'su-kien', taxonomy: 'category' }]]

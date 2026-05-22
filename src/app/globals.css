@@ -5,12 +5,13 @@
 
 :root {
   --background: #ffffff;
-  --foreground: #2C3E14; /* Đổi màu chữ mặc định sang rêu đậm sang trọng */
+  --foreground: #2C3E14;
+  /* Đổi màu chữ mặc định sang rêu đậm sang trọng */
   --primary: #98C04A;
   --primary-foreground: #ffffff;
   --muted: #f5f5f5;
   --muted-foreground: #737373;
-  
+
   /* Premium Mom & Baby Colors */
   --cream: #FAFAF8;
   --sage-light: #F0F8F1;
@@ -25,12 +26,12 @@
   --color-primary-foreground: var(--primary-foreground);
   --color-muted: var(--muted);
   --color-muted-foreground: var(--muted-foreground);
-  
+
   --color-cream: var(--cream);
   --color-sage-light: var(--sage-light);
   --color-sand: var(--sand);
   --color-primary-dark: var(--primary-dark);
-  
+
   --font-sans: var(--font-manrope);
 }
 
@@ -41,7 +42,8 @@
   }
 }
 
-html, body {
+html,
+body {
   max-width: 100%;
   overflow-x: hidden;
 }
@@ -58,140 +60,77 @@ body {
   display: none !important;
 }
 
-/* ==========================================================================
-   WordPress HTML Content Styles (.wp-content)
-   Standardizes raw HTML from WordPress (images, alignments, tables, lists)
-   ========================================================================== */
-
-.wp-content {
-  word-wrap: break-word;
-  overflow-wrap: break-word;
-}
-
-/* Ensure all images inside WordPress content are responsive and don't overflow */
-.wp-content img {
-  max-width: 100%;
-  height: auto !important;
-  display: block;
-  margin-top: 1.5rem;
-  margin-bottom: 1.5rem;
-  border-radius: 0.75rem;
-}
-
-/* Prevent small images, icons, or logos from stretching to 100% width */
-.wp-content img:not(.alignwide):not(.alignfull):not([width]) {
-  width: auto;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-/* If the image block has specific alignment or is a standard image inside a block */
-.wp-content .wp-block-image {
-  margin: 1.5rem 0;
-  display: block;
-}
-
-.wp-content .wp-block-image img {
-  margin: 0 auto;
-}
-
-/* Align Center */
-.wp-content .aligncenter,
-.wp-content .wp-block-image.aligncenter,
-.wp-content figure.aligncenter {
-  text-align: center;
-  margin-left: auto;
-  margin-right: auto;
-  display: block;
-}
-.wp-content .aligncenter img,
-.wp-content .wp-block-image.aligncenter img {
-  margin-left: auto;
-  margin-right: auto;
-}
-
-/* Align Left (floated) - Only apply on screens wider than mobile */
-@media (min-width: 640px) {
-  .wp-content .alignleft,
-  .wp-content .wp-block-image.alignleft,
-  .wp-content figure.alignleft {
-    float: left;
-    margin-right: 1.5rem;
-    margin-bottom: 1rem;
-    max-width: 50%;
-  }
-}
-
-/* Align Right (floated) - Only apply on screens wider than mobile */
-@media (min-width: 640px) {
-  .wp-content .alignright,
-  .wp-content .wp-block-image.alignright,
-  .wp-content figure.alignright {
-    float: right;
-    margin-left: 1.5rem;
-    margin-bottom: 1rem;
-    max-width: 50%;
-  }
-}
-
-/* Clear floats after floated images */
-.wp-content::after {
-  content: "";
-  clear: both;
-  display: table;
-}
-
-/* Gallery and grid layouts from WordPress */
-.wp-content .wp-block-gallery {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1rem;
-  padding: 0;
-  margin: 2rem 0;
-  list-style-type: none;
-}
-.wp-content .wp-block-gallery .wp-block-image {
-  flex-grow: 1;
-  margin: 0;
-  max-width: 100%;
-}
-.wp-content .wp-block-gallery img {
-  margin: 0;
-}
-
-/* Image Captions */
+/* Định dạng chú thích ảnh từ WordPress (Caption) */
+.prose figcaption,
+.prose .wp-element-caption,
+.prose .wp-caption-text,
 .wp-content figcaption,
+.wp-content .wp-element-caption,
 .wp-content .wp-caption-text {
-  font-size: 0.875rem !important;
-  color: #6b7280 !important;
+  display: block;
   text-align: center;
-  margin-top: 0.5rem;
-  margin-bottom: 1.5rem;
-  font-style: italic;
-  line-height: 1.4;
+  font-style: italic !important;
+  font-size: 0.875rem !important; /* 14px */
+  color: #6b7280 !important; /* xám nhẹ */
+  margin-top: 0.5rem !important;
+  margin-bottom: 1rem !important;
+  line-height: 1.5;
 }
 
-/* Standardize headings inside WordPress editor */
-.wp-content h2,
-.wp-content h3,
-.wp-content h4 {
-  color: #111827; /* dark grey */
-  font-weight: 700;
-  margin-top: 2rem;
-  margin-bottom: 1rem;
-  line-height: 1.3;
-}
-.wp-content h2 { font-size: 1.75rem; }
-.wp-content h3 { font-size: 1.5rem; }
-.wp-content h4 { font-size: 1.25rem; }
-
-/* Blockquotes from WordPress */
-.wp-content blockquote {
-  border-left: 4px solid #008BBD !important;
-  background-color: #f3f4f6 !important;
-  padding: 1rem 1.5rem !important;
-  margin: 1.5rem 0 !important;
-  border-radius: 0 0.5rem 0.5rem 0;
-  font-style: italic;
+/* Định dạng khối Album ảnh (WordPress Gallery Block) hiển thị song song chia đều */
+.wp-block-gallery,
+.blocks-gallery-grid {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  gap: 1rem !important;
+  padding: 0 !important;
+  margin-top: 1.5rem !important;
+  margin-bottom: 1.5rem !important;
+  list-style: none !important;
 }
 
+/* Định dạng từng item ảnh trong album */
+.wp-block-gallery .wp-block-image,
+.wp-block-gallery li,
+.blocks-gallery-item {
+  flex-grow: 1 !important;
+  flex-basis: calc(33.333% - 1rem) !important; /* Mặc định chia 3 cột */
+  margin: 0 !important;
+  min-width: 200px !important;
+  display: block !important;
+}
+
+/* Các trường hợp số cột chỉ định cụ thể */
+.wp-block-gallery.columns-1 .wp-block-image, .wp-block-gallery.columns-1 li { flex-basis: 100% !important; }
+.wp-block-gallery.columns-2 .wp-block-image, .wp-block-gallery.columns-2 li { flex-basis: calc(50% - 0.75rem) !important; }
+.wp-block-gallery.columns-3 .wp-block-image, .wp-block-gallery.columns-3 li { flex-basis: calc(33.333% - 0.8rem) !important; }
+.wp-block-gallery.columns-4 .wp-block-image, .wp-block-gallery.columns-4 li { flex-basis: calc(25% - 0.9rem) !important; }
+.wp-block-gallery.columns-5 .wp-block-image, .wp-block-gallery.columns-5 li { flex-basis: calc(20% - 0.95rem) !important; }
+
+/* Ép ảnh trong album có cùng chiều cao và tỉ lệ đồng đều */
+.wp-block-gallery img,
+.blocks-gallery-grid img {
+  width: 100% !important;
+  height: 220px !important; /* Độ cao cố định để bằng nhau */
+  object-fit: cover !important;
+  border-radius: 0.75rem !important;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05) !important;
+}
+
+/* Định dạng ảnh đơn lẻ từ WordPress (Giữ nguyên kích thước gốc và căn giữa) */
+.prose .wp-block-image:not(.wp-block-gallery .wp-block-image),
+.wp-content .wp-block-image:not(.wp-block-gallery .wp-block-image) {
+  margin-top: 1.5rem !important;
+  margin-bottom: 1.5rem !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+}
+
+.prose .wp-block-image:not(.wp-block-gallery .wp-block-image) img,
+.wp-content .wp-block-image:not(.wp-block-gallery .wp-block-image) img {
+  max-width: 100% !important;
+  height: auto !important; /* Ảnh đơn lẻ tự co giãn theo tỉ lệ gốc */
+  border-radius: 0.75rem !important;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05) !important;
+}

@@ -23,14 +23,28 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     return { title: 'Không tìm thấy bài viết' };
   }
 
+  // Lấy tiêu đề tùy biến nếu có từ ACF
+  const removeVietnameseDiacritics = (str: string): string => {
+    return str.normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/đ/g, 'd').replace(/Đ/g, 'D');
+  };
+  const findAcfValue = (keyword: string): string => {
+    if (!post.acf) return '';
+    const acf = post.acf as Record<string, any>;
+    const normalizedKeyword = removeVietnameseDiacritics(keyword);
+    const key = Object.keys(acf).find(k => removeVietnameseDiacritics(k).includes(normalizedKeyword));
+    return key ? (acf[key] || '') : '';
+  };
+  const customTitle = findAcfValue('title');
+  const displayTitle = customTitle || post.title.rendered;
+
   // Lấy ảnh đại diện để hiển thị khi chia sẻ lên mạng xã hội
   const featuredImage = post._embedded?.['wp:featuredmedia']?.[0]?.source_url;
 
   return {
-    title: `${post.title.rendered} | Lifestyle Việt Nam`,
+    title: `${displayTitle} | Lifestyle Việt Nam`,
     description: post.excerpt.rendered.replace(/<[^>]+>/g, '').slice(0, 160),
     openGraph: {
-      title: post.title.rendered,
+      title: displayTitle,
       description: post.excerpt.rendered.replace(/<[^>]+>/g, '').slice(0, 160),
       images: featuredImage ? [featuredImage] : [],
     },
@@ -53,6 +67,37 @@ export default async function NewsDetailPage({ params }: PageProps) {
   if (!post) {
     notFound();
   }
+
+  // Hàm bỏ hết dấu tiếng Việt để so sánh tên trường cho chắc chắn
+  const removeVietnameseDiacritics = (str: string): string => {
+    return str.normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/đ/g, 'd').replace(/Đ/g, 'D');
+  };
+
+  // Tìm giá trị ACF bằng cách bỏ dấu cả tên trường lẫn từ khóa rồi so sánh
+  const findAcfValue = (keyword: string): string => {
+    if (!post.acf) return '';
+    const acf = post.acf as Record<string, any>;
+    const normalizedKeyword = removeVietnameseDiacritics(keyword);
+    const key = Object.keys(acf).find(k => removeVietnameseDiacritics(k).includes(normalizedKeyword));
+    return key ? (acf[key] || '') : '';
+  };
+
+  // Lấy dữ liệu nội dung từ ACF
+  const customTitle = findAcfValue('title') || '';
+  const mainContentText = findAcfValue('noi_dung_chinh') || '';
+  const imageContentText = findAcfValue('anh') || '';
+  const authorText = findAcfValue('nguoi_dang_bai') || '';
+
+  const hasAcfContent = mainContentText || imageContentText || customTitle;
+
+  // Sửa toàn bộ đường dẫn ảnh nội bộ trong nội dung HTML của WP sang public origin
+  const fixHtmlImageUrls = (html: string): string => {
+    if (!html) return '';
+    const publicOrigin = process.env.NEXT_PUBLIC_WP_API_URL 
+      ? new URL(process.env.NEXT_PUBLIC_WP_API_URL).origin 
+      : 'http://localhost:10004';
+    return html.replace(/(?:https?:\/\/[^\/\s]+)?\/wp-content\//g, `${publicOrigin}/wp-content/`);
+  };
 
   // Lấy ảnh đại diện (thumbnail)
   const featuredImage = fixImageUrl(post._embedded?.['wp:featuredmedia']?.[0]?.source_url);
@@ -103,14 +148,14 @@ export default async function NewsDetailPage({ params }: PageProps) {
             </Link>
             <ChevronRight className="w-4 h-4 opacity-50" />
             <span className="text-white font-semibold line-clamp-1 max-w-[300px]"
-              dangerouslySetInnerHTML={{ __html: post.title.rendered }}
+              dangerouslySetInnerHTML={{ __html: customTitle || post.title.rendered }}
             />
           </nav>
 
           {/* Tiêu đề bài viết */}
           <h1
             className="text-2xl md:text-3xl lg:text-4xl font-extrabold text-white leading-tight max-w-4xl"
-            dangerouslySetInnerHTML={{ __html: post.title.rendered }}
+            dangerouslySetInnerHTML={{ __html: customTitle || post.title.rendered }}
           />
 
           {/* Thông tin phụ: ngày đăng + danh mục */}
@@ -149,21 +194,57 @@ export default async function NewsDetailPage({ params }: PageProps) {
             </div>
           )}
 
-          {/* Nội dung bài viết — render HTML từ WordPress */}
-          <article
-            className="
-              wp-content prose prose-lg max-w-none
-              prose-headings:text-gray-900 prose-headings:font-bold
-              prose-p:text-gray-700 prose-p:leading-relaxed
-              prose-a:text-[#008BBD] prose-a:font-semibold hover:prose-a:text-[#006A91]
-              prose-img:rounded-xl prose-img:shadow-md
-              prose-blockquote:border-l-[#008BBD] prose-blockquote:bg-blue-50 prose-blockquote:py-1 prose-blockquote:px-4 prose-blockquote:rounded-r-lg
-              prose-strong:text-gray-900
-              prose-ul:list-disc prose-ol:list-decimal
-              prose-li:text-gray-700
-            "
-            dangerouslySetInnerHTML={{ __html: cleanContent }}
-          />
+          {/* Nội dung bài viết — render HTML từ WordPress hoặc từ Form ACF */}
+          {hasAcfContent ? (
+            <article
+              className="
+                prose prose-lg max-w-none
+                prose-headings:text-gray-900 prose-headings:font-bold
+                prose-p:text-gray-700 prose-p:leading-relaxed
+                prose-a:text-[#008BBD] prose-a:font-semibold hover:prose-a:text-[#006A91]
+                prose-img:rounded-xl prose-img:shadow-md
+                prose-blockquote:border-l-[#008BBD] prose-blockquote:bg-blue-50 prose-blockquote:py-1 prose-blockquote:px-4 prose-blockquote:rounded-r-lg
+                prose-strong:text-gray-900
+                prose-ul:list-disc prose-ol:list-decimal
+                prose-li:text-gray-700
+              "
+            >
+              {/* Nội dung chính */}
+              {mainContentText && (
+                <div dangerouslySetInnerHTML={{ __html: fixHtmlImageUrls(mainContentText) }} />
+              )}
+
+              {/* Phần ảnh / nội dung ảnh phụ */}
+              {imageContentText && (
+                <div 
+                  className="mt-6 wp-content" 
+                  dangerouslySetInnerHTML={{ __html: fixHtmlImageUrls(imageContentText) }} 
+                />
+              )}
+
+              {/* Người đăng bài / Tác giả */}
+              {authorText && (
+                <div className="mt-8 pt-4 border-t border-gray-100 text-right text-sm text-gray-500 font-medium italic">
+                  Người đăng bài: {authorText}
+                </div>
+              )}
+            </article>
+          ) : (
+            <article
+              className="
+                prose prose-lg max-w-none
+                prose-headings:text-gray-900 prose-headings:font-bold
+                prose-p:text-gray-700 prose-p:leading-relaxed
+                prose-a:text-[#008BBD] prose-a:font-semibold hover:prose-a:text-[#006A91]
+                prose-img:rounded-xl prose-img:shadow-md
+                prose-blockquote:border-l-[#008BBD] prose-blockquote:bg-blue-50 prose-blockquote:py-1 prose-blockquote:px-4 prose-blockquote:rounded-r-lg
+                prose-strong:text-gray-900
+                prose-ul:list-disc prose-ol:list-decimal
+                prose-li:text-gray-700
+              "
+              dangerouslySetInnerHTML={{ __html: cleanContent }}
+            />
+          )}
 
           {/* Thẻ tag (nếu có) */}
           {tags.length > 0 && (

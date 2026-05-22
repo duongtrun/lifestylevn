@@ -12,7 +12,7 @@ export async function generateMetadata({ params }: PageProps) {
   const { slug } = await params;
   const job = await getJobBySlug(slug);
   if (!job) return { title: 'Không tìm thấy tin tuyển dụng' };
-  
+
   return {
     title: `${decodeHtmlEntities(job.title.rendered.replace('[Tuyển dụng]', '').trim())} | Tuyển dụng IruKa`,
     description: `IruKa Group đang tuyển dụng vị trí ${decodeHtmlEntities(job.title.rendered.replace('[Tuyển dụng]', '').trim())}. Xem ngay để không bỏ lỡ cơ hội!`,
@@ -22,7 +22,7 @@ export async function generateMetadata({ params }: PageProps) {
 export default async function JobDetailPage({ params }: PageProps) {
   const { slug } = await params;
   const job = await getJobBySlug(slug);
-  
+
   if (!job) {
     notFound();
   }
@@ -53,7 +53,7 @@ export default async function JobDetailPage({ params }: PageProps) {
   const requirementsText = findAcfValue('ung_vien') || '';
   const benefitsText = findAcfValue('quyen_loi') || '';
   const contactText = findAcfValue('lien_he') || '';
-  
+
   // Nếu có điền form nào thì cờ này bật lên
   const hasAcfContent = jdText || requirementsText || benefitsText || contactText;
 
@@ -61,8 +61,8 @@ export default async function JobDetailPage({ params }: PageProps) {
     <main className="min-h-screen bg-neutral-50 pt-28 pb-24">
       <div className="container mx-auto px-4 max-w-5xl">
         {/* Back Button */}
-        <Link 
-          href="/tuyen-dung" 
+        <Link
+          href="/tuyen-dung"
           className="inline-flex items-center gap-2 text-neutral-500 hover:text-blue-600 transition-colors mb-8 font-medium"
         >
           <ChevronLeft className="w-5 h-5" />
@@ -81,7 +81,7 @@ export default async function JobDetailPage({ params }: PageProps) {
                 <h1 className="text-3xl md:text-4xl font-bold text-neutral-900 leading-tight mb-6">
                   {decodeHtmlEntities(job.title.rendered.replace('[Tuyển dụng]', '').trim())}
                 </h1>
-                
+
                 {/* Mobile Badges (Chỉ hiện trên mobile, desktop có cột phải) */}
                 <div className="grid grid-cols-2 gap-4 lg:hidden mb-6">
                   <div className="flex items-center gap-2 text-sm text-neutral-600 bg-neutral-50 p-3 rounded-xl">
@@ -103,14 +103,14 @@ export default async function JobDetailPage({ params }: PageProps) {
                   prose-p:text-neutral-600 prose-p:leading-relaxed prose-p:mb-4
                   prose-ul:text-neutral-600 prose-ul:my-4 prose-li:my-1
                   prose-li:marker:text-blue-500">
-                  
+
                   {jdText && (
                     <>
                       <h3>Mô tả công việc</h3>
                       <div dangerouslySetInnerHTML={{ __html: jdText }} />
                     </>
                   )}
-                  
+
                   {requirementsText && (
                     <>
                       <h3>Yêu cầu ứng viên</h3>
@@ -133,8 +133,8 @@ export default async function JobDetailPage({ params }: PageProps) {
                   )}
                 </div>
               ) : (
-                <div 
-                  className="wp-content prose prose-lg prose-neutral max-w-none 
+                <div
+                  className="prose prose-lg prose-neutral max-w-none 
                   prose-headings:text-neutral-900 prose-headings:font-bold prose-headings:mb-4
                   prose-h3:text-xl prose-h3:mt-8 prose-h3:mb-4 prose-h3:text-blue-700
                   prose-p:text-neutral-600 prose-p:leading-relaxed prose-p:mb-4
@@ -152,7 +152,7 @@ export default async function JobDetailPage({ params }: PageProps) {
               {/* Box Thông Tin */}
               <div className="bg-white rounded-3xl p-6 shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-neutral-100">
                 <h3 className="text-lg font-bold text-neutral-900 mb-6">Tổng quan công việc</h3>
-                
+
                 <div className="space-y-5">
                   <div className="flex items-start gap-4">
                     <div className="w-10 h-10 rounded-full bg-emerald-50 flex items-center justify-center flex-shrink-0">
@@ -200,9 +200,9 @@ export default async function JobDetailPage({ params }: PageProps) {
               <div className="bg-gradient-to-br from-blue-600 to-indigo-700 rounded-3xl p-6 text-white shadow-lg shadow-blue-500/20">
                 <h3 className="text-xl font-bold mb-2">Sẵn sàng gia nhập?</h3>
                 <p className="text-blue-100 text-sm mb-6">Hãy gửi ngay CV (Hồ sơ năng lực) của bạn cho chúng tôi nhé!</p>
-                
+
                 <ApplicationModal positionTitle={decodeHtmlEntities(job.title.rendered.replace('[Tuyển dụng]', '').trim())} />
-                
+
                 <div className="mt-4 flex items-center justify-center gap-2 text-xs text-blue-200">
                   <CheckCircle2 className="w-4 h-4" />
                   <span>Phản hồi kết quả trong 3 ngày làm việc</span>
