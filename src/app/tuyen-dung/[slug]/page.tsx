@@ -134,7 +134,7 @@ export default async function JobDetailPage({ params }: PageProps) {
                 </div>
               ) : (
                 <div 
-                  className="prose prose-lg prose-neutral max-w-none 
+                  className="wp-content prose prose-lg prose-neutral max-w-none 
                   prose-headings:text-neutral-900 prose-headings:font-bold prose-headings:mb-4
                   prose-h3:text-xl prose-h3:mt-8 prose-h3:mb-4 prose-h3:text-blue-700
                   prose-p:text-neutral-600 prose-p:leading-relaxed prose-p:mb-4

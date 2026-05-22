@@ -152,7 +152,7 @@ export default async function NewsDetailPage({ params }: PageProps) {
           {/* Nội dung bài viết — render HTML từ WordPress */}
           <article
             className="
-              prose prose-lg max-w-none
+              wp-content prose prose-lg max-w-none
               prose-headings:text-gray-900 prose-headings:font-bold
               prose-p:text-gray-700 prose-p:leading-relaxed
               prose-a:text-[#008BBD] prose-a:font-semibold hover:prose-a:text-[#006A91]
