@@ -396,7 +396,7 @@ export async function getPosts(limit: number = 9): Promise<WPPost[]> {
       headers: FETCH_HEADERS,
       // Revalidate mỗi 60 giây (ISR — tự động làm mới dữ liệu)
       next: { revalidate: 60 },
-      signal: AbortSignal.timeout(4000) // Tự động ngắt kết nối sau 4 giây nếu máy chủ không phản hồi
+      signal: AbortSignal.timeout(15000) // Tự động ngắt kết nối sau 15 giây nếu máy chủ không phản hồi (để hỗ trợ localtunnel/ngrok qua môi trường xa)
     });
     
     if (!res.ok) {
@@ -428,7 +428,7 @@ export async function getPostBySlug(slug: string): Promise<WPPost | null> {
     const res = await fetch(`${WP_API_URL}/wp/v2/posts?slug=${slug}&_embed=true`, {
       headers: FETCH_HEADERS,
       next: { revalidate: 60 },
-      signal: AbortSignal.timeout(4000)
+      signal: AbortSignal.timeout(15000)
     });
 
     if (!res.ok) {
@@ -494,7 +494,7 @@ export async function getJobs(limit: number = 10): Promise<WPJob[]> {
     const res = await fetch(`${WP_API_URL}/wp/v2/tuyen_dung?per_page=${limit}`, {
       headers: FETCH_HEADERS,
       next: { revalidate: 60 },
-      signal: AbortSignal.timeout(4000)
+      signal: AbortSignal.timeout(15000)
     });
     
     if (!res.ok) {
@@ -523,7 +523,7 @@ export async function getJobBySlug(slug: string): Promise<WPJob | null> {
     const res = await fetch(`${WP_API_URL}/wp/v2/tuyen_dung?slug=${slug}`, {
       headers: FETCH_HEADERS,
       next: { revalidate: 60 },
-      signal: AbortSignal.timeout(4000)
+      signal: AbortSignal.timeout(15000)
     });
 
     if (!res.ok) {
