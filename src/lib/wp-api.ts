@@ -365,6 +365,7 @@ export const MOCK_POSTS: WPPost[] = [
  * Lấy danh sách bài viết mới nhất
  */
 export async function getPosts(limit: number = 9): Promise<WPPost[]> {
+  console.log(`[WP-API] getPosts calling URL: ${WP_API_URL}/wp/v2/posts?_embed=true&per_page=${limit}`);
   try {
     const res = await fetch(`${WP_API_URL}/wp/v2/posts?_embed=true&per_page=${limit}`, {
       headers: FETCH_HEADERS,
@@ -387,7 +388,7 @@ export async function getPosts(limit: number = 9): Promise<WPPost[]> {
     // Gắn ảnh mặc định cho bài chưa có ảnh đại diện (theo danh mục)
     return posts.map((post, index) => enrichPostWithFallbackImage(post, index));
   } catch (error) {
-    console.warn('Kết nối WordPress thất bại, tự động kích hoạt chế độ Fallback Mock Data:', error);
+    console.warn(`Kết nối WordPress thất bại cho URL: ${WP_API_URL}, tự động kích hoạt chế độ Fallback Mock Data:`, error);
     // Khi máy chủ WordPress offline, trả về mảng dữ liệu mock cực kỳ chuyên nghiệp
     return MOCK_POSTS.slice(0, limit);
   }
@@ -397,6 +398,7 @@ export async function getPosts(limit: number = 9): Promise<WPPost[]> {
  * Lấy chi tiết 1 bài viết theo slug
  */
 export async function getPostBySlug(slug: string): Promise<WPPost | null> {
+  console.log(`[WP-API] getPostBySlug calling URL: ${WP_API_URL}/wp/v2/posts?slug=${slug}&_embed=true`);
   try {
     const res = await fetch(`${WP_API_URL}/wp/v2/posts?slug=${slug}&_embed=true`, {
       headers: FETCH_HEADERS,
@@ -419,7 +421,7 @@ export async function getPostBySlug(slug: string): Promise<WPPost | null> {
     const mockPost = MOCK_POSTS.find(p => p.slug === slug);
     return mockPost || null;
   } catch (error) {
-    console.warn('Lấy chi tiết thất bại, tìm kiếm trong Fallback Mock Data cho slug:', slug);
+    console.warn(`Lấy chi tiết thất bại cho URL: ${WP_API_URL}, tìm kiếm trong Fallback Mock Data cho slug:`, slug, error);
     const mockPost = MOCK_POSTS.find(p => p.slug === slug);
     return mockPost || null;
   }
@@ -462,6 +464,7 @@ export const MOCK_JOBS: WPJob[] = [
  * Lấy danh sách việc làm (Tuyển dụng)
  */
 export async function getJobs(limit: number = 10): Promise<WPJob[]> {
+  console.log(`[WP-API] getJobs calling URL: ${WP_API_URL}/wp/v2/tuyen_dung?per_page=${limit}`);
   try {
     const res = await fetch(`${WP_API_URL}/wp/v2/tuyen_dung?per_page=${limit}`, {
       headers: FETCH_HEADERS,
@@ -481,7 +484,7 @@ export async function getJobs(limit: number = 10): Promise<WPJob[]> {
     
     return jobs;
   } catch (error) {
-    console.warn('Kết nối WP thất bại, kích hoạt Mock Jobs:', error);
+    console.warn(`Kết nối WP thất bại cho URL: ${WP_API_URL}, kích hoạt Mock Jobs:`, error);
     return MOCK_JOBS.slice(0, limit);
   }
 }
@@ -490,6 +493,7 @@ export async function getJobs(limit: number = 10): Promise<WPJob[]> {
  * Lấy chi tiết 1 công việc theo slug
  */
 export async function getJobBySlug(slug: string): Promise<WPJob | null> {
+  console.log(`[WP-API] getJobBySlug calling URL: ${WP_API_URL}/wp/v2/tuyen_dung?slug=${slug}`);
   try {
     const res = await fetch(`${WP_API_URL}/wp/v2/tuyen_dung?slug=${slug}`, {
       headers: FETCH_HEADERS,
@@ -510,7 +514,7 @@ export async function getJobBySlug(slug: string): Promise<WPJob | null> {
     const mockJob = MOCK_JOBS.find(j => j.slug === slug);
     return mockJob || null;
   } catch (error) {
-    console.warn('Lấy chi tiết Job thất bại, dùng Fallback Mock Job:', slug);
+    console.warn(`Lấy chi tiết Job thất bại cho URL: ${WP_API_URL}, dùng Fallback Mock Job:`, slug, error);
     const mockJob = MOCK_JOBS.find(j => j.slug === slug);
     return mockJob || null;
   }

@@ -1,20 +1,73 @@
 # File này: Cấu hình Docker Compose để dễ dàng chạy môi trường Production
-# Vai trò: Gộp lệnh build và run thành 1 file đơn giản
-# Dùng khi: Chạy thử trên máy local bằng lệnh `docker compose up -d`
+# Vai trò: Gộp lệnh build và run cả Frontend (Next.js), Backend (WordPress), và Database (MySQL) thành 1 file đơn giản
+# Dùng khi: Chạy thử toàn bộ hệ thống trên máy local bằng lệnh `docker compose up -d`
 
 version: '3.8'
 
 services:
+  # --- DỊCH VỤ 1: CƠ SỞ DỮ LIỆU MYSQL ---
+  db:
+    image: mysql:8.0
+    container_name: lifestyle-mysql
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpassword
+      MYSQL_DATABASE: wordpress_db
+      MYSQL_USER: wpuser
+      MYSQL_PASSWORD: wppassword
+    volumes:
+      # Lưu trữ cơ sở dữ liệu trên máy thật để tránh mất dữ liệu khi tắt docker
+      - db_data:/var/lib/mysql
+    networks:
+      - lifestyle-network
+
+  # --- DỊCH VỤ 2: BACKEND WORDPRESS ---
+  wordpress:
+    depends_on:
+      - db
+    image: wordpress:latest
+    container_name: lifestyle-wordpress-be
+    restart: always
+    ports:
+      # Map cổng 8080 của máy bạn vào cổng 80 của container WordPress
+      - "8080:80"
+    environment:
+      WORDPRESS_DB_HOST: db:3306
+      WORDPRESS_DB_USER: wpuser
+      WORDPRESS_DB_PASSWORD: wppassword
+      WORDPRESS_DB_NAME: wordpress_db
+    volumes:
+      # Lưu trữ tệp tin tải lên (ảnh, plugin, theme) trên máy thật
+      - wp_data:/var/www/html
+    networks:
+      - lifestyle-network
+
+  # --- DỊCH VỤ 3: FRONTEND NEXT.JS ---
   web-lifestyle:
+    depends_on:
+      - wordpress
     container_name: web-lifestyle-prod
     build:
       context: .
       dockerfile: Dockerfile
     ports:
-      # Map cổng 3005 của máy host vào cổng 3005 của container
+      # Map cổng 3005 của máy bạn vào cổng 3005 của container Next.js
       - "3005:3005"
     restart: always
     environment:
-      # Nếu có biến môi trường nào (.env.local), bạn có thể khai báo thêm ở đây
       - NODE_ENV=production
-      - NEXT_PUBLIC_WP_API_URL=http://host.docker.internal:10004/wp-json
+      # Địa chỉ API trỏ đến WordPress thông qua cổng 8080 của host machine
+      - NEXT_PUBLIC_WP_API_URL=http://host.docker.internal:8080/wp-json
+    extra_hosts:
+      # Cho phép container Next.js giao tiếp với host machine qua host.docker.internal
+      - "host.docker.internal:host-gateway"
+    networks:
+      - lifestyle-network
+
+volumes:
+  db_data:
+  wp_data:
+
+networks:
+  lifestyle-network:
+    driver: bridge
