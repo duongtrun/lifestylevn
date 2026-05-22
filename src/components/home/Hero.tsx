@@ -29,7 +29,7 @@ export default function Hero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
-            className="text-primary font-bold tracking-widest text-sm md:text-base uppercase"
+            className="text-primary font-extrabold tracking-widest text-base md:text-lg lg:text-xl uppercase"
           >
             LIFESTYLE VIỆT NAM
           </motion.p>
@@ -38,9 +38,10 @@ export default function Hero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.1 }}
-            className="text-4xl md:text-5xl lg:text-6xl font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-[#66493C] to-[#9A735C] leading-[1.2] pb-2"
+            className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-[#66493C] to-[#9A735C] leading-[1.2] pb-2"
           >
-            KIẾN TẠO HỆ SINH THÁI <br className="hidden lg:block" /> MẸ VÀ BÉ
+            <span className="block">KIẾN TẠO HỆ SINH THÁI</span>
+            <span className="block">MẸ VÀ BÉ</span>
           </motion.h1>
           
           <motion.div 
