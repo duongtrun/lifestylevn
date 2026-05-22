@@ -34,7 +34,7 @@ export default function Header() {
         </Link>
 
         {/* Desktop Navigation */}
-        <nav className="hidden md:flex items-center gap-8">
+        <nav className="hidden lg:flex items-center gap-6 xl:gap-8">
           <Link href="/gioi-thieu" className="text-lg font-medium text-gray-600 hover:text-primary transition-colors">
             Giới thiệu
           </Link>
@@ -101,7 +101,7 @@ export default function Header() {
         </nav>
 
         {/* CTA Button */}
-        <div className="hidden md:block">
+        <div className="hidden lg:block">
           <Link 
             href="/lien-he" 
             className="inline-flex h-11 items-center justify-center rounded-full bg-primary px-6 text-lg font-medium text-primary-foreground hover:bg-primary/90 transition-colors shadow-sm"
@@ -112,7 +112,7 @@ export default function Header() {
 
         {/* Mobile Menu Toggle */}
         <button 
-          className="md:hidden p-2 text-gray-600"
+          className="lg:hidden p-2 text-gray-600"
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
           aria-label="Toggle Menu"
         >
@@ -123,14 +123,14 @@ export default function Header() {
       {/* Lớp nền mờ phía sau (Backdrop Overlay) - Bấm ra ngoài để đóng menu di động */}
       {isMobileMenuOpen && (
         <div 
-          className="fixed inset-0 top-20 z-40 bg-black/30 backdrop-blur-sm md:hidden animate-in fade-in duration-200"
+          className="fixed inset-0 top-20 z-40 bg-black/30 backdrop-blur-sm lg:hidden animate-in fade-in duration-200"
           onClick={() => setIsMobileMenuOpen(false)}
         />
       )}
 
       {/* Mobile Menu Dropdown */}
       {isMobileMenuOpen && (
-        <div className="relative z-50 md:hidden border-t border-gray-100 bg-white px-4 py-4 space-y-4 shadow-lg animate-in slide-in-from-top-4">
+        <div className="relative z-50 lg:hidden border-t border-gray-100 bg-white px-4 py-4 space-y-4 shadow-lg animate-in slide-in-from-top-4">
           <Link 
             href="/gioi-thieu" 
             onClick={() => setIsMobileMenuOpen(false)} 

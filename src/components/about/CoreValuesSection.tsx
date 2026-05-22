@@ -66,7 +66,7 @@ const itemVariants: Variants = {
 export default function CoreValuesSection() {
   return (
     // Nền sáng #EEF8FC — đồng bộ với toàn trang Giới thiệu
-    <section className="relative w-full py-20 lg:py-32 bg-[#EEF8FC] overflow-hidden">
+    <section className="relative w-full py-12 md:py-16 lg:py-20 bg-[#EEF8FC] overflow-hidden">
 
       {/* Họa tiết blob mờ trang trí góc — cùng tông màu chủ đạo */}
       <div className="absolute -top-20 -right-20 w-80 h-80 rounded-full bg-[#008BBD]/10 blur-3xl pointer-events-none" />
@@ -80,13 +80,13 @@ export default function CoreValuesSection() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.7 }}
-          className="text-center mb-14 lg:mb-20"
+          className="text-center mb-8 md:mb-12 lg:mb-16"
         >
           {/* Badge nhỏ phía trên */}
-          <span className="inline-block mb-4 px-4 py-1.5 rounded-full bg-[#008BBD]/10 text-[#008BBD] text-xs font-semibold uppercase tracking-widest">
+          <span className="inline-block mb-2 px-4 py-1.5 rounded-full bg-[#008BBD]/10 text-[#008BBD] text-xs font-semibold uppercase tracking-widest">
             Văn hoá doanh nghiệp
           </span>
-          <h2 className="text-3xl md:text-5xl font-extrabold text-[#273F68] mb-4">
+          <h2 className="text-3xl md:text-5xl font-extrabold text-[#273F68] mb-3">
             Giá Trị Cốt Lõi
           </h2>
           {/* Đường kẻ accent */}

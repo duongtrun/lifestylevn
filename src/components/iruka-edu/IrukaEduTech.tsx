@@ -143,9 +143,9 @@ export default function IrukaEduTech() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-10">
             
             {/* Cột 1 */}
-            <div className="flex flex-col gap-6 lg:gap-10">
+            <div className="flex flex-col gap-6 lg:gap-10 h-full">
               {techData.filter(d => d.col === 1).map((item, index) => (
-                <TechCard key={item.id} icon={item.icon} content={item.content} index={index} delay={0.1} />
+                <TechCard key={item.id} icon={item.icon} content={item.content} index={index} delay={0.1} className="flex-1 flex flex-col" />
               ))}
             </div>
 
@@ -157,9 +157,9 @@ export default function IrukaEduTech() {
             </div>
 
             {/* Cột 3 */}
-            <div className="flex flex-col gap-6 lg:gap-10 mt-6 md:mt-0">
+            <div className="flex flex-col gap-6 lg:gap-10 mt-6 md:mt-0 h-full">
               {techData.filter(d => d.col === 3).map((item, index) => (
-                <TechCard key={item.id} icon={item.icon} content={item.content} index={index} delay={0.5} />
+                <TechCard key={item.id} icon={item.icon} content={item.content} index={index} delay={0.5} className="flex-1 flex flex-col" />
               ))}
             </div>
 
@@ -171,14 +171,14 @@ export default function IrukaEduTech() {
 }
 
 // Sub-component cho mỗi Card
-function TechCard({ icon, content, index, delay }: { icon?: string, content: React.ReactNode, index: number, delay: number }) {
+function TechCard({ icon, content, index, delay, className }: { icon?: string, content: React.ReactNode, index: number, delay: number, className?: string }) {
   return (
     <motion.div
       initial={{ opacity: 0, y: 30 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.5, delay: delay + index * 0.15 }}
-      className="relative w-full rounded-2xl overflow-hidden shadow-xl"
+      className={`relative w-full rounded-2xl overflow-hidden shadow-xl ${className || ''}`}
     >
       {/* Background bg_text_tech.svg */}
       <div className="absolute inset-0 z-0">
@@ -193,7 +193,7 @@ function TechCard({ icon, content, index, delay }: { icon?: string, content: Rea
       </div>
 
       {/* Content */}
-      <div className="relative z-10 p-6 md:p-8 min-h-[220px] flex flex-col justify-center">
+      <div className="relative z-10 p-6 md:p-8 min-h-[220px] flex-1 flex flex-col justify-center">
         {icon && (
           <div className="flex justify-center w-full mb-4">
             <div className="relative w-[50px] h-[50px] md:w-[70px] md:h-[70px]">

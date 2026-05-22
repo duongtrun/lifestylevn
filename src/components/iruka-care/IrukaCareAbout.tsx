@@ -58,7 +58,7 @@ export default function IrukaCareAbout() {
       <section className="relative w-full overflow-hidden bg-white">
         {/* Background ảnh blur */}
         <div 
-          className="absolute inset-0 z-0 opacity-100"
+          className="absolute inset-0 z-0 opacity-100 hidden lg:block"
           style={{
             maskImage: 'linear-gradient(to bottom, transparent 0%, black 15%, black 85%, transparent 100%)',
             WebkitMaskImage: 'linear-gradient(to bottom, transparent 0%, black 15%, black 85%, transparent 100%)'
@@ -96,19 +96,19 @@ export default function IrukaCareAbout() {
               transition={{ duration: 0.7, delay: 0.15 }}
               className="flex-1"
             >
-              <h2 className="text-3xl md:text-4xl lg:text-5xl font-extrabold mb-6 drop-shadow-sm text-[#005A8C] md:text-white">
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-extrabold mb-6 drop-shadow-sm text-[#005A8C] lg:text-white">
                 iruKa Care là gì?
               </h2>
-              <p className="text-sm md:text-base leading-relaxed mb-4 font-medium text-gray-700 md:text-white/90">
+              <p className="text-sm md:text-base leading-relaxed mb-4 font-medium text-gray-700 lg:text-white/90">
                 iruKa Care là thương hiệu vệ sinh - chăm sóc - bảo vệ dành cho trẻ từ sơ sinh đến 10 tuổi, được phát triển trên nền tảng:
               </p>
-              <ul className="list-disc pl-5 space-y-2 text-sm md:text-base leading-relaxed font-medium text-gray-700 md:text-white/90">
+              <ul className="list-disc pl-5 space-y-2 text-sm md:text-base leading-relaxed font-medium text-gray-700 lg:text-white/90">
                 <li>Công thức sạch - an toàn tuyệt đối</li>
                 <li>Nguồn thành phần lành tính, có chọn lọc</li>
                 <li>Ứng dụng công nghệ đạt chuẩn Nhật - Châu Âu</li>
                 <li>Kiểm nghiệm nghiêm ngặt bởi đội ngũ chuyên môn</li>
               </ul>
-              <p className="text-sm md:text-base leading-relaxed mt-4 font-medium text-gray-700 md:text-white/90">
+              <p className="text-sm md:text-base leading-relaxed mt-4 font-medium text-gray-700 lg:text-white/90">
                 iruKa Care hướng đến mục tiêu trở thành dòng sản phẩm vệ sinh đáng tin cậy nhất cho các gia đình Việt, đồng hành cùng hành trình lớn khôn của trẻ.
               </p>
             </motion.div>
