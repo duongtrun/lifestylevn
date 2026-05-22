@@ -121,8 +121,9 @@ export default async function NewsDetailPage({ params }: PageProps) {
   };
 
   // Loại bỏ thông tin đóng góp nhạy cảm (Name, SĐT...) ở môi trường Client công khai
-  const cleanContent = post.content.rendered
-    .replace(/<!-- contribution-meta-start -->[\s\S]*?<!-- contribution-meta-end -->/g, '');
+  const cleanContent = fixHtmlImageUrls(
+    post.content.rendered.replace(/<!-- contribution-meta-start -->[\s\S]*?<!-- contribution-meta-end -->/g, '')
+  );
 
   return (
     <main className="flex min-h-screen flex-col bg-[#F8F9FA]">

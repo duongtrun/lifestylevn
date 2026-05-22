@@ -18,6 +18,14 @@ try {
     parsedUrl.username = '';
     parsedUrl.password = '';
     WP_API_URL = parsedUrl.toString().replace(/\/$/, '');
+  } else {
+    // Nếu URL không chứa basic auth, kiểm tra biến môi trường độc lập
+    const username = process.env.WP_AUTH_USERNAME;
+    const appPassword = process.env.WP_AUTH_APPLICATION_PASSWORD;
+    if (username && appPassword) {
+      const authString = `${username}:${appPassword}`;
+      FETCH_HEADERS['Authorization'] = `Basic ${typeof btoa !== 'undefined' ? btoa(authString) : Buffer.from(authString).toString('base64')}`;
+    }
   }
 } catch (e) {
   // Bỏ qua nếu parse lỗi
