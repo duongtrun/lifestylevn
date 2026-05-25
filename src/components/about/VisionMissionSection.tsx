@@ -112,8 +112,8 @@ export default function VisionMissionSection() {
           {/* Thanh xanh PHẢI — to hơn, cao hơn, nhô ra ngoài rõ */}
           <div className="absolute right-0 bottom-6 w-14 md:w-16 h-[55%] bg-[#009fe3] z-0" />
 
-          {/* Hộp ảnh chính — hỗ trợ h-auto cho mobile để không bị cắt chữ */}
-          <div className="relative z-10 rounded-2xl overflow-hidden shadow-2xl h-auto min-h-[380px] md:h-[420px] flex flex-col justify-center">
+          {/* Hộp ảnh chính — Đặt chiều cao cố định để chứa trọn hộp chữ bên trong */}
+          <div className="relative z-10 rounded-2xl overflow-hidden shadow-2xl h-[400px] md:h-[420px]">
             
             {/* Ảnh nền — AnimatePresence để chuyển mượt khi đổi tab */}
             <AnimatePresence mode="wait">
@@ -150,9 +150,9 @@ export default function VisionMissionSection() {
                 initial="hidden"
                 animate="visible"
                 exit="exit"
-                className="relative md:absolute md:top-1/2 md:-translate-y-1/2 md:right-10 z-20 w-[calc(100%-2rem)] mx-auto my-8 md:my-0 md:w-[280px]"
+                className="absolute top-[5px] bottom-[5px] right-[5px] z-20 w-[300px] max-w-[calc(100%-10px)]"
               >
-                <div className="bg-white/30 backdrop-blur-md border border-white/40 rounded-2xl p-5 md:p-6 shadow-xl">
+                <div className="bg-white/30 backdrop-blur-md border border-white/40 rounded-2xl p-4 md:p-6 shadow-xl h-full flex flex-col justify-center">
                   {/* Icon + Tiêu đề */}
                   <div className="flex items-center gap-2 mb-3">
                     <Icon className="w-5 h-5" style={{ color: '#273F68' }} />
@@ -161,7 +161,7 @@ export default function VisionMissionSection() {
                     </h3>
                   </div>
                   {/* Nội dung văn bản - thêm class whitespace-pre-line để hỗ trợ xuống dòng */}
-                  <p className="text-sm md:text-base leading-relaxed font-medium whitespace-pre-line" style={{ color: '#273F68' }}>
+                  <p className="text-xs md:text-sm leading-relaxed font-medium whitespace-pre-line" style={{ color: '#273F68' }}>
                     {currentTab.content}
                   </p>
                 </div>
