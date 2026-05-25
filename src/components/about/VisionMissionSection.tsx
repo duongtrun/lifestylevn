@@ -17,7 +17,8 @@ const tabs = [
     id: 'vision',
     label: 'Tầm nhìn',
     icon: Eye,
-    bg: '/img_about_us/bg_vision.webp',
+    imageDesktop: '/img_about_us/bg_vision.webp',
+    imageMobile: '/img_about_us/bg_vision.webp',
     heading: 'TẦM NHÌN',
     content:
       'Trở thành doanh nghiệp tiên phong trong việc xây dựng hệ sinh thái Mẹ & Bé toàn diện tại Việt Nam – nơi công nghệ, dinh dưỡng, giáo dục và sức khỏe kết hợp để mang đến giải pháp nuôi dạy con toàn diện và bền vững.',
@@ -26,19 +27,21 @@ const tabs = [
     id: 'mission',
     label: 'Sứ mệnh',
     icon: Compass,
-    bg: '/img_about_us/bg_su_menh.webp',
+    imageDesktop: '/images/su_menh.png',
+    imageMobile: '/images/su_menh_mobile.png',
     heading: 'SỨ MỆNH',
     content:
-      'Mang đến giải pháp toàn diện và đáng tin cậy giúp trẻ phát triển khỏe mạnh – hạnh phúc – an toàn trong những năm đầu đời, đồng hành cùng các bà mẹ trong hành trình nuôi dạy con khôn lớn.\n\nChúng tôi cam kết tạo ra các sản phẩm và dịch vụ vừa an toàn, chất lượng, vừa mang lại giá trị thực cho gia đình Việt.',
+      'Mang đến giải pháp toàn diện và đáng tin cậy giúp trẻ phát triển khỏe mạnh – hạnh phúc – an toàn trong những năm đầu đời, đồng hành cùng các bà mẹ trong hành trình nuôi dạy con khôn lớn. Chúng tôi cam kết tạo ra các sản phẩm và dịch vụ vừa an toàn, chất lượng, vừa mang lại giá trị thực cho gia đình Việt.',
   },
   {
     id: 'philosophy',
     label: 'Triết lý kinh doanh',
     icon: Lightbulb,
-    bg: '/img_about_us/bg_triet_ly.webp',
+    imageDesktop: '/img_about_us/bg_triet_ly.webp',
+    imageMobile: '/img_about_us/bg_triet_ly.webp',
     heading: 'TRIẾT LÝ KINH DOANH',
     content:
-      '• Hợp tác – Phát triển – Chia sẻ lợi nhuận\n• Khách hàng là người bạn đồng hành, không chỉ là người mua hàng\n• Cam kết cung cấp giá trị thật, minh bạch và bền vững\n• Tôn trọng đạo đức kinh doanh – tuân thủ pháp luật\n• Liên tục đổi mới để mang lại chất lượng vượt trội',
+      'Hợp tác – Phát triển – Chia sẻ lợi nhuận. Khách hàng là người bạn đồng hành, không chỉ là người mua hàng. Cam kết cung cấp giá trị thật, minh bạch và bền vững. Tôn trọng đạo đức kinh doanh – tuân thủ pháp luật. Liên tục đổi mới để mang lại chất lượng vượt trội.',
   },
 ];
 
@@ -123,17 +126,21 @@ export default function VisionMissionSection() {
                 className="absolute inset-0"
               >
                 <Image
-                  src={currentTab.bg}
-                  alt={currentTab.heading}
+                  src={currentTab.imageDesktop}
+                  alt={`${currentTab.heading} desktop`}
                   fill
-                  className="object-cover"
+                  className="object-cover hidden md:block"
+                  priority
+                />
+                <Image
+                  src={currentTab.imageMobile}
+                  alt={`${currentTab.heading} mobile`}
+                  fill
+                  className="object-cover md:hidden"
                   priority
                 />
               </motion.div>
             </AnimatePresence>
-
-            {/* Lớp gradient phủ nhẹ bên trái để chữ dễ đọc hơn */}
-            <div className="absolute inset-0 bg-gradient-to-r from-black/30 via-transparent to-transparent z-10" />
 
             {/* Thẻ Glassmorphism chứa nội dung text */}
             <AnimatePresence mode="wait">
@@ -143,7 +150,7 @@ export default function VisionMissionSection() {
                 initial="hidden"
                 animate="visible"
                 exit="exit"
-                className="relative md:absolute md:top-1/2 md:-translate-y-1/2 md:left-10 z-20 w-[calc(100%-2rem)] mx-auto my-8 md:my-0 md:w-auto md:max-w-md"
+                className="relative md:absolute md:top-1/2 md:-translate-y-1/2 md:right-10 z-20 w-[calc(100%-2rem)] mx-auto my-8 md:my-0 md:w-[280px]"
               >
                 <div className="bg-white/30 backdrop-blur-md border border-white/40 rounded-2xl p-5 md:p-6 shadow-xl">
                   {/* Icon + Tiêu đề */}
