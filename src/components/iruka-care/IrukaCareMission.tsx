@@ -13,8 +13,8 @@ const missionData = [
   {
     id: 'vision',
     label: 'Tầm nhìn',
-    imageDesktop: '/img_iruka_care/tam_nhin.png',
-    imageMobile: '/img_iruka_care/tam_nhin_mobile.png',
+    imageDesktop: '/img_iruka_care/tam_nhin.jpg',
+    imageMobile: '/img_iruka_care/tam_nhin_mobile.jpg',
     title: '“An toàn chạm đến từng khoảnh khắc – Bảo vệ trọn vẹn hành trình lớn khôn của trẻ.”',
     text: `Iruka Care hướng đến trở thành thương hiệu vệ sinh & an toàn đáng tin cậy cho trẻ em Việt Nam.
 Chúng tôi tạo ra những sản phẩm sạch – lành tính – minh bạch, như “lá chắn vô hình” giúp trẻ tự do khám phá thế giới.
@@ -23,8 +23,8 @@ Mỗi sản phẩm đều được thiết kế để mang đến sự yên tâm
   {
     id: 'mission',
     label: 'Sứ mệnh',
-    imageDesktop: '/img_iruka_care/su_menh.png',
-    imageMobile: '/img_iruka_care/su_menh_mobile.png',
+    imageDesktop: '/img_iruka_care/su_menh.jpg',
+    imageMobile: '/img_iruka_care/su_menh_mobile.jpg',
     title: '“Bảo vệ sự hồn nhiên – Chăm sóc toàn diện – Đồng hành cùng gia đình Việt.”',
     text: `Chúng tôi mang đến sản phẩm an toàn tuyệt đối cho trẻ nhỏ, dựa trên tiêu chuẩn khoa học và hiểu biết về làn da nhạy cảm.
 Iruka Care giúp bố mẹ giảm lo lắng và chủ động chăm sóc con mỗi ngày.
@@ -33,8 +33,8 @@ Sứ mệnh của chúng tôi là góp phần xây dựng thế hệ trẻ khỏ
   {
     id: 'commitment',
     label: 'Lời cam kết',
-    imageDesktop: '/img_iruka_care/cam_ket.png',
-    imageMobile: '/img_iruka_care/cam_ket_mobile.png',
+    imageDesktop: '/img_iruka_care/cam_ket.jpg',
+    imageMobile: '/img_iruka_care/cam_ket_mobile.jpg',
     title: '“Mỗi sản phẩm đều được làm bằng sự yêu thương và trách nhiệm.”',
     text: `Chúng tôi cam kết minh bạch thành phần, không thỏa hiệp với bất kỳ yếu tố gây hại cho trẻ.
 Mỗi sản phẩm đều được chọn lọc kỹ lưỡng, kiểm nghiệm độc lập và liên tục cải tiến.

@@ -13,8 +13,8 @@ const missionData = [
   {
     id: 'vision',
     label: 'Tầm nhìn',
-    imageDesktop: '/img_iruka_edu/tam_nhin.png',
-    imageMobile: '/img_iruka_edu/tam_nhin_mobile.png',
+    imageDesktop: '/img_iruka_edu/tam_nhin.jpg',
+    imageMobile: '/img_iruka_edu/tam_nhin_mobile.jpg',
     text: `Chúng tôi tin rằng mỗi đứa trẻ đều có khả năng tỏa sáng theo cách riêng của mình.
 Iruka Edu hướng tới trở thành nền tảng giáo dục sớm ứng dụng AI hàng đầu Việt Nam — nơi trẻ học theo nhịp riêng, phát triển tự nhiên, tự tin, tò mò và đầy cảm hứng khám phá thế giới.
 Chúng tôi mong muốn mọi gia đình Việt đều có cơ hội tiếp cận một nền giáo dục hiện đại, nhân văn và bình đẳng.`
@@ -22,8 +22,8 @@ Chúng tôi mong muốn mọi gia đình Việt đều có cơ hội tiếp cậ
   {
     id: 'mission',
     label: 'Sứ mệnh',
-    imageDesktop: '/img_iruka_edu/su_menh.png',
-    imageMobile: '/img_iruka_edu/su_menh_mobile.png',
+    imageDesktop: '/img_iruka_edu/su_menh.jpg',
+    imageMobile: '/img_iruka_edu/su_menh_mobile.jpg',
     text: `Iruka Edu nỗ lực mang đến một môi trường học tập:
 • Lấy trẻ làm trung tâm
 • Ứng dụng công nghệ để nâng chất lượng giáo dục, không thay thế giáo dục
@@ -34,8 +34,8 @@ Chúng tôi mong muốn mọi gia đình Việt đều có cơ hội tiếp cậ
   {
     id: 'commitment',
     label: 'Lời cam kết',
-    imageDesktop: '/img_iruka_edu/cam_ket.png',
-    imageMobile: '/img_iruka_edu/cam_ket_mobile.png',
+    imageDesktop: '/img_iruka_edu/cam_ket.jpg',
+    imageMobile: '/img_iruka_edu/cam_ket_mobile.jpg',
     text: `Chúng tôi là những con người tin vào sức mạnh của giáo dục và giá trị của sự tử tế.
 Ngay từ đầu, đội ngũ đã lựa chọn con đường khó:
 • Không chạy theo số lượng
