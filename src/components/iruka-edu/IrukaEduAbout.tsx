@@ -62,7 +62,7 @@ export default function IrukaEduAbout() {
               <h2 className="text-2xl md:text-3xl lg:text-4xl font-extrabold text-[#273F68] mb-6">
                 iruKa Edu là gì?
               </h2>
-              <div className="space-y-4 text-sm md:text-base text-[#273F68]/85 leading-relaxed">
+              <div className="space-y-4 text-sm md:text-base text-black/85 leading-relaxed">
                 <p>
                   iruKa Edu là nền tảng giáo dục sớm dành cho trẻ 3–10 tuổi, ứng dụng AI,
                   game hóa (gamification) và cá nhân hóa lộ trình học.
@@ -97,7 +97,7 @@ export default function IrukaEduAbout() {
               <h2 className="text-2xl md:text-3xl lg:text-4xl font-extrabold text-[#273F68] mb-6">
                 Vì sao chúng tôi xây dựng iruKa Edu ?
               </h2>
-              <div className="space-y-4 text-sm md:text-base text-[#273F68]/80 leading-relaxed">
+              <div className="space-y-4 text-sm md:text-base text-black/85 leading-relaxed">
                 <p>
                   Giáo dục sớm chính là giai đoạn vàng để trẻ phát triển trí tuệ,
                   ngôn ngữ, cảm xúc, tư duy.

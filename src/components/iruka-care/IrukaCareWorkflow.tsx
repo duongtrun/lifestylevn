@@ -18,7 +18,7 @@ const workflowData = [
   },
   {
     id: 2,
-    title: 'Công nghệ sinh học\n& tiêu chuẩn Nhật - Châu Âu',
+    title: 'Công nghệ sinh học & tiêu chuẩn Nhật - Châu Âu',
     desc: 'Áp dụng những hoạt chất kháng khuẩn - làm sạch - dưỡng da nhẹ nhàng, phù hợp với chuẩn an toàn quốc tế.',
     icon: '/img_iruka_care/iruka_care_banh_rang.svg'
   },
@@ -32,7 +32,7 @@ const workflowData = [
     id: 4,
     title: 'Thiết kế dễ dùng -\ndễ mang theo - tiện lợi mỗi ngày',
     desc: 'Khuyến khích trẻ tự học thói quen vệ sinh: rửa tay - làm sạch - bảo vệ bản thân.',
-    icon: '/img_iruka_care/iruka_care_achieve.webp'
+    icon: '/img_iruka_care/iruka_care_achieve.svg'
   }
 ];
 

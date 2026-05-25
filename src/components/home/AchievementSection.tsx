@@ -105,13 +105,22 @@ export default function AchievementSection({ achievements = [] }: AchievementSec
                     // Chia đều 100% bề ngang slider (flex-[0_0_100%] trên mobile, 50% trên tablet, 25% trên desktop) để hiển thị đầy đủ không bị vỡ.
                     className="pl-6 relative flex-[0_0_100%] sm:flex-[0_0_50%] lg:flex-[0_0_25%] min-w-0 aspect-[3/4]"
                   >
-                    <div className="relative w-full h-full rounded-xl overflow-hidden shadow-lg group/card bg-neutral-100">
+                    <Link 
+                      href={`/tin-tuc/${item.slug}`}
+                      className="relative block w-full h-full rounded-xl overflow-hidden shadow-lg group/card bg-neutral-100 cursor-pointer"
+                    >
                       <Image 
                         src={image}
                         alt={parsedTitle}
                         fill
                         className="object-cover group-hover/card:scale-105 transition-transform duration-700 pointer-events-none"
                       />
+
+                      {/* Chỉ báo chạm trên mobile */}
+                      <div className="absolute top-4 right-4 z-10 md:hidden bg-black/60 backdrop-blur-md text-white px-2.5 py-1 rounded-full text-[10px] font-bold flex items-center gap-1 shadow-md border border-white/10 pointer-events-none animate-pulse">
+                        <span>Chi tiết</span>
+                        <ArrowRight size={10} strokeWidth={3} />
+                      </div>
 
                       {/* Brand Tag Pill positioned absolutely in top-left corner */}
                       {brand && (
@@ -147,16 +156,15 @@ export default function AchievementSection({ achievements = [] }: AchievementSec
                           </p>
                         </div>
                         <div>
-                          <Link 
-                            href={`/tin-tuc/${item.slug}`}
-                            className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-[#008BBD] text-white hover:bg-[#00749e] font-bold text-xs shadow-md hover:shadow-lg transition-all duration-300 cursor-pointer"
+                          <span 
+                            className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-[#008BBD] text-white hover:bg-[#00749e] font-bold text-xs shadow-md hover:shadow-lg transition-all duration-300"
                           >
                             Xem thêm
                             <ArrowRight size={14} />
-                          </Link>
+                          </span>
                         </div>
                       </div>
-                    </div>
+                    </Link>
                   </div>
                 );
               })}

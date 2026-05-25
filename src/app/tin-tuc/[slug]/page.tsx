@@ -90,13 +90,49 @@ export default async function NewsDetailPage({ params }: PageProps) {
 
   const hasAcfContent = mainContentText || imageContentText || customTitle;
 
-  // Sửa toàn bộ đường dẫn ảnh nội bộ trong nội dung HTML của WP sang public origin
+  // Sửa toàn bộ đường dẫn ảnh nội bộ trong nội dung HTML của WP sang public origin và thay thế các biểu tượng emoji ảnh thành text
   const fixHtmlImageUrls = (html: string): string => {
     if (!html) return '';
     const publicOrigin = process.env.NEXT_PUBLIC_WP_API_URL 
       ? new URL(process.env.NEXT_PUBLIC_WP_API_URL).origin 
       : 'http://localhost:10004';
-    return html.replace(/(?:https?:\/\/[^\/\s]+)?\/wp-content\//g, `${publicOrigin}/wp-content/`);
+    
+    // 1. Sửa toàn bộ đường dẫn ảnh nội bộ
+    let cleanHtml = html.replace(/(?:https?:\/\/[^\/\s]+)?\/wp-content\//g, `${publicOrigin}/wp-content/`);
+    
+    // 2. Thay thế các tệp ảnh emoji tải lên thủ công và các ảnh achievement có alt text thành text emoji thực tế
+    cleanHtml = cleanHtml.replace(/<img([^>]+)>/g, (match, attrs) => {
+      const srcMatch = attrs.match(/src="([^"]+)"/);
+      if (srcMatch) {
+        const url = srcMatch[1];
+        const fileName = url.split('/').pop() || '';
+        
+        // Bản đồ ánh xạ các ảnh emoji tải lên thủ công thành Unicode emoji
+        if (/img_(107|138|140|144|153|155|157)\.png/.test(fileName)) {
+          return ' 🌿 ';
+        }
+        if (/img_(145|146|147|148)\.png/.test(fileName)) {
+          return ' 📍 ';
+        }
+        if (/img_(134|136|142|150|151|158|164|165)\.png/.test(fileName)) {
+          return ' ❤️ ';
+        }
+        if (/img_(159|166|167)\.png/.test(fileName)) {
+          return ' 👍 ';
+        }
+        
+        // Nếu là ảnh của phần achieve và có thuộc tính alt (chứa emoji tương ứng)
+        if (fileName.includes('achieve_')) {
+          const altMatch = attrs.match(/alt="([^"]*)"/);
+          if (altMatch && altMatch[1] && altMatch[1].trim().length <= 3) {
+            return ` ${altMatch[1].trim()} `;
+          }
+        }
+      }
+      return match;
+    });
+    
+    return cleanHtml;
   };
 
   // Lấy ảnh đại diện (thumbnail)

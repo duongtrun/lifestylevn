@@ -134,15 +134,12 @@ export interface WPPost {
   };
 }
 
-/**
- * Bản đồ ảnh mặc định theo danh mục
- * Khi bài viết từ WordPress chưa có ảnh đại diện, hệ thống tự gán ảnh dựa vào danh mục
- */
 const CATEGORY_DEFAULT_IMAGES: Record<string, string[]> = {
   // Mỗi danh mục có nhiều ảnh, hệ thống sẽ xoay vòng để bài không bị trùng ảnh
   'su-kien': ['/images/hot_news_img.webp', '/img_news/edu_img.svg', '/img_news/suc_khoe.svg'],
   'dinh-duong-tieu-hoa': ['/img_news/dinh_duong_tieu_hoa.webp', '/img_news/dinh_duong_tieu_hoa_2.webp', '/img_news/dinh_duong_tieu_hoa_3.webp'],
   'suc-khoe-ve-sinh': ['/img_news/suc_khoe.svg', '/img_news/suc_khoe_2.svg', '/img_news/suc_khoe_3.svg'],
+  'giao-duc': ['/img_news/edu_img.svg', '/images/hot_news_img.webp'],
 };
 const DEFAULT_IMAGE = '/img_news/edu_img.svg';
 
@@ -266,6 +263,70 @@ export const MOCK_POSTS: WPPost[] = [
       'wp:featuredmedia': [{ source_url: '/img_news/edu_img.svg', alt_text: 'Ngày hội Iruka Edu' }],
       'wp:term': [[
         { id: 4, name: 'Sự kiện', slug: 'su-kien', taxonomy: 'category' },
+        { id: 10, name: 'Tin tức', slug: 'tin-tuc', taxonomy: 'category' }
+      ]]
+    }
+  },
+  // ================= 3 BÀI GIÁO DỤC =================
+  {
+    id: 1101,
+    date: '2026-05-16T08:00:00',
+    slug: 'hoc-toan-tu-duy-logic-cung-iruka-edu',
+    title: { rendered: 'Tuổi học toán - Phương pháp kích hoạt tư duy logic sớm từ Iruka Edu' },
+    content: { rendered: '<p>Làm sao để giúp trẻ tiếp cận toán học một cách tự nhiên nhất? Tại Iruka Edu, các bé được tiếp cận với môn toán qua các hoạt động trải nghiệm thực tiễn và trò chơi kích thích trí tuệ đầy lý thú.</p>' },
+    excerpt: { rendered: 'Khám phá phương pháp dạy trẻ học toán tư duy thông qua các hoạt động đa giác quan sống động tại hệ thống Iruka Edu.' },
+    acf: {
+      title: 'Tuổi học toán - Phương pháp kích hoạt tư duy logic sớm từ Iruka Edu',
+      noi_dung_chinh: 'Làm sao để giúp trẻ tiếp cận toán học một cách tự nhiên nhất? Tại Iruka Edu, các bé được tiếp cận với môn toán qua các hoạt động trải nghiệm thực tiễn và trò chơi kích thích trí tuệ đầy lý thú.',
+      anh: '/img_news/edu_img.svg',
+      nguoi_dang_bai: 'Ban Biên Tập Lifestyle'
+    },
+    _embedded: {
+      'wp:featuredmedia': [{ source_url: '/img_news/edu_img.svg', alt_text: 'Học toán tư duy' }],
+      'wp:term': [[
+        { id: 15, name: 'Giáo dục', slug: 'giao-duc', taxonomy: 'category' },
+        { id: 10, name: 'Tin tức', slug: 'tin-tuc', taxonomy: 'category' }
+      ]]
+    }
+  },
+  {
+    id: 1102,
+    date: '2026-05-15T09:00:00',
+    slug: 'day-tre-phat-trien-kynang-va-nghe-thuat',
+    title: { rendered: 'Thực học thực hành - Ươm mầm kỹ năng và năng khiếu nghệ thuật toàn diện' },
+    content: { rendered: '<p>Bên cạnh kiến thức văn hóa, các lớp năng khiếu như vẽ tranh, âm nhạc, cờ vua... tại Iruka Edu giúp khơi gợi tiềm năng nghệ thuật và rèn luyện kỹ năng mềm quan trọng cho con yêu.</p>' },
+    excerpt: { rendered: 'Khơi dậy tiềm năng nghệ thuật và tư duy sáng tạo thông qua các giờ học thực hành năng động tại Iruka Edu.' },
+    acf: {
+      title: 'Thực học thực hành - Ươm mầm kỹ năng và năng khiếu nghệ thuật toàn diện',
+      noi_dung_chinh: 'Bên cạnh kiến thức văn hóa, các lớp năng khiếu như vẽ tranh, âm nhạc, cờ vua... tại Iruka Edu giúp khơi gợi tiềm năng nghệ thuật và rèn luyện kỹ năng mềm quan trọng cho con yêu.',
+      anh: '/images/hot_news_img.webp',
+      nguoi_dang_bai: 'Ban Biên Tập Lifestyle'
+    },
+    _embedded: {
+      'wp:featuredmedia': [{ source_url: '/images/hot_news_img.webp', alt_text: 'Ươm mầm nghệ thuật' }],
+      'wp:term': [[
+        { id: 15, name: 'Giáo dục', slug: 'giao-duc', taxonomy: 'category' },
+        { id: 10, name: 'Tin tức', slug: 'tin-tuc', taxonomy: 'category' }
+      ]]
+    }
+  },
+  {
+    id: 1103,
+    date: '2026-05-14T10:00:00',
+    slug: 'ren-luyen-the-chat-khoe-manh-khoa-hoc',
+    title: { rendered: 'Bảo vệ thể chất lành mạnh - Bé tự tin khám phá thế giới xung quanh' },
+    content: { rendered: '<p>Hoạt động thể chất ngoài trời định kỳ không chỉ nâng cao sức đề kháng mà còn là cơ hội tuyệt vời để trẻ giao tiếp, tự tin thể hiện cá tính và khám phá thế giới bao la.</p>' },
+    excerpt: { rendered: 'Các bài tập thể chất vui nhộn và trò chơi vận động nhóm được thiết kế chuyên biệt cho từng lứa tuổi tại Iruka Edu.' },
+    acf: {
+      title: 'Bảo vệ thể chất lành mạnh - Bé tự tin khám phá thế giới xung quanh',
+      noi_dung_chinh: 'Hoạt động thể chất ngoài trời định kỳ không chỉ nâng cao sức đề kháng mà còn là cơ hội tuyệt vời để trẻ giao tiếp, tự tin thể hiện cá tính và khám phá thế giới bao la.',
+      anh: '/img_news/suc_khoe.svg',
+      nguoi_dang_bai: 'Ban Biên Tập Lifestyle'
+    },
+    _embedded: {
+      'wp:featuredmedia': [{ source_url: '/img_news/suc_khoe.svg', alt_text: 'Phát triển thể chất' }],
+      'wp:term': [[
+        { id: 15, name: 'Giáo dục', slug: 'giao-duc', taxonomy: 'category' },
         { id: 10, name: 'Tin tức', slug: 'tin-tuc', taxonomy: 'category' }
       ]]
     }

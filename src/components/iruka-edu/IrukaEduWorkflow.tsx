@@ -89,7 +89,7 @@ export default function IrukaEduWorkflow() {
                 </div>
 
                 {/* Mô tả */}
-                <p className="text-xs md:text-sm text-[#273F68]/80 leading-relaxed max-w-[220px]">
+                <p className="text-xs md:text-sm text-black/85 leading-relaxed max-w-[220px]">
                   {step.description}
                 </p>
               </motion.div>

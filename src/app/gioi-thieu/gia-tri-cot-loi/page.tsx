@@ -8,6 +8,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
+import Image from 'next/image';
 import { 
   Heart, 
   Lightbulb, 
@@ -30,6 +31,8 @@ const valuesDetail = [
     icon: Heart,
     color: '#008BBD',
     bgLight: 'bg-rose-50/50',
+    imageDesktop: '/img_core_value/con_nguoi.png',
+    imageMobile: '/img_core_value/con_nguoi_mobile.png',
     details: [
       'Chúng tôi tin rằng một doanh nghiệp chỉ có thể phát triển mạnh khi từng cá nhân trong đó được trân trọng, được tạo điều kiện học tập, được trao quyền và được ghi nhận.',
       'LifeStyle đầu tư vào con người không chỉ bằng đào tạo kiến thức, mà bằng môi trường để mỗi người dám thử – dám sai – dám trưởng thành.',
@@ -45,6 +48,8 @@ const valuesDetail = [
     icon: Lightbulb,
     color: '#008BBD',
     bgLight: 'bg-amber-50/50',
+    imageDesktop: '/img_core_value/sang_tao.png',
+    imageMobile: '/img_core_value/sang_tao_mobile.png',
     details: [
       'Trong lĩnh vực Mẹ & Bé, nơi yêu cầu sự an toàn tuyệt đối nhưng cũng cần sự cập nhật liên tục, sáng tạo chính là chìa khóa để tạo ra khác biệt thật sự.',
       'LifeStyle xem sự đổi mới như một tiêu chuẩn bắt buộc:',
@@ -64,6 +69,8 @@ const valuesDetail = [
     icon: Target,
     color: '#008BBD',
     bgLight: 'bg-sky-50/50',
+    imageDesktop: '/img_core_value/vi_khach_hang.png',
+    imageMobile: '/img_core_value/vi_khach_hang_mobile.png',
     details: [
       'LifeStyle luôn đặt câu hỏi:',
       '- “Giải pháp này có thực sự tốt cho trẻ không?”',
@@ -86,6 +93,8 @@ const valuesDetail = [
     icon: HeartHandshake,
     color: '#008BBD',
     bgLight: 'bg-violet-50/50',
+    imageDesktop: '/img_core_value/biet_on.png',
+    imageMobile: '/img_core_value/biet_on_mobile.png',
     details: [
       '- Biết ơn tạo ra sự khiêm tốn.',
       '- Trân trọng giúp chúng tôi đối xử với nhau công bằng, văn minh, không phán xét.',
@@ -104,6 +113,8 @@ const valuesDetail = [
     icon: Home,
     color: '#008BBD',
     bgLight: 'bg-indigo-50/50',
+    imageDesktop: '/img_core_value/doan_ket.png',
+    imageMobile: '/img_core_value/doan_ket_mobile.png',
     details: [
       'Một cá nhân giỏi có thể tạo ra kết quả tốt, nhưng một đội ngũ đoàn kết sẽ tạo ra thành tựu bền vững.',
       'Chúng tôi xây dựng môi trường không đổ lỗi – không chia rẽ – không cạnh tranh nội bộ.',
@@ -120,6 +131,8 @@ const valuesDetail = [
     icon: TrendingUp,
     color: '#008BBD',
     bgLight: 'bg-emerald-50/50',
+    imageDesktop: '/img_core_value/chia_se_loi_nhuan.png',
+    imageMobile: '/img_core_value/chia_se_loi_nhuan_mobile.png',
     details: [
       'Đó là kết quả của cả một tập thể cùng nỗ lực, cùng chịu trách nhiệm và cùng tạo ra giá trị.',
       'Vì vậy, chúng tôi muốn mỗi thành viên cảm nhận rõ:',
@@ -185,7 +198,6 @@ export default function CoreValuesDetailPage() {
       {/* DANH SÁCH CHI TIẾT 6 GIÁ TRỊ */}
       <div className="container mx-auto px-4 md:px-10 space-y-12 md:space-y-16 max-w-5xl">
         {valuesDetail.map((value, idx) => {
-          const IconComponent = value.icon;
           const isEven = idx % 2 === 0;
 
           return (
@@ -199,23 +211,32 @@ export default function CoreValuesDetailPage() {
                           grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-12 items-center`}
             >
               
-              {/* Cột Trái hoặc Phải tùy index chẵn lẻ: Icon & Số thứ tự lớn */}
-              <div className={`col-span-1 md:col-span-4 flex flex-col items-center text-center justify-center p-6 rounded-2xl ${value.bgLight} ${
+              {/* Cột Trái hoặc Phải tùy index chẵn lẻ: Hình ảnh thay thế cho khung cũ */}
+              <div className={`col-span-1 md:col-span-4 flex justify-center ${
                 isEven ? 'md:order-1' : 'md:order-12'
               }`}>
-                {/* Số thứ tự lớn mờ ảo */}
-                <span className="text-6xl md:text-7xl font-black text-[#008BBD]/15 select-none font-mono">
-                  {value.num}
-                </span>
-                
-                {/* Vòng tròn Icon lớn */}
-                <div className="w-20 h-20 rounded-full bg-white shadow-md flex items-center justify-center -mt-6 border border-[#008BBD]/10">
-                  <IconComponent size={36} className="text-[#008BBD]" />
+                <div className="relative rounded-2xl overflow-hidden shadow-md border border-[#008BBD]/10 w-[338px] h-[220px] md:w-[319px] md:h-[260px] flex-shrink-0">
+                  {/* Ảnh Desktop */}
+                  <div className="hidden md:block absolute inset-0 w-full h-full">
+                    <Image
+                      src={value.imageDesktop}
+                      alt={value.title}
+                      fill
+                      sizes="319px"
+                      className="object-cover"
+                    />
+                  </div>
+                  {/* Ảnh Mobile */}
+                  <div className="block md:hidden absolute inset-0 w-full h-full">
+                    <Image
+                      src={value.imageMobile}
+                      alt={value.title}
+                      fill
+                      sizes="338px"
+                      className="object-cover"
+                    />
+                  </div>
                 </div>
-
-                <span className="text-xs font-bold text-[#008BBD] uppercase mt-4 tracking-widest">
-                  Lifestyle Value
-                </span>
               </div>
 
               {/* Cột Chi tiết nội dung */}

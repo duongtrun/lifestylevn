@@ -116,7 +116,6 @@ export default function BabegoOrigin() {
                 return (
                   <motion.div
                     key={item.year}
-                    layout
                     initial={false}
                     animate={{ 
                       scale: isActive ? 1 : 0.65,
@@ -171,7 +170,6 @@ export default function BabegoOrigin() {
                 return (
                   <motion.div
                     key={item.year}
-                    layout
                     initial={false}
                     animate={{ 
                       scale: isActive ? 1 : 0.6,
@@ -217,7 +215,7 @@ export default function BabegoOrigin() {
           </div>
 
           {/* Cột phải: Nội dung chi tiết */}
-          <div className="flex-1 flex flex-col justify-center min-h-[350px]">
+          <div className="w-full md:flex-1 flex flex-col justify-start md:justify-center h-[520px] sm:h-[450px] md:h-[350px] lg:h-[300px] overflow-y-auto scrollbar-none">
             <AnimatePresence mode="wait">
               <motion.div
                 key={activeIndex}

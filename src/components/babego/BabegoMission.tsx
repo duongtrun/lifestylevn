@@ -8,31 +8,41 @@
 import React, { useState } from 'react';
 import Image from 'next/image';
 import { motion, AnimatePresence } from 'framer-motion';
+import { Eye, Compass, ShieldCheck } from 'lucide-react';
 
 const missionData = [
   {
     id: 'vision',
     label: 'Tầm nhìn',
-    imageDesktop: '/img_babego/tam_nhin.jpg',
-    imageMobile: '/img_babego/tam_nhin_mobile.jpg',
-    title: '', // Tắt title đi vì trong text đã đủ ý rồi, hoặc để text tự nổi bật
-    text: `Chúng tôi tin rằng một hệ tiêu hóa khỏe mạnh là nền tảng quan trọng nhất cho sự phát triển của một đứa trẻ.\n\nVới niềm tin ấy, Babego hướng đến trở thành thương hiệu dinh dưỡng hàng đầu Việt Nam, không chỉ cung cấp sản phẩm mà còn mang đến sự yên tâm, niềm tin, và khoa học nuôi dưỡng đúng đắn cho mọi gia đình.\n\nBabego mong muốn đồng hành lâu dài cùng bố mẹ trong hành trình nuôi con, trở thành thương hiệu mà bố mẹ nghĩ đến đầu tiên khi con gặp vấn đề tiêu hóa – ăn uống – tăng trưởng.`
+    icon: Eye,
+    imageDesktop: '/img_babego/babego_tam_nhin.png',
+    imageMobile: '/img_babego/babego_tam_nhin_mobile.png',
+    heading: 'TẦM NHÌN',
+    text: `Babego tin rằng hệ tiêu hóa khỏe mạnh là nền tảng cho sự phát triển toàn diện của trẻ nhỏ. Với định hướng trở thành thương hiệu dinh dưỡng hàng đầu Việt Nam, Babego mong muốn đồng hành cùng bố mẹ bằng những giải pháp dinh dưỡng khoa học, tận tâm và phù hợp. Babego hướng tới trở thành thương hiệu được nhiều gia đình tin tưởng khi trẻ gặp vấn đề về tiêu hóa, ăn uống và tăng trưởng.`,
+    cardClass: 'absolute top-[5px] bottom-auto left-[5px] right-[5px] z-20 w-auto max-h-[245px] overflow-y-auto md:top-[5px] md:bottom-[5px] md:left-[5px] md:right-auto md:w-[345px] md:max-h-none md:overflow-y-visible',
+    innerClass: 'p-3 md:p-6 h-auto md:h-full justify-center',
   },
   {
     id: 'mission',
     label: 'Sứ mệnh',
-    imageDesktop: '/img_babego/su_menh.jpg',
-    imageMobile: '/img_babego/su_menh_mobile.jpg',
-    title: '',
-    text: `Babego cam kết tạo ra những sản phẩm dinh dưỡng an toàn, khoa học và phù hợp với thể trạng trẻ em Việt Nam, đặt chất lượng và sức khỏe trẻ nhỏ lên hàng đầu.\n\nChúng tôi không ngừng cải tiến công thức dựa trên nghiên cứu khoa học và phản hồi thực tế, hướng tới mục tiêu đồng hành cùng gia đình Việt trong hành trình nuôi dưỡng một thế hệ trẻ khỏe mạnh, tự tin và phát triển bền vững.`
+    icon: Compass,
+    imageDesktop: '/img_babego/babego_su_menh.png',
+    imageMobile: '/img_babego/babego_su_menh_mobile.png',
+    heading: 'SỨ MỆNH',
+    text: `Babego cam kết mang đến các sản phẩm dinh dưỡng an toàn, khoa học và phù hợp với trẻ em Việt Nam. Không ngừng cải tiến từ nghiên cứu thực tế và khoa học dinh dưỡng, Babego mong muốn đồng hành cùng gia đình Việt trong hành trình nuôi dưỡng thế hệ trẻ khỏe mạnh, tự tin và phát triển bền vững.`,
+    cardClass: 'absolute top-[5px] bottom-auto left-[5px] right-[5px] z-20 w-auto max-h-[245px] overflow-y-auto md:top-[5px] md:bottom-[5px] md:left-[5px] md:right-auto md:w-[345px] md:max-h-none md:overflow-y-visible',
+    innerClass: 'p-2 md:p-6 h-auto md:h-full justify-start md:justify-center',
   },
   {
     id: 'commitment',
     label: 'Cam kết',
-    imageDesktop: '/img_babego/cam_ket.jpg',
-    imageMobile: '/img_babego/cam_ket_mobile.jpg',
-    title: '',
-    text: `Babego cam kết tạo ra những sản phẩm dinh dưỡng an toàn – minh bạch – phù hợp với thể trạng trẻ Việt.\n\nChúng tôi không phóng đại công dụng, không thỏa hiệp với chất lượng, và luôn đặt sức khỏe trẻ nhỏ lên hàng đầu.\n\nMỗi sản phẩm Babego là sự kết hợp giữa nghiên cứu khoa học, nguyên liệu chọn lọc và trách nhiệm lâu dài với gia đình Việt – vì một thế hệ trẻ em khỏe mạnh và phát triển bền vững.`
+    icon: ShieldCheck,
+    imageDesktop: '/img_babego/babego_cam_ket.png',
+    imageMobile: '/img_babego/babego_cam_ket_mobile.png',
+    heading: 'CAM KẾT',
+    text: `Babego cam kết tạo ra những sản phẩm dinh dưỡng an toàn – minh bạch – phù hợp với thể trạng trẻ Việt. Chúng tôi không phóng đại công dụng, không thỏa hiệp với chất lượng, và luôn đặt sức khỏe trẻ nhỏ lên hàng đầu. Mỗi sản phẩm Babego là sự kết hợp giữa nghiên cứu khoa học, nguyên liệu chọn lọc và trách nhiệm lâu dài với gia đình Việt – vì một thế hệ trẻ em khỏe mạnh và phát triển bền vững.`,
+    cardClass: 'absolute top-[5px] bottom-auto left-[5px] right-[5px] z-20 w-auto max-h-[245px] overflow-y-auto md:top-[5px] md:bottom-[5px] md:left-auto md:right-[5px] md:w-[345px] md:max-h-none md:overflow-y-visible',
+    innerClass: 'p-2 md:p-6 h-auto md:h-full justify-start md:justify-center',
   }
 ];
 
@@ -98,7 +108,7 @@ export default function BabegoMission() {
         </div>
 
         {/* Khối hiển thị hình ảnh & Text */}
-        <div className="relative z-10 w-full md:w-[85%] lg:w-[75%] mx-auto h-[320px] sm:h-[380px] md:h-[450px] lg:h-[480px] rounded-xl md:rounded-2xl overflow-hidden shadow-2xl bg-[#E8F5E9]">
+        <div className="relative z-10 w-full md:w-[800px] mx-auto h-[400px] md:h-[420px] rounded-xl md:rounded-2xl overflow-hidden shadow-2xl bg-[#E8F5E9]">
           <AnimatePresence mode="wait">
             <motion.div
               key={activeTab}
@@ -114,8 +124,8 @@ export default function BabegoMission() {
                   src={activeData.imageDesktop}
                   alt={activeData.label}
                   fill
-                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 85vw, 800px"
                   className="object-cover object-center"
+                  unoptimized
                 />
               </div>
 
@@ -125,22 +135,39 @@ export default function BabegoMission() {
                   src={activeData.imageMobile}
                   alt={activeData.label}
                   fill
-                  sizes="(max-width: 768px) 100vw, 85vw"
                   className="object-cover object-center"
+                  unoptimized
                 />
               </div>
-              
-              {/* Overlay Gradient tối ở nửa trên để làm nổi bật chữ trắng */}
-              <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/40 to-transparent pointer-events-none" />
+            </motion.div>
+          </AnimatePresence>
 
-              {/* Chữ mô tả */}
-              <div className="absolute inset-0 p-6 md:p-10 lg:p-14 text-center z-20 flex flex-col items-center justify-center">
-                <p className="text-white text-xs sm:text-sm md:text-base lg:text-lg font-medium leading-relaxed md:leading-loose whitespace-pre-line max-w-4xl drop-shadow-md">
+          {/* Thẻ Glassmorphism chứa nội dung text */}
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={`content-${activeTab}`}
+              initial={{ opacity: 0, x: 30 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: -30 }}
+              transition={{ duration: 0.55, ease: 'easeOut' }}
+              className={activeData.cardClass}
+            >
+              <div className={`bg-white/30 backdrop-blur-md border border-white/40 rounded-2xl shadow-xl flex flex-col ${activeData.innerClass}`}>
+                {/* Icon + Tiêu đề */}
+                <div className="flex items-center gap-2 mb-3">
+                  <activeData.icon className="w-5 h-5 text-black" />
+                  <h3 className="font-extrabold text-base md:text-lg tracking-widest text-black">
+                    {activeData.heading}
+                  </h3>
+                </div>
+                {/* Nội dung văn bản - thêm class whitespace-pre-line để hỗ trợ xuống dòng */}
+                <p className="text-xs md:text-sm leading-relaxed font-medium whitespace-pre-line text-black">
                   {activeData.text}
                 </p>
               </div>
             </motion.div>
           </AnimatePresence>
+
         </div>
         
       </div>

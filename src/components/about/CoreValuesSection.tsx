@@ -9,6 +9,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
+import { ArrowRight } from 'lucide-react';
 
 interface HexagonProps {
   className?: string;
@@ -67,7 +68,7 @@ const Hexagon = ({
               left: `${borderWidth}px`,
             }}
           >
-            <p className={`text-[15px] md:text-[16px] font-bold leading-snug tracking-wide uppercase select-none ${textColor}`}>
+            <p className={`text-[18px] md:text-[16px] font-bold leading-snug tracking-wide uppercase select-none ${textColor}`}>
               {formattedTitle}
             </p>
           </div>
@@ -77,7 +78,7 @@ const Hexagon = ({
           className={`absolute inset-0 ${bgClass} flex flex-col items-center justify-center p-5 text-center`}
           style={clipStyle}
         >
-          <p className={`text-[15px] md:text-[16px] font-bold leading-snug tracking-wide uppercase select-none ${textColor}`}>
+          <p className={`text-[18px] md:text-[16px] font-bold leading-snug tracking-wide uppercase select-none ${textColor}`}>
             {formattedTitle}
           </p>
         </div>
@@ -203,6 +204,17 @@ export default function CoreValuesSection() {
           </div>
 
         </Link>
+
+        {/* Chỉ báo chạm để xem chi tiết trên Mobile */}
+        <div className="flex justify-center mt-6 md:hidden relative z-30">
+          <Link
+            href="/gioi-thieu/gia-tri-cot-loi"
+            className="inline-flex items-center gap-2.5 px-6 py-3 rounded-full bg-[#008BBD] text-white font-bold text-sm shadow-md animate-pulse active:scale-95 transition-all"
+          >
+            <span>Chạm để xem chi tiết các giá trị</span>
+            <ArrowRight size={16} strokeWidth={2.5} />
+          </Link>
+        </div>
 
       </div>
     </section>

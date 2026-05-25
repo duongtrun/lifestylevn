@@ -117,28 +117,9 @@ body {
 .wp-block-gallery.columns-4 .wp-block-image, .wp-block-gallery.columns-4 li { flex-basis: calc(25% - 0.9rem) !important; }
 .wp-block-gallery.columns-5 .wp-block-image, .wp-block-gallery.columns-5 li { flex-basis: calc(20% - 0.95rem) !important; }
 
-/* Ép ảnh trong album có cùng chiều cao và tỉ lệ đồng đều */
-.wp-block-gallery img,
-.blocks-gallery-grid img {
-  width: 100% !important;
-  height: 220px !important; /* Độ cao cố định để bằng nhau */
-  object-fit: cover !important;
-  border-radius: 0.75rem !important;
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05) !important;
-}
-
 /* Định dạng ảnh đơn lẻ từ WordPress (Giữ nguyên kích thước gốc và căn giữa) */
-.prose .wp-block-image:not(.wp-block-gallery .wp-block-image),
-.wp-content .wp-block-image:not(.wp-block-gallery .wp-block-image) {
-  margin-top: 1.5rem !important;
-  margin-bottom: 1.5rem !important;
-  display: flex !important;
-  flex-direction: column !important;
-  align-items: center !important;
-}
-
-.prose img:not(.wp-block-gallery img):not(.blocks-gallery-grid img),
-.wp-content img:not(.wp-block-gallery img):not(.blocks-gallery-grid img) {
+.prose img,
+.wp-content img {
   display: block !important;
   margin-left: auto !important;
   margin-right: auto !important;
@@ -147,4 +128,41 @@ body {
   height: auto !important; /* Ảnh đơn lẻ tự co giãn theo tỉ lệ gốc */
   border-radius: 0.75rem !important;
   box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05) !important;
+}
+
+/* Định dạng đặc biệt cho WordPress Emojis/Smileys để chúng hiển thị nhỏ gọn dưới dạng văn bản inline */
+.prose img.emoji,
+.prose img.wp-smiley,
+.wp-content img.emoji,
+.wp-content img.wp-smiley {
+  display: inline !important;
+  border: none !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  height: 1.2em !important;
+  width: 1.2em !important;
+  margin: 0 0.15em 0.2em 0.15em !important;
+  padding: 0 !important;
+  vertical-align: middle !important;
+}
+
+/* Ép ảnh trong album có cùng chiều cao và tỉ lệ đồng đều - Sử dụng độ ưu tiên cao hơn */
+.prose .wp-block-gallery img,
+.wp-content .wp-block-gallery img,
+.prose .blocks-gallery-grid img,
+.wp-content .blocks-gallery-grid img {
+  width: 100% !important;
+  height: 220px !important; /* Độ cao cố định để bằng nhau */
+  object-fit: cover !important;
+  border-radius: 0.75rem !important;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05) !important;
+}
+
+/* Ẩn thanh cuộn trình duyệt nhưng vẫn giữ tính năng vuốt cuộn */
+.hide-scrollbar::-webkit-scrollbar {
+  display: none !important;
+}
+.hide-scrollbar {
+  -ms-overflow-style: none !important;  /* IE và Edge */
+  scrollbar-width: none !important;  /* Firefox */
 }

@@ -99,16 +99,16 @@ export default function IrukaCareAbout() {
               <h2 className="text-3xl md:text-4xl lg:text-5xl font-extrabold mb-6 drop-shadow-sm text-[#005A8C] lg:text-[#005a8c]">
                 iruKa Care là gì?
               </h2>
-              <p className="text-sm md:text-base leading-relaxed mb-4 font-medium text-gray-700 lg:text-white/80">
+              <p className="text-sm md:text-base leading-relaxed mb-4 font-medium text-gray-700 lg:text-black/80">
                 iruKa Care là thương hiệu vệ sinh - chăm sóc - bảo vệ dành cho trẻ từ sơ sinh đến 10 tuổi, được phát triển trên nền tảng:
               </p>
-              <ul className="list-disc pl-5 space-y-2 text-sm md:text-base leading-relaxed font-medium text-gray-700 lg:text-white/80">
+              <ul className="list-disc pl-5 space-y-2 text-sm md:text-base leading-relaxed font-medium text-gray-700 lg:text-black/80">
                 <li>Công thức sạch - an toàn tuyệt đối</li>
                 <li>Nguồn thành phần lành tính, có chọn lọc</li>
                 <li>Ứng dụng công nghệ đạt chuẩn Nhật - Châu Âu</li>
                 <li>Kiểm nghiệm nghiêm ngặt bởi đội ngũ chuyên môn</li>
               </ul>
-              <p className="text-sm md:text-base leading-relaxed mt-4 font-medium text-gray-700 lg:text-white/80">
+              <p className="text-sm md:text-base leading-relaxed mt-4 font-medium text-gray-700 lg:text-black/80">
                 iruKa Care hướng đến mục tiêu trở thành dòng sản phẩm vệ sinh đáng tin cậy nhất cho các gia đình Việt, đồng hành cùng hành trình lớn khôn của trẻ.
               </p>
             </motion.div>

@@ -56,25 +56,19 @@ export default function IrukaCareTechnology() {
         />
       </div>
 
-      <div className="relative z-10 w-full mb-12 md:mb-16 mt-8 md:mt-12 flex justify-start">
-        {/* Container để align text bằng với nội dung bên dưới */}
-        <div className="container mx-auto px-4 md:px-10 max-w-[1200px] relative">
-          {/* Nền trắng kéo dài từ mép trái màn hình */}
-          <div className="absolute left-[-50vw] top-0 bottom-0 w-[50vw] bg-white shadow-lg"></div>
-          <div className="absolute left-0 top-0 bottom-0 w-[100%] md:w-[80%] lg:w-[65%] bg-white shadow-lg rounded-r-[10px] md:rounded-r-[10px]"></div>
-          
-          <motion.div
-            initial={{ opacity: 0, x: -50 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="relative z-10 py-4 md:py-6 pr-8 md:pr-12"
-          >
-            <h2 className="text-[#1A5298] text-2xl md:text-3xl lg:text-3xl font-extrabold">
-              Nền tảng công nghệ và điểm khác biệt
-            </h2>
-          </motion.div>
-        </div>
+      {/* Title box (stick to left) */}
+      <div className="relative z-10 w-full mb-12 md:mb-16 mt-8 md:mt-12">
+        <motion.div
+          initial={{ opacity: 0, x: -50 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="bg-white inline-block py-4 pr-10 pl-6 md:pr-16 md:pl-10 lg:pl-16 xl:pl-32 mb-12 shadow-lg"
+        >
+          <h2 className="text-2xl md:text-3xl lg:text-4xl font-extrabold text-[#005A8C]">
+            Nền tảng công nghệ và điểm khác biệt
+          </h2>
+        </motion.div>
       </div>
 
       <div className="relative z-10 container mx-auto px-4 md:px-10 max-w-[1200px]">

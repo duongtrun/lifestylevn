@@ -1,12 +1,11 @@
 import { Metadata } from 'next';
 import NewsHero from '@/components/news/NewsHero';
-import NewsEvents from '@/components/news/NewsEvents';
 import NewsCategorySlider from '@/components/news/NewsCategorySlider';
-import NewsGrid from '@/components/news/NewsGrid';
-import { getPosts } from '@/lib/wp-api';
+import NewsEventsGroupSlider from '@/components/news/NewsEventsGroupSlider';
+import { getPosts, MOCK_POSTS } from '@/lib/wp-api';
 
 // File này: Trang danh sách Tin Tức chính
-// Vai trò: Lấy dữ liệu bài viết từ API, phân nhóm theo danh mục và hiển thị qua các component chuyên biệt (Hero, Sự kiện 1-to-2, Thanh cuộn chuyên mục, Lưới tin tức thường)
+// Vai trò: Lấy dữ liệu bài viết từ API, phân nhóm và hiển thị các hàng tin tức Sự kiện (slider nhóm 3 bài dạng 1-to-2) và 3 chuyên mục cuộn ngang Giáo dục, Dinh dưỡng, Sức khỏe.
 // Dùng khi: Người dùng truy cập đường dẫn /tin-tuc
 
 export const metadata: Metadata = {
@@ -18,38 +17,62 @@ export default async function NewsPage() {
   // Lấy tối đa 100 bài viết mới nhất từ WordPress/dữ liệu giả lập
   const posts = await getPosts(100);
 
-  // 1. Phân lọc danh sách bài viết Sự kiện nổi bật (slug: su-kien) - Tối đa 3 bài
-  const featuredPosts = posts
-    .filter(post => post._embedded?.['wp:term']?.[0]?.some(term => term.slug === 'su-kien'))
-    .slice(0, 3);
+  // 1. Phân lọc phần Sự kiện (Gộp chung tin tức & thành tựu nổi bật ở trên cùng - chạy slider cuộn ngang)
+  const eventPosts = posts.filter(post => 
+    post._embedded?.['wp:term']?.[0]?.some(term => 
+      term.slug === 'tin-tuc' || term.slug === 'thanh-tuu' || term.slug === 'su-kien'
+    )
+  );
 
-  // 2. Phân lọc danh sách bài viết Dinh dưỡng & tiêu hóa (slug: dinh-duong-tieu-hoa) - Không giới hạn
-  const nutritionPosts = posts
-    .filter(post => post._embedded?.['wp:term']?.[0]?.some(term => term.slug === 'dinh-duong-tieu-hoa'));
+  // 2. Phân lọc danh sách bài viết Giáo dục (slug: giao-duc) - Tự động fallback dữ liệu mock nếu chưa có bài trên DB
+  let educationPosts = posts.filter(post => 
+    post._embedded?.['wp:term']?.[0]?.some(term => term.slug === 'giao-duc')
+  );
+  if (educationPosts.length === 0) {
+    educationPosts = MOCK_POSTS.filter(post => 
+      post._embedded?.['wp:term']?.[0]?.some(term => term.slug === 'giao-duc')
+    );
+  }
 
-  // 3. Phân lọc danh sách bài viết Sức khỏe & vệ sinh (slug: suc-khoe-ve-sinh) - Không giới hạn
-  const healthPosts = posts
-    .filter(post => post._embedded?.['wp:term']?.[0]?.some(term => term.slug === 'suc-khoe-ve-sinh'));
+  // 3. Phân lọc danh sách bài viết Dinh dưỡng & tiêu hóa (slug: dinh-duong-tieu-hoa) - Tự động fallback dữ liệu mock
+  let nutritionPosts = posts.filter(post => 
+    post._embedded?.['wp:term']?.[0]?.some(term => term.slug === 'dinh-duong-tieu-hoa')
+  );
+  if (nutritionPosts.length === 0) {
+    nutritionPosts = MOCK_POSTS.filter(post => 
+      post._embedded?.['wp:term']?.[0]?.some(term => term.slug === 'dinh-duong-tieu-hoa')
+    );
+  }
 
-  // 4. Các bài viết còn lại làm tin tức thường bên dưới (tránh trùng lặp với 3 khu vực trên)
-  const shownIds = new Set([
-    ...featuredPosts.map(p => p.id),
-    ...nutritionPosts.map(p => p.id),
-    ...healthPosts.map(p => p.id)
-  ]);
-  const regularPosts = posts.filter(post => !shownIds.has(post.id));
+  // 4. Phân lọc danh sách bài viết Sức khỏe & vệ sinh (slug: suc-khoe-ve-sinh) - Tự động fallback dữ liệu mock
+  let healthPosts = posts.filter(post => 
+    post._embedded?.['wp:term']?.[0]?.some(term => term.slug === 'suc-khoe-ve-sinh')
+  );
+  if (healthPosts.length === 0) {
+    healthPosts = MOCK_POSTS.filter(post => 
+      post._embedded?.['wp:term']?.[0]?.some(term => term.slug === 'suc-khoe-ve-sinh')
+    );
+  }
 
   return (
     <main className="flex min-h-screen flex-col bg-[#F8F9FA] pb-20">
       {/* Banner giới thiệu đầu trang */}
       <NewsHero />
       
-      {/* Phần 1: Sự kiện nổi bật (Bố cục 1 to bên trái, 2 nhỏ bên phải) */}
-      {featuredPosts.length > 0 && (
-        <NewsEvents posts={featuredPosts} />
+      {/* Phần 1: Sự kiện nổi bật (Slider cuộn ngang tự động chạy ngang mỗi 3 giây theo cụm 3 bài) */}
+      {eventPosts.length > 0 && (
+        <NewsEventsGroupSlider posts={eventPosts} />
       )}
       
-      {/* Phần 2: Chuyên mục Dinh dưỡng & tiêu hóa (Cuộn ngang cao cấp) */}
+      {/* Phần 2: Hàng chuyên mục Giáo dục */}
+      {educationPosts.length > 0 && (
+        <NewsCategorySlider 
+          title="Giáo dục" 
+          posts={educationPosts} 
+        />
+      )}
+
+      {/* Phần 3: Hàng chuyên mục Dinh dưỡng & tiêu hóa */}
       {nutritionPosts.length > 0 && (
         <NewsCategorySlider 
           title="Dinh dưỡng & tiêu hóa" 
@@ -57,35 +80,16 @@ export default async function NewsPage() {
         />
       )}
 
-      {/* Phần 3: Chuyên mục Sức khỏe & vệ sinh (Cuộn ngang cao cấp) */}
+      {/* Phần 4: Hàng chuyên mục Sức khỏe & vệ sinh */}
       {healthPosts.length > 0 && (
         <NewsCategorySlider 
           title="Sức khỏe & vệ sinh" 
           posts={healthPosts} 
         />
       )}
-      
-      {/* Phần 4: Danh sách các tin tức khác bên dưới (Dạng Lưới Card thường) */}
-      {regularPosts.length > 0 && (
-        <section className="container mx-auto px-4 sm:px-6 lg:px-8 py-10 lg:py-16 border-t border-gray-100/60 bg-white">
-          
-          {/* Tiêu đề mục tin tức khác */}
-          <div className="mb-10 lg:mb-12">
-            <h2 className="text-2xl lg:text-3xl font-extrabold text-gray-900 tracking-tight flex items-center gap-3">
-              Tin tức khác
-              <span className="w-2.5 h-2.5 rounded-full bg-gray-300 inline-block"></span>
-            </h2>
-            <div className="w-16 h-1 bg-[#008BBD] mt-3 rounded-full"></div>
-          </div>
-
-          {/* Lưới các bài viết thường */}
-          <NewsGrid posts={regularPosts} />
-          
-        </section>
-      )}
 
       {/* Hiển thị thông báo khi hệ thống trống hoàn toàn bài viết */}
-      {posts.length === 0 && (
+      {posts.length === 0 && eventPosts.length === 0 && (
         <section className="container mx-auto px-4 py-20 text-center">
           <div className="max-w-md mx-auto py-12 px-6 rounded-2xl bg-white border border-gray-100 shadow-sm">
             <p className="text-gray-500 font-medium">Đang cập nhật thêm các bài viết tin tức mới nhất từ hệ thống...</p>

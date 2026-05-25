@@ -44,3 +44,8 @@ next-env.d.ts
 news_recruit/content.zip
 news_recruit/content_extracted/
 
+# scratch
+scratch/
+scratch-test-emojis.js
+
+
