@@ -26,84 +26,112 @@ const valuesDetail = [
     id: 1,
     num: '01',
     title: 'Con người là trọng tâm',
-    quote: 'Mọi thành công của doanh nghiệp đều bắt nguồn từ sự phát triển toàn diện của mỗi cá nhân.',
+    quote: 'Con người là nền tảng của mọi giá trị bền vững tại LifeStyle.',
     icon: Heart,
     color: '#008BBD',
     bgLight: 'bg-rose-50/50',
     details: [
-      'Tôn trọng và đề cao sự khác biệt cá nhân, tạo không gian tự do sáng tạo cho mỗi nhân sự.',
-      'Đào tạo và định hướng phát triển nghề nghiệp rõ ràng, đồng hành cùng sự thăng tiến của nhân viên.',
-      'Chính sách phúc lợi ưu việt, luôn quan tâm đến đời sống tinh thần và vật chất của người lao động.'
+      'Chúng tôi tin rằng một doanh nghiệp chỉ có thể phát triển mạnh khi từng cá nhân trong đó được trân trọng, được tạo điều kiện học tập, được trao quyền và được ghi nhận.',
+      'LifeStyle đầu tư vào con người không chỉ bằng đào tạo kiến thức, mà bằng môi trường để mỗi người dám thử – dám sai – dám trưởng thành.',
+      'Ở đây, mỗi cá nhân đều là một mắt xích quan trọng, có vai trò ảnh hưởng đến sản phẩm và giá trị mang đến cho cộng đồng Mẹ & Bé.',
+      'Với LifeStyle, xây người trước – xây hệ sinh thái sau.'
     ]
   },
   {
     id: 2,
     num: '02',
-    title: 'Luôn đổi mới & sáng tạo',
-    quote: 'Không ngừng cải tiến, học hỏi cái mới để tiên phong kiến tạo giải pháp đột phá.',
+    title: 'Đổi mới & sáng tạo',
+    quote: 'Đổi mới không phải là khẩu hiệu – đó là trách nhiệm.',
     icon: Lightbulb,
     color: '#008BBD',
     bgLight: 'bg-amber-50/50',
     details: [
-      'Khuyến khích tư duy đổi mới, thử nghiệm các công nghệ và giải pháp giáo dục, chăm sóc hiện đại.',
-      'Sẵn sàng học hỏi từ thực tiễn, lắng nghe góp ý từ chuyên gia để hoàn thiện hệ sinh thái.',
-      'Văn hóa chấp nhận sai sót trong thử nghiệm sáng tạo để đúc kết bài học giá trị.'
+      'Trong lĩnh vực Mẹ & Bé, nơi yêu cầu sự an toàn tuyệt đối nhưng cũng cần sự cập nhật liên tục, sáng tạo chính là chìa khóa để tạo ra khác biệt thật sự.',
+      'LifeStyle xem sự đổi mới như một tiêu chuẩn bắt buộc:',
+      '- Đổi mới công nghệ',
+      '- Đổi mới sản phẩm',
+      '- Đổi mới quy trình',
+      '- Đổi mới tư duy',
+      'Chúng tôi khuyến khích mỗi cá nhân đặt câu hỏi: “Làm thế nào để tốt hơn hôm qua?”',
+      'Sáng tạo giúp sản phẩm tốt hơn - Đổi mới giúp doanh nghiệp đi xa hơn.'
     ]
   },
   {
     id: 3,
     num: '03',
-    title: 'Cùng nhau phát triển & chia sẻ lợi nhuận',
-    quote: 'Thành công bền vững là khi các bên liên kết cùng có lợi và chia sẻ giá trị thật.',
-    icon: TrendingUp,
+    title: 'Vì khách hàng – Tạo giá trị thật',
+    quote: 'Khách hàng không chỉ là người mua hàng, mà là người đồng hành cùng chúng tôi trong sứ mệnh nuôi lớn một thế hệ tương lai.',
+    icon: Target,
     color: '#008BBD',
-    bgLight: 'bg-emerald-50/50',
+    bgLight: 'bg-sky-50/50',
     details: [
-      'Xây dựng chính sách chiết khấu, chia sẻ lợi nhuận công bằng, hấp dẫn với đối tác và đại lý.',
-      'Cam kết chất lượng thực tế trên mọi dòng sản phẩm, tạo uy tín kinh doanh vững chắc.',
-      'Đồng hành hỗ trợ đại lý từ khâu kỹ năng, marketing đến vận hành để cùng phát triển.'
+      'LifeStyle luôn đặt câu hỏi:',
+      '- “Giải pháp này có thực sự tốt cho trẻ không?”',
+      '- “Sản phẩm này có an toàn tuyệt đối chưa?”',
+      '- “Giá trị chúng tôi tạo ra có đủ chân thật và ý nghĩa không?”',
+      'Chúng tôi cam kết:',
+      '- Thành phần sản phẩm rõ ràng',
+      '- Thông tin minh bạch',
+      '- Giá trị thực – không phóng đại',
+      '- Vì lợi ích lâu dài của trẻ nhỏ',
+      'Khách hàng tin tưởng LifeStyle vì chúng tôi chọn con đường làm đúng – làm thật, dù nhiều khi đó là con đường khó hơn.',
+      'Khi giá trị thật được đặt lên hàng đầu, sản phẩm tự nhiên sẽ được lựa chọn.'
     ]
   },
   {
     id: 4,
     num: '04',
-    title: 'Vì khách hàng',
-    quote: 'Lấy sự an tâm của ba mẹ và nụ cười của trẻ nhỏ làm kim chỉ nam cho mọi hoạt động.',
-    icon: Target,
+    title: 'Biết ơn – Trân trọng',
+    quote: 'Chúng tôi xây dựng văn hoá biết ơn từ những điều nhỏ nhất: nỗ lực của nhân sự, sự đồng hành của lãnh đạo, niềm tin của khách hàng và cả những góp ý giúp chúng tôi tốt hơn mỗi ngày.',
+    icon: HeartHandshake,
     color: '#008BBD',
-    bgLight: 'bg-sky-50/50',
+    bgLight: 'bg-violet-50/50',
     details: [
-      'Nghiên cứu sâu sắc nhu cầu thực tế của mẹ và bé tại Việt Nam để đưa ra giải pháp phù hợp.',
-      'Dịch vụ tư vấn y tế, hỗ trợ khách hàng hoạt động 24/7 chân thành, tận tâm từ đội ngũ chuyên gia.',
-      'Đảm bảo quy trình kiểm soát chất lượng đầu vào nghiêm ngặt nhất cho mọi sản phẩm.'
+      '- Biết ơn tạo ra sự khiêm tốn.',
+      '- Trân trọng giúp chúng tôi đối xử với nhau công bằng, văn minh, không phán xét.',
+      'Chúng tôi mong muốn từng thành viên cũng mang tinh thần này:',
+      '- Biết ơn người trao cho mình cơ hội',
+      '- Biết ơn đồng đội cùng tiến bộ',
+      '- Biết ơn khách hàng đã tin tưởng',
+      'Khi văn hoá biết ơn tồn tại, năng lượng tích cực lan tỏa và hiệu quả làm việc được nhân lên.'
     ]
   },
   {
     id: 5,
     num: '05',
-    title: 'Tình thân gia đình',
-    quote: 'Lifestyle không chỉ là nơi làm việc, đây là ngôi nhà chung gắn kết yêu thương.',
+    title: 'Đoàn kết & hợp tác',
+    quote: 'LifeStyle tin vào sức mạnh của sự kết nối.',
     icon: Home,
     color: '#008BBD',
     bgLight: 'bg-indigo-50/50',
     details: [
-      'Môi trường làm việc thân thiện, hòa đồng, không phân cấp bậc xa cách.',
-      'Các thành viên gắn kết như người nhà, sẵn sàng hỗ trợ, chia sẻ gánh nặng công việc.',
-      'Tổ chức thường niên các hoạt động dã ngoại, ngày hội gia đình để gắn kết người thân của nhân sự.'
+      'Một cá nhân giỏi có thể tạo ra kết quả tốt, nhưng một đội ngũ đoàn kết sẽ tạo ra thành tựu bền vững.',
+      'Chúng tôi xây dựng môi trường không đổ lỗi – không chia rẽ – không cạnh tranh nội bộ.',
+      'Thay vào đó, mỗi cá nhân đều hiểu mình đang cùng hướng về một mục tiêu chung: xây dựng hệ sinh thái Mẹ & Bé toàn diện và tử tế.',
+      'Sự hợp tác giữa các bộ phận – giữa con người và công nghệ – giữa sản phẩm và giá trị cộng đồng chính là điểm khác biệt của LifeStyle.',
+      'Đoàn kết giúp chúng tôi mạnh hơn, vững hơn và đi nhanh hơn trên hành trình dài.'
     ]
   },
   {
     id: 6,
     num: '06',
-    title: 'Biết ơn',
-    quote: 'Trân quý quá khứ, biết ơn hiện tại và hướng về tương lai cùng những người bạn đồng hành.',
-    icon: HeartHandshake,
+    title: 'Cùng phát triển – Chia sẻ lợi nhuận',
+    quote: 'LifeStyle không xem thành công là công của một cá nhân.',
+    icon: TrendingUp,
     color: '#008BBD',
-    bgLight: 'bg-violet-50/50',
+    bgLight: 'bg-emerald-50/50',
     details: [
-      'Biết ơn đối tác, đại lý đã tin tưởng và kết nối sản phẩm tới hàng triệu người tiêu dùng.',
-      'Tri ân sự tin yêu bền bỉ của hàng triệu gia đình Việt đã lựa chọn hệ sinh thái Lifestyle.',
-      'Luôn ghi nhớ và vinh danh những cống hiến thầm lặng của từng cá nhân trong đội ngũ.'
+      'Đó là kết quả của cả một tập thể cùng nỗ lực, cùng chịu trách nhiệm và cùng tạo ra giá trị.',
+      'Vì vậy, chúng tôi muốn mỗi thành viên cảm nhận rõ:',
+      '- Nếu bạn nỗ lực – bạn sẽ nhận lại xứng đáng.',
+      '- Nếu bạn đóng góp – bạn sẽ được ghi nhận.',
+      '- Nếu bạn muốn phát triển – doanh nghiệp sẽ đồng hành.',
+      'Chúng tôi hướng đến môi trường nơi mọi người:',
+      '- Được trao quyền',
+      '- Được chia sẻ cơ hội',
+      '- Được đền đáp bằng giá trị thật',
+      '- Được nhìn thấy con đường phát triển rõ ràng',
+      'Cùng nhau phát triển, cùng nhau hưởng thành quả – đó là cách LifeStyle xây dựng sự gắn bó lâu dài.'
     ]
   }
 ];
@@ -148,7 +176,7 @@ export default function CoreValuesDetailPage() {
           </h1>
           <p className="text-neutral-600 text-sm md:text-base leading-relaxed">
             Hệ giá trị định hình phong cách làm việc, văn hóa ứng xử và định hướng chiến lược dài hạn 
-            trong hành trình kiến tạo hệ sinh thái chăm sóc Mẹ & Bé của Lifestyle Việt Nam.
+            trong hành trình kiến tạo hệ sinh thái chăm sóc Mẹ & Bé của LifeStyle Việt Nam.
           </p>
           <div className="h-1 w-20 bg-[#008BBD] mx-auto rounded-full mt-6" />
         </motion.div>
@@ -205,12 +233,25 @@ export default function CoreValuesDetailPage() {
 
                 {/* Danh sách đặc điểm diễn giải */}
                 <ul className="space-y-3 pt-2">
-                  {value.details.map((detail, dIdx) => (
-                    <li key={dIdx} className="flex items-start gap-2.5 text-neutral-600 text-sm md:text-base leading-relaxed">
-                      <CheckCircle2 size={18} className="text-[#008BBD] shrink-0 mt-0.5" />
-                      <span>{detail}</span>
-                    </li>
-                  ))}
+                  {value.details.map((detail, dIdx) => {
+                    const isSubItem = detail.startsWith('- ');
+                    const cleanText = isSubItem ? detail.substring(2) : detail;
+                    return (
+                      <li 
+                        key={dIdx} 
+                        className={`flex items-start gap-2.5 text-neutral-600 text-sm md:text-base leading-relaxed ${
+                          isSubItem ? 'pl-6' : ''
+                        }`}
+                      >
+                        {isSubItem ? (
+                          <span className="w-1.5 h-1.5 rounded-full bg-[#008BBD] shrink-0 mt-2 mx-1.5" />
+                        ) : (
+                          <CheckCircle2 size={18} className="text-[#008BBD] shrink-0 mt-0.5" />
+                        )}
+                        <span>{cleanText}</span>
+                      </li>
+                    );
+                  })}
                 </ul>
               </div>
 

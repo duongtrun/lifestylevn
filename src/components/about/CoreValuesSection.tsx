@@ -108,7 +108,7 @@ export default function CoreValuesSection() {
     },
     {
       // 3. Bottom-Right
-      title: 'Cùng nhau\nphát triển\n& chia sẻ lợi\nnhuận',
+      title: 'Vì khách hàng',
       bgClass: 'bg-white',
       hasBorder: true,
       borderColor: 'bg-[#008BBD]',
@@ -117,7 +117,8 @@ export default function CoreValuesSection() {
     },
     {
       // 4. Bottom
-      title: 'Vì khách hàng',
+      title: 'Biết ơn',
+
       bgClass: 'bg-[#008BBD]',
       hasBorder: false,
       textColor: 'text-white',
@@ -125,7 +126,7 @@ export default function CoreValuesSection() {
     },
     {
       // 5. Bottom-Left
-      title: 'Tình thân\ngia đình',
+      title: 'Đoàn kết \n & hợp tác',
       bgClass: 'bg-white',
       hasBorder: true,
       borderColor: 'bg-[#008BBD]',
@@ -134,7 +135,7 @@ export default function CoreValuesSection() {
     },
     {
       // 6. Top-Left
-      title: 'Biết ơn',
+      title: 'Cùng nhau\nphát triển\n& chia sẻ lợi\nnhuận',
       bgClass: 'bg-[#008BBD]',
       hasBorder: false,
       textColor: 'text-white',
