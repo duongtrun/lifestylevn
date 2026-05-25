@@ -17,16 +17,16 @@ const advantageData = [
     icon: "/invest_img/puzzle_img.webp",
     content: (
       <>
-        <h4 className="font-bold text-white mb-3 text-sm md:text-base leading-snug">Đội ngũ trẻ – linh hoạt – tốc độ triển khai nhanh</h4>
-        <p className="text-xs md:text-[13px] text-white/90 mb-2">
+        <h4 className="font-bold text-white mb-3 text-base md:text-lg lg:text-[19px] leading-snug">Đội ngũ trẻ – linh hoạt – tốc độ triển khai nhanh</h4>
+        <p className="text-sm md:text-[15px] lg:text-base text-white/90 mb-2">
           LifeStyle sở hữu đội ngũ:
         </p>
-        <ul className="text-xs md:text-[13px] text-white/90 space-y-1 list-disc pl-4 mb-3">
+        <ul className="text-sm md:text-[15px] lg:text-base text-white/90 space-y-1 list-disc pl-4 mb-3">
           <li>Tư duy startup</li>
           <li>Mạnh về vận hành – truyền thông – sản xuất nội dung</li>
           <li>Sẵn sàng thích nghi và đổi mới</li>
         </ul>
-        <p className="text-xs md:text-[13px] text-white/90 font-medium">
+        <p className="text-sm md:text-[15px] lg:text-base text-white/90 font-medium">
           → Giảm đáng kể chi phí thử nghiệm và rút ngắn thời gian ra mắt sản phẩm.
         </p>
       </>
@@ -38,8 +38,8 @@ const advantageData = [
     icon: "/invest_img/professional_img.webp",
     content: (
       <>
-        <h4 className="font-bold text-white mb-3 text-sm md:text-base leading-snug">Sản phẩm an toàn – minh bạch – kiểm định rõ ràng</h4>
-        <p className="text-xs md:text-[13px] text-white/90 leading-relaxed">
+        <h4 className="font-bold text-white mb-3 text-base md:text-lg lg:text-[19px] leading-snug">Sản phẩm an toàn – minh bạch – kiểm định rõ ràng</h4>
+        <p className="text-sm md:text-[15px] lg:text-base text-white/90 leading-relaxed">
           Dù là dinh dưỡng, vệ sinh hay giáo dục, LifeStyle đều theo đuổi triết lý: "Giá trị thật – Phát triển bền vững – Minh bạch tuyệt đối."<br/>
           Đây là lợi thế rất lớn trong giai đoạn thị trường mẹ & bé cạnh tranh phức tạp.
         </p>
@@ -53,14 +53,14 @@ const advantageData = [
     icon: "/invest_img/AI_img.webp",
     content: (
       <>
-        <h4 className="font-bold text-white mb-3 text-sm md:text-base leading-snug">Chiến lược chuyển đổi số – công nghệ hóa</h4>
-        <p className="text-xs md:text-[13px] text-white/90 mb-3 leading-relaxed">
+        <h4 className="font-bold text-white mb-3 text-base md:text-lg lg:text-[19px] leading-snug">Chiến lược chuyển đổi số – công nghệ hóa</h4>
+        <p className="text-sm md:text-[15px] lg:text-base text-white/90 mb-3 leading-relaxed">
           IruKa Edu đang tham dự cuộc thi công nghệ tại Nhật và lọt vào top đầu vòng chấm điểm ý tưởng, cho thấy tiềm năng quốc tế và chất lượng sản phẩm.
         </p>
-        <p className="text-xs md:text-[13px] text-white/90 mb-2">
+        <p className="text-sm md:text-[15px] lg:text-base text-white/90 mb-2">
           Nền tảng được phát triển theo hướng:
         </p>
-        <ul className="text-xs md:text-[13px] text-white/90 space-y-1 list-disc pl-4">
+        <ul className="text-sm md:text-[15px] lg:text-base text-white/90 space-y-1 list-disc pl-4">
           <li>AI-first (cá nhân hóa, phân tích dữ liệu, gợi ý nội dung)</li>
           <li>Gamification trong giáo dục</li>
           <li>Mô hình subscription bền vững</li>
@@ -75,14 +75,14 @@ const advantageData = [
     icon: "/invest_img/shield_img.webp",
     content: (
       <>
-        <h4 className="font-bold text-white mb-3 text-sm md:text-base leading-snug">Hệ sinh thái toàn diện – đáp ứng nhu cầu thực của thị trường</h4>
-        <p className="text-xs md:text-[13px] text-white/90 mb-3 leading-relaxed">
+        <h4 className="font-bold text-white mb-3 text-base md:text-lg lg:text-[19px] leading-snug">Hệ sinh thái toàn diện – đáp ứng nhu cầu thực của thị trường</h4>
+        <p className="text-sm md:text-[15px] lg:text-base text-white/90 mb-3 leading-relaxed">
           LifeStyle là một trong số rất ít doanh nghiệp tại Việt Nam xây dựng mô hình kết hợp Giáo dục – Dinh dưỡng – Vệ sinh an toàn trong một hệ thống thống nhất.
         </p>
-        <p className="text-xs md:text-[13px] text-white/90 mb-2">
+        <p className="text-sm md:text-[15px] lg:text-base text-white/90 mb-2">
           Điều này giúp:
         </p>
-        <ul className="text-xs md:text-[13px] text-white/90 space-y-1 list-disc pl-4">
+        <ul className="text-sm md:text-[15px] lg:text-base text-white/90 space-y-1 list-disc pl-4">
           <li>Tăng khách hàng xuyên suốt các giai đoạn của trẻ (0-10 tuổi)</li>
           <li>Tối ưu dữ liệu hành vi để phát triển sản phẩm</li>
           <li>Tạo vòng lặp tăng trưởng bền vững</li>
@@ -96,13 +96,13 @@ const advantageData = [
     icon: "/invest_img/brain_img.webp",
     content: (
       <>
-        <h4 className="font-bold text-white mb-3 text-sm md:text-base leading-snug">Kinh nghiệm lâu năm và nền tảng khách hàng sẵn có</h4>
-        <ul className="text-xs md:text-[13px] text-white/90 space-y-1.5 list-disc pl-4 mb-3">
+        <h4 className="font-bold text-white mb-3 text-base md:text-lg lg:text-[19px] leading-snug">Kinh nghiệm lâu năm và nền tảng khách hàng sẵn có</h4>
+        <ul className="text-sm md:text-[15px] lg:text-base text-white/90 space-y-1.5 list-disc pl-4 mb-3">
           <li>Babego có mặt từ 2019, được hàng chục nghìn mẹ Việt tin dùng</li>
           <li>Mạng lưới đại lý – nhà thuốc – cửa hàng mẹ & bé trên toàn quốc</li>
           <li>Cộng đồng phụ huynh lớn mạnh từ hệ thống fanpage & media của công ty</li>
         </ul>
-        <p className="text-xs md:text-[13px] text-white/90 font-medium">
+        <p className="text-sm md:text-[15px] lg:text-base text-white/90 font-medium">
           → Tạo lợi thế lớn khi mở rộng sản phẩm mới.
         </p>
       </>

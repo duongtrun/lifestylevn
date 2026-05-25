@@ -11,10 +11,10 @@ import { motion } from 'framer-motion';
 export default function InvestQuote() {
   return (
     <section className="w-full pt-16 pb-24 relative overflow-hidden bg-white">
-      <div className="container mx-auto px-4 max-w-5xl relative z-10 flex justify-center items-center">
+      <div className="container mx-auto px-4 max-w-[1250px] relative z-10 flex justify-center items-center">
         
         {/* Vòng cung oval bao quanh */}
-        <div className="relative w-full max-w-[1026px] md:aspect-[1026/462] flex items-center justify-center py-10 px-4 md:p-16">
+        <div className="relative w-full max-w-[1250px] md:aspect-[1250/540] flex items-center justify-center py-8 px-4 md:py-10 md:px-24">
           
           {/* Ảnh oval background */}
           <div className="absolute inset-0 z-10 pointer-events-none hidden md:block">
@@ -23,6 +23,7 @@ export default function InvestQuote() {
               alt="Oval frame" 
               fill 
               className="object-contain" 
+              priority
             />
           </div>
 
@@ -36,13 +37,13 @@ export default function InvestQuote() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
-            className="relative z-20 w-full max-w-[800px] flex flex-col items-center"
+            className="relative z-20 w-full max-w-[700px] flex flex-col items-center"
           >
             <div className="w-full relative px-6 md:px-12">
               {/* Dấu ngoặc kép mở */}
-              <span className="absolute top-[-10px] left-0 md:left-4 text-4xl md:text-5xl text-gray-800 font-serif leading-none">“</span>
+              <span className="absolute top-[-15px] left-0 md:left-4 text-3xl md:text-4xl text-gray-800 font-serif leading-none">“</span>
               
-              <div className="text-gray-800 text-[13px] md:text-[15px] leading-relaxed space-y-3 mt-4 text-left font-medium">
+              <div className="text-gray-800 text-[12px] sm:text-xs md:text-[14px] lg:text-[15px] leading-relaxed space-y-2.5 mt-2 text-left font-medium">
                 <p>
                   Hôm nay, khi công nghệ thay đổi thế giới, chúng tôi lựa chọn bước đi mạnh mẽ hơn:{" "}
                   <br className="hidden md:block" />
@@ -53,7 +54,7 @@ export default function InvestQuote() {
                   <br className="hidden md:block" />
                   và chúng tôi mong muốn được đồng hành cùng những nhà đầu tư có chung tầm nhìn:
                 </p>
-                <p className="font-bold text-black text-[15px] md:text-[16px]">
+                <p className="font-bold text-black text-[13px] sm:text-sm md:text-[15px] lg:text-[16px]">
                   Tạo ra giá trị thật, bền vững và nhân văn cho xã hội.
                 </p>
                 <p>
@@ -64,12 +65,12 @@ export default function InvestQuote() {
               </div>
 
               {/* Phần chữ ký và dấu ngoặc kép đóng */}
-              <div className="w-full flex justify-end mt-4 relative">
+              <div className="w-full flex justify-end mt-3 relative">
                 <div className="text-right pr-6 md:pr-10">
-                  <p className="text-gray-800 text-sm md:text-[15px]">Trân trọng,</p>
-                  <p className="font-bold text-black text-lg md:text-xl mt-1">CEO Vũ Ngọc Đào</p>
+                  <p className="text-gray-800 text-[11px] sm:text-xs md:text-sm">Trân trọng,</p>
+                  <p className="font-bold text-black text-sm sm:text-base mt-0.5">CEO Vũ Ngọc Đào</p>
                 </div>
-                <span className="absolute top-[-10px] right-0 md:right-4 text-4xl md:text-5xl text-gray-800 font-serif leading-none">”</span>
+                <span className="absolute top-[-10px] right-0 md:right-4 text-3xl md:text-4xl text-gray-800 font-serif leading-none">”</span>
               </div>
             </div>
           </motion.div>

@@ -7,6 +7,7 @@ import { getJobs } from '@/lib/wp-api';
 import JobSearchSection from '@/components/careers/JobSearchSection';
 import CompanyValues from '@/components/careers/CompanyValues';
 import RecruitmentProcess from '@/components/careers/RecruitmentProcess';
+import CareersHero from '@/components/careers/CareersHero';
 import { BriefcaseBusiness } from 'lucide-react';
 
 export const metadata = {
@@ -20,28 +21,8 @@ export default async function CareersPage() {
 
   return (
     <main className="min-h-screen bg-neutral-50">
-      {/* === Hero Banner Section ===
-          Banner tuyển dụng full-width + logo overlay ở giữa.
-          Banner gốc 1440×746, logo gốc 390×260. */}
-      <section className="relative w-full overflow-hidden">
-        {/* Ảnh banner nền — giữ tỷ lệ gốc, tràn full chiều ngang */}
-        <img
-          src="/img_recruit/recruit_banner.svg"
-          alt="Banner tuyển dụng IruKa Group — hình ảnh đội ngũ và môi trường làm việc"
-          className="w-full h-auto block"
-          loading="eager"
-        />
-
-        {/* Logo overlay — đặt giữa trung tâm banner, kích thước responsive */}
-        <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-          <img
-            src="/img_recruit/recruit_logo.svg"
-            alt="Logo tuyển dụng IruKa — Cùng kiến tạo tương lai"
-            className="w-[60%] sm:w-[45%] md:w-[35%] lg:w-[27%] h-auto drop-shadow-2xl"
-            loading="eager"
-          />
-        </div>
-      </section>
+      {/* === Hero Banner Section với hiệu ứng mượt mà === */}
+      <CareersHero />
 
       {/* === Giới thiệu ngắn bên dưới banner === */}
       <section className="container mx-auto px-4 py-12 md:py-16 text-center max-w-3xl">

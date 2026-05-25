@@ -70,7 +70,7 @@ export default function IrukaCareTechnology() {
             transition={{ duration: 0.6 }}
             className="relative z-10 py-4 md:py-6 pr-8 md:pr-12"
           >
-            <h2 className="text-[#1A5298] text-2xl md:text-3xl lg:text-4xl font-extrabold">
+            <h2 className="text-[#1A5298] text-2xl md:text-3xl lg:text-3xl font-extrabold">
               Nền tảng công nghệ và điểm khác biệt
             </h2>
           </motion.div>

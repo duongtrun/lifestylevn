@@ -13,7 +13,7 @@ export default function IrukaEduSlogan() {
   return (
     <section className="w-full bg-white py-16 md:py-24 flex justify-center items-center overflow-hidden">
       {/* Tăng min-h trên mobile lên 420px để hình tròn có đủ chiều cao chứa chữ bên trong */}
-      <div className="relative w-full max-w-[900px] px-4 flex justify-center items-center min-h-[420px] md:min-h-[400px]">
+      <div className="relative w-full max-w-[1000px] px-4 flex justify-center items-center min-h-[440px] md:min-h-[420px]">
         
         {/* Khung viền vẽ tay - Giao diện Desktop */}
         <div className="absolute inset-0 w-full h-full z-0 pointer-events-none hidden md:block">
@@ -43,11 +43,11 @@ export default function IrukaEduSlogan() {
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="relative z-10 flex flex-col items-center text-center px-14 sm:px-10 md:px-24 py-14 md:py-16"
+          className="relative z-10 flex flex-col items-center text-center px-14 sm:px-10 md:px-24 py-4 md:py-6"
         >
           {/* px-14 trên mobile đẩy chữ vào vùng an toàn của hình tròn (tránh phần cong cắt góc) */}
           {/* Logo */}
-          <div className="relative w-[80px] h-[60px] md:w-[130px] md:h-[90px] mb-3 md:mb-4">
+          <div className="relative w-[80px] h-[60px] md:w-[110px] md:h-[80px] mb-2 md:mb-3">
             <Image 
               src="/img_iruka_edu/logo.svg" 
               alt="Iruka Edu Logo" 
@@ -57,13 +57,13 @@ export default function IrukaEduSlogan() {
           </div>
 
           {/* Tiêu đề */}
-          <h2 className="text-base sm:text-lg md:text-2xl font-bold text-[#333333] mb-2 md:mb-4 max-w-[260px] md:max-w-none">
+          <h2 className="text-base sm:text-lg md:text-2xl font-bold text-[#333333] mb-2 md:mb-3 max-w-[260px] md:max-w-none">
             iruKa Edu – Học theo cách của con
           </h2>
 
           {/* Lời hứa */}
           {/* max-w-[190px] trên mobile để chữ không chạm viền cong của hình tròn */}
-          <p className="text-xs sm:text-sm md:text-base text-gray-600 max-w-[190px] sm:max-w-[300px] md:max-w-[600px] leading-relaxed md:leading-loose">
+          <p className="text-xs sm:text-sm md:text-base text-gray-600 max-w-[220px] sm:max-w-[350px] md:max-w-[700px] leading-relaxed md:leading-loose">
             Đó không chỉ là slogan, mà là triết lý sống của dự án — cũng là lời
             hứa của chúng tôi gửi đến mỗi gia đình và mỗi đứa trẻ.
           </p>

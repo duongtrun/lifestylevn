@@ -22,11 +22,11 @@ export default function InvestDetails() {
             transition={{ duration: 0.8 }}
             className="w-full md:w-7/12"
           >
-            <h2 className="text-3xl md:text-[32px] font-bold text-[#008BBD] mb-6 leading-[1.3]">
+            <h2 className="text-3xl md:text-4xl lg:text-[40px] font-bold text-[#008BBD] mb-6 leading-[1.3]">
               Tầm nhìn dài hạn<br />
               Định hướng phát triển
             </h2>
-            <div className="text-gray-800 space-y-4 text-[15px] md:text-[15px] leading-relaxed">
+            <div className="text-gray-800 space-y-4 text-base md:text-lg lg:text-[19px] leading-relaxed">
               <p>
                 LifeStyle Việt Nam không theo đuổi tăng trưởng bằng mọi giá.<br />
                 Chúng tôi lựa chọn con đường phát triển có chiều sâu, bền vững và phù hợp với giá trị cốt lõi.
@@ -71,10 +71,10 @@ export default function InvestDetails() {
           className="flex justify-center"
         >
           <div className="w-full md:w-3/4 lg:w-2/3 flex flex-col items-center md:items-start text-left">
-            <h2 className="text-3xl md:text-[32px] font-bold text-[#008BBD] mb-6 w-full md:text-center">
+            <h2 className="text-3xl md:text-4xl lg:text-[40px] font-bold text-[#008BBD] mb-6 w-full md:text-center">
               Mô hình hợp tác và đầu tư
             </h2>
-            <div className="text-gray-800 space-y-4 text-[15px] md:text-[15px] leading-relaxed w-full">
+            <div className="text-gray-800 space-y-4 text-base md:text-lg lg:text-[19px] leading-relaxed w-full">
               <p>LifeStyle Việt Nam mở rộng hợp tác theo hướng linh hoạt và dài hạn, bao gồm:</p>
               <ul className="list-disc pl-5 space-y-1.5 marker:text-[#008BBD] mx-auto md:w-[80%]">
                 <li>Đầu tư vốn theo từng dự án hoặc sản phẩm</li>
@@ -98,10 +98,10 @@ export default function InvestDetails() {
             transition={{ duration: 0.8 }}
             className="w-full md:w-5/12"
           >
-            <h2 className="text-3xl md:text-[32px] font-bold text-[#008BBD] mb-6 leading-[1.3]">
+            <h2 className="text-3xl md:text-4xl lg:text-[40px] font-bold text-[#008BBD] mb-6 leading-[1.3]">
               Cam kết với đối tác & nhà đầu tư
             </h2>
-            <div className="text-gray-800 space-y-4 text-[15px] md:text-[15px] leading-relaxed">
+            <div className="text-gray-800 space-y-4 text-base md:text-lg lg:text-[19px] leading-relaxed">
               <p>Khi hợp tác cùng LifeStyle Việt Nam, chúng tôi cam kết:</p>
               <ul className="list-disc pl-5 space-y-1.5 marker:text-[#008BBD]">
                 <li>Minh bạch về pháp lý, tài chính và vận hành</li>
@@ -152,10 +152,10 @@ export default function InvestDetails() {
             transition={{ duration: 0.8, delay: 0.2 }}
             className="w-full md:w-7/12"
           >
-            <h2 className="text-3xl md:text-[32px] font-bold text-[#008BBD] mb-6 leading-[1.3]">
+            <h2 className="text-3xl md:text-4xl lg:text-[40px] font-bold text-[#008BBD] mb-6 leading-[1.3]">
               Chúng tôi tìm kiếm nhà đầu tư<br />& đối tác như thế nào?
             </h2>
-            <div className="text-gray-800 space-y-4 text-[15px] md:text-[15px] leading-relaxed">
+            <div className="text-gray-800 space-y-4 text-base md:text-lg lg:text-[19px] leading-relaxed">
               <p>
                 LifeStyle Việt Nam không tìm kiếm đối tác bằng mọi giá.<br />
                 Chúng tôi mong muốn đồng hành cùng những cá nhân, tổ chức:
@@ -178,10 +178,10 @@ export default function InvestDetails() {
           transition={{ duration: 0.8 }}
           className="max-w-4xl pt-8"
         >
-          <h2 className="text-3xl md:text-[32px] font-bold text-[#008BBD] mb-6 leading-[1.3]">
+          <h2 className="text-3xl md:text-4xl lg:text-[40px] font-bold text-[#008BBD] mb-6 leading-[1.3]">
             Lời mời đồng hành
           </h2>
-          <div className="text-gray-800 space-y-4 text-[15px] md:text-[15px] leading-relaxed">
+          <div className="text-gray-800 space-y-4 text-base md:text-lg lg:text-[19px] leading-relaxed">
             <p>
               Chúng tôi tin rằng, những giá trị bền vững không thể xây dựng một mình.<br />
               Nếu bạn chia sẻ cùng tầm nhìn về giáo dục, công nghệ và tương lai của trẻ em, LifeStyle Việt Nam sẵn sàng mở ra những cuộc đối thoại nghiêm túc, minh bạch và dài hạn.

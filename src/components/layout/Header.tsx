@@ -40,7 +40,7 @@ export default function Header() {
           </Link>
 
           {/* Ecosystem Dropdown */}
-          <DropdownMenu.Root>
+          <DropdownMenu.Root modal={false}>
             <DropdownMenu.Trigger className="flex items-center gap-1 text-lg font-medium text-gray-600 hover:text-primary transition-colors outline-none data-[state=open]:text-primary group">
               Hệ sinh thái <ChevronDown className="w-4 h-4 group-data-[state=open]:rotate-180 transition-transform" />
             </DropdownMenu.Trigger>
@@ -61,7 +61,17 @@ export default function Header() {
                     </div>
                   </Link>
                 </DropdownMenu.Item>
-                
+                 <DropdownMenu.Item asChild>
+                  <Link href="/he-sinh-thai/babego" className="flex items-center gap-3 p-2.5 rounded-xl outline-none cursor-pointer hover:bg-primary/5 group transition-all duration-200 mt-0.5">
+                    <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-rose-50 text-rose-500 group-hover:bg-rose-500 group-hover:text-white transition-colors duration-300 shadow-sm">
+                      <Baby className="w-4 h-4" />
+                    </div>
+                    <div>
+                      <div className="text-sm font-bold text-gray-900 group-hover:text-primary transition-colors">Babego</div>
+                      {/* <p className="text-xs text-gray-500 mt-0.5 leading-snug">Sản phẩm và dịch vụ chăm sóc Mẹ & Bé</p> */}
+                    </div>
+                  </Link>
+                </DropdownMenu.Item>
                 <DropdownMenu.Item asChild>
                   <Link href="/he-sinh-thai/iruka-care" className="flex items-center gap-3 p-2.5 rounded-xl outline-none cursor-pointer hover:bg-primary/5 group transition-all duration-200 mt-0.5">
                     <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-amber-50 text-amber-600 group-hover:bg-amber-500 group-hover:text-white transition-colors duration-300 shadow-sm">
@@ -74,17 +84,7 @@ export default function Header() {
                   </Link>
                 </DropdownMenu.Item>
                 
-                <DropdownMenu.Item asChild>
-                  <Link href="/he-sinh-thai/babego" className="flex items-center gap-3 p-2.5 rounded-xl outline-none cursor-pointer hover:bg-primary/5 group transition-all duration-200 mt-0.5">
-                    <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-rose-50 text-rose-500 group-hover:bg-rose-500 group-hover:text-white transition-colors duration-300 shadow-sm">
-                      <Baby className="w-4 h-4" />
-                    </div>
-                    <div>
-                      <div className="text-sm font-bold text-gray-900 group-hover:text-primary transition-colors">Babego</div>
-                      {/* <p className="text-xs text-gray-500 mt-0.5 leading-snug">Sản phẩm và dịch vụ chăm sóc Mẹ & Bé</p> */}
-                    </div>
-                  </Link>
-                </DropdownMenu.Item>
+               
               </DropdownMenu.Content>
             </DropdownMenu.Portal>
           </DropdownMenu.Root>

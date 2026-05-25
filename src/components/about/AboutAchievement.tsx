@@ -27,12 +27,12 @@ export default function AboutAchievement() {
 
   // 6 ảnh thành tựu từ thư mục public/img_about_us/
   const achievements = [
-    { id: 1, title: 'Thành tựu nổi bật 1', image: '/img_about_us/achieve_1.webp' },
-    { id: 2, title: 'Thành tựu nổi bật 2', image: '/img_about_us/achieve_2.webp' },
-    { id: 3, title: 'Thành tựu nổi bật 3', image: '/img_about_us/achieve_3.webp' },
-    { id: 4, title: 'Thành tựu nổi bật 4', image: '/img_about_us/achieve_4.webp' },
-    { id: 5, title: 'Thành tựu nổi bật 5', image: '/img_about_us/achieve_5.webp' },
-    { id: 6, title: 'Thành tựu nổi bật 6', image: '/img_about_us/achieve_6.webp' },
+    { id: 1, title: 'Thành tựu nổi bật 1', image: '/img_about_us/achieve_1.svg' },
+    { id: 2, title: 'Thành tựu nổi bật 2', image: '/img_about_us/achieve_2.svg' },
+    { id: 3, title: 'Thành tựu nổi bật 3', image: '/img_about_us/achieve_3.svg' },
+    { id: 4, title: 'Thành tựu nổi bật 4', image: '/img_about_us/achieve_4.svg' },
+    { id: 5, title: 'Thành tựu nổi bật 5', image: '/img_about_us/achieve_5.svg' },
+    { id: 6, title: 'Thành tựu nổi bật 6', image: '/img_about_us/achieve_6.svg' },
   ];
 
   return (
@@ -57,7 +57,8 @@ export default function AboutAchievement() {
               {achievements.map((item) => (
                 <div 
                   key={item.id}
-                  className="pl-6 relative flex-none w-full sm:w-1/2 lg:w-1/3 min-w-0 aspect-[4/5]"
+                  // Chia đều 100% bề ngang slider (flex-[0_0_100%] trên mobile, 50% trên tablet, 25% trên desktop) để hiển thị đầy đủ không bị vỡ.
+                  className="pl-6 relative flex-[0_0_100%] sm:flex-[0_0_50%] lg:flex-[0_0_25%] min-w-0 aspect-[3/4]"
                 >
                   {/* Card màu trắng, chứa SVG ảnh */}
                   <div className="relative w-full h-full rounded-xl overflow-hidden shadow-lg group/card bg-white">
@@ -85,7 +86,7 @@ export default function AboutAchievement() {
           {/* Nút Điều Hướng Trái */}
           <button 
             onClick={scrollPrev}
-            className="absolute -left-4 md:-left-6 top-1/2 -translate-y-1/2 w-12 h-12 flex items-center justify-center rounded-full bg-white text-[#009fe3] hover:bg-[#009fe3] hover:text-white border-2 border-[#009fe3] hover:scale-110 active:scale-95 transition-all shadow-xl z-10 opacity-90 group-hover:opacity-100"
+            className="absolute -left-4 md:-left-6 top-1/2 -translate-y-1/2 w-12 h-12 hidden md:flex items-center justify-center rounded-full bg-white text-[#009fe3] hover:bg-[#009fe3] hover:text-white border-2 border-[#009fe3] hover:scale-110 active:scale-95 transition-all shadow-xl z-10 opacity-90 group-hover:opacity-100"
             aria-label="Trượt sang trái"
           >
             <ArrowLeft size={24} strokeWidth={2.5} />
@@ -94,7 +95,7 @@ export default function AboutAchievement() {
           {/* Nút Điều Hướng Phải */}
           <button 
             onClick={scrollNext}
-            className="absolute -right-4 md:-right-6 top-1/2 -translate-y-1/2 w-12 h-12 flex items-center justify-center rounded-full bg-white text-[#009fe3] hover:bg-[#009fe3] hover:text-white border-2 border-[#009fe3] hover:scale-110 active:scale-95 transition-all shadow-xl z-10 opacity-90 group-hover:opacity-100"
+            className="absolute -right-4 md:-right-6 top-1/2 -translate-y-1/2 w-12 h-12 hidden md:flex items-center justify-center rounded-full bg-white text-[#009fe3] hover:bg-[#009fe3] hover:text-white border-2 border-[#009fe3] hover:scale-110 active:scale-95 transition-all shadow-xl z-10 opacity-90 group-hover:opacity-100"
             aria-label="Trượt sang phải"
           >
             <ArrowRight size={24} strokeWidth={2.5} />

@@ -32,7 +32,7 @@ export default function GioiThieuPage() {
       <TimelineSection />
       
       {/* Scope 3: Achievement */}
-      <AboutAchievement />
+      {/* <AboutAchievement /> */}
 
       {/* Scope 4: Core Values */}
       <CoreValuesSection />
@@ -41,7 +41,7 @@ export default function GioiThieuPage() {
       <VisionMissionSection />
 
       {/* Scope 6: Ecosystem */}
-      <EcosystemSection />
+      {/* <EcosystemSection /> */}
 
       {/* Scope 7: Leadership */}
       <LeadershipSection />

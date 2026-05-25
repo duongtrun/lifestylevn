@@ -126,6 +126,7 @@ export interface WPPost {
       alt_text: string;
     }>;
     'wp:term'?: Array<Array<{
+      id?: number;
       name: string;
       slug: string;
       taxonomy: string;
@@ -225,7 +226,10 @@ export const MOCK_POSTS: WPPost[] = [
     },
     _embedded: {
       'wp:featuredmedia': [{ source_url: '/images/hot_news_img.webp', alt_text: 'Hội thảo Babego' }],
-      'wp:term': [[{ name: 'Sự kiện', slug: 'su-kien', taxonomy: 'category' }]]
+      'wp:term': [[
+        { id: 4, name: 'Sự kiện', slug: 'su-kien', taxonomy: 'category' },
+        { id: 10, name: 'Tin tức', slug: 'tin-tuc', taxonomy: 'category' }
+      ]]
     }
   },
   {
@@ -241,7 +245,10 @@ export const MOCK_POSTS: WPPost[] = [
     excerpt: { rendered: 'Ký kết thỏa thuận hợp tác chiến lược mở ra chương mới giúp chăm sóc sức khỏe nhi khoa tốt nhất cho các bé trong hệ sinh thái.' },
     _embedded: {
       'wp:featuredmedia': [{ source_url: '/img_news/suc_khoe.svg', alt_text: 'Hợp tác y tế' }],
-      'wp:term': [[{ name: 'Sự kiện', slug: 'su-kien', taxonomy: 'category' }]]
+      'wp:term': [[
+        { id: 4, name: 'Sự kiện', slug: 'su-kien', taxonomy: 'category' },
+        { id: 10, name: 'Tin tức', slug: 'tin-tuc', taxonomy: 'category' }
+      ]]
     }
   },
   {
@@ -257,7 +264,10 @@ export const MOCK_POSTS: WPPost[] = [
     excerpt: { rendered: 'Hàng ngàn gia đình hào hứng tham gia chuỗi hoạt động phát triển kỹ năng, tư duy nghệ thuật và toán học chất lượng cao.' },
     _embedded: {
       'wp:featuredmedia': [{ source_url: '/img_news/edu_img.svg', alt_text: 'Ngày hội Iruka Edu' }],
-      'wp:term': [[{ name: 'Sự kiện', slug: 'su-kien', taxonomy: 'category' }]]
+      'wp:term': [[
+        { id: 4, name: 'Sự kiện', slug: 'su-kien', taxonomy: 'category' },
+        { id: 10, name: 'Tin tức', slug: 'tin-tuc', taxonomy: 'category' }
+      ]]
     }
   },
 
@@ -271,7 +281,10 @@ export const MOCK_POSTS: WPPost[] = [
     excerpt: { rendered: 'Tổng hợp các mẹo nhỏ cực kỳ hiệu quả giúp cân đối thực đơn ăn dặm giàu xơ và dinh dưỡng lành mạnh cho hệ tiêu hóa trẻ.' },
     _embedded: {
       'wp:featuredmedia': [{ source_url: '/img_news/dinh_duong_tieu_hoa.svg', alt_text: 'Dinh dưỡng tiêu hóa' }],
-      'wp:term': [[{ name: 'Dinh dưỡng & tiêu hóa', slug: 'dinh-duong-tieu-hoa', taxonomy: 'category' }]]
+      'wp:term': [[
+        { id: 5, name: 'Dinh dưỡng & tiêu hóa', slug: 'dinh-duong-tieu-hoa', taxonomy: 'category' },
+        { id: 10, name: 'Tin tức', slug: 'tin-tuc', taxonomy: 'category' }
+      ]]
     }
   },
   {
@@ -283,7 +296,10 @@ export const MOCK_POSTS: WPPost[] = [
     excerpt: { rendered: 'Phương pháp xây dựng thực đơn ăn dặm khoa học giúp bổ sung đầy đủ vitamin và kích thích hệ tiêu hóa non nớt hoạt động trơn tru.' },
     _embedded: {
       'wp:featuredmedia': [{ source_url: '/img_news/dinh_duong_tieu_hoa_2.svg', alt_text: 'Thực đơn ăn dặm khoa học' }],
-      'wp:term': [[{ name: 'Dinh dưỡng & tiêu hóa', slug: 'dinh-duong-tieu-hoa', taxonomy: 'category' }]]
+      'wp:term': [[
+        { id: 5, name: 'Dinh dưỡng & tiêu hóa', slug: 'dinh-duong-tieu-hoa', taxonomy: 'category' },
+        { id: 10, name: 'Tin tức', slug: 'tin-tuc', taxonomy: 'category' }
+      ]]
     }
   },
   {
@@ -295,7 +311,10 @@ export const MOCK_POSTS: WPPost[] = [
     excerpt: { rendered: 'Tăng cường sức đề kháng và cải thiện hệ hấp thu của trẻ nhỏ thông qua việc bổ sung probiotics khoa học mỗi ngày.' },
     _embedded: {
       'wp:featuredmedia': [{ source_url: '/img_news/dinh_duong_tieu_hoa_3.svg', alt_text: 'Bổ sung lợi khuẩn' }],
-      'wp:term': [[{ name: 'Dinh dưỡng & tiêu hóa', slug: 'dinh-duong-tieu-hoa', taxonomy: 'category' }]]
+      'wp:term': [[
+        { id: 5, name: 'Dinh dưỡng & tiêu hóa', slug: 'dinh-duong-tieu-hoa', taxonomy: 'category' },
+        { id: 10, name: 'Tin tức', slug: 'tin-tuc', taxonomy: 'category' }
+      ]]
     }
   },
   {
@@ -307,7 +326,10 @@ export const MOCK_POSTS: WPPost[] = [
     excerpt: { rendered: 'Ứng dụng dinh dưỡng đột phá mới từ thảo dược thiên nhiên và sữa non nâng cao sức khỏe đường ruột cho bé.' },
     _embedded: {
       'wp:featuredmedia': [{ source_url: '/img_news/dinh_duong_tieu_hoa.svg', alt_text: 'Dinh dưỡng thảo dược' }],
-      'wp:term': [[{ name: 'Dinh dưỡng & tiêu hóa', slug: 'dinh-duong-tieu-hoa', taxonomy: 'category' }]]
+      'wp:term': [[
+        { id: 5, name: 'Dinh dưỡng & tiêu hóa', slug: 'dinh-duong-tieu-hoa', taxonomy: 'category' },
+        { id: 10, name: 'Tin tức', slug: 'tin-tuc', taxonomy: 'category' }
+      ]]
     }
   },
   {
@@ -319,7 +341,10 @@ export const MOCK_POSTS: WPPost[] = [
     excerpt: { rendered: 'Giải pháp khắc phục triệt để tình trạng biếng ăn kéo dài ở trẻ nhỏ bằng phương pháp cân đối vi chất tự nhiên.' },
     _embedded: {
       'wp:featuredmedia': [{ source_url: '/img_news/dinh_duong_tieu_hoa_2.svg', alt_text: 'Bổ sung vi chất' }],
-      'wp:term': [[{ name: 'Dinh dưỡng & tiêu hóa', slug: 'dinh-duong-tieu-hoa', taxonomy: 'category' }]]
+      'wp:term': [[
+        { id: 5, name: 'Dinh dưỡng & tiêu hóa', slug: 'dinh-duong-tieu-hoa', taxonomy: 'category' },
+        { id: 10, name: 'Tin tức', slug: 'tin-tuc', taxonomy: 'category' }
+      ]]
     }
   },
 
@@ -333,7 +358,10 @@ export const MOCK_POSTS: WPPost[] = [
     excerpt: { rendered: 'Phương pháp bảo vệ nướu và men răng sữa khỏe mạnh cho trẻ nhỏ từ giai đoạn nhũ nhi cực kỳ hiệu quả.' },
     _embedded: {
       'wp:featuredmedia': [{ source_url: '/img_news/suc_khoe.svg', alt_text: 'Bảo vệ răng miệng' }],
-      'wp:term': [[{ name: 'Sức khỏe & vệ sinh', slug: 'suc-khoe-ve-sinh', taxonomy: 'category' }]]
+      'wp:term': [[
+        { id: 6, name: 'Sức khỏe & vệ sinh', slug: 'suc-khoe-ve-sinh', taxonomy: 'category' },
+        { id: 10, name: 'Tin tức', slug: 'tin-tuc', taxonomy: 'category' }
+      ]]
     }
   },
   {
@@ -345,7 +373,10 @@ export const MOCK_POSTS: WPPost[] = [
     excerpt: { rendered: 'Quy trình tắm và chăm sóc rốn đúng chuẩn y tế giúp bảo vệ làn da non nớt của bé sơ sinh.' },
     _embedded: {
       'wp:featuredmedia': [{ source_url: '/img_news/suc_khoe_2.svg', alt_text: 'Tắm bé sơ sinh' }],
-      'wp:term': [[{ name: 'Sức khỏe & vệ sinh', slug: 'suc-khoe-ve-sinh', taxonomy: 'category' }]]
+      'wp:term': [[
+        { id: 6, name: 'Sức khỏe & vệ sinh', slug: 'suc-khoe-ve-sinh', taxonomy: 'category' },
+        { id: 10, name: 'Tin tức', slug: 'tin-tuc', taxonomy: 'category' }
+      ]]
     }
   },
   {
@@ -357,7 +388,10 @@ export const MOCK_POSTS: WPPost[] = [
     excerpt: { rendered: 'Phương pháp bảo vệ làn da nhạy cảm của bé khỏi rôm sảy, dị ứng và mẩn ngứa trong thời tiết mùa hè.' },
     _embedded: {
       'wp:featuredmedia': [{ source_url: '/img_news/suc_khoe_3.svg', alt_text: 'Phòng ngừa rôm sảy' }],
-      'wp:term': [[{ name: 'Sức khỏe & vệ sinh', slug: 'suc-khoe-ve-sinh', taxonomy: 'category' }]]
+      'wp:term': [[
+        { id: 6, name: 'Sức khỏe & vệ sinh', slug: 'suc-khoe-ve-sinh', taxonomy: 'category' },
+        { id: 10, name: 'Tin tức', slug: 'tin-tuc', taxonomy: 'category' }
+      ]]
     }
   },
   {
@@ -369,7 +403,10 @@ export const MOCK_POSTS: WPPost[] = [
     excerpt: { rendered: 'Cách dạy bé rửa tay vui vẻ, đúng cách giúp tiêu diệt vi khuẩn gây bệnh và duy trì thói quen vệ sinh sạch sẽ.' },
     _embedded: {
       'wp:featuredmedia': [{ source_url: '/img_news/suc_khoe.svg', alt_text: 'Rửa tay sạch khuẩn' }],
-      'wp:term': [[{ name: 'Sức khỏe & vệ sinh', slug: 'suc-khoe-ve-sinh', taxonomy: 'category' }]]
+      'wp:term': [[
+        { id: 6, name: 'Sức khỏe & vệ sinh', slug: 'suc-khoe-ve-sinh', taxonomy: 'category' },
+        { id: 10, name: 'Tin tức', slug: 'tin-tuc', taxonomy: 'category' }
+      ]]
     }
   },
   {
@@ -381,7 +418,10 @@ export const MOCK_POSTS: WPPost[] = [
     excerpt: { rendered: 'Các nguyên tắc cốt lõi giúp giữ ấm cổ họng và vệ sinh đường thở thông thoáng cho bé khi giao mùa.' },
     _embedded: {
       'wp:featuredmedia': [{ source_url: '/img_news/suc_khoe_2.svg', alt_text: 'Vệ sinh đường hô hấp' }],
-      'wp:term': [[{ name: 'Sức khỏe & vệ sinh', slug: 'suc-khoe-ve-sinh', taxonomy: 'category' }]]
+      'wp:term': [[
+        { id: 6, name: 'Sức khỏe & vệ sinh', slug: 'suc-khoe-ve-sinh', taxonomy: 'category' },
+        { id: 10, name: 'Tin tức', slug: 'tin-tuc', taxonomy: 'category' }
+      ]]
     }
   }
 ];
@@ -389,10 +429,14 @@ export const MOCK_POSTS: WPPost[] = [
 /**
  * Lấy danh sách bài viết mới nhất
  */
-export async function getPosts(limit: number = 9): Promise<WPPost[]> {
-  console.log(`[WP-API] getPosts calling URL: ${WP_API_URL}/wp/v2/posts?_embed=true&per_page=${limit}`);
+export async function getPosts(limit: number = 9, categoryId?: number): Promise<WPPost[]> {
+  const url = categoryId
+    ? `${WP_API_URL}/wp/v2/posts?_embed=true&per_page=${limit}&categories=${categoryId}`
+    : `${WP_API_URL}/wp/v2/posts?_embed=true&per_page=${limit}`;
+
+  console.log(`[WP-API] getPosts calling URL: ${url}`);
   try {
-    const res = await fetch(`${WP_API_URL}/wp/v2/posts?_embed=true&per_page=${limit}`, {
+    const res = await fetch(url, {
       headers: FETCH_HEADERS,
       // Revalidate mỗi 60 giây (ISR — tự động làm mới dữ liệu)
       next: { revalidate: 60 },
@@ -407,7 +451,17 @@ export async function getPosts(limit: number = 9): Promise<WPPost[]> {
     
     // Nếu API trả về mảng rỗng thì dùng dữ liệu mock để giao diện không bị trống
     if (posts.length === 0) {
-      return MOCK_POSTS.slice(0, limit);
+      if (categoryId) {
+        const filtered = MOCK_POSTS.filter(post => 
+          post._embedded?.['wp:term']?.[0]?.some(term => 
+            term.id === categoryId || term.slug === 'tin-tuc'
+          )
+        );
+        return (filtered.length > 0 ? filtered : MOCK_POSTS)
+          .slice(0, limit)
+          .map((post, index) => enrichPostWithFallbackImage(post, index));
+      }
+      return MOCK_POSTS.slice(0, limit).map((post, index) => enrichPostWithFallbackImage(post, index));
     }
     
     // Gắn ảnh mặc định cho bài chưa có ảnh đại diện (theo danh mục)
@@ -415,7 +469,17 @@ export async function getPosts(limit: number = 9): Promise<WPPost[]> {
   } catch (error) {
     console.warn(`Kết nối WordPress thất bại cho URL: ${WP_API_URL}, tự động kích hoạt chế độ Fallback Mock Data:`, error);
     // Khi máy chủ WordPress offline, trả về mảng dữ liệu mock cực kỳ chuyên nghiệp
-    return MOCK_POSTS.slice(0, limit);
+    if (categoryId) {
+      const filtered = MOCK_POSTS.filter(post => 
+        post._embedded?.['wp:term']?.[0]?.some(term => 
+          term.id === categoryId || term.slug === 'tin-tuc'
+        )
+      );
+      return (filtered.length > 0 ? filtered : MOCK_POSTS)
+        .slice(0, limit)
+        .map((post, index) => enrichPostWithFallbackImage(post, index));
+    }
+    return MOCK_POSTS.slice(0, limit).map((post, index) => enrichPostWithFallbackImage(post, index));
   }
 }
 
@@ -542,5 +606,165 @@ export async function getJobBySlug(slug: string): Promise<WPJob | null> {
     console.warn(`Lấy chi tiết Job thất bại cho URL: ${WP_API_URL}, dùng Fallback Mock Job:`, slug, error);
     const mockJob = MOCK_JOBS.find(j => j.slug === slug);
     return mockJob || null;
+  }
+}
+
+// ================= HỆ THỐNG DỮ LIỆU GIẢ LẬP CAO CẤP PHÒNG NGỪA (MOCK ACHIEVEMENTS) =================
+export const MOCK_ACHIEVEMENTS: WPPost[] = [
+  {
+    id: 881,
+    date: '2026-05-19T08:00:00',
+    slug: 'giai-ba-chung-cuoc-tai-ai-hackathon-viet-nam-nhat-ban-2025',
+    title: { rendered: '(iruKa) Giải ba chung cuộc tại AI Hackathon Việt Nam - Nhật Bản 2025' },
+    content: { rendered: '<p>Giải ba chung cuộc tại cuộc thi AI Hackathon Việt Nam - Nhật Bản 2025 vinh danh giải pháp giáo dục thông minh iruKa EDU.</p>' },
+    excerpt: { rendered: 'Giải ba chung cuộc tại cuộc thi AI Hackathon Việt Nam - Nhật Bản 2025 vinh danh giải pháp giáo dục thông minh iruKa EDU.' },
+    acf: {
+      title: '(iruKa) Giải ba chung cuộc tại AI Hackathon Việt Nam - Nhật Bản 2025',
+      noi_dung_chinh: 'Giải ba chung cuộc tại cuộc thi AI Hackathon Việt Nam - Nhật Bản 2025 vinh danh giải pháp giáo dục thông minh iruKa EDU.',
+      anh: '/images/1.jpg',
+      nguoi_dang_bai: 'Ban Biên Tập Lifestyle'
+    },
+    _embedded: {
+      'wp:featuredmedia': [{ source_url: '/images/1.jpg', alt_text: 'Giải ba chung cuộc tại AI Hackathon Việt Nam - Nhật Bản 2025' }],
+      'wp:term': [[{ id: 12, name: 'Thành tựu', slug: 'thanh-tuu', taxonomy: 'category' }]]
+    }
+  },
+  {
+    id: 882,
+    date: '2026-05-18T08:00:00',
+    slug: 'thuong-hieu-vang-phat-trien-ben-vung-2024',
+    title: { rendered: '(Babego) Thương hiệu Vàng – Phát triển bền vững 2024' },
+    content: { rendered: '<p>Babego vinh dự nhận giải thưởng Thương hiệu Vàng – Phát triển bền vững 2024.</p>' },
+    excerpt: { rendered: 'Thương hiệu Babego GOLD đạt giải thưởng Thương hiệu Vàng – Phát triển bền vững 2024 nhờ những đóng góp vượt trội.' },
+    acf: {
+      title: '(Babego) Thương hiệu Vàng – Phát triển bền vững 2024',
+      noi_dung_chinh: 'Thương hiệu Babego GOLD đạt giải thưởng Thương hiệu Vàng – Phát triển bền vững 2024 nhờ những đóng góp vượt trội.',
+      anh: '/images/2.jpg',
+      nguoi_dang_bai: 'Ban Biên Tập Lifestyle'
+    },
+    _embedded: {
+      'wp:featuredmedia': [{ source_url: '/images/2.jpg', alt_text: 'Thương hiệu Vàng – Phát triển bền vững 2024' }],
+      'wp:term': [[{ id: 12, name: 'Thành tựu', slug: 'thanh-tuu', taxonomy: 'category' }]]
+    }
+  },
+  {
+    id: 883,
+    date: '2026-05-17T08:00:00',
+    slug: 'top-10-thuong-hieu-noi-tieng-quoc-gia-2023',
+    title: { rendered: '(Babego) Top 10 Thương hiệu nổi tiếng Quốc gia 2023' },
+    content: { rendered: '<p>Babego vinh dự lọt Top 10 Thương hiệu nổi tiếng Quốc gia năm 2023.</p>' },
+    excerpt: { rendered: 'Giải thưởng khẳng định uy tín và chất lượng của thương hiệu dinh dưỡng Babego trên quy mô quốc gia.' },
+    acf: {
+      title: '(Babego) Top 10 Thương hiệu nổi tiếng Quốc gia 2023',
+      noi_dung_chinh: 'Giải thưởng khẳng định uy tín và chất lượng của thương hiệu dinh dưỡng Babego trên quy mô quốc gia.',
+      anh: '/images/3.jpg',
+      nguoi_dang_bai: 'Ban Biên Tập Lifestyle'
+    },
+    _embedded: {
+      'wp:featuredmedia': [{ source_url: '/images/3.jpg', alt_text: 'Top 10 Thương hiệu nổi tiếng Quốc gia 2023' }],
+      'wp:term': [[{ id: 12, name: 'Thành tựu', slug: 'thanh-tuu', taxonomy: 'category' }]]
+    }
+  },
+  {
+    id: 884,
+    date: '2026-05-16T08:00:00',
+    slug: 'top-10-thuong-hieu-xuat-sac-chau-a-2023',
+    title: { rendered: '(Babego) Top 10 Thương hiệu xuất sắc Châu Á 2023' },
+    content: { rendered: '<p>Babego vươn tầm khu vực với giải thưởng Top 10 Thương hiệu xuất sắc Châu Á năm 2023.</p>' },
+    excerpt: { rendered: 'Khẳng định vị thế và uy tín vượt trội của các dòng sản phẩm dinh dưỡng thảo dược Babego tại thị trường Châu Á.' },
+    acf: {
+      title: '(Babego) Top 10 Thương hiệu xuất sắc Châu Á 2023',
+      noi_dung_chinh: 'Khẳng định vị thế và uy tín vượt trội của các dòng sản phẩm dinh dưỡng thảo dược Babego tại thị trường Châu Á.',
+      anh: '/images/4.jpg',
+      nguoi_dang_bai: 'Ban Biên Tập Lifestyle'
+    },
+    _embedded: {
+      'wp:featuredmedia': [{ source_url: '/images/4.jpg', alt_text: 'Top 10 Thương hiệu xuất sắc Châu Á 2023' }],
+      'wp:term': [[{ id: 12, name: 'Thành tựu', slug: 'thanh-tuu', taxonomy: 'category' }]]
+    }
+  },
+  {
+    id: 885,
+    date: '2026-05-15T08:00:00',
+    slug: 'thuong-hieu-manh-san-pham-dich-vu-chat-luong-cao-asean-2022',
+    title: { rendered: '(Mamigo) Thương hiệu mạnh, sản phẩm, dịch vụ chất lượng cao Asean 2022' },
+    content: { rendered: '<p>Mamigo vinh dự đạt giải Thương hiệu mạnh, sản phẩm, dịch vụ chất lượng cao Asean 2022.</p>' },
+    excerpt: { rendered: 'Ghi nhận chất lượng vượt trội của dòng sản phẩm dinh dưỡng và chăm sóc thảo dược Mamigo tại khu vực ASEAN.' },
+    acf: {
+      title: '(Mamigo) Thương hiệu mạnh, sản phẩm, dịch vụ chất lượng cao Asean 2022',
+      noi_dung_chinh: 'Ghi nhận chất lượng vượt trội của dòng sản phẩm dinh dưỡng và chăm sóc thảo dược Mamigo tại khu vực ASEAN.',
+      anh: '/images/5.jpg',
+      nguoi_dang_bai: 'Ban Biên Tập Lifestyle'
+    },
+    _embedded: {
+      'wp:featuredmedia': [{ source_url: '/images/5.jpg', alt_text: 'Thương hiệu mạnh, sản phẩm, dịch vụ chất lượng cao Asean 2022' }],
+      'wp:term': [[{ id: 12, name: 'Thành tựu', slug: 'thanh-tuu', taxonomy: 'category' }]]
+    }
+  },
+  {
+    id: 886,
+    date: '2026-05-14T08:00:00',
+    slug: 'top-10-thuong-hieu-dan-dau-viet-nam-2022',
+    title: { rendered: '(Babego) Top 10 Thương hiệu dẫn đầu Việt Nam 2022' },
+    content: { rendered: '<p>Babego vinh dự lọt Top 10 Thương hiệu dẫn đầu Việt Nam năm 2022.</p>' },
+    excerpt: { rendered: 'Babego vinh dự lọt Top 10 Thương hiệu dẫn đầu Việt Nam năm 2022 nhờ sự tin yêu lớn từ hàng triệu phụ huynh Việt.' },
+    acf: {
+      title: '(Babego) Top 10 Thương hiệu dẫn đầu Việt Nam 2022',
+      noi_dung_chinh: 'Babego vinh dự lọt Top 10 Thương hiệu dẫn đầu Việt Nam năm 2022 nhờ sự tin yêu lớn từ hàng triệu phụ huynh Việt.',
+      anh: '/images/6.jpg',
+      nguoi_dang_bai: 'Ban Biên Tập Lifestyle'
+    },
+    _embedded: {
+      'wp:featuredmedia': [{ source_url: '/images/6.jpg', alt_text: 'Top 10 Thương hiệu dẫn đầu Việt Nam 2022' }],
+      'wp:term': [[{ id: 12, name: 'Thành tựu', slug: 'thanh-tuu', taxonomy: 'category' }]]
+    }
+  },
+  {
+    id: 887,
+    date: '2026-05-13T08:00:00',
+    slug: 'top-100-san-pham-dich-vu-tot-nhat-cho-gia-dinh-tre-em-2021',
+    title: { rendered: '(Babego) Top 100 Sản phẩm – Dịch vụ tốt nhất cho gia đình & trẻ em 2021' },
+    content: { rendered: '<p>Babego vinh dự đạt giải Top 100 Sản phẩm – Dịch vụ tốt nhất cho gia đình & trẻ em năm 2021.</p>' },
+    excerpt: { rendered: 'Giải thưởng cao quý khẳng định uy tín và tình yêu của người tiêu dùng đối với dòng sản phẩm Babego.' },
+    acf: {
+      title: '(Babego) Top 100 Sản phẩm – Dịch vụ tốt nhất cho gia đình & trẻ em 2021',
+      noi_dung_chinh: 'Giải thưởng cao quý khẳng định uy tín và tình yêu của người tiêu dùng đối với dòng sản phẩm Babego.',
+      anh: '/images/7.jpg',
+      nguoi_dang_bai: 'Ban Biên Tập Lifestyle'
+    },
+    _embedded: {
+      'wp:featuredmedia': [{ source_url: '/images/7.jpg', alt_text: 'Top 100 Sản phẩm – Dịch vụ tốt nhất cho gia đình & trẻ em 2021' }],
+      'wp:term': [[{ id: 12, name: 'Thành tựu', slug: 'thanh-tuu', taxonomy: 'category' }]]
+    }
+  }
+];
+
+/**
+ * Lấy danh sách bài viết theo slug danh mục (Dùng cho phần Thành tựu đạt được)
+ */
+export async function getPostsByCategorySlug(slug: string, limit: number = 5): Promise<WPPost[]> {
+  console.log(`[WP-API] getPostsByCategorySlug calling URL: ${WP_API_URL}/wp/v2/categories?slug=${slug}`);
+  try {
+    const catRes = await fetch(`${WP_API_URL}/wp/v2/categories?slug=${slug}`, {
+      headers: FETCH_HEADERS,
+      next: { revalidate: 60 },
+      signal: AbortSignal.timeout(15000)
+    });
+    
+    if (!catRes.ok) {
+      throw new Error(`Lỗi gọi API Categories: ${catRes.status}`);
+    }
+    
+    const categories = await catRes.json();
+    
+    if (categories && categories.length > 0) {
+      const categoryId = categories[0].id;
+      return await getPosts(limit, categoryId);
+    }
+    
+    throw new Error(`Không tìm thấy danh mục với slug: ${slug}`);
+  } catch (error) {
+    console.warn(`Lấy bài viết theo category slug thất bại cho slug: ${slug}, kích hoạt Fallback Mock Data:`, error);
+    return MOCK_ACHIEVEMENTS.slice(0, limit);
   }
 }

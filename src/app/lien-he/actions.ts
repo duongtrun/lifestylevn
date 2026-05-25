@@ -8,18 +8,33 @@ import { getWpRequestDetails } from '@/lib/wp-api';
 
 export async function submitContactForm(prevState: any, formData: FormData) {
   try {
-    const fullName = formData.get('fullName')?.toString();
-    const phone = formData.get('phone')?.toString();
-    const request = formData.get('request')?.toString();
+    const fullName = formData.get('fullName')?.toString() || '';
+    const phone = formData.get('phone')?.toString() || '';
+    const request = formData.get('request')?.toString() || '';
 
-    // Kiểm tra dữ liệu người dùng nhập có trống hay không trên server (phương án dự phòng)
-    if (!fullName || !phone || !request) {
-      return { success: false, message: 'Vui lòng điền đầy đủ thông tin.' };
+    // Kiểm tra và validate Họ và tên
+    if (!fullName.trim()) {
+      return { success: false, message: 'Vui lòng nhập họ và tên.', field: 'fullName' };
+    }
+    if (fullName.length > 50) {
+      return { success: false, message: 'Họ và tên không được vượt quá 50 ký tự.', field: 'fullName' };
     }
 
-    // Giới hạn phần tên không quá 50 ký tự
-    if (fullName.length > 50) {
-      return { success: false, message: 'Họ và tên không được vượt quá 50 ký tự.' };
+    // Kiểm tra và validate Số điện thoại (định dạng Việt Nam)
+    if (!phone.trim()) {
+      return { success: false, message: 'Vui lòng nhập số điện thoại.', field: 'phone' };
+    }
+    const phoneRegex = /^(0|(?:\+84)|84)(3|5|7|8|9)\d{8}$/;
+    if (!phoneRegex.test(phone.trim())) {
+      return { success: false, message: 'Số điện thoại không đúng định dạng Việt Nam.', field: 'phone' };
+    }
+
+    // Kiểm tra và validate Nội dung yêu cầu (ít nhất 20 ký tự)
+    if (!request.trim()) {
+      return { success: false, message: 'Vui lòng nhập nội dung yêu cầu.', field: 'request' };
+    }
+    if (request.trim().length < 20) {
+      return { success: false, message: 'Nội dung yêu cầu phải chứa ít nhất 20 ký tự.', field: 'request' };
     }
 
     // URL của WordPress API (Đường dẫn kết nối đến hệ thống WordPress) và các headers cần thiết để đi qua tunnel
@@ -62,7 +77,15 @@ export async function submitContactForm(prevState: any, formData: FormData) {
 
     if (!response.ok || result.status === 'validation_failed' || result.status === 'mail_failed') {
       console.error('Lỗi từ Contact Form 7:', result);
-      return { success: false, message: result.message || 'Lỗi khi gửi dữ liệu lên hệ thống.' };
+      
+      let errorMessage = result.message || 'Lỗi khi gửi dữ liệu lên hệ thống.';
+      if (result.status === 'validation_failed' || errorMessage.toLowerCase().includes('one or more fields')) {
+        errorMessage = 'Một hoặc nhiều thông tin có lỗi. Vui lòng kiểm tra và thử lại.';
+      } else if (result.status === 'mail_failed' || errorMessage.toLowerCase().includes('error trying to send')) {
+        errorMessage = 'Có lỗi xảy ra khi gửi yêu cầu. Vui lòng thử lại sau.';
+      }
+      
+      return { success: false, message: errorMessage };
     }
 
     return { success: true, message: 'Gửi yêu cầu thành công! Chúng tôi sẽ liên hệ lại sớm.' };

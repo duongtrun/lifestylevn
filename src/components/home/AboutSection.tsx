@@ -10,21 +10,8 @@ import { motion } from "framer-motion";
 
 export default function AboutSection() {
   return (
-    <section className="relative w-full py-24 lg:py-32 overflow-hidden bg-cream">
-      {/* Background mờ lót bên dưới, neo sát mép trái màn hình */}
-      <div className="absolute top-0 left-0 w-full lg:w-1/2 h-full z-0 opacity-60 pointer-events-none mix-blend-multiply">
-        <Image 
-          src="/images/blur_about_us.svg"
-          alt="Background blur effect"
-          fill
-          className="object-cover"
-          priority
-        />
-      </div>
+    <section className="relative w-full py-24 lg:py-32 overflow-hidden bg-[#008BBD]/20">
 
-      {/* Trang trí thêm khối blob tròn mềm mại (Organic Shape) */}
-      <div className="absolute -top-[20%] -right-[10%] w-[500px] h-[500px] rounded-full bg-sage-light/60 blur-[80px] pointer-events-none -z-10"></div>
-      <div className="absolute -bottom-[20%] -left-[10%] w-[400px] h-[400px] rounded-full bg-primary/5 blur-[80px] pointer-events-none -z-10"></div>
 
       <div className="container mx-auto px-4 relative z-10 overflow-hidden">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-center">
@@ -65,11 +52,11 @@ export default function AboutSection() {
             className="flex flex-col justify-center space-y-8 min-w-0"
           >
             <div className="space-y-3">
-              <span className="inline-block px-4 py-1.5 rounded-full bg-primary/10 text-primary-dark font-bold tracking-widest text-xs md:text-sm uppercase">
+              <span className="inline-block px-4 py-1.5 rounded-full bg-[#008BBD]/10 text-[#008BBD] font-bold tracking-widest text-xs md:text-sm uppercase">
                 Về chúng tôi
               </span>
-              <h2 className="text-4xl md:text-5xl lg:text-6xl font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-[#66493C] to-[#9A735C] break-words tracking-tight leading-[1.2] pb-2">
-                Lifestyle <br className="hidden lg:block"/> Việt Nam
+              <h2 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-[#008BBD] break-words tracking-tight leading-[1.2] pb-2">
+                LifeStyle Việt Nam
               </h2>
             </div>
             
@@ -79,7 +66,7 @@ export default function AboutSection() {
               </p>
               <div className="p-6 rounded-[24px] bg-white/60 backdrop-blur-md border border-white shadow-[0_8px_30px_rgb(0,0,0,0.04)]">
                 <p>
-                  Với triết lý <span className="font-bold text-primary-dark">"Hợp tác - Phát triển - Chia sẻ giá trị thật"</span>, chúng tôi cam kết tạo ra những sản phẩm và giải pháp vừa an toàn - hiệu quả, vừa mang tính nhân văn trong hành trình nuôi dạy trẻ.
+                  Với triết lý <span className="font-bold text-[#008BBD]">"Hợp tác - Phát triển - Chia sẻ giá trị thật"</span>, chúng tôi cam kết tạo ra những sản phẩm và giải pháp vừa an toàn - hiệu quả, vừa mang tính nhân văn trong hành trình nuôi dạy trẻ.
                 </p>
               </div>
               <p className="text-gray-500">

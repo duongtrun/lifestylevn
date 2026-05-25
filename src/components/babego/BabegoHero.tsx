@@ -16,7 +16,7 @@ export default function BabegoHero() {
         {/* --- Ảnh nền banner full-width --- */}
         <div className="relative w-full h-[650px] md:h-[850px] lg:h-[950px]">
           <Image
-            src="/img_babego/babego_banner.svg"
+            src="/img_babego/babego_banner.webp"
             alt="Babego Banner"
             fill
             className="object-cover object-top"
@@ -31,13 +31,13 @@ export default function BabegoHero() {
               transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
               className="relative w-[90%] md:w-[70%] lg:w-[60%] max-w-[900px] aspect-[21/9] flex items-center justify-center"
             >
-              <Image 
-                src="/img_babego/babego_blur_banner.svg" 
-                alt="Babego Blur Background" 
-                fill 
-                className="object-contain drop-shadow-xl" 
-                priority
-              />
+                  <Image 
+                          src="/img_iruka_care/iruka_care_blur_banner.svg" 
+                          alt="Iruka Care Blur Background" 
+                          fill 
+                          className="object-contain drop-shadow-[0_20px_50px_rgba(0,0,0,0.9)]" 
+                          priority
+                        />
               <div className="absolute inset-0 flex flex-col justify-center items-center text-center px-4 z-20">
                 <h1 className="text-[32px] md:text-[56px] lg:text-[72px] font-bold text-white mb-2 md:mb-4 drop-shadow-md">
                   BABEGO

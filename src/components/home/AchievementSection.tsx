@@ -5,18 +5,62 @@
 // Vai trò: Hiển thị danh sách thành tựu dạng băng chuyền (slider) cuộn ngang sử dụng thư viện Embla.
 // Dùng khi: Người dùng cuộn xuống dưới phần Sự Khác Biệt.
 
-import React, { useCallback } from 'react';
+import React, { useCallback, useState, useEffect } from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
 import useEmblaCarousel from 'embla-carousel-react';
 import { ArrowLeft, ArrowRight } from 'lucide-react';
+import { WPPost, fixImageUrl, decodeHtmlEntities } from '@/lib/wp-api';
 
-export default function AchievementSection() {
+interface AchievementSectionProps {
+  achievements: WPPost[];
+}
+
+const parseTitle = (rawTitle: string) => {
+  const match = rawTitle.match(/^\(([^)]+)\)\s*(.*)$/);
+  if (match) {
+    return {
+      brand: match[1],
+      cleanTitle: match[2]
+    };
+  }
+  return {
+    brand: '',
+    cleanTitle: rawTitle
+  };
+};
+
+const getBrandTagColor = (brandName: string) => {
+  const b = brandName.toLowerCase();
+  if (b.includes('iruka')) return 'bg-[#008BBD]';
+  if (b.includes('babego')) return 'bg-[#98C04A]';
+  if (b.includes('mamigo')) return 'bg-[#E28743]';
+  return 'bg-[#008BBD]';
+};
+
+export default function AchievementSection({ achievements = [] }: AchievementSectionProps) {
   // Cấu hình Embla Carousel: Tắt dragFree (trượt tự do) để bắt buộc snap (khớp) từng ảnh trượt trên mobile.
   const [emblaRef, emblaApi] = useEmblaCarousel({ 
     align: 'start',
     loop: true,
     dragFree: false
   });
+
+  const [selectedIndex, setSelectedIndex] = useState(0);
+  const [scrollSnaps, setScrollSnaps] = useState<number[]>([]);
+
+  const onSelect = useCallback(() => {
+    if (!emblaApi) return;
+    setSelectedIndex(emblaApi.selectedScrollSnap());
+  }, [emblaApi]);
+
+  useEffect(() => {
+    if (!emblaApi) return;
+    setScrollSnaps(emblaApi.scrollSnapList());
+    emblaApi.on('select', onSelect);
+    emblaApi.on('reInit', onSelect);
+    onSelect();
+  }, [emblaApi, onSelect]);
 
   const scrollPrev = useCallback(() => {
     if (emblaApi) emblaApi.scrollPrev();
@@ -26,21 +70,17 @@ export default function AchievementSection() {
     if (emblaApi) emblaApi.scrollNext();
   }, [emblaApi]);
 
-  // Dữ liệu mô phỏng 5 bức ảnh
-  const achievements = [
-    { id: 1, title: 'TOP 10 thương hiệu dẫn đầu Việt Nam 2022' },
-    { id: 2, title: 'TOP 10 thương hiệu dẫn đầu Việt Nam 2022' },
-    { id: 3, title: 'TOP 10 thương hiệu dẫn đầu Việt Nam 2022' },
-    { id: 4, title: 'TOP 10 thương hiệu dẫn đầu Việt Nam 2022' },
-    { id: 5, title: 'TOP 10 thương hiệu dẫn đầu Việt Nam 2022' },
-  ];
+  const stripHtml = (html: string) => {
+    if (!html) return '';
+    return html.replace(/<[^>]*>/g, '').replace(/&nbsp;/g, ' ').trim();
+  };
 
   return (
     <section className="relative w-full py-16 bg-[#fafafa] overflow-hidden">
       
       {/* Tiêu đề lệch trái */}
       <div className="mb-12">
-        <div className="bg-[#98C04A] inline-block pl-4 pr-12 md:pl-10 md:pr-24 py-4 md:py-6 shadow-md rounded-r-lg">
+        <div className="bg-[#008BBD] inline-block pl-4 pr-12 md:pl-10 md:pr-24 py-4 md:py-6 shadow-md rounded-r-lg">
           <h2 className="text-white text-2xl md:text-3xl font-bold uppercase tracking-wide">
             Thành tựu đạt được
           </h2>
@@ -53,38 +93,80 @@ export default function AchievementSection() {
         <div className="relative group">
           <div className="overflow-hidden" ref={emblaRef}>
             <div className="flex -ml-6 pb-4 cursor-grab active:cursor-grabbing">
-              {achievements.map((item) => (
-                <div 
-                  key={item.id}
-                  // Chia đều 100% bề ngang slider (flex-[0_0_100%] trên mobile, 50% trên tablet, 33.333% trên desktop) để hiển thị đầy đủ không bị vỡ.
-                  className="pl-6 relative flex-[0_0_100%] sm:flex-[0_0_50%] lg:flex-[0_0_33.333333%] min-w-0 aspect-[3/4]"
-                >
-                  <div className="relative w-full h-full rounded-xl overflow-hidden shadow-lg group/card">
-                    <Image 
-                      src="/images/achieve.webp"
-                      alt={item.title}
-                      fill
-                      className="object-cover group-hover/card:scale-105 transition-transform duration-700 pointer-events-none"
-                    />
-                    
-                    {/* Lớp gradient đen phía dưới để làm nổi chữ */}
-                    <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-black/80 via-black/40 to-transparent pointer-events-none"></div>
-                    
-                    <div className="absolute bottom-6 inset-x-6 text-center pointer-events-none">
-                      <p className="text-white font-semibold text-sm md:text-base leading-snug drop-shadow-md">
-                        {item.title}
-                      </p>
+              {achievements.map((item, index) => {
+                const image = `/images/${(index % 7) + 1}.jpg`;
+                const rawTitle = decodeHtmlEntities(item.title.rendered);
+                const { brand, cleanTitle: parsedTitle } = parseTitle(rawTitle);
+                const cleanSummary = stripHtml(item.excerpt.rendered || item.content.rendered);
+
+                return (
+                  <div 
+                    key={item.id}
+                    // Chia đều 100% bề ngang slider (flex-[0_0_100%] trên mobile, 50% trên tablet, 25% trên desktop) để hiển thị đầy đủ không bị vỡ.
+                    className="pl-6 relative flex-[0_0_100%] sm:flex-[0_0_50%] lg:flex-[0_0_25%] min-w-0 aspect-[3/4]"
+                  >
+                    <div className="relative w-full h-full rounded-xl overflow-hidden shadow-lg group/card bg-neutral-100">
+                      <Image 
+                        src={image}
+                        alt={parsedTitle}
+                        fill
+                        className="object-cover group-hover/card:scale-105 transition-transform duration-700 pointer-events-none"
+                      />
+
+                      {/* Brand Tag Pill positioned absolutely in top-left corner */}
+                      {brand && (
+                        <div className="absolute top-4 left-4 z-10 pointer-events-none group-hover/card:opacity-0 transition-opacity duration-300">
+                          <span className={`${getBrandTagColor(brand)} text-white px-2.5 py-1 rounded-full text-[9px] font-bold uppercase tracking-wider shadow-md`}>
+                            {brand}
+                          </span>
+                        </div>
+                      )}
+                      
+                      {/* Lớp gradient đen phía dưới để làm nổi chữ (mặc định) */}
+                      <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-black/80 via-black/40 to-transparent pointer-events-none group-hover/card:opacity-0 transition-opacity duration-300"></div>
+                      
+                      <div className="absolute bottom-6 inset-x-6 text-center pointer-events-none group-hover/card:opacity-0 transition-opacity duration-300">
+                        <p className="text-white font-semibold text-sm md:text-base leading-snug drop-shadow-md line-clamp-2">
+                          {parsedTitle}
+                        </p>
+                      </div>
+
+                      {/* Hover Overlay */}
+                      <div className="absolute inset-0 bg-black/80 backdrop-blur-[2px] translate-y-full group-hover/card:translate-y-0 transition-transform duration-500 ease-out flex flex-col justify-between p-5 md:p-6 text-left z-20">
+                        <div className="space-y-2 md:space-y-3">
+                          {brand && (
+                            <span className={`${getBrandTagColor(brand)} text-white px-2.5 py-0.5 rounded-full text-[9px] font-bold uppercase tracking-wider w-fit shadow-md block`}>
+                              {brand}
+                            </span>
+                          )}
+                          <h3 className="text-white font-bold text-sm md:text-base leading-snug line-clamp-2">
+                            {parsedTitle}
+                          </h3>
+                          <p className="text-neutral-300 text-xs md:text-sm leading-relaxed line-clamp-6">
+                            {cleanSummary}
+                          </p>
+                        </div>
+                        <div>
+                          <Link 
+                            href={`/tin-tuc/${item.slug}`}
+                            className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-[#008BBD] text-white hover:bg-[#00749e] font-bold text-xs shadow-md hover:shadow-lg transition-all duration-300 cursor-pointer"
+                          >
+                            Xem thêm
+                            <ArrowRight size={14} />
+                          </Link>
+                        </div>
+                      </div>
                     </div>
                   </div>
-                </div>
-              ))}
+                );
+              })}
             </div>
           </div>
 
           {/* Nút Điều Hướng Trái */}
           <button 
             onClick={scrollPrev}
-            className="absolute -left-4 md:-left-6 top-1/2 -translate-y-1/2 w-12 h-12 hidden md:flex items-center justify-center rounded-full bg-white text-[#98C04A] hover:bg-[#98C04A] hover:text-white border-2 border-[#98C04A] hover:scale-110 active:scale-95 transition-all shadow-xl z-10 opacity-90 group-hover:opacity-100"
+            className="absolute -left-4 md:-left-6 top-1/2 -translate-y-1/2 w-12 h-12 hidden md:flex items-center justify-center rounded-full bg-white text-[#008BBD] hover:bg-[#008BBD] hover:text-white border-2 border-[#008BBD] hover:scale-110 active:scale-95 transition-all shadow-xl z-10 opacity-90 group-hover:opacity-100"
             aria-label="Trượt sang trái"
           >
             <ArrowLeft size={24} strokeWidth={2.5} />
@@ -93,11 +175,25 @@ export default function AchievementSection() {
           {/* Nút Điều Hướng Phải */}
           <button 
             onClick={scrollNext}
-            className="absolute -right-4 md:-right-6 top-1/2 -translate-y-1/2 w-12 h-12 hidden md:flex items-center justify-center rounded-full bg-white text-[#98C04A] hover:bg-[#98C04A] hover:text-white border-2 border-[#98C04A] hover:scale-110 active:scale-95 transition-all shadow-xl z-10 opacity-90 group-hover:opacity-100"
+            className="absolute -right-4 md:-right-6 top-1/2 -translate-y-1/2 w-12 h-12 hidden md:flex items-center justify-center rounded-full bg-white text-[#008BBD] hover:bg-[#008BBD] hover:text-white border-2 border-[#008BBD] hover:scale-110 active:scale-95 transition-all shadow-xl z-10 opacity-90 group-hover:opacity-100"
             aria-label="Trượt sang phải"
           >
             <ArrowRight size={24} strokeWidth={2.5} />
           </button>
+        </div>
+
+        {/* Chấm tròn chỉ hướng cho Mobile */}
+        <div className="flex items-center justify-center gap-2.5 mt-6 md:hidden">
+          {scrollSnaps.map((_, index) => (
+            <button
+              key={index}
+              onClick={() => emblaApi && emblaApi.scrollTo(index)}
+              className={`h-2 rounded-full transition-all duration-300 ${
+                selectedIndex === index ? 'bg-[#008BBD] w-6' : 'bg-[#008BBD]/30 w-2'
+              }`}
+              aria-label={`Xem thành tựu ${index + 1}`}
+            />
+          ))}
         </div>
 
       </div>

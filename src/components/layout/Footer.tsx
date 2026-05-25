@@ -81,7 +81,7 @@ export default function Footer() {
             {/* Mạng xã hội */}
             <div className="flex items-center gap-4 pt-2">
               {/* Facebook */}
-              <Link href="https://facebook.com" target="_blank" rel="noopener noreferrer" aria-label="Facebook" className="flex items-center justify-center w-10 h-10 rounded-full bg-[#98C04A]/10 text-[#98C04A] hover:bg-[#98C04A] hover:text-white transition-all duration-300 hover:scale-110">
+              <Link href="https://www.facebook.com/LifestyleVietNam2017" target="_blank" rel="noopener noreferrer" aria-label="Facebook" className="flex items-center justify-center w-10 h-10 rounded-full bg-[#98C04A]/10 text-[#98C04A] hover:bg-[#98C04A] hover:text-white transition-all duration-300 hover:scale-110">
                 <FaFacebookF className="w-5 h-5" />
               </Link>
               {/* Google */}

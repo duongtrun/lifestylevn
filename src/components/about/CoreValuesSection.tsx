@@ -2,144 +2,207 @@
 
 // File: src/components/about/CoreValuesSection.tsx
 // Luồng: Trang Giới thiệu (/gioi-thieu)
-// Vai trò: Hiển thị 6 giá trị cốt lõi với màu chủ đạo #008BBD — nền sáng #EEF8FC,
-//          card trắng viền xanh, icon #008BBD, hiệu ứng hover nổi nhẹ.
-// Dùng khi: Người dùng cuộn xuống phần Giá trị cốt lõi.
+// Vai trò: Hiển thị 6 giá trị cốt lõi dưới dạng cụm lục giác (Hexagonal Cluster)
+//          có thể click để điều hướng sang trang chi tiết Giá trị cốt lõi riêng.
+// Dùng khi: Người dùng cuộn đến phần Giá trị cốt lõi trên trang Giới thiệu.
 
 import React from 'react';
-import { motion, Variants } from 'framer-motion';
-import { Heart, Lightbulb, TrendingUp, Target, Home, HeartHandshake } from 'lucide-react';
+import { motion } from 'framer-motion';
+import Link from 'next/link';
 
-// Dữ liệu 6 giá trị cốt lõi
-const coreValues = [
-  {
-    id: 1,
-    title: 'Con người là trọng tâm',
-    description: 'Chúng tôi luôn đặt con người lên hàng đầu, trân trọng và phát triển nhân tài làm nền tảng vững chắc.',
-    icon: Heart,
-  },
-  {
-    id: 2,
-    title: 'Luôn đổi mới & sáng tạo',
-    description: 'Không ngừng học hỏi, cải tiến để mang lại những giải pháp đột phá và giá trị vượt trội.',
-    icon: Lightbulb,
-  },
-  {
-    id: 3,
-    title: 'Cùng nhau phát triển & chia sẻ lợi nhuận',
-    description: 'Xây dựng mối quan hệ hợp tác bền vững, cùng hướng tới thành công và chia sẻ thành quả.',
-    icon: TrendingUp,
-  },
-  {
-    id: 4,
-    title: 'Vì khách hàng',
-    description: 'Lấy sự hài lòng của khách hàng làm thước đo cho mọi nỗ lực và cam kết chất lượng.',
-    icon: Target,
-  },
-  {
-    id: 5,
-    title: 'Tinh thần gia đình',
-    description: 'Môi trường làm việc ấm áp, gắn kết, yêu thương và hỗ trợ lẫn nhau như những thành viên trong gia đình.',
-    icon: Home,
-  },
-  {
-    id: 6,
-    title: 'Biết ơn',
-    description: 'Trân trọng từng cơ hội, biết ơn đối tác, khách hàng và đồng nghiệp đã cùng đồng hành.',
-    icon: HeartHandshake,
-  },
-];
+interface HexagonProps {
+  className?: string;
+  bgClass?: string;
+  hasBorder?: boolean;
+  borderColor?: string;
+  borderWidth?: number;
+  textColor?: string;
+  title: string;
+  onClick?: () => void;
+  index: number;
+}
 
-const containerVariants: Variants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: { staggerChildren: 0.12 },
-  },
-};
+// React Component vẽ Lục giác đứng (pointed-top) hỗ trợ border tùy chỉnh
+const Hexagon = ({
+  className = '',
+  bgClass = 'bg-[#008BBD]',
+  hasBorder = false,
+  borderColor = 'bg-[#008BBD]',
+  borderWidth = 3,
+  textColor = 'text-white',
+  title,
+  index,
+}: HexagonProps) => {
+  const clipStyle = {
+    clipPath: 'polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%)',
+  };
 
-const itemVariants: Variants = {
-  hidden: { opacity: 0, y: 36 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: 'easeOut' } },
+  const formattedTitle = title.split('\n').map((line, i) => (
+    <span key={i} className="block">
+      {line}
+    </span>
+  ));
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, scale: 0.8 }}
+      whileInView={{ opacity: 1, scale: 1 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.5, delay: index * 0.08, ease: 'easeOut' }}
+      whileHover={{ scale: 1.05, zIndex: 30 }}
+      className={`absolute w-[190px] h-[220px] cursor-pointer transition-all duration-300 ${className}`}
+    >
+      {hasBorder ? (
+        <div
+          className={`absolute inset-0 ${borderColor}`}
+          style={clipStyle}
+        >
+          <div
+            className={`absolute ${bgClass} flex flex-col items-center justify-center p-5 text-center`}
+            style={{
+              ...clipStyle,
+              width: `calc(100% - ${borderWidth * 2}px)`,
+              height: `calc(100% - ${borderWidth * 2}px)`,
+              top: `${borderWidth}px`,
+              left: `${borderWidth}px`,
+            }}
+          >
+            <p className={`text-[15px] md:text-[16px] font-bold leading-snug tracking-wide uppercase select-none ${textColor}`}>
+              {formattedTitle}
+            </p>
+          </div>
+        </div>
+      ) : (
+        <div
+          className={`absolute inset-0 ${bgClass} flex flex-col items-center justify-center p-5 text-center`}
+          style={clipStyle}
+        >
+          <p className={`text-[15px] md:text-[16px] font-bold leading-snug tracking-wide uppercase select-none ${textColor}`}>
+            {formattedTitle}
+          </p>
+        </div>
+      )}
+    </motion.div>
+  );
 };
 
 export default function CoreValuesSection() {
+  // 6 lục giác xung quanh + 1 lục giác trung tâm
+  const hexData = [
+    {
+      // 1. Top
+      title: 'Con người\nlà trọng tâm',
+      bgClass: 'bg-white',
+      hasBorder: true,
+      borderColor: 'bg-[#008BBD]',
+      textColor: 'text-[#008BBD]',
+      posClass: 'left-[225px] top-[0px]',
+    },
+    {
+      // 2. Top-Right
+      title: 'Luôn đổi mới\n& sáng tạo',
+      bgClass: 'bg-[#008BBD]',
+      hasBorder: false,
+      textColor: 'text-white',
+      posClass: 'left-[450px] top-[130px]',
+    },
+    {
+      // 3. Bottom-Right
+      title: 'Cùng nhau\nphát triển\n& chia sẻ lợi\nnhuận',
+      bgClass: 'bg-white',
+      hasBorder: true,
+      borderColor: 'bg-[#008BBD]',
+      textColor: 'text-[#008BBD]',
+      posClass: 'left-[450px] top-[390px]',
+    },
+    {
+      // 4. Bottom
+      title: 'Vì khách hàng',
+      bgClass: 'bg-[#008BBD]',
+      hasBorder: false,
+      textColor: 'text-white',
+      posClass: 'left-[225px] top-[520px]',
+    },
+    {
+      // 5. Bottom-Left
+      title: 'Tình thân\ngia đình',
+      bgClass: 'bg-white',
+      hasBorder: true,
+      borderColor: 'bg-[#008BBD]',
+      textColor: 'text-[#008BBD]',
+      posClass: 'left-[0px] top-[390px]',
+    },
+    {
+      // 6. Top-Left
+      title: 'Biết ơn',
+      bgClass: 'bg-[#008BBD]',
+      hasBorder: false,
+      textColor: 'text-white',
+      posClass: 'left-[0px] top-[130px]',
+    },
+  ];
+
   return (
-    // Nền sáng #EEF8FC — đồng bộ với toàn trang Giới thiệu
-    <section className="relative w-full py-10 bg-[#EEF8FC] overflow-hidden">
+    <section className="relative w-full py-16 bg-[#EEF8FC] overflow-hidden">
+      
 
-      {/* Họa tiết blob mờ trang trí góc — cùng tông màu chủ đạo */}
-      <div className="absolute -top-20 -right-20 w-80 h-80 rounded-full bg-[#008BBD]/10 blur-3xl pointer-events-none" />
-      <div className="absolute -bottom-20 -left-20 w-80 h-80 rounded-full bg-[#008BBD]/10 blur-3xl pointer-events-none" />
-
-      <div className="container mx-auto px-4 md:px-10 relative z-10">
-
-        {/* --- TIÊU ĐỀ --- */}
+      <div className="container mx-auto px-4 relative z-10">
+        
+        {/* --- TIÊU ĐỀ SECTION --- */}
         <motion.div
           initial={{ opacity: 0, y: -20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.7 }}
-          className="text-center mb-8 md:mb-12 lg:mb-16"
+          transition={{ duration: 0.6 }}
+          className="text-center mb-10 md:mb-14"
         >
-          {/* Badge nhỏ phía trên */}
-          <span className="inline-block mb-2 px-4 py-1.5 rounded-full bg-[#008BBD]/10 text-[#008BBD] text-xs font-semibold uppercase tracking-widest">
+          <span className="inline-block mb-2.5 px-4 py-1.5 rounded-full bg-[#008BBD]/10 text-[#008BBD] text-xs font-bold uppercase tracking-widest">
             Văn hoá doanh nghiệp
           </span>
-          <h2 className="text-3xl md:text-5xl font-extrabold text-[#273F68] mb-3">
+          <h2 className="text-3xl md:text-5xl font-extrabold text-[#273F68] mb-4">
             Giá Trị Cốt Lõi
           </h2>
-          {/* Đường kẻ accent */}
           <div className="h-1 w-20 bg-[#008BBD] mx-auto rounded-full" />
         </motion.div>
 
-        {/* --- LƯỚI 6 CARD --- */}
-        <motion.div
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8"
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: '-50px' }}
+        {/* --- CỤM LỤC GIÁC TỔ ONG --- */}
+        <Link 
+          href="/gioi-thieu/gia-tri-cot-loi"
+          className="block w-fit mx-auto relative group"
         >
-          {coreValues.map((value) => {
-            const Icon = value.icon;
-            return (
-              <motion.div
-                key={value.id}
-                variants={itemVariants}
-                // Hover: nhấc lên + đổ bóng xanh nhẹ
-                whileHover={{ y: -8, boxShadow: '0 20px 40px rgba(0,139,189,0.18)' }}
-                transition={{ duration: 0.3 }}
-                className="group bg-white rounded-2xl p-7 border border-[#008BBD]/20
-                           flex flex-col items-center text-center cursor-default
-                           shadow-sm hover:border-[#008BBD]/60 transition-colors duration-300"
-              >
-                {/* Vòng tròn icon */}
-                <div className="w-16 h-16 rounded-full bg-[#008BBD]/10 flex items-center justify-center mb-5
-                                group-hover:bg-[#008BBD] transition-colors duration-400">
-                  <Icon
-                    className="w-8 h-8 text-[#008BBD] group-hover:text-white transition-colors duration-400"
-                  />
-                </div>
+          {/* Container Lục giác: Tự động scale trên mobile để fit vừa chiều ngang màn hình */}
+          <div className="relative w-[640px] h-[740px] scale-[0.48] xs:scale-[0.55] sm:scale-[0.68] md:scale-100 origin-center my-[-145px] xs:my-[-120px] sm:my-[-70px] md:my-0 mx-[-166px] xs:mx-[-144px] sm:mx-[-102px] md:mx-0 transition-transform duration-300">
+            
+            {/* Lục giác trung tâm (GIÁ TRỊ CỐT LÕI) */}
+            <Hexagon
+              title="GIÁ TRỊ CỐT LÕI"
+              bgClass="bg-white"
+              hasBorder={true}
+              borderColor="bg-[#008BBD]"
+              borderWidth={4}
+              textColor="text-[#273F68]"
+              className="left-[225px] top-[260px] z-20"
+              index={0}
+            />
 
-                {/* Số thứ tự nhỏ */}
-                <span className="text-xs font-bold text-[#008BBD]/50 tracking-widest uppercase mb-1">
-                  0{value.id}
-                </span>
+            {/* 6 Lục giác xung quanh */}
+            {hexData.map((hex, i) => (
+              <Hexagon
+                key={i}
+                title={hex.title}
+                bgClass={hex.bgClass}
+                hasBorder={hex.hasBorder}
+                borderColor={hex.borderColor}
+                textColor={hex.textColor}
+                className={hex.posClass}
+                index={i + 1}
+              />
+            ))}
 
-                {/* Tiêu đề */}
-                <h3 className="text-lg font-bold text-[#273F68] mb-3 leading-snug">
-                  {value.title}
-                </h3>
+          </div>
 
-                {/* Mô tả */}
-                <p className="text-slate-500 text-sm leading-relaxed">
-                  {value.description}
-                </p>
-              </motion.div>
-            );
-          })}
-        </motion.div>
+        </Link>
+
       </div>
     </section>
   );
