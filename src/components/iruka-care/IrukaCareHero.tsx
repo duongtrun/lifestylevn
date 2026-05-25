@@ -22,7 +22,7 @@ export default function IrukaCareHero() {
         }}
       >
         <Image
-          src="/img_iruka_care/iruka_care_banner.webp"
+          src="/img_iruka_care/iruka_banner.png"
           alt="Iruka Care Banner Background"
           fill
           className="object-cover object-center"
@@ -40,7 +40,7 @@ export default function IrukaCareHero() {
         >
           {/* Ảnh Blur Banner làm background cho khối chữ */}
           <Image 
-            src="/img_iruka_care/iruka_care_blur_banner.webp" 
+            src="/img_iruka_care/iruka_care_blur_banner.svg" 
             alt="Iruka Care Blur Background" 
             fill 
             className="object-contain drop-shadow-[0_20px_50px_rgba(0,0,0,0.8)]" 

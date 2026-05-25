@@ -18,7 +18,7 @@ export default function IrukaEduSlogan() {
         {/* Khung viền vẽ tay - Giao diện Desktop */}
         <div className="absolute inset-0 w-full h-full z-0 pointer-events-none hidden md:block">
           <Image 
-            src="/img_iruka_edu/bg_iruka_edu.webp" 
+            src="/img_iruka_edu/bg_iruka_edu.svg" 
             alt="Iruka Edu Background Outline Desktop" 
             fill 
             className="object-contain" 
@@ -49,7 +49,7 @@ export default function IrukaEduSlogan() {
           {/* Logo */}
           <div className="relative w-[80px] h-[60px] md:w-[110px] md:h-[80px] mb-2 md:mb-3">
             <Image 
-              src="/img_iruka_edu/logo.webp" 
+              src="/img_iruka_edu/logo.svg" 
               alt="Iruka Edu Logo" 
               fill 
               className="object-contain" 

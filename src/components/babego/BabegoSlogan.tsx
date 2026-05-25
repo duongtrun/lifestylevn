@@ -44,13 +44,13 @@ export default function BabegoSlogan() {
           transition={{ duration: 0.6, delay: 0.2 }}
           className="absolute right-0 lg:right-[-2%] top-1/2 -translate-y-1/2 w-[180px] h-[240px] lg:w-[410px] lg:h-[500px] z-20 pointer-events-none hidden lg:block"
         >
-          <Image 
+          {/* <Image 
             src="/img_babego/babego_mascot_2.webp" 
             alt="Babego Mascot" 
             fill 
             className="object-contain" 
             priority
-          />
+          /> */}
         </motion.div>
 
         {/* Nội dung Slogan */}

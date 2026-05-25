@@ -32,7 +32,7 @@ export default function BabegoHero() {
               className="relative w-[90%] md:w-[70%] lg:w-[60%] max-w-[900px] aspect-[21/9] flex items-center justify-center"
             >
                   <Image 
-                          src="/img_iruka_care/iruka_care_blur_banner.webp" 
+                          src="/img_iruka_care/iruka_care_blur_banner.svg" 
                           alt="Iruka Care Blur Background" 
                           fill 
                           className="object-contain drop-shadow-[0_20px_50px_rgba(0,0,0,0.9)]" 
@@ -74,7 +74,7 @@ export default function BabegoHero() {
             className="w-[260px] sm:w-[320px] md:w-[400px] lg:w-[500px] flex-shrink-0 relative z-20 lg:absolute lg:left-[-50px] xl:left-[-100px] lg:bottom-0 mb-[-30px] lg:mb-0"
           >
             <Image
-              src="/img_babego/babego_mascot.webp"
+              src="/img_babego/babego_mascot.svg"
               alt="Babego Mascot"
               width={500}
               height={600}
@@ -93,7 +93,7 @@ export default function BabegoHero() {
             {/* Logo Babego (Nổi ra ngoài góc phải trên) */}
             <div className="absolute top-[-30px] right-[-10px] md:top-[-60px] md:right-[-20px] lg:top-[-100px] lg:right-[-120px] w-[140px] h-[95px] md:w-[220px] md:h-[160px] lg:w-[329px] lg:h-[269px] z-20 pointer-events-none">
               <Image 
-                src="/img_babego/babego_logo.webp" 
+                src="/img_babego/babego_logo.svg" 
                 alt="Babego Logo" 
                 fill 
                 className="object-contain" 

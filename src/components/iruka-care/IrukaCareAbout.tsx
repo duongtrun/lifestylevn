@@ -82,7 +82,7 @@ export default function IrukaCareAbout() {
               className="relative w-[280px] h-[280px] md:w-[350px] md:h-[350px] lg:w-[420px] lg:h-[420px] flex-shrink-0"
             >
               <Image
-                src="/img_iruka_care/iruka_care_mascot_1.webp"
+                src="/img_iruka_care/mascot_no_bg.png"
                 alt="iruKa Care Mascot 1"
                 fill
                 className="object-contain drop-shadow-2xl"
