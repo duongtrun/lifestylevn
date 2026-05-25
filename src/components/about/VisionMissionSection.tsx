@@ -34,8 +34,9 @@ const tabs = [
     heading: 'SỨ MỆNH',
     content:
       'Mang đến giải pháp toàn diện và đáng tin cậy giúp trẻ phát triển khỏe mạnh – hạnh phúc – an toàn trong những năm đầu đời, đồng hành cùng các bà mẹ trong hành trình nuôi dạy con khôn lớn. Chúng tôi cam kết tạo ra các sản phẩm và dịch vụ vừa an toàn, chất lượng, vừa mang lại giá trị thực cho gia đình Việt.',
-    cardClass: 'absolute top-[5px] bottom-auto left-auto right-[5px] z-20 w-[200px] max-w-[calc(100%-10px)] max-h-[200px] overflow-y-auto md:top-[5px] md:bottom-[5px] md:left-auto md:right-10 md:w-[300px] md:max-h-none md:overflow-y-visible',
-    innerClass: 'p-3 md:p-6 h-auto md:h-full justify-center',
+    cardClass: 'absolute top-[5px] bottom-auto left-[5px] right-[5px] z-20 w-auto max-h-[200px] overflow-y-auto md:top-[5px] md:bottom-[5px] md:left-auto md:right-10 md:w-[300px] md:max-h-none md:overflow-y-visible',
+    innerClass: 'p-2 md:p-6 h-auto md:h-full justify-start md:justify-center',
+    objectPositionMobile: 'object-top',
   },
   {
     id: 'philosophy',
@@ -142,7 +143,7 @@ export default function VisionMissionSection() {
                   src={currentTab.imageMobile}
                   alt={`${currentTab.heading} mobile`}
                   fill
-                  className="object-cover md:hidden"
+                  className={`object-cover md:hidden ${currentTab.objectPositionMobile || 'object-center'}`}
                   priority
                 />
               </motion.div>
