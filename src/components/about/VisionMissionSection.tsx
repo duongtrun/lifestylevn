@@ -150,9 +150,9 @@ export default function VisionMissionSection() {
                 initial="hidden"
                 animate="visible"
                 exit="exit"
-                className="absolute top-[5px] bottom-[5px] right-[5px] z-20 w-[300px] max-w-[calc(100%-10px)]"
+                className="absolute top-[5px] left-[5px] right-[5px] z-20 w-auto max-h-[200px] overflow-y-auto md:bottom-[5px] md:left-auto md:right-10 md:w-[300px] md:max-h-none md:overflow-y-visible"
               >
-                <div className="bg-white/30 backdrop-blur-md border border-white/40 rounded-2xl p-4 md:p-6 shadow-xl h-full flex flex-col justify-center">
+                <div className="bg-white/30 backdrop-blur-md border border-white/40 rounded-2xl p-3 md:p-6 shadow-xl h-auto md:h-full flex flex-col justify-center">
                   {/* Icon + Tiêu đề */}
                   <div className="flex items-center gap-2 mb-3">
                     <Icon className="w-5 h-5" style={{ color: '#273F68' }} />
