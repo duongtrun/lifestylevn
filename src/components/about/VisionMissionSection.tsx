@@ -17,8 +17,8 @@ const tabs = [
     id: 'vision',
     label: 'Tầm nhìn',
     icon: Eye,
-    imageDesktop: '/img_about_us/bg_vision.webp',
-    imageMobile: '/img_about_us/bg_vision.webp',
+    imageDesktop: '/images/tam_nhin.png',
+    imageMobile: '/images/tam_nhin_mobile.png',
     heading: 'TẦM NHÌN',
     content:
       'Trở thành doanh nghiệp tiên phong trong việc xây dựng hệ sinh thái Mẹ & Bé toàn diện tại Việt Nam – nơi công nghệ, dinh dưỡng, giáo dục và sức khỏe kết hợp để mang đến giải pháp nuôi dạy con toàn diện và bền vững.',
