@@ -13,21 +13,24 @@ const missionData = [
   {
     id: 'vision',
     label: 'Tầm nhìn',
-    image: '/img_babego/babego_tam_nhin.webp',
+    imageDesktop: '/img_babego/tam_nhin.jpg',
+    imageMobile: '/img_babego/tam_nhin_mobile.jpg',
     title: '', // Tắt title đi vì trong text đã đủ ý rồi, hoặc để text tự nổi bật
     text: `Chúng tôi tin rằng một hệ tiêu hóa khỏe mạnh là nền tảng quan trọng nhất cho sự phát triển của một đứa trẻ.\n\nVới niềm tin ấy, Babego hướng đến trở thành thương hiệu dinh dưỡng hàng đầu Việt Nam, không chỉ cung cấp sản phẩm mà còn mang đến sự yên tâm, niềm tin, và khoa học nuôi dưỡng đúng đắn cho mọi gia đình.\n\nBabego mong muốn đồng hành lâu dài cùng bố mẹ trong hành trình nuôi con, trở thành thương hiệu mà bố mẹ nghĩ đến đầu tiên khi con gặp vấn đề tiêu hóa – ăn uống – tăng trưởng.`
   },
   {
     id: 'mission',
     label: 'Sứ mệnh',
-    image: '/img_babego/babego_su_menh.webp',
+    imageDesktop: '/img_babego/su_menh.jpg',
+    imageMobile: '/img_babego/su_menh_mobile.jpg',
     title: '',
     text: `Babego cam kết tạo ra những sản phẩm dinh dưỡng an toàn, khoa học và phù hợp với thể trạng trẻ em Việt Nam, đặt chất lượng và sức khỏe trẻ nhỏ lên hàng đầu.\n\nChúng tôi không ngừng cải tiến công thức dựa trên nghiên cứu khoa học và phản hồi thực tế, hướng tới mục tiêu đồng hành cùng gia đình Việt trong hành trình nuôi dưỡng một thế hệ trẻ khỏe mạnh, tự tin và phát triển bền vững.`
   },
   {
     id: 'commitment',
     label: 'Cam kết',
-    image: '/img_babego/babego_cam_ket.webp',
+    imageDesktop: '/img_babego/cam_ket.jpg',
+    imageMobile: '/img_babego/cam_ket_mobile.jpg',
     title: '',
     text: `Babego cam kết tạo ra những sản phẩm dinh dưỡng an toàn – minh bạch – phù hợp với thể trạng trẻ Việt.\n\nChúng tôi không phóng đại công dụng, không thỏa hiệp với chất lượng, và luôn đặt sức khỏe trẻ nhỏ lên hàng đầu.\n\nMỗi sản phẩm Babego là sự kết hợp giữa nghiên cứu khoa học, nguyên liệu chọn lọc và trách nhiệm lâu dài với gia đình Việt – vì một thế hệ trẻ em khỏe mạnh và phát triển bền vững.`
   }
@@ -105,12 +108,24 @@ export default function BabegoMission() {
               transition={{ duration: 0.4 }}
               className="absolute inset-0 w-full h-full"
             >
-              {/* Hình ảnh nền (thường là svg chứa minh họa) */}
-              <div className="absolute inset-0">
+              {/* Hình ảnh nền Desktop */}
+              <div className="hidden md:block absolute inset-0 w-full h-full">
                 <Image
-                  src={activeData.image}
+                  src={activeData.imageDesktop}
                   alt={activeData.label}
                   fill
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 85vw, 800px"
+                  className="object-cover object-center"
+                />
+              </div>
+
+              {/* Hình ảnh nền Mobile */}
+              <div className="block md:hidden absolute inset-0 w-full h-full bg-[#E8F5E9]">
+                <Image
+                  src={activeData.imageMobile}
+                  alt={activeData.label}
+                  fill
+                  sizes="(max-width: 768px) 100vw, 85vw"
                   className="object-cover object-center"
                 />
               </div>
