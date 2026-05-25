@@ -2,8 +2,8 @@
 
 // File: src/components/iruka-edu/IrukaEduHero.tsx
 // Luồng: Trang Hệ sinh thái > Iruka EDU (/he-sinh-thai/iruka-edu)
-// Vai trò: Hero banner — hiển thị ảnh nền banner_iruka_edu.svg full-width phía trên,
-//          bên trái là tiêu đề + tagline, bên phải là mascot hero_banner.svg.
+// Vai trò: Hero banner — hiển thị ảnh nền banner_iruka_edu.webp full-width phía trên,
+//          bên trái là tiêu đề + tagline, bên phải là mascot hero_banner.webp.
 //          Phía dưới là phần "Câu chuyện thương hiệu" trên nền trắng.
 // Dùng khi: Người dùng vào trang Iruka EDU từ menu hoặc link hệ sinh thái.
 
@@ -47,7 +47,7 @@ export default function IrukaEduHero() {
                 </p>
               </motion.div>
 
-              {/* Bên phải: Mascot hero_banner.svg */}
+              {/* Bên phải: Mascot hero_banner.webp */}
               <motion.div
                 initial={{ opacity: 0, x: 40, scale: 0.9 }}
                 animate={{ opacity: 1, x: 0, scale: 1 }}

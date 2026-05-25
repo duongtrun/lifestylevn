@@ -3,7 +3,7 @@
 // File: src/components/iruka-edu/IrukaEduTech.tsx
 // Luồng: Trang Hệ sinh thái > Iruka EDU
 // Vai trò: Section "Nền tảng công nghệ và điểm khác biệt"
-//   - Background: tech_different.svg
+//   - Background: tech_different.webp
 //   - 5 khối nội dung sử dụng background bg_text_tech.svg
 // Dùng khi: Hiển thị bên dưới section Workflow
 
@@ -114,10 +114,10 @@ const techData = [
 export default function IrukaEduTech() {
   return (
     <section className="relative w-full overflow-hidden bg-[#0A3D73] py-16 md:py-24">
-      {/* Background Image: tech_different.svg */}
+      {/* Background Image: tech_different.webp */}
       <div className="absolute inset-0 z-0">
         <Image
-          src="/img_iruka_edu/tech_different.svg"
+          src="/img_iruka_edu/tech_different.webp"
           alt="Tech Different Background"
           fill
           className="object-cover object-top opacity-90"

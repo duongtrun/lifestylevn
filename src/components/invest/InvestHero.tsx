@@ -17,7 +17,7 @@ export default function InvestHero() {
       {/* Ảnh nền banner (skyline thành phố tone xanh đậm) */}
       <div className="absolute inset-0 z-0">
         <Image
-          src="/invest_img/invest_banner.svg"
+          src="/invest_img/invest_banner.webp"
           alt="Đối tác và Nhà đầu tư - Skyline thành phố"
           fill
           className="object-cover object-center"

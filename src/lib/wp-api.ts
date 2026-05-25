@@ -141,7 +141,7 @@ export interface WPPost {
 const CATEGORY_DEFAULT_IMAGES: Record<string, string[]> = {
   // Mỗi danh mục có nhiều ảnh, hệ thống sẽ xoay vòng để bài không bị trùng ảnh
   'su-kien': ['/images/hot_news_img.webp', '/img_news/edu_img.svg', '/img_news/suc_khoe.svg'],
-  'dinh-duong-tieu-hoa': ['/img_news/dinh_duong_tieu_hoa.svg', '/img_news/dinh_duong_tieu_hoa_2.svg', '/img_news/dinh_duong_tieu_hoa_3.svg'],
+  'dinh-duong-tieu-hoa': ['/img_news/dinh_duong_tieu_hoa.webp', '/img_news/dinh_duong_tieu_hoa_2.webp', '/img_news/dinh_duong_tieu_hoa_3.webp'],
   'suc-khoe-ve-sinh': ['/img_news/suc_khoe.svg', '/img_news/suc_khoe_2.svg', '/img_news/suc_khoe_3.svg'],
 };
 const DEFAULT_IMAGE = '/img_news/edu_img.svg';
@@ -280,7 +280,7 @@ export const MOCK_POSTS: WPPost[] = [
     content: { rendered: '<p>Làm thế nào để trẻ tăng cân đều đặn nhưng hệ tiêu hóa vẫn khỏe mạnh? Bài viết này tổng hợp lời khuyên từ các bác sĩ dinh dưỡng đầu ngành về việc cân đối hàm lượng chất xơ hòa tan kết hợp cùng các acid amin thiết yếu trong chế độ ăn hàng ngày của bé.</p>' },
     excerpt: { rendered: 'Tổng hợp các mẹo nhỏ cực kỳ hiệu quả giúp cân đối thực đơn ăn dặm giàu xơ và dinh dưỡng lành mạnh cho hệ tiêu hóa trẻ.' },
     _embedded: {
-      'wp:featuredmedia': [{ source_url: '/img_news/dinh_duong_tieu_hoa.svg', alt_text: 'Dinh dưỡng tiêu hóa' }],
+      'wp:featuredmedia': [{ source_url: '/img_news/dinh_duong_tieu_hoa.webp', alt_text: 'Dinh dưỡng tiêu hóa' }],
       'wp:term': [[
         { id: 5, name: 'Dinh dưỡng & tiêu hóa', slug: 'dinh-duong-tieu-hoa', taxonomy: 'category' },
         { id: 10, name: 'Tin tức', slug: 'tin-tuc', taxonomy: 'category' }
@@ -295,7 +295,7 @@ export const MOCK_POSTS: WPPost[] = [
     content: { rendered: '<p>Bước vào giai đoạn ăn dặm, hệ tiêu hóa của bé vẫn còn rất non nớt. Việc xây dựng thực đơn cần được tính toán chi li, đa dạng hóa các nguồn đạm dễ tiêu và bổ sung chất xơ FOS tự nhiên giúp bé hấp thu trọn vẹn dinh dưỡng mà không bị đầy hơi, khó tiêu.</p>' },
     excerpt: { rendered: 'Phương pháp xây dựng thực đơn ăn dặm khoa học giúp bổ sung đầy đủ vitamin và kích thích hệ tiêu hóa non nớt hoạt động trơn tru.' },
     _embedded: {
-      'wp:featuredmedia': [{ source_url: '/img_news/dinh_duong_tieu_hoa_2.svg', alt_text: 'Thực đơn ăn dặm khoa học' }],
+      'wp:featuredmedia': [{ source_url: '/img_news/dinh_duong_tieu_hoa_2.webp', alt_text: 'Thực đơn ăn dặm khoa học' }],
       'wp:term': [[
         { id: 5, name: 'Dinh dưỡng & tiêu hóa', slug: 'dinh-duong-tieu-hoa', taxonomy: 'category' },
         { id: 10, name: 'Tin tức', slug: 'tin-tuc', taxonomy: 'category' }
@@ -310,7 +310,7 @@ export const MOCK_POSTS: WPPost[] = [
     content: { rendered: '<p>Hệ vi sinh đường ruột đóng vai trò quyết định đến 70% hệ miễn dịch của bé. Bổ sung đúng loại lợi khuẩn giúp ức chế hại khuẩn, ngăn ngừa rối loạn tiêu hóa, kích thích thành ruột hấp thu tối đa dưỡng chất, tạo đà cho bé tăng cân đều đặn.</p>' },
     excerpt: { rendered: 'Tăng cường sức đề kháng và cải thiện hệ hấp thu của trẻ nhỏ thông qua việc bổ sung probiotics khoa học mỗi ngày.' },
     _embedded: {
-      'wp:featuredmedia': [{ source_url: '/img_news/dinh_duong_tieu_hoa_3.svg', alt_text: 'Bổ sung lợi khuẩn' }],
+      'wp:featuredmedia': [{ source_url: '/img_news/dinh_duong_tieu_hoa_3.webp', alt_text: 'Bổ sung lợi khuẩn' }],
       'wp:term': [[
         { id: 5, name: 'Dinh dưỡng & tiêu hóa', slug: 'dinh-duong-tieu-hoa', taxonomy: 'category' },
         { id: 10, name: 'Tin tức', slug: 'tin-tuc', taxonomy: 'category' }
@@ -325,7 +325,7 @@ export const MOCK_POSTS: WPPost[] = [
     content: { rendered: '<p>Sự kết hợp hoàn hảo giữa sữa non chất lượng cao nhập khẩu và chiết xuất thảo dược thiên nhiên như chùm ngây, giúp cung cấp hàng rào miễn dịch tự nhiên dồi dào, đồng thời tái tạo các lông mao đường ruột để trẻ thèm ăn tự nhiên và tăng cân khỏe mạnh.</p>' },
     excerpt: { rendered: 'Ứng dụng dinh dưỡng đột phá mới từ thảo dược thiên nhiên và sữa non nâng cao sức khỏe đường ruột cho bé.' },
     _embedded: {
-      'wp:featuredmedia': [{ source_url: '/img_news/dinh_duong_tieu_hoa.svg', alt_text: 'Dinh dưỡng thảo dược' }],
+      'wp:featuredmedia': [{ source_url: '/img_news/dinh_duong_tieu_hoa.webp', alt_text: 'Dinh dưỡng thảo dược' }],
       'wp:term': [[
         { id: 5, name: 'Dinh dưỡng & tiêu hóa', slug: 'dinh-duong-tieu-hoa', taxonomy: 'category' },
         { id: 10, name: 'Tin tức', slug: 'tin-tuc', taxonomy: 'category' }
@@ -340,7 +340,7 @@ export const MOCK_POSTS: WPPost[] = [
     content: { rendered: '<p>Thiếu hụt vi chất dinh dưỡng, đặc biệt là kẽm, là nguyên nhân hàng đầu khiến bé mất cảm giác ngon miệng. Kết hợp kẽm cùng chất xơ hòa tan FOS giúp kích hoạt các gai vị giác, đồng thời làm mềm phân, ngừa táo bón triệt để cho bé luôn vui khỏe.</p>' },
     excerpt: { rendered: 'Giải pháp khắc phục triệt để tình trạng biếng ăn kéo dài ở trẻ nhỏ bằng phương pháp cân đối vi chất tự nhiên.' },
     _embedded: {
-      'wp:featuredmedia': [{ source_url: '/img_news/dinh_duong_tieu_hoa_2.svg', alt_text: 'Bổ sung vi chất' }],
+      'wp:featuredmedia': [{ source_url: '/img_news/dinh_duong_tieu_hoa_2.webp', alt_text: 'Bổ sung vi chất' }],
       'wp:term': [[
         { id: 5, name: 'Dinh dưỡng & tiêu hóa', slug: 'dinh-duong-tieu-hoa', taxonomy: 'category' },
         { id: 10, name: 'Tin tức', slug: 'tin-tuc', taxonomy: 'category' }

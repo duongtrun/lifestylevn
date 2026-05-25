@@ -32,7 +32,7 @@ const workflowData = [
     id: 4,
     title: 'Thiết kế dễ dùng -\ndễ mang theo - tiện lợi mỗi ngày',
     desc: 'Khuyến khích trẻ tự học thói quen vệ sinh: rửa tay - làm sạch - bảo vệ bản thân.',
-    icon: '/img_iruka_care/iruka_care_achieve.svg'
+    icon: '/img_iruka_care/iruka_care_achieve.webp'
   }
 ];
 

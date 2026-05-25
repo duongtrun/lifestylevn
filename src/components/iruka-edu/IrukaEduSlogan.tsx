@@ -2,7 +2,7 @@
 
 // File: src/components/iruka-edu/IrukaEduSlogan.tsx
 // Luồng: Trang Hệ sinh thái > Iruka EDU
-// Vai trò: Section Slogan cuối trang với khung viền vẽ tay (bg_iruka_edu.svg) và Logo.
+// Vai trò: Section Slogan cuối trang với khung viền vẽ tay (bg_iruka_edu.webp) và Logo.
 // Dùng khi: Nằm ở phần kết luận của trang Iruka EDU trước khi xuống Footer.
 
 import React from 'react';
@@ -18,7 +18,7 @@ export default function IrukaEduSlogan() {
         {/* Khung viền vẽ tay - Giao diện Desktop */}
         <div className="absolute inset-0 w-full h-full z-0 pointer-events-none hidden md:block">
           <Image 
-            src="/img_iruka_edu/bg_iruka_edu.svg" 
+            src="/img_iruka_edu/bg_iruka_edu.webp" 
             alt="Iruka Edu Background Outline Desktop" 
             fill 
             className="object-contain" 
@@ -49,7 +49,7 @@ export default function IrukaEduSlogan() {
           {/* Logo */}
           <div className="relative w-[80px] h-[60px] md:w-[110px] md:h-[80px] mb-2 md:mb-3">
             <Image 
-              src="/img_iruka_edu/logo.svg" 
+              src="/img_iruka_edu/logo.webp" 
               alt="Iruka Edu Logo" 
               fill 
               className="object-contain" 

@@ -28,7 +28,7 @@ export default function CareersHero() {
         className="w-full h-auto block"
       >
         <img
-          src="/img_recruit/recruit_banner.svg"
+          src="/img_recruit/recruit_banner.webp"
           alt="Banner tuyển dụng IruKa Group — hình ảnh đội ngũ và môi trường làm việc"
           className="w-full h-auto block object-cover"
           loading="eager"
@@ -56,7 +56,7 @@ export default function CareersHero() {
               repeat: Infinity, 
               ease: 'easeInOut' 
             }}
-            src="/img_recruit/recruit_logo.svg"
+            src="/img_recruit/recruit_logo.webp"
             alt="Logo tuyển dụng IruKa — Cùng kiến tạo tương lai"
             className="w-full h-auto drop-shadow-[0_10px_30px_rgba(0,139,189,0.3)]"
             loading="eager"

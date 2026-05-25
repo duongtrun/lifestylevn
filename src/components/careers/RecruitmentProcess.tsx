@@ -43,7 +43,7 @@ export default function RecruitmentProcess() {
       {/* Vai trò: Hiển thị hình nền văn phòng sắc nét phía sau và lớp phủ mỏng để giữ độ tương phản cho chữ */}
       <div className="absolute inset-0 z-0">
         <Image
-          src="/img_recruit/recruit_progress.svg"
+          src="/img_recruit/recruit_progress.webp"
           alt="Hình nền lộ trình tuyển dụng IruKa"
           fill
           className="object-cover opacity-95"

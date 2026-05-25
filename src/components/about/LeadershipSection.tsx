@@ -80,7 +80,7 @@ export default function LeadershipSection() {
       <div className="relative w-full z-10 mt-0 md:mt-[-100px] lg:mt-[-140px] bg-[#008BBD]">
         <div className="relative w-full h-[130px] md:h-[449px]">
           <Image 
-            src="/img_about_us/CEO_banner.svg" 
+            src="/img_about_us/CEO_banner.webp" 
             alt="Leadership Banner" 
             fill 
             className="object-contain"

@@ -43,7 +43,7 @@ const products = [
     badge: '02 - DINH DƯỠNG',
     name: 'Babego GOLD',
     desc: 'Sữa dinh dưỡng chuyên biệt tập trung vào tiêu hóa, hấp thu và tăng trưởng vượt trội cho trẻ nhỏ.',
-    image: '/img_babego/babego_mascot_2.svg',
+    image: '/img_babego/babego_mascot_2.webp',
     href: '/he-sinh-thai/babego',
     rightTitleLine1: 'DINH DƯỠNG',
     rightTitleLine2: 'TIÊU HÓA & TĂNG TRƯỞNG',

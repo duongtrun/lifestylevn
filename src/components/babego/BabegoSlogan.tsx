@@ -45,7 +45,7 @@ export default function BabegoSlogan() {
           className="absolute right-0 lg:right-[-2%] top-1/2 -translate-y-1/2 w-[180px] h-[240px] lg:w-[410px] lg:h-[500px] z-20 pointer-events-none hidden lg:block"
         >
           <Image 
-            src="/img_babego/babego_mascot_2.svg" 
+            src="/img_babego/babego_mascot_2.webp" 
             alt="Babego Mascot" 
             fill 
             className="object-contain" 

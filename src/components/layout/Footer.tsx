@@ -108,7 +108,7 @@ export default function Footer() {
                 className="block hover:opacity-90 transition-opacity"
               >
                 <Image
-                  src="/images/map.svg"
+                  src="/images/map.webp"
                   alt="Bản đồ vị trí Lifestyle Việt Nam"
                   width={500}
                   height={300}

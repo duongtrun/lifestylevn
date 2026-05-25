@@ -18,7 +18,7 @@ export default function NewsHero() {
       <div className="absolute inset-0 z-0">
         {/* Banner cho thiết bị di động */}
         <Image
-          src="/img_news/banner_mobile.svg"
+          src="/img_news/banner_mobile.webp"
           alt="Tin tức - Lifestyle Việt Nam"
           fill
           className="object-cover object-center block md:hidden"
@@ -26,7 +26,7 @@ export default function NewsHero() {
         />
         {/* Banner cho máy tính và máy tính bảng */}
         <Image
-          src="/img_news/news_banner.svg"
+          src="/img_news/news_banner.webp"
           alt="Tin tức - Lifestyle Việt Nam"
           fill
           className="object-cover object-center lg:object-[center_top] hidden md:block"

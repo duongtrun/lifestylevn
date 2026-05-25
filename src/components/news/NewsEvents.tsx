@@ -50,7 +50,7 @@ export default function NewsEvents({ posts }: NewsEventsProps) {
         transition={{ repeat: Infinity, duration: 6, ease: 'easeInOut' }}
       >
         {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src="/img_news/event_left.svg" alt="Họa tiết trang trí trái" className="w-full h-full object-contain" />
+        <img src="/img_news/event_left.webp" alt="Họa tiết trang trí trái" className="w-full h-full object-contain" />
       </motion.div>
 
       {/* Họa tiết bên phải 1 */}
@@ -60,7 +60,7 @@ export default function NewsEvents({ posts }: NewsEventsProps) {
         transition={{ repeat: Infinity, duration: 7, ease: 'easeInOut' }}
       >
         {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src="/img_news/event_right.svg" alt="Họa tiết trang trí phải 1" className="w-full h-full object-contain" />
+        <img src="/img_news/event_right.webp" alt="Họa tiết trang trí phải 1" className="w-full h-full object-contain" />
       </motion.div>
 
       {/* Họa tiết bên phải 2 */}
@@ -70,7 +70,7 @@ export default function NewsEvents({ posts }: NewsEventsProps) {
         transition={{ repeat: Infinity, duration: 5, ease: 'easeInOut' }}
       >
         {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src="/img_news/even_right_2.svg" alt="Họa tiết trang trí phải 2" className="w-full h-full object-contain" />
+        <img src="/img_news/even_right_2.webp" alt="Họa tiết trang trí phải 2" className="w-full h-full object-contain" />
       </motion.div>
 
       {/* CONTAINER CHÍNH */}
