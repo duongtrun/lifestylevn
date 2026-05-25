@@ -90,7 +90,7 @@ export default function TimelineSection() {
   const activeData = TIMELINE_DATA[activeIndex];
 
   return (
-    <section className="relative w-full py-20 lg:py-28 overflow-hidden bg-gray-50">
+    <section className="relative w-full py-12 lg:py-16 overflow-hidden bg-gray-50">
       {/* Background image */}
       <div className="absolute inset-0 z-0 pointer-events-none">
         <Image 
@@ -102,6 +102,21 @@ export default function TimelineSection() {
       </div>
 
       <div className="container mx-auto px-4 relative z-10">
+        
+        {/* Tiêu đề phần Lịch sử hình thành */}
+        <motion.div
+          initial={{ opacity: 0, y: -20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="text-center mb-12 md:mb-16"
+        >
+          <h2 className="text-3xl md:text-5xl font-black text-[#273F68] tracking-tight mb-4">
+            Lịch sử hình thành và phát triển
+          </h2>
+          <div className="h-1 w-20 bg-[#008BBD] mx-auto rounded-full" />
+        </motion.div>
+
         <div className="max-w-5xl mx-auto flex flex-col md:flex-row items-stretch gap-8 lg:gap-16">
           
           {/* Cột trái: Danh sách Năm (Years) - BẢN TRƯỢT NGANG CHO MOBILE */}

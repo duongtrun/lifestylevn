@@ -74,8 +74,8 @@ export default function VisionMissionSection() {
           transition={{ duration: 0.7 }}
           className="text-center mb-10 lg:mb-14"
         >
-          <h2 className="text-2xl md:text-4xl font-bold text-[#009fe3] tracking-wide">
-            Tầm nhìn, sứ mệnh &amp; triết lý kinh doanh
+          <h2 className="text-2xl md:text-4xl font-bold text-[#273F68] tracking-wide">
+            Tầm nhìn, Sứ mệnh &amp; Triết lý kinh doanh
           </h2>
         </motion.div>
 

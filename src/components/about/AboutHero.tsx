@@ -71,7 +71,7 @@ export default function AboutHero() {
         >
           <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#008BBD]/20 border border-[#008BBD]/40 text-[#5CC8EC] text-xs font-bold tracking-widest uppercase backdrop-blur-sm">
             <span className="w-1.5 h-1.5 rounded-full bg-[#008BBD] animate-pulse"></span>
-            Lifestyle Việt Nam
+            LifeStyle Việt Nam
           </span>
         </motion.div>
 
