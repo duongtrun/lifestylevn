@@ -23,7 +23,7 @@ const tabs = [
     content:
       'Trở thành doanh nghiệp tiên phong trong việc xây dựng hệ sinh thái Mẹ & Bé toàn diện tại Việt Nam – nơi công nghệ, dinh dưỡng, giáo dục và sức khỏe kết hợp để mang đến giải pháp nuôi dạy con toàn diện và bền vững.',
     cardClass: 'absolute bottom-[5px] top-auto left-[5px] right-[5px] z-20 w-auto max-h-[200px] overflow-y-auto md:top-[5px] md:bottom-[5px] md:left-10 md:right-auto md:w-[300px] md:max-h-none md:overflow-y-visible',
-    innerClass: 'p-3 md:p-6 h-auto md:h-full',
+    innerClass: 'p-3 md:p-6 h-auto md:h-full justify-center',
   },
   {
     id: 'mission',
@@ -35,7 +35,7 @@ const tabs = [
     content:
       'Mang đến giải pháp toàn diện và đáng tin cậy giúp trẻ phát triển khỏe mạnh – hạnh phúc – an toàn trong những năm đầu đời, đồng hành cùng các bà mẹ trong hành trình nuôi dạy con khôn lớn. Chúng tôi cam kết tạo ra các sản phẩm và dịch vụ vừa an toàn, chất lượng, vừa mang lại giá trị thực cho gia đình Việt.',
     cardClass: 'absolute top-[5px] bottom-auto left-auto right-[5px] z-20 w-[200px] max-w-[calc(100%-10px)] max-h-[200px] overflow-y-auto md:top-[5px] md:bottom-[5px] md:left-auto md:right-10 md:w-[300px] md:max-h-none md:overflow-y-visible',
-    innerClass: 'p-3 md:p-6 h-auto md:h-full',
+    innerClass: 'p-3 md:p-6 h-auto md:h-full justify-center',
   },
   {
     id: 'philosophy',
@@ -46,8 +46,8 @@ const tabs = [
     heading: 'TRIẾT LÝ KINH DOANH',
     content:
       'Hợp tác – Phát triển – Chia sẻ lợi nhuận. Khách hàng là người bạn đồng hành, không chỉ là người mua hàng. Cam kết cung cấp giá trị thật, minh bạch và bền vững. Tôn trọng đạo đức kinh doanh – tuân thủ pháp luật. Liên tục đổi mới để mang lại chất lượng vượt trội.',
-    cardClass: 'absolute bottom-[5px] top-auto left-[5px] right-[5px] z-20 w-auto max-h-[200px] overflow-y-auto md:top-[5px] md:bottom-[5px] md:right-10 md:left-auto md:w-[300px] md:max-h-none md:overflow-y-visible',
-    innerClass: 'p-3 md:p-6 h-auto md:h-full',
+    cardClass: 'absolute top-[5px] bottom-auto left-[5px] right-[5px] z-20 w-auto max-h-[200px] overflow-y-auto',
+    innerClass: 'p-2 md:p-3 h-auto justify-start',
   },
 ];
 
@@ -158,7 +158,7 @@ export default function VisionMissionSection() {
                 exit="exit"
                 className={currentTab.cardClass}
               >
-                <div className={`bg-white/30 backdrop-blur-md border border-white/40 rounded-2xl shadow-xl flex flex-col justify-center ${currentTab.innerClass}`}>
+                <div className={`bg-white/30 backdrop-blur-md border border-white/40 rounded-2xl shadow-xl flex flex-col ${currentTab.innerClass}`}>
                   {/* Icon + Tiêu đề */}
                   <div className="flex items-center gap-2 mb-3">
                     <Icon className="w-5 h-5" style={{ color: '#273F68' }} />
