@@ -103,14 +103,14 @@ export default function VisionMissionSection() {
 
         {/* --- KHU VỰC HIỂN THỊ NỘI DUNG --- */}
         {/* Khung bao ngoài: padding ngang để thanh xanh nhô ra, max-w thu hẹp lại để ảnh không chiếm hết */}
-        <div className="relative mx-auto max-w-3xl px-12 md:px-16">
+        <div className="relative mx-auto max-w-3xl px-8 md:px-16">
           {/* Thanh xanh TRÁI — to hơn, cao hơn, nhô ra ngoài rõ */}
           <div className="absolute left-0 top-6 w-14 md:w-16 h-[65%] bg-[#009fe3] z-0" />
           {/* Thanh xanh PHẢI — to hơn, cao hơn, nhô ra ngoài rõ */}
           <div className="absolute right-0 bottom-6 w-14 md:w-16 h-[55%] bg-[#009fe3] z-0" />
 
-          {/* Hộp ảnh chính — tăng chiều cao để text dài không bị tràn */}
-          <div className="relative z-10 rounded-2xl overflow-hidden shadow-2xl h-[360px] md:h-[420px]">
+          {/* Hộp ảnh chính — hỗ trợ h-auto cho mobile để không bị cắt chữ */}
+          <div className="relative z-10 rounded-2xl overflow-hidden shadow-2xl h-auto min-h-[380px] md:h-[420px] flex flex-col justify-center">
             
             {/* Ảnh nền — AnimatePresence để chuyển mượt khi đổi tab */}
             <AnimatePresence mode="wait">
@@ -143,7 +143,7 @@ export default function VisionMissionSection() {
                 initial="hidden"
                 animate="visible"
                 exit="exit"
-                className="absolute top-1/2 -translate-y-1/2 left-6 md:left-10 z-20 max-w-xs md:max-w-md w-[85%] md:w-auto"
+                className="relative md:absolute md:top-1/2 md:-translate-y-1/2 md:left-10 z-20 w-[calc(100%-2rem)] mx-auto my-8 md:my-0 md:w-auto md:max-w-md"
               >
                 <div className="bg-white/30 backdrop-blur-md border border-white/40 rounded-2xl p-5 md:p-6 shadow-xl">
                   {/* Icon + Tiêu đề */}
