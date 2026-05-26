@@ -90,6 +90,18 @@ export default async function NewsDetailPage({ params }: PageProps) {
 
   const hasAcfContent = mainContentText || imageContentText || customTitle;
 
+  const isRawImageUrl = (text: string): boolean => {
+    const trimmed = text.trim();
+    if (trimmed.includes('<') || trimmed.includes('>')) return false;
+    return /^(https?:\/\/|\/|wp-content\/).*\.(png|jpg|jpeg|gif|webp|svg)(?:\?.*)?$/i.test(trimmed) 
+      || (trimmed.startsWith('http') && !trimmed.includes(' '));
+  };
+
+  const isSmallBadgeOrIcon = (url: string): boolean => {
+    const fileName = url.split('/').pop() || '';
+    return fileName.toLowerCase().includes('achieve') || fileName.toLowerCase().includes('icon') || /img_\d+\.png/.test(fileName);
+  };
+
   // Sửa toàn bộ đường dẫn ảnh nội bộ trong nội dung HTML của WP sang public origin và thay thế các biểu tượng emoji ảnh thành text
   const fixHtmlImageUrls = (html: string): string => {
     if (!html) return '';
@@ -253,10 +265,27 @@ export default async function NewsDetailPage({ params }: PageProps) {
 
               {/* Phần ảnh / nội dung ảnh phụ */}
               {imageContentText && (
-                <div 
-                  className="mt-6 wp-content" 
-                  dangerouslySetInnerHTML={{ __html: fixHtmlImageUrls(imageContentText) }} 
-                />
+                <div className="mt-6 wp-content flex justify-center">
+                  {isRawImageUrl(imageContentText) ? (
+                    isSmallBadgeOrIcon(imageContentText) ? (
+                      // eslint-disable-next-line @next/next/no-img-element
+                      <img 
+                        src={fixHtmlImageUrls(imageContentText.trim())} 
+                        alt="Huy hiệu/Icon" 
+                        className="w-16 h-16 md:w-20 md:h-20 object-contain" 
+                      />
+                    ) : (
+                      // eslint-disable-next-line @next/next/no-img-element
+                      <img 
+                        src={fixHtmlImageUrls(imageContentText.trim())} 
+                        alt="Ảnh đính kèm" 
+                        className="rounded-xl shadow-md max-w-full h-auto" 
+                      />
+                    )
+                  ) : (
+                    <div dangerouslySetInnerHTML={{ __html: fixHtmlImageUrls(imageContentText) }} />
+                  )}
+                </div>
               )}
 
               {/* Người đăng bài / Tác giả */}
