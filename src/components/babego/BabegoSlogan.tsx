@@ -72,12 +72,12 @@ export default function BabegoSlogan() {
           </div>
 
           {/* Tiêu đề */}
-          <h2 className="text-[11px] sm:text-xs md:text-sm lg:text-base font-bold text-[#444444] mb-1.5 md:mb-2 max-w-[220px] sm:max-w-none">
+          <h2 className="text-base sm:text-lg md:text-xl lg:text-2xl font-bold text-[#444444] mb-2 md:mb-3 max-w-[240px] sm:max-w-none">
             Babego Gold – Tiêu hóa vững vàng, tăng cân dễ dàng
           </h2>
 
           {/* Lời hứa */}
-          <p className="text-[9.5px] sm:text-[11px] md:text-xs lg:text-[14px] text-[#444444] max-w-[220px] sm:max-w-[450px] md:max-w-[700px] leading-relaxed md:leading-loose">
+          <p className="text-xs sm:text-sm md:text-base text-[#444444] max-w-[220px] sm:max-w-[450px] md:max-w-[700px] leading-relaxed md:leading-loose">
             Mỗi đứa trẻ là một hành trình phát triển riêng biệt. Dinh dưỡng không chỉ là năng lượng, mà là nền tảng cho tương lai của con. Babego được tạo ra để nâng đỡ hành trình ấy bằng sự an toàn, khoa học và thấu hiểu thể trạng trẻ Việt.
           </p>
         </motion.div>
