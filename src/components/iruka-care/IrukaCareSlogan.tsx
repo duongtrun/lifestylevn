@@ -62,9 +62,8 @@ export default function IrukaCareSlogan() {
 
           {/* Lời hứa */}
           <p className="text-xs sm:text-sm md:text-base text-[#333333] max-w-[220px] sm:max-w-[450px] md:max-w-[700px] leading-relaxed md:leading-loose mb-2">
-            Mỗi đứa trẻ đều lớn lên từ những khoảnh khắc nhỏ bé: một cái ôm<br className="hidden md:block"/>
-            sau giờ chơi, đôi bàn tay lấm lem khi khám phá, hay nụ cười giòn<br className="hidden md:block"/>
-            tan mà bố mẹ luôn muốn giữ mãi.
+            Mỗi đứa trẻ đều lớn lên từ những khoảnh khắc nhỏ bé: một cái ôm
+            sau giờ chơi, đôi bàn tay lấm lem khi khám phá, hay nụ cười giòn tan mà bố mẹ luôn muốn giữ mãi.
           </p>
           <p className="text-xs sm:text-sm md:text-base text-[#333333] max-w-[220px] sm:max-w-[450px] md:max-w-[700px] leading-relaxed md:leading-loose font-medium">
             iruKa Care ra đời để bảo vệ những khoảnh khắc ấy – nhẹ nhàng mà<br className="hidden md:block"/>

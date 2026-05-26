@@ -43,24 +43,16 @@ export default function InvestQuote() {
               {/* Dấu ngoặc kép mở */}
               <span className="absolute top-[-15px] left-0 md:left-4 text-3xl md:text-4xl text-gray-800 font-serif leading-none">“</span>
               
-              <div className="text-gray-800 text-[12px] sm:text-xs md:text-[14px] lg:text-[15px] leading-relaxed space-y-2.5 mt-2 text-left font-medium">
+              <div className="text-gray-800 text-[12px] sm:text-xs md:text-[14px] lg:text-[15px] leading-relaxed mt-2 text-left font-medium">
                 <p>
-                  Hôm nay, khi công nghệ thay đổi thế giới, chúng tôi lựa chọn bước đi mạnh mẽ hơn:{" "}
-                  <br className="hidden md:block" />
+                  Hôm nay, khi công nghệ thay đổi thế giới, chúng tôi lựa chọn bước đi mạnh mẽ hơn:
                   ứng dụng AI và mô hình hệ sinh thái để mang đến giải pháp toàn diện cho trẻ nhỏ.
-                </p>
-                <p>
-                  Chúng tôi tin rằng LifeStyle Việt Nam đang đứng trước thời cơ quan trọng để bứt phá,{" "}
-                  <br className="hidden md:block" />
-                  và chúng tôi mong muốn được đồng hành cùng những nhà đầu tư có chung tầm nhìn:
-                </p>
-                <p className="font-bold text-black text-[13px] sm:text-sm md:text-[15px] lg:text-[16px]">
-                  Tạo ra giá trị thật, bền vững và nhân văn cho xã hội.
-                </p>
-                <p>
-                  Rất mong được hợp tác cùng Quý vị trên hành trình xây dựng tương lai tốt đẹp hơn cho{" "}
-                  <br className="hidden md:block" />
-                  thế hệ trẻ.
+                  Chúng tôi tin rằng LifeStyle Việt Nam đang đứng trước thời cơ quan trọng để bứt phá,
+                  và chúng tôi mong muốn được đồng hành cùng những nhà đầu tư có chung tầm nhìn:{" "}
+                  <span className="font-bold text-black text-[13px] sm:text-sm md:text-[15px] lg:text-[16px]">
+                    Tạo ra giá trị thật, bền vững và nhân văn cho xã hội.
+                  </span>{" "}
+                  Rất mong được hợp tác cùng Quý vị trên hành trình xây dựng tương lai tốt đẹp hơn cho thế hệ trẻ.
                 </p>
               </div>
 

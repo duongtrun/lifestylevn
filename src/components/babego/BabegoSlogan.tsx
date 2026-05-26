@@ -72,7 +72,7 @@ export default function BabegoSlogan() {
           </div>
 
           {/* Tiêu đề */}
-          <h2 className="text-base sm:text-lg md:text-xl lg:text-2xl font-bold text-[#444444] mb-2 md:mb-3 max-w-[240px] sm:max-w-none">
+          <h2 className="text-base sm:text-lg md:text-xl lg:text-xl font-bold text-[#444444] mb-2 md:mb-3 max-w-[240px] sm:max-w-none">
             Babego Gold – Tiêu hóa vững vàng, tăng cân dễ dàng
           </h2>
 
