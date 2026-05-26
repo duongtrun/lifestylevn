@@ -215,7 +215,7 @@ export default function BabegoOrigin() {
           </div>
 
           {/* Cột phải: Nội dung chi tiết */}
-          <div className="w-full md:flex-1 flex flex-col justify-start md:justify-center h-[520px] sm:h-[450px] md:h-[350px] lg:h-[300px] overflow-y-auto scrollbar-none">
+          <div className="w-full md:flex-1 flex flex-col justify-start h-[520px] sm:h-[450px] md:h-[350px] lg:h-[300px] overflow-y-auto scrollbar-none">
             <AnimatePresence mode="wait">
               <motion.div
                 key={activeIndex}
@@ -223,7 +223,7 @@ export default function BabegoOrigin() {
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -20 }}
                 transition={{ duration: 0.4, ease: "easeOut" }}
-                className="space-y-6"
+                className="space-y-6 my-auto"
               >
                 <h3 className="text-2xl md:text-3xl lg:text-[32px] font-bold text-[#00724C] leading-snug">
                   {activeData.title}

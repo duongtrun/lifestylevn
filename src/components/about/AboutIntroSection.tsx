@@ -59,7 +59,7 @@ export default function AboutIntroSection() {
             {/* Tiêu đề màu xanh dương */}
             <div className="space-y-2">
               <h2 className="text-3xl md:text-4xl font-extrabold text-[#008BBD] leading-snug">
-                Lifestyle Việt Nam
+                LifeStyle Việt Nam
               </h2>
               {/* Đường kẻ dưới tiêu đề */}
               <div className="h-[3px] w-16 bg-gradient-to-r from-[#008BBD] to-[#5CC8EC] rounded-full"></div>
@@ -78,8 +78,8 @@ export default function AboutIntroSection() {
               <ul className="space-y-2.5">
                 {[
                   "Dinh dưỡng & chăm sóc sức khỏe (Babego)",
-                  "Vệ sinh – an toàn trẻ em (IruKa Care)",
-                  "Giáo dục – phát triển tư duy (IruKa Edu)",
+                  "Vệ sinh – an toàn trẻ em (iruKa Care)",
+                  "Giáo dục – phát triển tư duy (iruKa Edu)",
                 ].map((item, index) => (
                   <li key={index} className="flex items-start gap-3">
                     <span className="mt-1.5 shrink-0 w-2 h-2 rounded-full bg-[#008BBD]"></span>
