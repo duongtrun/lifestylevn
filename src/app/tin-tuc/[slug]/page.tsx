@@ -134,11 +134,20 @@ export default async function NewsDetailPage({ params }: PageProps) {
         }
         
         // Nếu là ảnh của phần achieve và có thuộc tính alt (chứa emoji tương ứng)
-        if (fileName.includes('achieve_')) {
+        if (fileName.toLowerCase().includes('achieve') || fileName.toLowerCase().includes('badge') || fileName.toLowerCase().includes('icon')) {
           const altMatch = attrs.match(/alt="([^"]*)"/);
           if (altMatch && altMatch[1] && altMatch[1].trim().length <= 3) {
             return ` ${altMatch[1].trim()} `;
           }
+          // NẾU KHÔNG CÓ EMOJI ALT, nhưng vẫn là ảnh achieve/badge/icon:
+          // Giới hạn kích thước của nó trong HTML bằng CSS classes để tránh bị prose kéo to 100%
+          let newAttrs = attrs;
+          if (newAttrs.includes('class="')) {
+            newAttrs = newAttrs.replace(/class="([^"]*)"/, 'class="$1 w-16 h-16 md:w-20 md:h-20 object-contain inline-block my-0 shadow-none rounded-none"');
+          } else {
+            newAttrs += ' class="w-16 h-16 md:w-20 md:h-20 object-contain inline-block my-0 shadow-none rounded-none"';
+          }
+          return `<img${newAttrs}>`;
         }
       }
       return match;
