@@ -14,12 +14,12 @@ export default function CareersHero() {
   return (
     <section className="relative w-full overflow-hidden bg-neutral-900 select-none">
       {/* Lớp phủ gradient bên trái để tăng độ tương phản và chiều sâu cho text trắng */}
-      {/* <motion.div 
+      <motion.div 
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 1 }}
-        className="absolute inset-0 z-10 bg-gradient-to-r from-black/60 via-black/25 to-transparent pointer-events-none" 
-      /> */}
+        className="absolute inset-0 z-10 bg-gradient-to-r from-black/70 via-black/30 to-transparent pointer-events-none" 
+      />
 
       {/* Ảnh banner nền — tự thích ứng (Responsive) */}
       <motion.div
