@@ -125,7 +125,6 @@ export default function BabegoMission() {
                   alt={activeData.label}
                   fill
                   className="object-cover object-center"
-                  unoptimized
                 />
               </div>
 
@@ -136,7 +135,6 @@ export default function BabegoMission() {
                   alt={activeData.label}
                   fill
                   className="object-cover object-center"
-                  unoptimized
                 />
               </div>
             </motion.div>

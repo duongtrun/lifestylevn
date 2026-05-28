@@ -110,7 +110,6 @@ export default function IrukaCareMission() {
                   fill
                   sizes="(max-width: 768px) 100vw, (max-width: 1200px) 85vw, 800px"
                   className="object-cover"
-                  unoptimized
                 />
               </div>
 

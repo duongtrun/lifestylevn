@@ -122,7 +122,6 @@ export default function IrukaEduMission() {
                   alt={activeData.label}
                   fill
                   className="object-cover"
-                  unoptimized
                 />
               </div>
 
@@ -133,7 +132,6 @@ export default function IrukaEduMission() {
                   alt={activeData.label}
                   fill
                   className="object-cover"
-                  unoptimized
                 />
               </div>
             </motion.div>
