@@ -16,7 +16,7 @@ export default function BabegoHero() {
         {/* --- Ảnh nền banner full-width --- */}
         <div className="relative w-full h-[650px] md:h-[850px] lg:h-[1000px]">
           <Image
-            src="/img_babego/babego_banner.png"
+            src="/img_babego/babego_banner.svg"
             alt="Babego Banner"
             fill
             className="object-cover object-center"

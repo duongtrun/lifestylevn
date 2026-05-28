@@ -11,55 +11,55 @@ import { motion } from 'framer-motion';
 
 export default function IrukaCareHero() {
   return (
-    <section className="relative w-full h-[100svh] min-h-[600px] lg:min-h-[800px] flex items-center justify-center overflow-hidden pt-[60px] md:pt-[80px]">
-      
-      {/* Background Banner - Phủ kín section, nằm dưới header */}
-      <div 
-        className="absolute inset-0 z-0"
-        style={{
-          maskImage: "linear-gradient(to bottom, black 90%, transparent 100%)",
-          WebkitMaskImage: "linear-gradient(to bottom, black 90%, transparent 100%)"
-        }}
-      >
+    <section className="relative w-full overflow-hidden">
+      {/* --- Ảnh nền banner full-width --- */}
+      <div className="relative w-full h-[650px] md:h-[850px] lg:h-[1000px]">
         <Image
-          src="/img_iruka_care/iruka_banner.png"
+          src="/img_iruka_care/irukacare_banner.svg"
           alt="Iruka Care Banner Background"
           fill
           className="object-cover object-center"
           priority
         />
-      </div>
 
-      {/* Nội dung nằm chính giữa banner */}
-      <div className="relative z-10 w-full flex justify-center px-4">
-        <motion.div
-          initial={{ opacity: 0, scale: 0.95, y: 20 }}
-          animate={{ opacity: 1, scale: 1, y: 0 }}
-          transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
-          className="relative w-[90%] md:w-[70%] lg:w-[60%] max-w-[900px] aspect-[16/9] md:aspect-[21/9] flex items-center justify-center"
-        >
-          {/* Ảnh Blur Banner làm background cho khối chữ */}
-          <Image 
-            src="/img_iruka_care/iruka_care_blur_banner.svg" 
-            alt="Iruka Care Blur Background" 
-            fill 
-            className="object-contain drop-shadow-[0_20px_50px_rgba(0,0,0,0.8)]" 
-            priority
-          />
+        {/* --- Overlay nội dung: text trái + mascot phải --- */}
+        <div className="absolute inset-0 z-10 flex items-center">
+          <div className="container mx-auto px-6 md:px-10 flex flex-col md:flex-row items-center justify-between gap-8 mt-0 md:-mt-[250px]">
 
-          {/* Nội dung text nằm trong khung blur */}
-          <div className="absolute inset-0 flex flex-col justify-center items-center text-center px-6 z-20">
-            <h1 className="text-[28px] sm:text-[36px] md:text-[44px] lg:text-[64px] font-extrabold uppercase leading-[1.2] tracking-normal text-white mb-2 md:mb-4 drop-shadow-md">
-              IRUKA CARE
-            </h1>
-            
-            <h2 className="text-[11px] sm:text-xs md:text-sm lg:text-xl font-semibold text-white tracking-wide drop-shadow-md max-w-[200px] sm:max-w-[320px] md:max-w-[400px] lg:max-w-2xl">
-              GIẢI PHÁP VỆ SINH & AN TOÀN CHO TRẺ <br></br> TỪ SƠ SINH
-            </h2>
+            {/* Bên trái: Tiêu đề + tagline */}
+            <motion.div
+              initial={{ opacity: 0, x: -40 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8 }}
+              className="max-w-lg text-center md:text-left"
+            >
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-white leading-tight mb-4 drop-shadow-md">
+                IRUKA CARE
+              </h1>
+              <p className="text-lg md:text-xl lg:text-2xl font-bold text-white/90 uppercase tracking-wide leading-snug drop-shadow-md">
+                Giải pháp vệ sinh &amp; an toàn<br />
+                cho trẻ từ sơ sinh
+              </p>
+            </motion.div>
+
+            {/* Bên phải: Mascot mascot_no_bg.png */}
+            <motion.div
+              initial={{ opacity: 0, x: 40, scale: 0.9 }}
+              animate={{ opacity: 1, x: 0, scale: 1 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+              className="relative w-[220px] h-[250px] md:w-[320px] md:h-[360px] lg:w-[400px] lg:h-[450px] flex-shrink-0"
+            >
+              <Image
+                src="/img_iruka_care/mascot_no_bg.png"
+                alt="Iruka Care Mascot"
+                fill
+                className="object-contain drop-shadow-2xl"
+                priority
+              />
+            </motion.div>
           </div>
-        </motion.div>
+        </div>
       </div>
-
     </section>
   );
 }
