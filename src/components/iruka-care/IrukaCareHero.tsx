@@ -31,12 +31,12 @@ export default function IrukaCareHero() {
               initial={{ opacity: 0, x: -40 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8 }}
-              className="max-w-xl text-center md:text-left"
+              className="max-w-xl text-center md:text-left md:translate-x-12 lg:translate-x-20"
             >
-              <h1 className="text-4xl md:text-5xl lg:text-8xl font-extrabold text-white leading-tight mb-4 drop-shadow-md whitespace-nowrap">
+              <h1 className="text-4xl md:text-5xl lg:text-8xl font-extrabold text-[#005a8c] leading-tight mb-4 drop-shadow-md whitespace-nowrap">
                 IRUKA CARE
               </h1>
-              <p className="text-lg md:text-xl lg:text-2xl font-bold text-white/90 uppercase tracking-wide leading-snug drop-shadow-md">
+              <p className="text-lg md:text-xl lg:text-2xl font-bold text-[#005a8c]/90 uppercase tracking-wide leading-snug drop-shadow-md">
                 Giải pháp vệ sinh &amp; an toàn<br />
                 cho trẻ từ sơ sinh
               </p>
@@ -47,10 +47,10 @@ export default function IrukaCareHero() {
               initial={{ opacity: 0, x: 40, scale: 0.9 }}
               animate={{ opacity: 1, x: 0, scale: 1 }}
               transition={{ duration: 0.8, delay: 0.2 }}
-              className="relative w-[220px] h-[250px] md:w-[320px] md:h-[360px] lg:w-[400px] lg:h-[450px] flex-shrink-0"
+              className="relative w-[220px] h-[250px] md:w-[320px] md:h-[360px] lg:w-[600px] lg:h-[650px] flex-shrink-0"
             >
               <Image
-                src="/img_iruka_care/mascot_no_bg.png"
+                src="/img_iruka_care/mascot.svg"
                 alt="Iruka Care Mascot"
                 fill
                 className="object-contain drop-shadow-2xl"
