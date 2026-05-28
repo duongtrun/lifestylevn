@@ -49,7 +49,7 @@ export default function AboutSection() {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
-            className="flex flex-col justify-center space-y-8 min-w-0 lg:-ml-[150px]"
+            className="flex flex-col justify-center space-y-8 min-w-0"
           >
             <div className="space-y-3">
               <span className="inline-block px-4 py-1.5 rounded-full bg-[#008BBD]/10 text-[#008BBD] font-bold tracking-widest text-xs md:text-sm uppercase">
