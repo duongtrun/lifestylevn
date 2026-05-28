@@ -4,6 +4,11 @@
 
 const RAW_WP_API_URL = process.env.NEXT_PUBLIC_WP_API_URL || 'http://localhost:10004/wp-json';
 
+// Cấu hình thời gian kết nối (Timeout) thông minh theo môi trường:
+// - Khi ở local/dev: chỉ chờ 2 giây (2000ms) để tải cực nhanh và tránh bị treo khi localWP tắt.
+// - Khi ở production/build (Vercel): chờ 20 giây (20000ms) để đảm bảo kết nối qua internet ổn định không bị lỗi ABORT_ERR.
+const API_TIMEOUT = process.env.NODE_ENV === 'development' ? 2000 : 20000;
+
 let WP_API_URL = RAW_WP_API_URL;
 const FETCH_HEADERS: HeadersInit = {
   'Bypass-Tunnel-Reminder': 'true',
@@ -211,7 +216,7 @@ export async function getPosts(limit: number = 9, categoryId?: number): Promise<
       headers: FETCH_HEADERS,
       // Revalidate mỗi 60 giây (ISR — tự động làm mới dữ liệu)
       next: { revalidate: 60 },
-      signal: AbortSignal.timeout(2000) // Tự động ngắt kết nối sau 2 giây nếu máy chủ không phản hồi (để hỗ trợ localtunnel/ngrok qua môi trường xa)
+      signal: AbortSignal.timeout(API_TIMEOUT) // Tự động ngắt kết nối theo thời gian cấu hình tùy môi trường
     });
     
     if (!res.ok) {
@@ -241,7 +246,7 @@ export async function getPostBySlug(slug: string): Promise<WPPost | null> {
     const res = await fetch(`${WP_API_URL}/wp/v2/posts?slug=${slug}&_embed=true`, {
       headers: FETCH_HEADERS,
       next: { revalidate: 60 },
-      signal: AbortSignal.timeout(2000)
+      signal: AbortSignal.timeout(API_TIMEOUT)
     });
 
     if (!res.ok) {
@@ -273,7 +278,7 @@ export async function getJobs(limit: number = 10): Promise<WPJob[]> {
     const res = await fetch(`${WP_API_URL}/wp/v2/tuyen_dung?per_page=${limit}`, {
       headers: FETCH_HEADERS,
       next: { revalidate: 60 },
-      signal: AbortSignal.timeout(2000)
+      signal: AbortSignal.timeout(API_TIMEOUT)
     });
     
     if (!res.ok) {
@@ -302,7 +307,7 @@ export async function getJobBySlug(slug: string): Promise<WPJob | null> {
     const res = await fetch(`${WP_API_URL}/wp/v2/tuyen_dung?slug=${slug}`, {
       headers: FETCH_HEADERS,
       next: { revalidate: 60 },
-      signal: AbortSignal.timeout(2000)
+      signal: AbortSignal.timeout(API_TIMEOUT)
     });
 
     if (!res.ok) {
@@ -333,7 +338,7 @@ export async function getPostsByCategorySlug(slug: string, limit: number = 5): P
     const catRes = await fetch(`${WP_API_URL}/wp/v2/categories?slug=${slug}`, {
       headers: FETCH_HEADERS,
       next: { revalidate: 60 },
-      signal: AbortSignal.timeout(2000)
+      signal: AbortSignal.timeout(API_TIMEOUT)
     });
     
     if (!catRes.ok) {
