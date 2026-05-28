@@ -13,7 +13,7 @@ import { ChevronRight } from "lucide-react";
 
 export default function AboutHero() {
   return (
-    <section className="relative w-full h-[68vh] min-h-[500px] lg:h-[75vh] flex flex-col justify-end overflow-hidden">
+    <section className="relative w-full h-[68vh] min-h-[500px] lg:h-[75vh] flex flex-col pt-24 md:pt-28 lg:pt-32 overflow-hidden">
 
       {/* ===== Ảnh nền tự thích ứng (Responsive) theo thiết bị di động & máy tính ===== */}
       <div className="absolute inset-0 z-0 bg-[#EEF8FC]">
@@ -47,7 +47,7 @@ export default function AboutHero() {
       />
 
       {/* ===== Nội dung văn bản ===== */}
-      <div className="relative z-20 container mx-auto px-4 pb-14 lg:pb-20 space-y-5">
+      <div className="relative z-20 container mx-auto px-4 mt-auto pb-14 lg:pb-20 space-y-5">
 
         {/* Breadcrumb (đường dẫn điều hướng) */}
         <motion.div
