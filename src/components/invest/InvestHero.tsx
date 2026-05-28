@@ -12,7 +12,7 @@ import { ChevronRight } from 'lucide-react';
 
 export default function InvestHero() {
   return (
-    <section className="relative w-full h-[65vh] min-h-[460px] lg:h-[75vh] flex flex-col justify-end overflow-hidden">
+    <section className="relative w-full pt-32 pb-16 md:pt-40 md:pb-24 lg:pt-48 lg:pb-28 flex flex-col justify-end overflow-hidden">
 
       {/* Ảnh nền banner (skyline thành phố tone xanh đậm) */}
       <div className="absolute inset-0 z-0">
@@ -26,18 +26,18 @@ export default function InvestHero() {
       </div>
 
       {/* Lớp phủ gradient — đậm ở dưới để chữ trắng nổi rõ */}
-      <div className="absolute inset-0 z-10 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
+      <div className="absolute inset-0 z-10 bg-gradient-to-t from-black/90 via-black/45 to-transparent" />
 
       {/* Thanh trang trí dọc bên trái */}
       <motion.div
         initial={{ scaleY: 0 }}
         animate={{ scaleY: 1 }}
         transition={{ duration: 0.8, ease: 'easeOut' }}
-        className="absolute left-0 top-[15%] w-[5px] h-[40%] bg-[#008BBD] z-20 origin-top rounded-r-full"
+        className="absolute left-0 top-[20%] w-[5px] h-[30%] bg-[#008BBD] z-20 origin-top rounded-r-full"
       />
 
       {/* Nội dung văn bản */}
-      <div className="relative z-20 container mx-auto px-4 pb-14 lg:pb-20 space-y-5">
+      <div className="relative z-20 container mx-auto px-4 space-y-5">
 
         {/* Breadcrumb (đường dẫn điều hướng) */}
         <motion.div
