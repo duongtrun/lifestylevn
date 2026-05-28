@@ -161,9 +161,9 @@ export default function CoreValuesSection() {
           <span className="inline-block mb-2.5 px-4 py-1.5 rounded-full bg-[#008BBD]/10 text-[#008BBD] text-xs font-bold uppercase tracking-widest">
             Văn hoá doanh nghiệp
           </span>
-          <h2 className="text-3xl md:text-5xl font-extrabold text-[#273F68] mb-4">
+          <h1 className="text-5xl md:text-6xl lg:text-7xl font-extrabold text-[#273F68] tracking-tight mb-4">
             Giá Trị Cốt Lõi
-          </h2>
+          </h1>
           <div className="h-1 w-20 bg-[#008BBD] mx-auto rounded-full" />
         </motion.div>
 
