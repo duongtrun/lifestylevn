@@ -23,7 +23,7 @@ const ADVANTAGES = [
   },
   {
     title: "Nằm trong hệ sinh thái LifeStyle Việt Nam",
-    desc: "Babego không đứng một mình."
+    desc: "Nó là một phần của hệ sinh thái Mẹ & Bé toàn diện. Điều này tạo khác biệt lớn so với các sản phẩm chỉ bán đơn lẻ ngoài thị trường."
   }
 ];
 

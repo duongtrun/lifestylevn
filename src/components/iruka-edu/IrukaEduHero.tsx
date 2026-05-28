@@ -19,7 +19,7 @@ export default function IrukaEduHero() {
         {/* --- Ảnh nền banner full-width --- */}
         <div className="relative w-full h-[650px] md:h-[850px] lg:h-[1000px]">
           <Image
-            src="/img_iruka_edu/banner_iruka_edu.webp"
+            src="/img_iruka_edu/banner_iruka_edu.png"
             alt="Iruka EDU Banner"
             fill
             className="object-cover object-center"
@@ -55,7 +55,7 @@ export default function IrukaEduHero() {
                 className="relative w-[220px] h-[250px] md:w-[300px] md:h-[340px] lg:w-[380px] lg:h-[430px] flex-shrink-0"
               >
                 <Image
-                  src="/img_iruka_edu/hero_banner.webp"
+                  src="/img_iruka_edu/hero_banner.svg"
                   alt="Iruka EDU Mascot"
                   fill
                   className="object-contain drop-shadow-2xl"

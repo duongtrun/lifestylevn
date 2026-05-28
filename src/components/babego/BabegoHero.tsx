@@ -14,47 +14,51 @@ export default function BabegoHero() {
       {/* ====== HERO BANNER ====== */}
       <section className="relative w-full overflow-hidden">
         {/* --- Ảnh nền banner full-width --- */}
-        <div className="relative w-full h-[650px] md:h-[850px] lg:h-[950px]">
+        <div className="relative w-full h-[650px] md:h-[850px] lg:h-[1000px]">
           <Image
-            src="/img_babego/babego_banner.webp"
+            src="/img_babego/babego_banner.png"
             alt="Babego Banner"
             fill
-            className="object-cover object-top"
+            className="object-cover object-center"
             priority
           />
 
-          {/* --- Khối mờ ở giữa --- */}
-          <div className="absolute inset-0 z-10 flex items-center justify-center -mt-[150px] md:-mt-[250px]">
-            <motion.div
-              initial={{ opacity: 0, scale: 0.95, y: 20 }}
-              animate={{ opacity: 1, scale: 1, y: 0 }}
-              transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
-              className="relative w-[90%] md:w-[70%] lg:w-[60%] max-w-[900px] aspect-[21/9] flex items-center justify-center"
-            >
-                  {/* Nhân bản 2 lớp ảnh để tăng độ đậm đà/opacity của khung mờ */}
-                  <Image 
-                    src="/img_iruka_care/iruka_care_blur_banner.svg" 
-                    alt="Iruka Care Blur Background" 
-                    fill 
-                    className="object-contain drop-shadow-[0_20px_50px_rgba(0,0,0,1)] opacity-100 contrast-[1.3] brightness-[1.1]" 
-                    priority
-                  />
-                  <Image 
-                    src="/img_iruka_care/iruka_care_blur_banner.svg" 
-                    alt="Iruka Care Blur Background Overlay" 
-                    fill 
-                    className="object-contain opacity-60 contrast-[1.3] mix-blend-screen" 
-                    priority
-                  />
-              <div className="absolute inset-0 flex flex-col justify-center items-center text-center px-4 z-20">
-                <h1 className="text-[32px] md:text-[56px] lg:text-[72px] font-bold text-white mb-2 md:mb-4 drop-shadow-md">
+          {/* --- Overlay nội dung: text trái + mascot phải --- */}
+          <div className="absolute inset-0 z-10 flex items-center">
+            <div className="container mx-auto px-6 md:px-10 flex flex-col md:flex-row items-center justify-between gap-8 mt-0 md:-mt-[250px]">
+
+              {/* Bên trái: Tiêu đề + tagline */}
+              <motion.div
+                initial={{ opacity: 0, x: -40 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.8 }}
+                className="max-w-lg text-center md:text-left"
+              >
+                <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-white leading-tight mb-4 drop-shadow-md">
                   BABEGO
                 </h1>
-                <h2 className="text-xs sm:text-sm md:text-lg lg:text-xl font-medium text-white tracking-wide drop-shadow-md uppercase">
-                  Dinh dưỡng chuyên sâu cho trẻ em Việt
-                </h2>
-              </div>
-            </motion.div>
+                <p className="text-lg md:text-xl lg:text-2xl font-bold text-white/90 uppercase tracking-wide leading-snug drop-shadow-md">
+                  Dinh dưỡng chuyên sâu<br />
+                  cho trẻ em Việt
+                </p>
+              </motion.div>
+
+              {/* Bên phải: Mascot babego_mascot.svg */}
+              <motion.div
+                initial={{ opacity: 0, x: 40, scale: 0.9 }}
+                animate={{ opacity: 1, x: 0, scale: 1 }}
+                transition={{ duration: 0.8, delay: 0.2 }}
+                className="relative w-[220px] h-[250px] md:w-[320px] md:h-[360px] lg:w-[400px] lg:h-[450px] flex-shrink-0"
+              >
+                <Image
+                  src="/img_babego/babego_mascot.svg"
+                  alt="Babego Mascot"
+                  fill
+                  className="object-contain drop-shadow-2xl"
+                  priority
+                />
+              </motion.div>
+            </div>
           </div>
         </div>
       </section>
