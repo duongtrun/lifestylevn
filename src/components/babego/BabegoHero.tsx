@@ -34,11 +34,11 @@ export default function BabegoHero() {
                 transition={{ duration: 0.8 }}
                 className="max-w-lg text-center md:text-left"
               >
-                <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-white leading-tight mb-4 drop-shadow-md">
+                <h1 className="text-4xl md:text-5xl lg:text-8xl font-extrabold text-white leading-tight mb-4 drop-shadow-md">
                   BABEGO
                 </h1>
                 <p className="text-lg md:text-xl lg:text-2xl font-bold text-white/90 uppercase tracking-wide leading-snug drop-shadow-md">
-                  Dinh dưỡng chuyên sâu<br />
+                  Chuyên gia dinh dưỡng<br />
                   cho trẻ em Việt
                 </p>
               </motion.div>
