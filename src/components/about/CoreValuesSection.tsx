@@ -21,6 +21,7 @@ interface HexagonProps {
   title: string;
   onClick?: () => void;
   index: number;
+  textSize?: string;
 }
 
 // React Component vẽ Lục giác đứng (pointed-top) hỗ trợ border tùy chỉnh
@@ -33,6 +34,7 @@ const Hexagon = ({
   textColor = 'text-white',
   title,
   index,
+  textSize,
 }: HexagonProps) => {
   const clipStyle = {
     clipPath: 'polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%)',
@@ -68,7 +70,7 @@ const Hexagon = ({
               left: `${borderWidth}px`,
             }}
           >
-            <p className={`text-[18px] md:text-[16px] font-bold leading-snug tracking-wide uppercase select-none ${textColor}`}>
+            <p className={`${textSize || 'text-[15px] md:text-[17px] font-black'} leading-snug tracking-wide uppercase select-none ${textColor}`}>
               {formattedTitle}
             </p>
           </div>
@@ -78,7 +80,7 @@ const Hexagon = ({
           className={`absolute inset-0 ${bgClass} flex flex-col items-center justify-center p-5 text-center`}
           style={clipStyle}
         >
-          <p className={`text-[18px] md:text-[16px] font-bold leading-snug tracking-wide uppercase select-none ${textColor}`}>
+          <p className={`${textSize || 'text-[15px] md:text-[17px] font-black'} leading-snug tracking-wide uppercase select-none ${textColor}`}>
             {formattedTitle}
           </p>
         </div>
@@ -177,12 +179,13 @@ export default function CoreValuesSection() {
             
             {/* Lục giác trung tâm (GIÁ TRỊ CỐT LÕI) */}
             <Hexagon
-              title="GIÁ TRỊ CỐT LÕI"
+              title={"GIÁ TRỊ\nCỐT LÕI"}
               bgClass="bg-white"
               hasBorder={true}
               borderColor="bg-[#008BBD]"
               borderWidth={4}
               textColor="text-[#273F68]"
+              textSize="text-[20px] md:text-[22px] lg:text-[24px] font-black"
               className="left-[225px] top-[260px] z-20"
               index={0}
             />
