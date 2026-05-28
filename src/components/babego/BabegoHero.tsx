@@ -25,7 +25,7 @@ export default function BabegoHero() {
 
           {/* --- Overlay nội dung: text trái + mascot phải --- */}
           <div className="absolute inset-0 z-10 flex items-center">
-            <div className="container mx-auto px-6 md:px-10 flex flex-col md:flex-row items-center justify-center gap-8 md:gap-16 lg:gap-24 mt-0 md:-mt-[250px]">
+            <div className="container mx-auto px-6 md:px-10 flex flex-col md:flex-row items-center justify-center gap-8 md:gap-[180px] lg:gap-[300px] mt-0 md:-mt-[250px]">
 
               {/* Bên trái: Tiêu đề + tagline */}
               <motion.div
