@@ -50,10 +50,10 @@ export default function InvestHero() {
             Trang chủ
           </Link>
           <ChevronRight className="w-4 h-4 opacity-50" />
-          <span className="text-[#5CC8EC] font-semibold">Đầu tư</span>
+          <span className="text-white font-semibold">Đầu tư</span>
         </motion.div>
 
-        {/* Nhãn nhỏ phía trên tiêu đề */}
+        {/* Nhãn nhỏ phía trên tiêu đề
         <motion.div
           initial={{ opacity: 0, x: -20 }}
           animate={{ opacity: 1, x: 0 }}
@@ -63,7 +63,7 @@ export default function InvestHero() {
             <span className="w-1.5 h-1.5 rounded-full bg-[#008BBD] animate-pulse"></span>
             Lifestyle Việt Nam
           </span>
-        </motion.div>
+        </motion.div> */}
 
         {/* Tiêu đề chính */}
         <motion.h1
@@ -87,7 +87,7 @@ export default function InvestHero() {
           className="flex items-center gap-4"
         >
           <div className="h-[2px] w-12 bg-[#008BBD] rounded-full"></div>
-          <p className="text-white/70 text-sm md:text-base font-medium tracking-wide">
+          <p className="text-white text-sm md:text-base font-medium tracking-wide">
             Cùng nhau kiến tạo hệ sinh thái Mẹ &amp; Bé hàng đầu Việt Nam
           </p>
         </motion.div>

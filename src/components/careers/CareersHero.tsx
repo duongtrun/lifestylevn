@@ -81,7 +81,7 @@ export default function CareersHero() {
               Trang chủ
             </Link>
             <ChevronRight className="w-3 h-3 sm:w-3.5 sm:h-3.5 md:w-4 md:h-4 opacity-70 drop-shadow-sm" />
-            <span className="text-[#5CC8EC] font-semibold drop-shadow-sm">Tuyển dụng</span>
+            <span className="text-white font-semibold drop-shadow-sm">Tuyển dụng</span>
           </motion.div>
 
           {/* Tiêu đề chính "TUYỂN DỤNG" với hiệu ứng slide-in & text gradient nhẹ */}
@@ -92,7 +92,7 @@ export default function CareersHero() {
             className="text-lg sm:text-4xl md:text-5xl lg:text-6xl font-extrabold text-white leading-tight tracking-tight drop-shadow-[0_4px_12px_rgba(0,0,0,0.5)]"
           >
             TUYỂN{' '}
-            <span className="bg-clip-text text-transparent bg-gradient-to-r from-[#008BBD] to-[#5CC8EC] drop-shadow-none">
+            <span className="">
               DỤNG
             </span>
           </motion.h1>

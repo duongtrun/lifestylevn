@@ -60,20 +60,11 @@ export default function AboutHero() {
             Trang chủ
           </Link>
           <ChevronRight className="w-4 h-4 opacity-50" />
-          <span className="text-[#008BBD] font-semibold">Giới thiệu</span>
+          <span className="text-white font-semibold">Giới thiệu</span>
         </motion.div>
 
         {/* Nhãn nhỏ phía trên tiêu đề */}
-        <motion.div
-          initial={{ opacity: 0, x: -20 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.5, delay: 0.2 }}
-        >
-          <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#008BBD]/20 border border-[#008BBD]/40 text-[#5CC8EC] text-xs font-bold tracking-widest uppercase backdrop-blur-sm">
-            <span className="w-1.5 h-1.9 rounded-full bg-[#008BBD] animate-pulse"></span>
-            LifeStyle Việt Nam
-          </span>
-        </motion.div>
+      
 
         {/* Tiêu đề chính "VỀ CHÚNG TÔI" */}
         <motion.h1
@@ -98,7 +89,7 @@ export default function AboutHero() {
           className="flex items-center gap-4"
         >
           <div className="h-[2px] w-12 bg-[#008BBD] rounded-full"></div>
-          <p className="text-white/70 text-sm md:text-base font-medium tracking-wide">
+          <p className="text-white text-sm md:text-base font-medium tracking-wide">
             Kiến tạo hệ sinh thái Mẹ &amp; Bé toàn diện tại Việt Nam
           </p>
         </motion.div>

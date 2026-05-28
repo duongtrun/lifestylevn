@@ -36,7 +36,7 @@ export default function BabegoHero() {
                     src="/img_iruka_care/iruka_care_blur_banner.svg" 
                     alt="Iruka Care Blur Background" 
                     fill 
-                    className="object-contain drop-shadow-[0_20px_50px_rgba(0,0,0,0.9)] opacity-90 contrast-[1.3] brightness-[1.1]" 
+                    className="object-contain drop-shadow-[0_20px_50px_rgba(0,0,0,1)] opacity-100 contrast-[1.3] brightness-[1.1]" 
                     priority
                   />
                   <Image 
