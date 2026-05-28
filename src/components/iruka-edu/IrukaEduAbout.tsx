@@ -98,27 +98,29 @@ export default function IrukaEduAbout() {
                 Vì sao chúng tôi xây dựng iruKa Edu ?
               </h2>
               <div className="space-y-4 text-sm md:text-base text-black/85 leading-relaxed">
-                <p>
-                  Giáo dục sớm chính là giai đoạn vàng để trẻ phát triển trí tuệ,
-                  ngôn ngữ, cảm xúc, tư duy.
-                </p>
-                <p>
-                  Mỗi trẻ có cách học khác nhau, nhưng giáo dục truyền thống
-                  khó cá nhân hóa.
-                </p>
-                <p>
-                  Trẻ ngày nay tiếp cận công nghệ sớm — nhưng cần một môi
-                  trường an toàn, định hướng đúng.
-                </p>
-                <p>
-                  Học qua chơi giúp trẻ phát triển tư duy, kỹ năng xã hội và khả
-                  năng ghi nhớ kiến thức tốt hơn.
-                </p>
-                <p>
-                  Gia đình cần một nền tảng tin cậy — khoa học — dễ dùng để
-                  đồng hành cùng con mỗi ngày.
-                </p>
-                <p>
+                <ul className="space-y-3.5 list-disc pl-5">
+                  <li>
+                    Giáo dục sớm chính là giai đoạn vàng để trẻ phát triển trí tuệ,
+                    ngôn ngữ, cảm xúc, tư duy.
+                  </li>
+                  <li>
+                    Mỗi trẻ có cách học khác nhau, nhưng giáo dục truyền thống
+                    khó cá nhân hóa.
+                  </li>
+                  <li>
+                    Trẻ ngày nay tiếp cận công nghệ sớm — nhưng cần một môi
+                    trường an toàn, định hướng đúng.
+                  </li>
+                  <li>
+                    Học qua chơi giúp trẻ phát triển tư duy, kỹ năng xã hội và khả
+                    năng ghi nhớ kiến thức tốt hơn.
+                  </li>
+                  <li>
+                    Gia đình cần một nền tảng tin cậy — khoa học — dễ dùng để
+                    đồng hành cùng con mỗi ngày.
+                  </li>
+                </ul>
+                <p className="pt-2 font-medium text-gray-700">
                   iruKa Edu xuất phát từ mong muốn giải quyết những vấn đề
                   đó một cách hiện đại và nhân văn.
                 </p>

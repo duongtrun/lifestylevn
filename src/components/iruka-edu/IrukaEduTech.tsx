@@ -39,7 +39,7 @@ const techData = [
         <p className="text-xs md:text-sm text-white/90 mb-2">
           Đội ngũ cố vấn gồm các chuyên gia có kinh nghiệm trong:
         </p>
-        <ul className="text-xs md:text-sm text-white/90 space-y-1 list-none">
+        <ul className="text-xs md:text-sm text-white/90 space-y-1 list-disc pl-4">
           <li>Giáo dục sớm 0–10 tuổi</li>
           <li>Tâm lý – hành vi trẻ nhỏ</li>
           <li>Phương pháp Montessori, STEAM</li>

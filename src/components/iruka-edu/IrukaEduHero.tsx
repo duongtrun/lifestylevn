@@ -37,10 +37,10 @@ export default function IrukaEduHero() {
                 transition={{ duration: 0.8 }}
                 className="max-w-lg text-center md:text-left"
               >
-                <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-[#273F68] leading-tight mb-4">
+                <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-white leading-tight mb-4">
                   IRUKA EDU
                 </h1>
-                <p className="text-lg md:text-xl lg:text-2xl font-bold text-[#273F68]/80 uppercase tracking-wide leading-snug">
+                <p className="text-lg md:text-xl lg:text-2xl font-bold text-white/80 uppercase tracking-wide leading-snug">
                   Nền tảng giáo dục sớm<br />
                   ứng dụng AI<br />
                   cho trẻ 3–11 tuổi
