@@ -32,7 +32,7 @@ export default function AboutIntroSection() {
             className="relative flex items-center justify-center min-w-0"
           >
             {/* Ảnh hiển thị trực tiếp không khung */}
-            <div className="relative w-full max-w-[340px] aspect-[3/4]">
+            <div className="relative w-full max-w-[420px] lg:max-w-[480px] aspect-[3/4]">
               <motion.div
                 whileHover={{ scale: 1.04 }}
                 transition={{ duration: 0.4 }}
