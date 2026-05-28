@@ -24,7 +24,7 @@ export default function IrukaCareHero() {
 
         {/* --- Overlay nội dung: text trái + mascot phải --- */}
         <div className="absolute inset-0 z-10 flex items-center">
-          <div className="container mx-auto px-6 md:px-10 flex flex-col md:flex-row items-center justify-between gap-8 mt-0 md:-mt-[250px]">
+          <div className="container mx-auto px-6 md:px-10 flex flex-col md:flex-row items-center justify-center gap-8 md:gap-[180px] lg:gap-[300px] mt-0 md:-mt-[250px]">
 
             {/* Bên trái: Tiêu đề + tagline */}
             <motion.div
@@ -33,7 +33,7 @@ export default function IrukaCareHero() {
               transition={{ duration: 0.8 }}
               className="max-w-lg text-center md:text-left"
             >
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-white leading-tight mb-4 drop-shadow-md">
+              <h1 className="text-4xl md:text-5xl lg:text-8xl font-extrabold text-white leading-tight mb-4 drop-shadow-md">
                 IRUKA CARE
               </h1>
               <p className="text-lg md:text-xl lg:text-2xl font-bold text-white/90 uppercase tracking-wide leading-snug drop-shadow-md">
