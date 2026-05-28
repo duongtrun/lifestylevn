@@ -14,26 +14,34 @@ export default function CareersHero() {
   return (
     <section className="relative w-full overflow-hidden bg-neutral-900 select-none">
       {/* Lớp phủ gradient bên trái để tăng độ tương phản và chiều sâu cho text trắng */}
-      <motion.div 
+      {/* <motion.div 
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 1 }}
         className="absolute inset-0 z-10 bg-gradient-to-r from-black/60 via-black/25 to-transparent pointer-events-none" 
-      />
+      /> */}
 
-      {/* Ảnh banner nền — giữ tỷ lệ gốc, tràn full chiều ngang */}
+      {/* Ảnh banner nền — tự thích ứng (Responsive) */}
       <motion.div
         initial={{ scale: 1.05, opacity: 0 }}
         animate={{ scale: 1, opacity: 1 }}
         transition={{ duration: 1.2, ease: 'easeOut' }}
-        className="w-full h-auto block"
+        className="relative w-full h-[320px] sm:h-[420px] md:h-[500px] lg:h-[600px] xl:h-[650px] z-0"
       >
+        {/* Banner dành riêng cho di động */}
         <Image
-          src="/img_recruit/recruit_banner.webp"
-          alt="Banner tuyển dụng IruKa Group — hình ảnh đội ngũ và môi trường làm việc"
-          width={1920}
-          height={600}
-          className="w-full h-auto block object-cover"
+          src="/img_recruit/recruit_banner_mobile.png"
+          alt="Banner tuyển dụng di động"
+          fill
+          className="object-cover object-center md:hidden"
+          priority
+        />
+        {/* Banner dành riêng cho máy tính */}
+        <Image
+          src="/img_recruit/recruit_banner.png"
+          alt="Banner tuyển dụng máy tính"
+          fill
+          className="object-cover object-center hidden md:block"
           priority
         />
       </motion.div>
