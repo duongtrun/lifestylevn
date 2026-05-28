@@ -161,7 +161,7 @@ export default function CoreValuesSection() {
           <span className="inline-block mb-2.5 px-4 py-1.5 rounded-full bg-[#008BBD]/10 text-[#008BBD] text-xs font-bold uppercase tracking-widest">
             Văn hoá doanh nghiệp
           </span>
-          <h1 className="text-5xl md:text-7xl lg:text-8xl font-black text-[#273F68] tracking-tight leading-none mb-6">
+          <h1 className="text-6xl md:text-8xl lg:text-[110px] font-black text-[#273F68] tracking-tighter leading-none mb-8">
             Giá Trị Cốt Lõi
           </h1>
           <div className="h-1 w-20 bg-[#008BBD] mx-auto rounded-full" />
