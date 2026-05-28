@@ -45,8 +45,6 @@ export default function NewsEventsGroupSlider({ posts }: NewsEventsGroupSliderPr
     if (emblaApi) emblaApi.scrollNext();
   }, [emblaApi]);
 
-  if (!posts || posts.length === 0) return null;
-
   // Định dạng ngày tháng tiếng Việt
   const formatDate = (dateString: string) => {
     const date = new Date(dateString);
@@ -57,10 +55,7 @@ export default function NewsEventsGroupSlider({ posts }: NewsEventsGroupSliderPr
     }).format(date);
   };
 
-  const firstPost = posts[0];
-  const firstImage = firstPost ? (fixImageUrl(firstPost._embedded?.['wp:featuredmedia']?.[0]?.source_url) || '/img_home/placeholder_news.jpg') : '';
-  const firstTitle = firstPost ? firstPost.title.rendered : '';
-  const firstExcerpt = firstPost ? (firstPost.excerpt.rendered.replace(/<[^>]+>/g, '').slice(0, 180) + '...') : '';
+  const hasPosts = posts && posts.length > 0;
 
   return (
     <section className="w-full py-12 md:py-16 bg-[#F8F9FA] relative overflow-hidden select-none">
@@ -77,135 +72,104 @@ export default function NewsEventsGroupSlider({ posts }: NewsEventsGroupSliderPr
           </div>
 
           {/* Cặp nút điều hướng cuộn (Chỉ hiển thị ở chế độ desktop khi có slider) */}
-          <div className="hidden md:flex items-center gap-3 z-30">
-            <button 
-              onClick={scrollLeft}
-              className="w-11 h-11 rounded-full border border-gray-200 bg-white hover:bg-gray-50 flex items-center justify-center text-gray-600 hover:text-[#008BBD] active:scale-95 transition-all duration-200 cursor-pointer shadow-sm"
-              aria-label="Trang trước"
-            >
-              <ChevronLeft className="w-5 h-5 stroke-[2.5]" />
-            </button>
-            <button 
-              onClick={scrollRight}
-              className="w-11 h-11 rounded-full border border-gray-200 bg-white hover:bg-gray-50 flex items-center justify-center text-gray-600 hover:text-[#008BBD] active:scale-95 transition-all duration-200 cursor-pointer shadow-sm"
-              aria-label="Trang sau"
-            >
-              <ChevronRight className="w-5 h-5 stroke-[2.5]" />
-            </button>
-          </div>
+          {hasPosts && (
+            <div className="hidden md:flex items-center gap-3 z-30">
+              <button 
+                onClick={scrollLeft}
+                className="w-11 h-11 rounded-full border border-gray-200 bg-white hover:bg-gray-50 flex items-center justify-center text-gray-600 hover:text-[#008BBD] active:scale-95 transition-all duration-200 cursor-pointer shadow-sm"
+                aria-label="Trang trước"
+              >
+                <ChevronLeft className="w-5 h-5 stroke-[2.5]" />
+              </button>
+              <button 
+                onClick={scrollRight}
+                className="w-11 h-11 rounded-full border border-gray-200 bg-white hover:bg-gray-50 flex items-center justify-center text-gray-600 hover:text-[#008BBD] active:scale-95 transition-all duration-200 cursor-pointer shadow-sm"
+                aria-label="Trang sau"
+              >
+                <ChevronRight className="w-5 h-5 stroke-[2.5]" />
+              </button>
+            </div>
+          )}
         </div>
 
-        {/* ================= GIAO DIỆN MOBILE: CHỈ HIỂN THỊ 1 CÁI DUY NHẤT ================= */}
-        {firstPost && (
-          <div className="block md:hidden">
-            <div className="relative rounded-[32px] overflow-hidden shadow-lg border border-gray-100/40 bg-black group h-[320px] sm:h-[400px]">
-              <Link href={`/tin-tuc/${firstPost.slug}`} className="absolute inset-0 z-20" />
-              
-              {/* Ảnh nền */}
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img 
-                src={firstImage} 
-                alt={firstTitle} 
-                className="absolute inset-0 w-full h-full object-cover opacity-85 group-hover:scale-103 transition-transform duration-750 ease-out z-0"
-              />
-              
-              {/* Lớp phủ tối */}
-              <div className="absolute inset-0 bg-gradient-to-t from-black via-black/45 to-transparent opacity-95 group-hover:opacity-100 transition-opacity duration-300 z-10" />
-              
-              {/* Nội dung đè lên ảnh */}
-              <div className="absolute inset-0 p-6 sm:p-10 flex flex-col justify-end z-10">
-                <div className="space-y-3.5">
-                  {/* Badge thời gian */}
-                  <div className="flex items-center gap-2.5">
-                    <span className="bg-[#008BBD] text-white px-3.5 py-1 rounded-full text-[10px] sm:text-xs font-bold uppercase tracking-wider shadow-md">
-                      Time +07
-                    </span>
-                    <span className="text-white/80 text-xs sm:text-sm flex items-center gap-1.5 ml-1">
-                      <Calendar className="w-4 h-4 opacity-80" />
-                      {formatDate(firstPost.date)}
-                    </span>
-                  </div>
+        {/* ================= GIAO DIỆN PHẢN HỒI (RESPONSIVE): SLIDER CHẠY NGANG CHO CẢ MOBILE VÀ DESKTOP ================= */}
+        <div className="w-full">
+          {hasPosts ? (
+            <div className="overflow-hidden" ref={emblaRef}>
+              <div className="flex -ml-6 pb-4 cursor-grab active:cursor-grabbing">
+                {posts.map((post) => {
+                  const image = fixImageUrl(post._embedded?.['wp:featuredmedia']?.[0]?.source_url) || '/img_home/placeholder_news.jpg';
+                  const cleanTitle = post.title.rendered;
+                  const excerpt = post.excerpt.rendered.replace(/<[^>]+>/g, '').slice(0, 180) + '...';
 
-                  {/* Tiêu đề chính */}
-                  <h3 
-                    className="text-white text-lg sm:text-xl font-extrabold leading-snug group-hover:text-[#5CC8EC] transition-colors duration-300 line-clamp-2"
-                    dangerouslySetInnerHTML={{ __html: firstTitle }}
-                  />
+                  return (
+                    <div 
+                      key={post.id} 
+                      className="pl-6 flex-none w-full md:w-1/2"
+                    >
+                      <div className="relative rounded-[32px] overflow-hidden shadow-lg border border-gray-100/40 bg-black group h-[320px] sm:h-[400px] lg:h-[480px]">
+                        <Link href={`/tin-tuc/${post.slug}`} className="absolute inset-0 z-20" />
+                        
+                        {/* Ảnh nền */}
+                        {/* eslint-disable-next-line @next/next/no-img-element */}
+                        <img 
+                          src={image} 
+                          alt={cleanTitle} 
+                          className="absolute inset-0 w-full h-full object-cover opacity-85 group-hover:scale-103 transition-transform duration-750 ease-out z-0"
+                        />
+                        
+                        {/* Lớp phủ tối */}
+                        <div className="absolute inset-0 bg-gradient-to-t from-black via-black/45 to-transparent opacity-95 group-hover:opacity-100 transition-opacity duration-300 z-10" />
+                        
+                        {/* Nội dung đè lên ảnh */}
+                        <div className="absolute inset-0 p-6 sm:p-10 flex flex-col justify-end z-10">
+                          <div className="space-y-3.5">
+                            {/* Badge thời gian */}
+                            <div className="flex items-center gap-2.5">
+                              <span className="bg-[#008BBD] text-white px-3.5 py-1 rounded-full text-[10px] sm:text-xs font-bold uppercase tracking-wider shadow-md">
+                                Time +07
+                              </span>
+                              <span className="text-white/80 text-xs sm:text-sm flex items-center gap-1.5 ml-1">
+                                <Calendar className="w-4 h-4 opacity-80" />
+                                {formatDate(post.date)}
+                              </span>
+                            </div>
 
-                  {/* Trích dẫn ngắn */}
-                  <p 
-                    className="text-white/80 text-xs sm:text-sm leading-relaxed line-clamp-3 font-medium opacity-90 group-hover:opacity-100 transition-opacity duration-300"
-                    dangerouslySetInnerHTML={{ __html: firstExcerpt }}
-                  />
-                </div>
-              </div>
-            </div>
-          </div>
-        )}
+                            {/* Tiêu đề chính */}
+                            <h3 
+                              className="text-white text-lg sm:text-xl lg:text-2xl font-extrabold leading-snug group-hover:text-[#5CC8EC] transition-colors duration-300 line-clamp-2"
+                              dangerouslySetInnerHTML={{ __html: cleanTitle }}
+                            />
 
-        {/* ================= GIAO DIỆN DESKTOP: SLIDER 2 CÁI CHẠY NGANG TỰ ĐỘNG ================= */}
-        <div className="hidden md:block">
-          <div className="overflow-hidden" ref={emblaRef}>
-            <div className="flex -ml-6 pb-4 cursor-grab active:cursor-grabbing">
-              {posts.map((post) => {
-                const image = fixImageUrl(post._embedded?.['wp:featuredmedia']?.[0]?.source_url) || '/img_home/placeholder_news.jpg';
-                const cleanTitle = post.title.rendered;
-                const excerpt = post.excerpt.rendered.replace(/<[^>]+>/g, '').slice(0, 180) + '...';
-
-                return (
-                  <div 
-                    key={post.id} 
-                    className="pl-6 flex-none w-1/2"
-                  >
-                    <div className="relative rounded-[32px] overflow-hidden shadow-lg border border-gray-100/40 bg-black group h-[400px] lg:h-[480px]">
-                      <Link href={`/tin-tuc/${post.slug}`} className="absolute inset-0 z-20" />
-                      
-                      {/* Ảnh nền */}
-                      {/* eslint-disable-next-line @next/next/no-img-element */}
-                      <img 
-                        src={image} 
-                        alt={cleanTitle} 
-                        className="absolute inset-0 w-full h-full object-cover opacity-85 group-hover:scale-103 transition-transform duration-750 ease-out z-0"
-                      />
-                      
-                      {/* Lớp phủ tối */}
-                      <div className="absolute inset-0 bg-gradient-to-t from-black via-black/45 to-transparent opacity-95 group-hover:opacity-100 transition-opacity duration-300 z-10" />
-                      
-                      {/* Nội dung đè lên ảnh */}
-                      <div className="absolute inset-0 p-6 sm:p-10 flex flex-col justify-end z-10">
-                        <div className="space-y-3.5">
-                          {/* Badge thời gian */}
-                          <div className="flex items-center gap-2.5">
-                            <span className="bg-[#008BBD] text-white px-3.5 py-1 rounded-full text-[10px] sm:text-xs font-bold uppercase tracking-wider shadow-md">
-                              Time +07
-                            </span>
-                            <span className="text-white/80 text-xs sm:text-sm flex items-center gap-1.5 ml-1">
-                              <Calendar className="w-4 h-4 opacity-80" />
-                              {formatDate(post.date)}
-                            </span>
+                            {/* Trích dẫn ngắn */}
+                            <p 
+                              className="text-white/80 text-xs sm:text-sm leading-relaxed line-clamp-3 font-medium opacity-90 group-hover:opacity-100 transition-opacity duration-300"
+                              dangerouslySetInnerHTML={{ __html: excerpt }}
+                            />
                           </div>
-
-                          {/* Tiêu đề chính khổ lớn */}
-                          <h3 
-                            className="text-white text-lg sm:text-xl lg:text-2xl font-extrabold leading-snug group-hover:text-[#5CC8EC] transition-colors duration-300 line-clamp-2"
-                            dangerouslySetInnerHTML={{ __html: cleanTitle }}
-                          />
-
-                          {/* Trích dẫn ngắn */}
-                          <p 
-                            className="text-white/80 text-xs sm:text-sm leading-relaxed line-clamp-3 font-medium opacity-90 group-hover:opacity-100 transition-opacity duration-300"
-                            dangerouslySetInnerHTML={{ __html: excerpt }}
-                          />
                         </div>
                       </div>
                     </div>
-                  </div>
-                );
-              })}
+                  );
+                })}
+              </div>
             </div>
-          </div>
-
-
+          ) : (
+            <div className="flex -ml-6 pb-4">
+              {[1, 2].map((i) => (
+                <div key={i} className="pl-6 flex-none w-full md:w-1/2">
+                  <div className="w-full h-[320px] sm:h-[400px] lg:h-[480px] rounded-[32px] bg-neutral-200/50 animate-pulse border border-neutral-100/30 relative overflow-hidden">
+                    <div className="absolute inset-6 sm:p-10 space-y-4 flex flex-col justify-end">
+                      <div className="h-4 bg-neutral-300 rounded w-1/4" />
+                      <div className="h-6 bg-neutral-300 rounded w-3/4" />
+                      <div className="h-4 bg-neutral-300 rounded w-5/6" />
+                      <div className="h-4 bg-neutral-300 rounded w-2/3" />
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          )}
         </div>
 
       </div>

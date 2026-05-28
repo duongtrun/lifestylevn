@@ -23,7 +23,6 @@ export default function NewsHero() {
           fill
           className="object-cover object-center block md:hidden"
           priority
-          unoptimized
         />
         {/* Banner cho máy tính và máy tính bảng */}
         <Image
@@ -32,7 +31,6 @@ export default function NewsHero() {
           fill
           className="object-cover object-center lg:object-[center_top] hidden md:block"
           priority
-          unoptimized
         />
       </div>
 

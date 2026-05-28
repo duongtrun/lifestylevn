@@ -4,6 +4,7 @@
 
 import ContactForm from '@/components/contact/ContactForm';
 import { Mail, MapPin, Phone } from 'lucide-react';
+import Image from 'next/image';
 
 export const metadata = {
   title: 'Liên hệ | IruKa Group',
@@ -15,10 +16,13 @@ export default function ContactPage() {
     <main className="min-h-screen relative flex items-center justify-center py-20 px-4">
       {/* Hình nền mờ phía sau toàn trang để tránh đơn điệu */}
       <div className="absolute inset-0 z-0">
-        <img
+        <Image
           src="/img_about_us/bg_su_menh.webp"
           alt="Hình nền liên hệ"
-          className="w-full h-full object-cover opacity-60"
+          fill
+          sizes="100vw"
+          className="object-cover opacity-60"
+          priority
         />
         {/* Lớp phủ gradient để làm dịu background và tôn lên form */}
         <div className="absolute inset-0 bg-gradient-to-br from-blue-900/40 to-blue-500/20" />

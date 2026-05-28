@@ -3,6 +3,7 @@
 import Link from 'next/link';
 import { ChevronRight } from 'lucide-react';
 import { motion } from 'framer-motion';
+import Image from 'next/image';
 
 // File: src/components/careers/CareersHero.tsx
 // Luồng: Trang Tuyển dụng (/tuyen-dung)
@@ -27,11 +28,13 @@ export default function CareersHero() {
         transition={{ duration: 1.2, ease: 'easeOut' }}
         className="w-full h-auto block"
       >
-        <img
+        <Image
           src="/img_recruit/recruit_banner.webp"
           alt="Banner tuyển dụng IruKa Group — hình ảnh đội ngũ và môi trường làm việc"
+          width={1920}
+          height={600}
           className="w-full h-auto block object-cover"
-          loading="eager"
+          priority
         />
       </motion.div>
 

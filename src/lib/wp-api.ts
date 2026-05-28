@@ -143,22 +143,36 @@ const CATEGORY_DEFAULT_IMAGES: Record<string, string[]> = {
 };
 const DEFAULT_IMAGE = '/img_news/edu_img.svg';
 
-/**
- * Gán ảnh mặc định cho bài viết từ WordPress nếu chưa có ảnh đại diện
- * Ảnh được chọn theo danh mục của bài, xoay vòng để không bị trùng
- */
 function enrichPostWithFallbackImage(post: WPPost, index: number = 0): WPPost {
-  // Nếu bài đã có ảnh từ WordPress thì giữ nguyên
+  // 1. Ưu tiên hàng đầu: Nếu bài viết có trường ảnh tùy biến từ ACF và đó là link ảnh hợp lệ, dùng làm ảnh đại diện chính
+  const acfImage = post.acf?.anh;
+  const isRawImageUrl = (text: string | undefined): boolean => {
+    if (!text) return false;
+    const trimmed = text.trim();
+    if (trimmed.includes('<') || trimmed.includes('>')) return false;
+    return /^(https?:\/\/|\/|wp-content\/).*\.(png|jpg|jpeg|gif|webp|svg)(?:\?.*)?$/i.test(trimmed) 
+      || (trimmed.startsWith('http') && !trimmed.includes(' '));
+  };
+
+  if (acfImage && isRawImageUrl(acfImage)) {
+    return {
+      ...post,
+      _embedded: {
+        ...post._embedded,
+        'wp:featuredmedia': [{ source_url: acfImage.trim(), alt_text: post.title.rendered }],
+      },
+    };
+  }
+
+  // 2. Ưu tiên hai: Nếu bài đã có ảnh Featured Media được gán trực tiếp từ admin WordPress thì giữ nguyên
   const hasImage = post._embedded?.['wp:featuredmedia']?.[0]?.source_url;
   if (hasImage) return post;
 
-  // Tìm danh mục (slug) của bài viết
+  // 3. Dự phòng cuối cùng: Chọn ảnh mặc định theo danh mục (xoay vòng)
   const categorySlug = post._embedded?.['wp:term']?.[0]?.[0]?.slug || '';
   const images = CATEGORY_DEFAULT_IMAGES[categorySlug] || [DEFAULT_IMAGE];
-  // Xoay vòng ảnh theo thứ tự bài (bài 1 → ảnh 1, bài 2 → ảnh 2, bài 3 → ảnh 3, bài 4 → ảnh 1...)
   const selectedImage = images[index % images.length];
 
-  // Gắn ảnh vào đúng cấu trúc _embedded để các component hiển thị được
   return {
     ...post,
     _embedded: {
@@ -179,313 +193,9 @@ export interface WPJob {
     rendered: string;
   };
   acf?: {
-    // Tên trường mặc định không dấu (trường hợp tốt nhất)
-    muc_luong?: string;
-    dia_diem?: string;
-    kinh_nghiem?: string;
-    han_nop_ho_so?: string;
-    // Tên trường bị dính dấu tiếng Việt do người dùng tạo
-    'mức_lương'?: string;
-    'địa_điểm_'?: string;
-    'kinh_nghiệm'?: string;
-    'hạn_nộp_hồ_sơ'?: string;
-    'mô_tả_công_việc_jd'?: string;
-    'yêu_cầu_ứng_viên'?: string;
-    'quyền_lợi'?: string;
+    [key: string]: string | undefined;
   };
 }
-
-// ================= HỆ THỐNG DỮ LIỆU GIẢ LẬP CAO CẤP PHÒNG NGỪA (FALLBACK MOCK DATA) =================
-// Dùng để hiển thị giao diện lung linh lập tức kể cả khi máy chủ LocalWP của anh Đào đang tắt.
-export const MOCK_POSTS: WPPost[] = [
-  // ================= 3 BÀI SỰ KIỆN NỔI BẬT =================
-  {
-    id: 991,
-    date: '2026-05-19T08:00:00',
-    slug: 'hoi-thao-babego-cong-nghe-nano-hoa-ky',
-    title: { rendered: 'Babego - Ứng dụng công nghệ Nano Hoa Kỳ chiết xuất thảo dược chùm ngây' },
-    content: { rendered: `
-      <h2>Lễ ra mắt dòng sản phẩm dinh dưỡng chùm ngây cao cấp</h2>
-      <p>Sự kiện đã diễn ra vô cùng thành công với sự tham gia của hơn 500 gia đình và các chuyên gia y tế, dinh dưỡng hàng đầu. Tại buổi hội thảo, các bác sĩ đã chia sẻ những kiến thức vô cùng bổ ích về tầm quan trọng của dinh dưỡng đối với trẻ nhỏ.</p>
-      <p>Công nghệ Nano Hoa Kỳ giúp phân tách các chất dinh dưỡng từ chùm ngây thành các phân tử siêu nhỏ, giúp cơ thể trẻ hấp thụ tối đa chất dinh dưỡng gấp 300 lần bình thường. Đây là giải pháp đột phá giúp bé ăn ngon miệng, ngừa táo bón và tăng cân khoa học tự nhiên.</p>
-      <blockquote>Dinh dưỡng khoa học là nền tảng vững chắc để trẻ tự do khám phá và phát triển toàn diện cả thể chất lẫn trí tuệ.</blockquote>
-    ` },
-    excerpt: { rendered: 'Hội thảo dinh dưỡng giới thiệu giải pháp đột phá từ chùm ngây giúp trẻ hấp thụ tối đa dưỡng chất, ngừa táo bón và tăng cân tự nhiên khỏe mạnh.' },
-    acf: {
-      'title': 'Babego - Ứng dụng công nghệ Nano Hoa Kỳ chiết xuất thảo dược chùm ngây',
-      'noi_dung_chinh': `
-        <p>Sự kiện đã diễn ra vô cùng thành công với sự tham gia của hơn 500 gia đình và các chuyên gia y tế, dinh dưỡng hàng đầu. Tại buổi hội thảo, các bác sĩ đã chia sẻ những kiến thức vô cùng bổ ích về tầm quan trọng của dinh dưỡng đối với trẻ nhỏ.</p>
-        <p>Công nghệ Nano Hoa Kỳ giúp phân tách các chất dinh dưỡng từ chùm ngây thành các phân tử siêu nhỏ, giúp cơ thể trẻ hấp thụ tối đa chất dinh dưỡng gấp 300 lần bình thường. Đây là giải pháp đột phá giúp bé ăn ngon miệng, ngừa táo bón và tăng cân khoa học tự nhiên.</p>
-        <blockquote>Dinh dưỡng khoa học là nền tảng vững chắc để trẻ tự do khám phá và phát triển toàn diện cả thể chất lẫn trí tuệ.</blockquote>
-      `,
-      'anh': '<p>Dưới đây là hình ảnh nổi bật ghi nhận được tại sự kiện ra mắt:</p><img src="/images/hot_news_img.webp" alt="Hội thảo Babego" class="rounded-xl shadow-md my-4" />',
-      'nguoi_dang_bai': 'Ban Biên Tập Lifestyle'
-    },
-    _embedded: {
-      'wp:featuredmedia': [{ source_url: '/images/hot_news_img.webp', alt_text: 'Hội thảo Babego' }],
-      'wp:term': [[
-        { id: 4, name: 'Sự kiện', slug: 'su-kien', taxonomy: 'category' },
-        { id: 10, name: 'Tin tức', slug: 'tin-tuc', taxonomy: 'category' }
-      ]]
-    }
-  },
-  {
-    id: 992,
-    date: '2026-05-18T14:30:00',
-    slug: 'lifestyle-hop-tap-chien-luoc-y-te-toan-dien',
-    title: { rendered: 'Lifestyle Việt Nam công bố hợp tác chiến lược y tế toàn diện cùng Iruka Care' },
-    content: { rendered: `
-      <h2>Cột mốc phát triển mới của hệ sinh thái chăm sóc sức khỏe Mẹ & Bé</h2>
-      <p>Nhằm đem lại dịch vụ tư vấn y tế chất lượng cao, Lifestyle Việt Nam chính thức công bố ký kết thỏa thuận hợp tác chiến lược toàn diện cùng chuỗi trung tâm chăm sóc sức khỏe Iruka Care.</p>
-      <p>Thông qua hợp tác này, toàn bộ khách hàng của hệ sinh thái Lifestyle sẽ nhận được sự hỗ trợ y tế 24/7 trực tiếp từ đội ngũ bác sĩ nhi khoa đầu ngành của Iruka Care, nâng niu sự phát triển toàn diện của mỗi em bé.</p>
-    ` },
-    excerpt: { rendered: 'Ký kết thỏa thuận hợp tác chiến lược mở ra chương mới giúp chăm sóc sức khỏe nhi khoa tốt nhất cho các bé trong hệ sinh thái.' },
-    _embedded: {
-      'wp:featuredmedia': [{ source_url: '/img_news/suc_khoe.svg', alt_text: 'Hợp tác y tế' }],
-      'wp:term': [[
-        { id: 4, name: 'Sự kiện', slug: 'su-kien', taxonomy: 'category' },
-        { id: 10, name: 'Tin tức', slug: 'tin-tuc', taxonomy: 'category' }
-      ]]
-    }
-  },
-  {
-    id: 993,
-    date: '2026-05-17T09:15:00',
-    slug: 'iruka-edu-khai-xuan-ruc-ro-chuoi-hoat-dong',
-    title: { rendered: 'Hệ thống giáo dục Iruka Edu khai xuân rực rỡ với chuỗi hoạt động trải nghiệm' },
-    content: { rendered: `
-      <h2>Chuỗi ngày hội trải nghiệm giáo dục sớm thu hút hàng ngàn gia đình</h2>
-      <p>Hệ thống mầm non và trung tâm phát triển kỹ năng Iruka Edu đã chào xuân mới bằng chuỗi ngày hội trải nghiệm đa giác quan "Ươm mầm tương lai" trên toàn hệ thống.</p>
-      <p>Tại ngày hội, các em bé được hòa mình vào không gian sáng tạo nghệ thuật, phát triển tư duy logic toán học qua các trò chơi tương tác hiện đại và nhận các phần quà xinh xắn đầu năm.</p>
-    ` },
-    excerpt: { rendered: 'Hàng ngàn gia đình hào hứng tham gia chuỗi hoạt động phát triển kỹ năng, tư duy nghệ thuật và toán học chất lượng cao.' },
-    _embedded: {
-      'wp:featuredmedia': [{ source_url: '/img_news/edu_img.svg', alt_text: 'Ngày hội Iruka Edu' }],
-      'wp:term': [[
-        { id: 4, name: 'Sự kiện', slug: 'su-kien', taxonomy: 'category' },
-        { id: 10, name: 'Tin tức', slug: 'tin-tuc', taxonomy: 'category' }
-      ]]
-    }
-  },
-  // ================= 3 BÀI GIÁO DỤC =================
-  {
-    id: 1101,
-    date: '2026-05-16T08:00:00',
-    slug: 'hoc-toan-tu-duy-logic-cung-iruka-edu',
-    title: { rendered: 'Tuổi học toán - Phương pháp kích hoạt tư duy logic sớm từ Iruka Edu' },
-    content: { rendered: '<p>Làm sao để giúp trẻ tiếp cận toán học một cách tự nhiên nhất? Tại Iruka Edu, các bé được tiếp cận với môn toán qua các hoạt động trải nghiệm thực tiễn và trò chơi kích thích trí tuệ đầy lý thú.</p>' },
-    excerpt: { rendered: 'Khám phá phương pháp dạy trẻ học toán tư duy thông qua các hoạt động đa giác quan sống động tại hệ thống Iruka Edu.' },
-    acf: {
-      title: 'Tuổi học toán - Phương pháp kích hoạt tư duy logic sớm từ Iruka Edu',
-      noi_dung_chinh: 'Làm sao để giúp trẻ tiếp cận toán học một cách tự nhiên nhất? Tại Iruka Edu, các bé được tiếp cận với môn toán qua các hoạt động trải nghiệm thực tiễn và trò chơi kích thích trí tuệ đầy lý thú.',
-      anh: '/img_news/edu_img.svg',
-      nguoi_dang_bai: 'Ban Biên Tập Lifestyle'
-    },
-    _embedded: {
-      'wp:featuredmedia': [{ source_url: '/img_news/edu_img.svg', alt_text: 'Học toán tư duy' }],
-      'wp:term': [[
-        { id: 15, name: 'Giáo dục', slug: 'giao-duc', taxonomy: 'category' },
-        { id: 10, name: 'Tin tức', slug: 'tin-tuc', taxonomy: 'category' }
-      ]]
-    }
-  },
-  {
-    id: 1102,
-    date: '2026-05-15T09:00:00',
-    slug: 'day-tre-phat-trien-kynang-va-nghe-thuat',
-    title: { rendered: 'Thực học thực hành - Ươm mầm kỹ năng và năng khiếu nghệ thuật toàn diện' },
-    content: { rendered: '<p>Bên cạnh kiến thức văn hóa, các lớp năng khiếu như vẽ tranh, âm nhạc, cờ vua... tại Iruka Edu giúp khơi gợi tiềm năng nghệ thuật và rèn luyện kỹ năng mềm quan trọng cho con yêu.</p>' },
-    excerpt: { rendered: 'Khơi dậy tiềm năng nghệ thuật và tư duy sáng tạo thông qua các giờ học thực hành năng động tại Iruka Edu.' },
-    acf: {
-      title: 'Thực học thực hành - Ươm mầm kỹ năng và năng khiếu nghệ thuật toàn diện',
-      noi_dung_chinh: 'Bên cạnh kiến thức văn hóa, các lớp năng khiếu như vẽ tranh, âm nhạc, cờ vua... tại Iruka Edu giúp khơi gợi tiềm năng nghệ thuật và rèn luyện kỹ năng mềm quan trọng cho con yêu.',
-      anh: '/images/hot_news_img.webp',
-      nguoi_dang_bai: 'Ban Biên Tập Lifestyle'
-    },
-    _embedded: {
-      'wp:featuredmedia': [{ source_url: '/images/hot_news_img.webp', alt_text: 'Ươm mầm nghệ thuật' }],
-      'wp:term': [[
-        { id: 15, name: 'Giáo dục', slug: 'giao-duc', taxonomy: 'category' },
-        { id: 10, name: 'Tin tức', slug: 'tin-tuc', taxonomy: 'category' }
-      ]]
-    }
-  },
-  {
-    id: 1103,
-    date: '2026-05-14T10:00:00',
-    slug: 'ren-luyen-the-chat-khoe-manh-khoa-hoc',
-    title: { rendered: 'Bảo vệ thể chất lành mạnh - Bé tự tin khám phá thế giới xung quanh' },
-    content: { rendered: '<p>Hoạt động thể chất ngoài trời định kỳ không chỉ nâng cao sức đề kháng mà còn là cơ hội tuyệt vời để trẻ giao tiếp, tự tin thể hiện cá tính và khám phá thế giới bao la.</p>' },
-    excerpt: { rendered: 'Các bài tập thể chất vui nhộn và trò chơi vận động nhóm được thiết kế chuyên biệt cho từng lứa tuổi tại Iruka Edu.' },
-    acf: {
-      title: 'Bảo vệ thể chất lành mạnh - Bé tự tin khám phá thế giới xung quanh',
-      noi_dung_chinh: 'Hoạt động thể chất ngoài trời định kỳ không chỉ nâng cao sức đề kháng mà còn là cơ hội tuyệt vời để trẻ giao tiếp, tự tin thể hiện cá tính và khám phá thế giới bao la.',
-      anh: '/img_news/suc_khoe.svg',
-      nguoi_dang_bai: 'Ban Biên Tập Lifestyle'
-    },
-    _embedded: {
-      'wp:featuredmedia': [{ source_url: '/img_news/suc_khoe.svg', alt_text: 'Phát triển thể chất' }],
-      'wp:term': [[
-        { id: 15, name: 'Giáo dục', slug: 'giao-duc', taxonomy: 'category' },
-        { id: 10, name: 'Tin tức', slug: 'tin-tuc', taxonomy: 'category' }
-      ]]
-    }
-  },
-
-  // ================= 5 BÀI DINH DƯỠNG & TIÊU HÓA =================
-  {
-    id: 1001,
-    date: '2026-05-16T10:00:00',
-    slug: 'bi-quyet-giup-tre-tang-can-tu-nhien-khong-tao-bon',
-    title: { rendered: 'Bí quyết giúp trẻ tăng cân tự nhiên không lo táo bón' },
-    content: { rendered: '<p>Làm thế nào để trẻ tăng cân đều đặn nhưng hệ tiêu hóa vẫn khỏe mạnh? Bài viết này tổng hợp lời khuyên từ các bác sĩ dinh dưỡng đầu ngành về việc cân đối hàm lượng chất xơ hòa tan kết hợp cùng các acid amin thiết yếu trong chế độ ăn hàng ngày của bé.</p>' },
-    excerpt: { rendered: 'Tổng hợp các mẹo nhỏ cực kỳ hiệu quả giúp cân đối thực đơn ăn dặm giàu xơ và dinh dưỡng lành mạnh cho hệ tiêu hóa trẻ.' },
-    _embedded: {
-      'wp:featuredmedia': [{ source_url: '/img_news/dinh_duong_tieu_hoa.webp', alt_text: 'Dinh dưỡng tiêu hóa' }],
-      'wp:term': [[
-        { id: 5, name: 'Dinh dưỡng & tiêu hóa', slug: 'dinh-duong-tieu-hoa', taxonomy: 'category' },
-        { id: 10, name: 'Tin tức', slug: 'tin-tuc', taxonomy: 'category' }
-      ]]
-    }
-  },
-  {
-    id: 1002,
-    date: '2026-05-15T15:45:00',
-    slug: 'thuc-don-an-dam-dinh-duong-khoa-hoc',
-    title: { rendered: 'Thực đơn ăn dặm giàu dưỡng chất hỗ trợ đường ruột non nớt của bé' },
-    content: { rendered: '<p>Bước vào giai đoạn ăn dặm, hệ tiêu hóa của bé vẫn còn rất non nớt. Việc xây dựng thực đơn cần được tính toán chi li, đa dạng hóa các nguồn đạm dễ tiêu và bổ sung chất xơ FOS tự nhiên giúp bé hấp thu trọn vẹn dinh dưỡng mà không bị đầy hơi, khó tiêu.</p>' },
-    excerpt: { rendered: 'Phương pháp xây dựng thực đơn ăn dặm khoa học giúp bổ sung đầy đủ vitamin và kích thích hệ tiêu hóa non nớt hoạt động trơn tru.' },
-    _embedded: {
-      'wp:featuredmedia': [{ source_url: '/img_news/dinh_duong_tieu_hoa_2.webp', alt_text: 'Thực đơn ăn dặm khoa học' }],
-      'wp:term': [[
-        { id: 5, name: 'Dinh dưỡng & tiêu hóa', slug: 'dinh-duong-tieu-hoa', taxonomy: 'category' },
-        { id: 10, name: 'Tin tức', slug: 'tin-tuc', taxonomy: 'category' }
-      ]]
-    }
-  },
-  {
-    id: 1003,
-    date: '2026-05-14T08:30:00',
-    slug: 'vai-tro-cua-loi-khuan-doi-voi-tieu-hoa-cua-be',
-    title: { rendered: 'Tầm quan trọng của lợi khuẩn probiotics đối với hệ tiêu hóa khỏe mạnh' },
-    content: { rendered: '<p>Hệ vi sinh đường ruột đóng vai trò quyết định đến 70% hệ miễn dịch của bé. Bổ sung đúng loại lợi khuẩn giúp ức chế hại khuẩn, ngăn ngừa rối loạn tiêu hóa, kích thích thành ruột hấp thu tối đa dưỡng chất, tạo đà cho bé tăng cân đều đặn.</p>' },
-    excerpt: { rendered: 'Tăng cường sức đề kháng và cải thiện hệ hấp thu của trẻ nhỏ thông qua việc bổ sung probiotics khoa học mỗi ngày.' },
-    _embedded: {
-      'wp:featuredmedia': [{ source_url: '/img_news/dinh_duong_tieu_hoa_3.webp', alt_text: 'Bổ sung lợi khuẩn' }],
-      'wp:term': [[
-        { id: 5, name: 'Dinh dưỡng & tiêu hóa', slug: 'dinh-duong-tieu-hoa', taxonomy: 'category' },
-        { id: 10, name: 'Tin tức', slug: 'tin-tuc', taxonomy: 'category' }
-      ]]
-    }
-  },
-  {
-    id: 1004,
-    date: '2026-05-13T11:00:00',
-    slug: 'sua-non-thao-duoc-giai-phap-dinh-duong-toan-dien',
-    title: { rendered: 'Sữa non thảo dược - Giải pháp đột phá giúp trẻ hấp thu dinh dưỡng tối đa' },
-    content: { rendered: '<p>Sự kết hợp hoàn hảo giữa sữa non chất lượng cao nhập khẩu và chiết xuất thảo dược thiên nhiên như chùm ngây, giúp cung cấp hàng rào miễn dịch tự nhiên dồi dào, đồng thời tái tạo các lông mao đường ruột để trẻ thèm ăn tự nhiên và tăng cân khỏe mạnh.</p>' },
-    excerpt: { rendered: 'Ứng dụng dinh dưỡng đột phá mới từ thảo dược thiên nhiên và sữa non nâng cao sức khỏe đường ruột cho bé.' },
-    _embedded: {
-      'wp:featuredmedia': [{ source_url: '/img_news/dinh_duong_tieu_hoa.webp', alt_text: 'Dinh dưỡng thảo dược' }],
-      'wp:term': [[
-        { id: 5, name: 'Dinh dưỡng & tiêu hóa', slug: 'dinh-duong-tieu-hoa', taxonomy: 'category' },
-        { id: 10, name: 'Tin tức', slug: 'tin-tuc', taxonomy: 'category' }
-      ]]
-    }
-  },
-  {
-    id: 1005,
-    date: '2026-05-12T09:00:00',
-    slug: 'bo-sung-kem-va-khoang-chat-dung-cach-cho-tre',
-    title: { rendered: 'Mẹo bổ sung Kẽm và chất xơ tự nhiên giúp bé hết biếng ăn' },
-    content: { rendered: '<p>Thiếu hụt vi chất dinh dưỡng, đặc biệt là kẽm, là nguyên nhân hàng đầu khiến bé mất cảm giác ngon miệng. Kết hợp kẽm cùng chất xơ hòa tan FOS giúp kích hoạt các gai vị giác, đồng thời làm mềm phân, ngừa táo bón triệt để cho bé luôn vui khỏe.</p>' },
-    excerpt: { rendered: 'Giải pháp khắc phục triệt để tình trạng biếng ăn kéo dài ở trẻ nhỏ bằng phương pháp cân đối vi chất tự nhiên.' },
-    _embedded: {
-      'wp:featuredmedia': [{ source_url: '/img_news/dinh_duong_tieu_hoa_2.webp', alt_text: 'Bổ sung vi chất' }],
-      'wp:term': [[
-        { id: 5, name: 'Dinh dưỡng & tiêu hóa', slug: 'dinh-duong-tieu-hoa', taxonomy: 'category' },
-        { id: 10, name: 'Tin tức', slug: 'tin-tuc', taxonomy: 'category' }
-      ]]
-    }
-  },
-
-  // ================= 5 BÀI SỨC KHỎE & VỆ SINH =================
-  {
-    id: 1011,
-    date: '2026-05-11T16:20:00',
-    slug: 'bi-quyet-bao-ve-rang-mieng-cho-be-yeu',
-    title: { rendered: 'Bí quyết bảo vệ răng miệng cho bé từ những chiếc răng đầu tiên' },
-    content: { rendered: '<p>Chăm sóc răng miệng ngay từ khi bé mới nhú những chiếc răng sữa đầu tiên là nền tảng cho một nụ cười rạng rỡ và chắc khỏe sau này. Hướng dẫn cách rơ lưỡi đúng cách, lựa chọn bàn chải lông siêu mềm và kem đánh răng nuốt được an toàn cho bé.</p>' },
-    excerpt: { rendered: 'Phương pháp bảo vệ nướu và men răng sữa khỏe mạnh cho trẻ nhỏ từ giai đoạn nhũ nhi cực kỳ hiệu quả.' },
-    _embedded: {
-      'wp:featuredmedia': [{ source_url: '/img_news/suc_khoe.svg', alt_text: 'Bảo vệ răng miệng' }],
-      'wp:term': [[
-        { id: 6, name: 'Sức khỏe & vệ sinh', slug: 'suc-khoe-ve-sinh', taxonomy: 'category' },
-        { id: 10, name: 'Tin tức', slug: 'tin-tuc', taxonomy: 'category' }
-      ]]
-    }
-  },
-  {
-    id: 1012,
-    date: '2026-05-10T14:30:00',
-    slug: 'nguyen-tac-tam-be-so-sinh-an-toan-chuan-y-khoa',
-    title: { rendered: 'Nguyên tắc tắm và vệ sinh cho bé sơ sinh an toàn chuẩn y khoa' },
-    content: { rendered: '<p>Tắm bé sơ sinh đòi hỏi sự cẩn thận tuyệt đối để tránh nhiễm trùng rốn và làm khô làn da nhạy cảm của con. Hướng dẫn chi tiết từng bước chuẩn bị phòng kín gió, nhiệt độ nước tiêu chuẩn, cách nâng đỡ bé an toàn và lau khô đúng cách.</p>' },
-    excerpt: { rendered: 'Quy trình tắm và chăm sóc rốn đúng chuẩn y tế giúp bảo vệ làn da non nớt của bé sơ sinh.' },
-    _embedded: {
-      'wp:featuredmedia': [{ source_url: '/img_news/suc_khoe_2.svg', alt_text: 'Tắm bé sơ sinh' }],
-      'wp:term': [[
-        { id: 6, name: 'Sức khỏe & vệ sinh', slug: 'suc-khoe-ve-sinh', taxonomy: 'category' },
-        { id: 10, name: 'Tin tức', slug: 'tin-tuc', taxonomy: 'category' }
-      ]]
-    }
-  },
-  {
-    id: 1013,
-    date: '2026-05-09T10:15:00',
-    slug: 'phong-tranh-cac-benh-ve-da-cho-tre-khi-troi-nong',
-    title: { rendered: 'Mẹo phòng ngừa rôm sảy và các bệnh ngoài da cho trẻ ngày nắng nóng' },
-    content: { rendered: '<p>Thời tiết oi bức dễ làm tuyến mồ hôi của trẻ bị tắc nghẽn, dẫn đến rôm sảy, mẩn ngứa và hăm da. Cùng tìm hiểu các dòng sữa tắm thảo dược tự nhiên lành tính giúp làm dịu da nhanh chóng, giữ da bé luôn khô thoáng và kháng khuẩn nhẹ nhàng.</p>' },
-    excerpt: { rendered: 'Phương pháp bảo vệ làn da nhạy cảm của bé khỏi rôm sảy, dị ứng và mẩn ngứa trong thời tiết mùa hè.' },
-    _embedded: {
-      'wp:featuredmedia': [{ source_url: '/img_news/suc_khoe_3.svg', alt_text: 'Phòng ngừa rôm sảy' }],
-      'wp:term': [[
-        { id: 6, name: 'Sức khỏe & vệ sinh', slug: 'suc-khoe-ve-sinh', taxonomy: 'category' },
-        { id: 10, name: 'Tin tức', slug: 'tin-tuc', taxonomy: 'category' }
-      ]]
-    }
-  },
-  {
-    id: 1014,
-    date: '2026-05-08T09:00:00',
-    slug: 'huong-dan-rua-tay-dung-cach-cho-be-ngua-vi-khuan',
-    title: { rendered: 'Hướng dẫn xây dựng thói quen rửa tay sạch khuẩn bảo vệ sức khỏe bé' },
-    content: { rendered: '<p>Bàn tay là con đường lây truyền virus phổ biến nhất ở trẻ nhỏ. Tạo thói quen rửa tay bằng xà phòng dịu nhẹ trước khi ăn và sau khi đi vệ sinh, hướng dẫn bé các bước rửa tay sạch khuẩn toàn diện giúp ngăn ngừa các bệnh truyền nhiễm nguy hiểm.</p>' },
-    excerpt: { rendered: 'Cách dạy bé rửa tay vui vẻ, đúng cách giúp tiêu diệt vi khuẩn gây bệnh và duy trì thói quen vệ sinh sạch sẽ.' },
-    _embedded: {
-      'wp:featuredmedia': [{ source_url: '/img_news/suc_khoe.svg', alt_text: 'Rửa tay sạch khuẩn' }],
-      'wp:term': [[
-        { id: 6, name: 'Sức khỏe & vệ sinh', slug: 'suc-khoe-ve-sinh', taxonomy: 'category' },
-        { id: 10, name: 'Tin tức', slug: 'tin-tuc', taxonomy: 'category' }
-      ]]
-    }
-  },
-  {
-    id: 1015,
-    date: '2026-05-07T08:00:00',
-    slug: 'cham-soc-he-ho-hap-cua-tre-trong-thoi-diem-giao-mua',
-    title: { rendered: 'Chăm sóc hệ hô hấp và vệ sinh mũi họng đúng cách lúc giao mùa' },
-    content: { rendered: '<p>Khi thời tiết chuyển mùa, hệ hô hấp của trẻ rất dễ bị tấn công bởi virus. Hướng dẫn cách sử dụng nước muối sinh lý vệ sinh mũi nhẹ nhàng, duy trì độ ẩm phòng ngủ lý tưởng và bổ sung các vitamin thiết yếu để tăng đề kháng hô hấp toàn diện.</p>' },
-    excerpt: { rendered: 'Các nguyên tắc cốt lõi giúp giữ ấm cổ họng và vệ sinh đường thở thông thoáng cho bé khi giao mùa.' },
-    _embedded: {
-      'wp:featuredmedia': [{ source_url: '/img_news/suc_khoe_2.svg', alt_text: 'Vệ sinh đường hô hấp' }],
-      'wp:term': [[
-        { id: 6, name: 'Sức khỏe & vệ sinh', slug: 'suc-khoe-ve-sinh', taxonomy: 'category' },
-        { id: 10, name: 'Tin tức', slug: 'tin-tuc', taxonomy: 'category' }
-      ]]
-    }
-  }
-];
 
 /**
  * Lấy danh sách bài viết mới nhất
@@ -501,7 +211,7 @@ export async function getPosts(limit: number = 9, categoryId?: number): Promise<
       headers: FETCH_HEADERS,
       // Revalidate mỗi 60 giây (ISR — tự động làm mới dữ liệu)
       next: { revalidate: 60 },
-      signal: AbortSignal.timeout(15000) // Tự động ngắt kết nối sau 15 giây nếu máy chủ không phản hồi (để hỗ trợ localtunnel/ngrok qua môi trường xa)
+      signal: AbortSignal.timeout(2000) // Tự động ngắt kết nối sau 2 giây nếu máy chủ không phản hồi (để hỗ trợ localtunnel/ngrok qua môi trường xa)
     });
     
     if (!res.ok) {
@@ -510,37 +220,15 @@ export async function getPosts(limit: number = 9, categoryId?: number): Promise<
     
     const posts: WPPost[] = await res.json();
     
-    // Nếu API trả về mảng rỗng thì dùng dữ liệu mock để giao diện không bị trống
-    if (posts.length === 0) {
-      if (categoryId) {
-        const filtered = MOCK_POSTS.filter(post => 
-          post._embedded?.['wp:term']?.[0]?.some(term => 
-            term.id === categoryId || term.slug === 'tin-tuc'
-          )
-        );
-        return (filtered.length > 0 ? filtered : MOCK_POSTS)
-          .slice(0, limit)
-          .map((post, index) => enrichPostWithFallbackImage(post, index));
-      }
-      return MOCK_POSTS.slice(0, limit).map((post, index) => enrichPostWithFallbackImage(post, index));
+    if (!posts || posts.length === 0) {
+      return [];
     }
     
     // Gắn ảnh mặc định cho bài chưa có ảnh đại diện (theo danh mục)
     return posts.map((post, index) => enrichPostWithFallbackImage(post, index));
   } catch (error) {
-    console.warn(`Kết nối WordPress thất bại cho URL: ${WP_API_URL}, tự động kích hoạt chế độ Fallback Mock Data:`, error);
-    // Khi máy chủ WordPress offline, trả về mảng dữ liệu mock cực kỳ chuyên nghiệp
-    if (categoryId) {
-      const filtered = MOCK_POSTS.filter(post => 
-        post._embedded?.['wp:term']?.[0]?.some(term => 
-          term.id === categoryId || term.slug === 'tin-tuc'
-        )
-      );
-      return (filtered.length > 0 ? filtered : MOCK_POSTS)
-        .slice(0, limit)
-        .map((post, index) => enrichPostWithFallbackImage(post, index));
-    }
-    return MOCK_POSTS.slice(0, limit).map((post, index) => enrichPostWithFallbackImage(post, index));
+    console.warn(`Kết nối WordPress thất bại cho URL: ${WP_API_URL}:`, error);
+    return [];
   }
 }
 
@@ -553,7 +241,7 @@ export async function getPostBySlug(slug: string): Promise<WPPost | null> {
     const res = await fetch(`${WP_API_URL}/wp/v2/posts?slug=${slug}&_embed=true`, {
       headers: FETCH_HEADERS,
       next: { revalidate: 60 },
-      signal: AbortSignal.timeout(15000)
+      signal: AbortSignal.timeout(2000)
     });
 
     if (!res.ok) {
@@ -562,53 +250,19 @@ export async function getPostBySlug(slug: string): Promise<WPPost | null> {
 
     const posts: WPPost[] = await res.json();
     
-    if (posts.length > 0) {
+    if (posts && posts.length > 0) {
       // Gắn ảnh mặc định nếu bài chưa có ảnh đại diện
       return enrichPostWithFallbackImage(posts[0]);
     }
     
-    // Tìm kiếm trong mảng giả lập nếu API không có kết quả
-    const mockPost = MOCK_POSTS.find(p => p.slug === slug);
-    return mockPost || null;
+    return null;
   } catch (error) {
-    console.warn(`Lấy chi tiết thất bại cho URL: ${WP_API_URL}, tìm kiếm trong Fallback Mock Data cho slug:`, slug, error);
-    const mockPost = MOCK_POSTS.find(p => p.slug === slug);
-    return mockPost || null;
+    console.warn(`Lấy chi tiết thất bại cho URL: ${WP_API_URL} cho slug: ${slug}:`, error);
+    return null;
   }
 }
 
-// ================= HỆ THỐNG DỮ LIỆU GIẢ LẬP CAO CẤP PHÒNG NGỪA (MOCK JOBS) =================
-export const MOCK_JOBS: WPJob[] = [
-  {
-    id: 2001,
-    date: '2026-05-19T09:00:00',
-    slug: 'chuyen-vien-truyen-thong-va-marketing',
-    title: { rendered: '[Tuyển dụng] Chuyên viên Truyền thông & Marketing Hệ sinh thái IruKa' },
-    content: { rendered: '' }, // Để rỗng để test tính năng fallback sang form ACF
-    acf: {
-      'mức_lương': '12.000.000 - 18.000.000 VNĐ',
-      'địa_điểm_': 'Quận 1, TP. Hồ Chí Minh',
-      'kinh_nghiệm': '1 - 2 năm',
-      'hạn_nộp_hồ_sơ': '30/06/2026',
-      'mô_tả_công_việc_jd': '<ul><li>Tham gia xây dựng và triển khai kế hoạch Marketing tổng thể.</li><li>Quản lý và phát triển nội dung trên Fanpage, Zalo, Tiktok.</li></ul>',
-      'yêu_cầu_ứng_viên': '<ul><li>Tốt nghiệp ngành Marketing, Báo chí, Truyền thông.</li><li>Có ít nhất 1 năm kinh nghiệm.</li></ul>',
-      'quyền_lợi': '<ul><li>Lương tháng 13 + Thưởng.</li><li>Đóng BHXH đầy đủ.</li></ul>'
-    }
-  },
-  {
-    id: 2002,
-    date: '2026-05-15T09:00:00',
-    slug: 'chuyen-vien-cham-soc-khach-hang',
-    title: { rendered: '[Tuyển dụng] Chuyên viên Chăm sóc Khách hàng (CSKH)' },
-    content: { rendered: '<h3>MÔ TẢ CÔNG VIỆC</h3><ul><li>Tư vấn và giải đáp thắc mắc cho khách hàng về các sản phẩm dinh dưỡng.</li><li>Chăm sóc khách hàng cũ, hỗ trợ đại lý.</li></ul><h3>YÊU CẦU</h3><ul><li>Giọng nói chuẩn, không nói ngọng, nói lắp.</li><li>Kiên nhẫn, khéo léo.</li></ul>' },
-    acf: {
-      muc_luong: '8.000.000 - 12.000.000 VNĐ',
-      dia_diem: 'Quận 1, TP. Hồ Chí Minh',
-      kinh_nghiem: 'Dưới 1 năm',
-      han_nop_ho_so: '15/06/2026'
-    }
-  }
-];
+export const MOCK_JOBS: WPJob[] = [];
 
 /**
  * Lấy danh sách việc làm (Tuyển dụng)
@@ -619,7 +273,7 @@ export async function getJobs(limit: number = 10): Promise<WPJob[]> {
     const res = await fetch(`${WP_API_URL}/wp/v2/tuyen_dung?per_page=${limit}`, {
       headers: FETCH_HEADERS,
       next: { revalidate: 60 },
-      signal: AbortSignal.timeout(15000)
+      signal: AbortSignal.timeout(2000)
     });
     
     if (!res.ok) {
@@ -628,14 +282,14 @@ export async function getJobs(limit: number = 10): Promise<WPJob[]> {
     
     const jobs: WPJob[] = await res.json();
     
-    if (jobs.length === 0) {
-      return MOCK_JOBS.slice(0, limit);
+    if (!jobs || jobs.length === 0) {
+      return [];
     }
     
     return jobs;
   } catch (error) {
-    console.warn(`Kết nối WP thất bại cho URL: ${WP_API_URL}, kích hoạt Mock Jobs:`, error);
-    return MOCK_JOBS.slice(0, limit);
+    console.warn(`Kết nối WP thất bại cho URL: ${WP_API_URL}:`, error);
+    return [];
   }
 }
 
@@ -648,7 +302,7 @@ export async function getJobBySlug(slug: string): Promise<WPJob | null> {
     const res = await fetch(`${WP_API_URL}/wp/v2/tuyen_dung?slug=${slug}`, {
       headers: FETCH_HEADERS,
       next: { revalidate: 60 },
-      signal: AbortSignal.timeout(15000)
+      signal: AbortSignal.timeout(2000)
     });
 
     if (!res.ok) {
@@ -657,148 +311,18 @@ export async function getJobBySlug(slug: string): Promise<WPJob | null> {
 
     const jobs: WPJob[] = await res.json();
     
-    if (jobs.length > 0) {
+    if (jobs && jobs.length > 0) {
       return jobs[0];
     }
     
-    const mockJob = MOCK_JOBS.find(j => j.slug === slug);
-    return mockJob || null;
+    return null;
   } catch (error) {
-    console.warn(`Lấy chi tiết Job thất bại cho URL: ${WP_API_URL}, dùng Fallback Mock Job:`, slug, error);
-    const mockJob = MOCK_JOBS.find(j => j.slug === slug);
-    return mockJob || null;
+    console.warn(`Lấy chi tiết Job thất bại cho URL: ${WP_API_URL} cho slug: ${slug}:`, error);
+    return null;
   }
 }
 
-// ================= HỆ THỐNG DỮ LIỆU GIẢ LẬP CAO CẤP PHÒNG NGỪA (MOCK ACHIEVEMENTS) =================
-export const MOCK_ACHIEVEMENTS: WPPost[] = [
-  {
-    id: 881,
-    date: '2026-05-19T08:00:00',
-    slug: 'giai-ba-chung-cuoc-tai-ai-hackathon-viet-nam-nhat-ban-2025',
-    title: { rendered: '(iruKa) Giải ba chung cuộc tại AI Hackathon Việt Nam - Nhật Bản 2025' },
-    content: { rendered: '<p>Giải ba chung cuộc tại cuộc thi AI Hackathon Việt Nam - Nhật Bản 2025 vinh danh giải pháp giáo dục thông minh iruKa EDU.</p>' },
-    excerpt: { rendered: 'Giải ba chung cuộc tại cuộc thi AI Hackathon Việt Nam - Nhật Bản 2025 vinh danh giải pháp giáo dục thông minh iruKa EDU.' },
-    acf: {
-      title: '(iruKa) Giải ba chung cuộc tại AI Hackathon Việt Nam - Nhật Bản 2025',
-      noi_dung_chinh: 'Giải ba chung cuộc tại cuộc thi AI Hackathon Việt Nam - Nhật Bản 2025 vinh danh giải pháp giáo dục thông minh iruKa EDU.',
-      anh: '/images/1.jpg',
-      nguoi_dang_bai: 'Ban Biên Tập Lifestyle'
-    },
-    _embedded: {
-      'wp:featuredmedia': [{ source_url: '/images/1.jpg', alt_text: 'Giải ba chung cuộc tại AI Hackathon Việt Nam - Nhật Bản 2025' }],
-      'wp:term': [[{ id: 12, name: 'Thành tựu', slug: 'thanh-tuu', taxonomy: 'category' }]]
-    }
-  },
-  {
-    id: 882,
-    date: '2026-05-18T08:00:00',
-    slug: 'thuong-hieu-vang-phat-trien-ben-vung-2024',
-    title: { rendered: '(Babego) Thương hiệu Vàng – Phát triển bền vững 2024' },
-    content: { rendered: '<p>Babego vinh dự nhận giải thưởng Thương hiệu Vàng – Phát triển bền vững 2024.</p>' },
-    excerpt: { rendered: 'Thương hiệu Babego GOLD đạt giải thưởng Thương hiệu Vàng – Phát triển bền vững 2024 nhờ những đóng góp vượt trội.' },
-    acf: {
-      title: '(Babego) Thương hiệu Vàng – Phát triển bền vững 2024',
-      noi_dung_chinh: 'Thương hiệu Babego GOLD đạt giải thưởng Thương hiệu Vàng – Phát triển bền vững 2024 nhờ những đóng góp vượt trội.',
-      anh: '/images/2.jpg',
-      nguoi_dang_bai: 'Ban Biên Tập Lifestyle'
-    },
-    _embedded: {
-      'wp:featuredmedia': [{ source_url: '/images/2.jpg', alt_text: 'Thương hiệu Vàng – Phát triển bền vững 2024' }],
-      'wp:term': [[{ id: 12, name: 'Thành tựu', slug: 'thanh-tuu', taxonomy: 'category' }]]
-    }
-  },
-  {
-    id: 883,
-    date: '2026-05-17T08:00:00',
-    slug: 'top-10-thuong-hieu-noi-tieng-quoc-gia-2023',
-    title: { rendered: '(Babego) Top 10 Thương hiệu nổi tiếng Quốc gia 2023' },
-    content: { rendered: '<p>Babego vinh dự lọt Top 10 Thương hiệu nổi tiếng Quốc gia năm 2023.</p>' },
-    excerpt: { rendered: 'Giải thưởng khẳng định uy tín và chất lượng của thương hiệu dinh dưỡng Babego trên quy mô quốc gia.' },
-    acf: {
-      title: '(Babego) Top 10 Thương hiệu nổi tiếng Quốc gia 2023',
-      noi_dung_chinh: 'Giải thưởng khẳng định uy tín và chất lượng của thương hiệu dinh dưỡng Babego trên quy mô quốc gia.',
-      anh: '/images/3.jpg',
-      nguoi_dang_bai: 'Ban Biên Tập Lifestyle'
-    },
-    _embedded: {
-      'wp:featuredmedia': [{ source_url: '/images/3.jpg', alt_text: 'Top 10 Thương hiệu nổi tiếng Quốc gia 2023' }],
-      'wp:term': [[{ id: 12, name: 'Thành tựu', slug: 'thanh-tuu', taxonomy: 'category' }]]
-    }
-  },
-  {
-    id: 884,
-    date: '2026-05-16T08:00:00',
-    slug: 'top-10-thuong-hieu-xuat-sac-chau-a-2023',
-    title: { rendered: '(Babego) Top 10 Thương hiệu xuất sắc Châu Á 2023' },
-    content: { rendered: '<p>Babego vươn tầm khu vực với giải thưởng Top 10 Thương hiệu xuất sắc Châu Á năm 2023.</p>' },
-    excerpt: { rendered: 'Khẳng định vị thế và uy tín vượt trội của các dòng sản phẩm dinh dưỡng thảo dược Babego tại thị trường Châu Á.' },
-    acf: {
-      title: '(Babego) Top 10 Thương hiệu xuất sắc Châu Á 2023',
-      noi_dung_chinh: 'Khẳng định vị thế và uy tín vượt trội của các dòng sản phẩm dinh dưỡng thảo dược Babego tại thị trường Châu Á.',
-      anh: '/images/4.jpg',
-      nguoi_dang_bai: 'Ban Biên Tập Lifestyle'
-    },
-    _embedded: {
-      'wp:featuredmedia': [{ source_url: '/images/4.jpg', alt_text: 'Top 10 Thương hiệu xuất sắc Châu Á 2023' }],
-      'wp:term': [[{ id: 12, name: 'Thành tựu', slug: 'thanh-tuu', taxonomy: 'category' }]]
-    }
-  },
-  {
-    id: 885,
-    date: '2026-05-15T08:00:00',
-    slug: 'thuong-hieu-manh-san-pham-dich-vu-chat-luong-cao-asean-2022',
-    title: { rendered: '(Mamigo) Thương hiệu mạnh, sản phẩm, dịch vụ chất lượng cao Asean 2022' },
-    content: { rendered: '<p>Mamigo vinh dự đạt giải Thương hiệu mạnh, sản phẩm, dịch vụ chất lượng cao Asean 2022.</p>' },
-    excerpt: { rendered: 'Ghi nhận chất lượng vượt trội của dòng sản phẩm dinh dưỡng và chăm sóc thảo dược Mamigo tại khu vực ASEAN.' },
-    acf: {
-      title: '(Mamigo) Thương hiệu mạnh, sản phẩm, dịch vụ chất lượng cao Asean 2022',
-      noi_dung_chinh: 'Ghi nhận chất lượng vượt trội của dòng sản phẩm dinh dưỡng và chăm sóc thảo dược Mamigo tại khu vực ASEAN.',
-      anh: '/images/5.jpg',
-      nguoi_dang_bai: 'Ban Biên Tập Lifestyle'
-    },
-    _embedded: {
-      'wp:featuredmedia': [{ source_url: '/images/5.jpg', alt_text: 'Thương hiệu mạnh, sản phẩm, dịch vụ chất lượng cao Asean 2022' }],
-      'wp:term': [[{ id: 12, name: 'Thành tựu', slug: 'thanh-tuu', taxonomy: 'category' }]]
-    }
-  },
-  {
-    id: 886,
-    date: '2026-05-14T08:00:00',
-    slug: 'top-10-thuong-hieu-dan-dau-viet-nam-2022',
-    title: { rendered: '(Babego) Top 10 Thương hiệu dẫn đầu Việt Nam 2022' },
-    content: { rendered: '<p>Babego vinh dự lọt Top 10 Thương hiệu dẫn đầu Việt Nam năm 2022.</p>' },
-    excerpt: { rendered: 'Babego vinh dự lọt Top 10 Thương hiệu dẫn đầu Việt Nam năm 2022 nhờ sự tin yêu lớn từ hàng triệu phụ huynh Việt.' },
-    acf: {
-      title: '(Babego) Top 10 Thương hiệu dẫn đầu Việt Nam 2022',
-      noi_dung_chinh: 'Babego vinh dự lọt Top 10 Thương hiệu dẫn đầu Việt Nam năm 2022 nhờ sự tin yêu lớn từ hàng triệu phụ huynh Việt.',
-      anh: '/images/6.jpg',
-      nguoi_dang_bai: 'Ban Biên Tập Lifestyle'
-    },
-    _embedded: {
-      'wp:featuredmedia': [{ source_url: '/images/6.jpg', alt_text: 'Top 10 Thương hiệu dẫn đầu Việt Nam 2022' }],
-      'wp:term': [[{ id: 12, name: 'Thành tựu', slug: 'thanh-tuu', taxonomy: 'category' }]]
-    }
-  },
-  {
-    id: 887,
-    date: '2026-05-13T08:00:00',
-    slug: 'top-100-san-pham-dich-vu-tot-nhat-cho-gia-dinh-tre-em-2021',
-    title: { rendered: '(Babego) Top 100 Sản phẩm – Dịch vụ tốt nhất cho gia đình & trẻ em 2021' },
-    content: { rendered: '<p>Babego vinh dự đạt giải Top 100 Sản phẩm – Dịch vụ tốt nhất cho gia đình & trẻ em năm 2021.</p>' },
-    excerpt: { rendered: 'Giải thưởng cao quý khẳng định uy tín và tình yêu của người tiêu dùng đối với dòng sản phẩm Babego.' },
-    acf: {
-      title: '(Babego) Top 100 Sản phẩm – Dịch vụ tốt nhất cho gia đình & trẻ em 2021',
-      noi_dung_chinh: 'Giải thưởng cao quý khẳng định uy tín và tình yêu của người tiêu dùng đối với dòng sản phẩm Babego.',
-      anh: '/images/7.jpg',
-      nguoi_dang_bai: 'Ban Biên Tập Lifestyle'
-    },
-    _embedded: {
-      'wp:featuredmedia': [{ source_url: '/images/7.jpg', alt_text: 'Top 100 Sản phẩm – Dịch vụ tốt nhất cho gia đình & trẻ em 2021' }],
-      'wp:term': [[{ id: 12, name: 'Thành tựu', slug: 'thanh-tuu', taxonomy: 'category' }]]
-    }
-  }
-];
+export const MOCK_ACHIEVEMENTS: WPPost[] = [];
 
 /**
  * Lấy danh sách bài viết theo slug danh mục (Dùng cho phần Thành tựu đạt được)
@@ -809,7 +333,7 @@ export async function getPostsByCategorySlug(slug: string, limit: number = 5): P
     const catRes = await fetch(`${WP_API_URL}/wp/v2/categories?slug=${slug}`, {
       headers: FETCH_HEADERS,
       next: { revalidate: 60 },
-      signal: AbortSignal.timeout(15000)
+      signal: AbortSignal.timeout(2000)
     });
     
     if (!catRes.ok) {
@@ -825,7 +349,7 @@ export async function getPostsByCategorySlug(slug: string, limit: number = 5): P
     
     throw new Error(`Không tìm thấy danh mục với slug: ${slug}`);
   } catch (error) {
-    console.warn(`Lấy bài viết theo category slug thất bại cho slug: ${slug}, kích hoạt Fallback Mock Data:`, error);
-    return MOCK_ACHIEVEMENTS.slice(0, limit);
+    console.warn(`Lấy bài viết theo category slug thất bại cho slug: ${slug}:`, error);
+    return [];
   }
 }

@@ -48,12 +48,12 @@ export default function IrukaCareHero() {
           />
 
           {/* Nội dung text nằm trong khung blur */}
-          <div className="absolute inset-0 flex flex-col justify-center items-center text-center px-4 z-20">
-            <h1 className="text-[40px] md:text-[64px] font-extrabold uppercase leading-[1.3] tracking-normal text-white mb-2 md:mb-4 drop-shadow-md">
+          <div className="absolute inset-0 flex flex-col justify-center items-center text-center px-6 z-20">
+            <h1 className="text-[28px] sm:text-[36px] md:text-[44px] lg:text-[64px] font-extrabold uppercase leading-[1.2] tracking-normal text-white mb-2 md:mb-4 drop-shadow-md">
               IRUKA CARE
             </h1>
             
-            <h2 className="text-sm sm:text-base md:text-xl lg:text-2xl font-semibold text-white tracking-wide drop-shadow-md max-w-2xl">
+            <h2 className="text-[11px] sm:text-xs md:text-sm lg:text-xl font-semibold text-white tracking-wide drop-shadow-md max-w-[200px] sm:max-w-[320px] md:max-w-[400px] lg:max-w-2xl">
               GIẢI PHÁP VỆ SINH & AN TOÀN CHO TRẺ <br></br> TỪ SƠ SINH
             </h2>
           </div>

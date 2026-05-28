@@ -11,39 +11,35 @@ import Autoplay from 'embla-carousel-autoplay';
 import { useCallback, useEffect, useState } from 'react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 
-// Dữ liệu 5 giá trị công ty — anh có thể thay ảnh và text sau
 const COMPANY_VALUES = [
   {
-    // Ảnh tạm từ folder có sẵn trong dự án — anh thay bằng ảnh thật sau
-    image: '/img_about_us/achieve_1.webp',
-    title: 'Lắng nghe & Minh bạch',
+    imageDesktop: '/img_recruit/ton_trong_minh_bach.png',
+    imageMobile: '/img_recruit/ton_trong_minh_bach_mobile.png',
+    title: 'Tôn trọng & Minh bạch',
     description:
-      'Mọi ý kiến đều được lắng nghe và phản hồi minh bạch. Chúng tôi xây dựng môi trường nơi sự thật là nền tảng của mọi quyết định và hành động lâu dài.',
+      'Mọi ý kiến đều được lắng nghe và phản hồi minh bạch. Chúng tôi xây dựng môi trường nơi sự thật là nền tảng của mọi quyết định và sự tôn trọng lẫn nhau là kim chỉ nam cho mọi hành động lâu dài.',
   },
   {
-    image: '/img_about_us/achieve_2.webp',
-    title: 'Học hỏi & Phát triển liên tục',
+    imageDesktop: '/img_recruit/hoc_hoi.png',
+    imageMobile: '/img_recruit/hoc_hoi_mobile.png',
+    title: 'Học hỏi & Phát triển',
     description:
-      'Bạn có thể bắt đầu từ con số 0 — nhưng nếu sẵn sàng học hỏi và không ngại thử thách, bạn luôn có cơ hội để bứt phá. Chúng tôi hỗ trợ nhân sự bằng cách cởi xét, phản hồi rõ ràng, và lộ trình phát triển rõ ràng.',
+      'Bạn có thể bắt đầu từ con số 0 — nhưng nếu sẵn sàng học hỏi và không ngại thử thách, bạn luôn có cơ hội để bứt phá. Chúng tôi hỗ trợ nhân sự bằng phản hồi rõ ràng và lộ trình phát triển.',
   },
   {
-    image: '/img_about_us/achieve_3.webp',
-    title: 'Tinh thần chủ động & trách nhiệm',
+    imageDesktop: '/img_recruit/chu_dong_trach_nhiem.png',
+    imageMobile: '/img_recruit/chu_dong_trach_nhiem_mobile.png',
+    title: 'Chủ động & Trách nhiệm',
     description:
-      'Chúng tôi đề cao tính chủ động trong công việc và khuyến khích bạn đưa ra sáng kiến. Khi bạn làm việc cùng nhau, mỗi cá nhân đều đóng vai trò quan trọng trong kết quả chung.',
+      'Chúng tôi đề cao tính chủ động trong công việc và khuyến khích bạn đưa ra sáng kiến. Mỗi cá nhân đều đóng vai trò quan trọng và chịu trách nhiệm cho kết quả chung.',
   },
   {
-    image: '/img_about_us/achieve_4.webp',
-    title: 'Tôn trọng & Bình đẳng',
+    imageDesktop: '/img_recruit/gan_ket_ho_tro.png',
+    imageMobile: '/img_recruit/gan_ket_ho_tro_mobile.png',
+    title: 'Gắn kết & Hỗ trợ',
     description:
-      'Mọi thành viên đều được tôn trọng bình đẳng bất kể vị trí hay thâm niên. Sự đa dạng về góc nhìn và kinh nghiệm là sức mạnh giúp IruKa phát triển bền vững.',
-  },
-  {
-    image: '/img_about_us/achieve_5.webp',
-    title: 'Tác động & Ý nghĩa',
-    description:
-      'Mỗi việc nhỏ bạn làm đều góp phần vào sứ mệnh lớn — chăm sóc, giáo dục và đồng hành cùng các gia đình Việt. Đây không chỉ là công việc, đây là hành trình có ý nghĩa.',
-  },
+      'Sự đa dạng về góc nhìn và kinh nghiệm là sức mạnh. Chúng tôi luôn hỗ trợ lẫn nhau, làm việc như một khối thống nhất để góp phần vào sứ mệnh lớn — chăm sóc và đồng hành cùng các gia đình Việt.',
+  }
 ];
 
 export default function CompanyValues() {
@@ -126,26 +122,29 @@ export default function CompanyValues() {
                 {/* Card ảnh với overlay text phía dưới */}
                 <div className="relative h-[320px] md:h-[360px] rounded-2xl overflow-hidden group cursor-pointer">
 
-                  {/* Ảnh nền card — chiếm toàn bộ không gian */}
+                  {/* Ảnh nền card cho Desktop */}
                   <img
-                    src={value.image}
+                    src={value.imageDesktop}
                     alt={value.title}
-                    className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                    className="hidden md:block absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                  />
+                  {/* Ảnh nền card cho Mobile */}
+                  <img
+                    src={value.imageMobile}
+                    alt={value.title}
+                    className="block md:hidden absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                   />
 
-                  {/* Lớp gradient tối từ dưới lên để chữ luôn đọc được */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/30 to-transparent" />
-
-                  {/* Vùng text nằm phía dưới card — xuất hiện trên nền gradient */}
-                  <div className="absolute bottom-0 left-0 right-0 p-5 md:p-6">
-                    {/* Tiêu đề giá trị */}
-                    <h3 className="text-white font-bold text-lg md:text-xl mb-2 leading-tight">
-                      {value.title}
-                    </h3>
-                    {/* Mô tả chi tiết */}
-                    <p className="text-white/85 text-sm leading-relaxed line-clamp-3 transition-all duration-300">
-                      {value.description}
-                    </p>
+                  {/* Text overlay dạng glassmorphism giống phần Tầm nhìn, hiển thị bên phải cách 5px */}
+                  <div className="absolute top-[5px] bottom-[5px] right-[5px] left-auto w-[calc(65%-80px)] sm:w-[60%] md:w-[calc(55%-20px)] lg:w-[calc(50%-20px)] z-20">
+                    <div className="bg-white/60 backdrop-blur-md border border-white/60 rounded-xl p-3 md:p-6 h-full shadow-lg flex flex-col justify-center">
+                      <h3 className="text-[#005A8C] font-extrabold text-sm md:text-base mb-1.5 md:mb-2 leading-tight">
+                        {value.title}
+                      </h3>
+                      <p className="text-black text-[10px] md:text-xs leading-relaxed font-medium">
+                        {value.description}
+                      </p>
+                    </div>
                   </div>
                 </div>
               </div>

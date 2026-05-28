@@ -165,9 +165,11 @@ export async function submitContribution(formData: FormData) {
     if (category === 'Sự kiện nổi bật') {
       categoryId = 4; // ID danh mục "Sự kiện"
     } else if (category === 'Dinh dưỡng & tiêu hóa') {
-      categoryId = 3; // ID danh mục "Dinh dưỡng & tiêu hóa"
+      categoryId = 5; // ID danh mục "Dinh dưỡng & tiêu hóa"
     } else if (category === 'Sức khỏe & vệ sinh') {
-      categoryId = 5; // ID danh mục "Sức khỏe & vệ sinh"
+      categoryId = 6; // ID danh mục "Sức khỏe & vệ sinh"
+    } else if (category === 'Giáo dục') {
+      categoryId = 14; // ID danh mục "Giáo dục"
     } else {
       // Tìm hoặc tạo chuyên mục "Góp ý" (slug: gop-y) cho các lựa chọn khác
       try {
@@ -247,7 +249,7 @@ export async function submitContribution(formData: FormData) {
       postBody.tags = [tagId];
     }
 
-    // Nếu tải ảnh thành công, liên kết ID ảnh đại diện chính (featured_media)
+    // Nếu có ID ảnh đại diện chính, liên kết
     if (mediaId) {
       postBody.featured_media = mediaId;
     }
@@ -281,7 +283,18 @@ export async function submitContribution(formData: FormData) {
   } catch (error: any) {
     console.error('❌ Lỗi khi gửi bài viết đóng góp sang WordPress:', error);
     
-    // Nếu gặp bất kỳ lỗi kết nối mạng nào, vẫn tự động fallback sang chế độ giả lập để người dùng không bị lỗi trang trắng
+    // Nếu gặp lỗi và chúng ta đã cấu hình WP, trả về lỗi thật
+    const username = process.env.WP_AUTH_USERNAME;
+    const appPassword = process.env.WP_AUTH_APPLICATION_PASSWORD;
+    if (username && appPassword) {
+      return {
+        success: false,
+        message: `Không thể gửi bài viết lên WordPress: ${error.message || 'Lỗi kết nối server'}`,
+        isMock: false,
+      };
+    }
+    
+    // Chỉ fallback sang giả lập khi hoàn toàn chưa cấu hình API credentials
     return {
       success: true,
       message: 'Đã lưu lại bài viết của bạn dưới dạng dữ liệu dự phòng! Cảm ơn bạn đóng góp.',

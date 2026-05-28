@@ -14,10 +14,10 @@ export default function InvestQuote() {
       <div className="container mx-auto px-4 max-w-[1250px] relative z-10 flex justify-center items-center">
         
         {/* Vòng cung oval bao quanh */}
-        <div className="relative w-full max-w-[1250px] md:aspect-[1250/540] flex items-center justify-center py-8 px-4 md:py-10 md:px-24">
+        <div className="relative w-full max-w-[1250px] lg:aspect-[1250/540] flex items-center justify-center py-8 px-4 lg:py-10 lg:px-24">
           
-          {/* Ảnh oval background */}
-          <div className="absolute inset-0 z-10 pointer-events-none hidden md:block">
+          {/* Ảnh oval background - Chỉ hiển thị trên Desktop */}
+          <div className="absolute inset-0 z-10 pointer-events-none hidden lg:block">
             <Image 
               src="/invest_img/bg_investment.svg" 
               alt="Oval frame" 
@@ -37,9 +37,9 @@ export default function InvestQuote() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
-            className="relative z-20 w-full max-w-[700px] flex flex-col items-center"
+            className="relative z-20 w-full max-w-[700px] flex flex-col items-center bg-white/90 backdrop-blur-md border-[3px] border-[#008BBD] py-8 px-6 md:py-12 md:px-12 rounded-[32px] shadow-[0_20px_50px_rgba(0,139,189,0.15)] lg:bg-transparent lg:backdrop-blur-none lg:border-none lg:shadow-none lg:py-0 lg:px-0 lg:rounded-none"
           >
-            <div className="w-full relative px-6 md:px-12">
+            <div className="w-full relative px-2 md:px-4 lg:px-12">
               {/* Dấu ngoặc kép mở */}
               <span className="absolute top-[-15px] left-0 md:left-4 text-3xl md:text-4xl text-gray-800 font-serif leading-none">“</span>
               

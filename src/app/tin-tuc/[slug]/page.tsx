@@ -102,6 +102,21 @@ export default async function NewsDetailPage({ params }: PageProps) {
     return fileName.toLowerCase().includes('achieve') || fileName.toLowerCase().includes('icon') || /img_\d+\.png/.test(fileName);
   };
 
+  const urlToEmoji = (url: string): string => {
+    const fileName = url.split('/').pop() || '';
+    if (/img_(107|138|140|144|153|155|157)\.png/.test(fileName)) return '🌿';
+    if (/img_(145|146|147|148)\.png/.test(fileName)) return '📍';
+    if (/img_(134|136|142|150|151|158|164|165)\.png/.test(fileName)) return '❤️';
+    if (/img_(159|166|167)\.png/.test(fileName)) return '👍';
+    if (fileName.includes('achieve_1')) return '🥈';
+    if (fileName.includes('achieve_2')) return '🥇';
+    if (fileName.includes('achieve_3')) return '🥉';
+    if (fileName.includes('achieve_4')) return '🏆';
+    if (fileName.includes('achieve_5')) return '⭐';
+    if (fileName.includes('achieve_6')) return '✨';
+    return '🏆';
+  };
+
   // Sửa toàn bộ đường dẫn ảnh nội bộ trong nội dung HTML của WP sang public origin và thay thế các biểu tượng emoji ảnh thành text
   const fixHtmlImageUrls = (html: string): string => {
     if (!html) return '';
@@ -112,14 +127,32 @@ export default async function NewsDetailPage({ params }: PageProps) {
     // 1. Sửa toàn bộ đường dẫn ảnh nội bộ
     let cleanHtml = html.replace(/(?:https?:\/\/[^\/\s]+)?\/wp-content\//g, `${publicOrigin}/wp-content/`);
     
-    // 2. Thay thế các tệp ảnh emoji tải lên thủ công và các ảnh achievement có alt text thành text emoji thực tế
+    // 2. Thay thế các tệp ảnh emoji tải lên thủ công thành text emoji thực tế
     cleanHtml = cleanHtml.replace(/<img([^>]+)>/g, (match, attrs) => {
       const srcMatch = attrs.match(/src="([^"]+)"/);
       if (srcMatch) {
         const url = srcMatch[1];
         const fileName = url.split('/').pop() || '';
         
-        // Bản đồ ánh xạ các ảnh emoji tải lên thủ công thành Unicode emoji
+        // --- GIẢI PHÁP ĐỘNG: Nếu thẻ img có thuộc tính alt chứa chính xác 1 ký tự emoji Unicode ---
+        const altMatch = attrs.match(/alt="([^"]*)"/);
+        if (altMatch && altMatch[1]) {
+          const altText = altMatch[1].trim();
+          // Kiểm tra xem alt có chứa emoji (hoặc ký tự ngắn <= 3 ký tự, bao gồm các emoji đa sắc/flag)
+          if (altText.length > 0 && altText.length <= 4) {
+            return ` ${altText} `;
+          }
+        }
+
+        // --- BẢN ĐỒ ÁNH XẠ FILE THỦ CÔNG (ĐẢM BẢO Tương thích ngược & Dự phòng) ---
+        // Bản đồ ánh xạ các ảnh emoji từ dinh_duong trích xuất từ Docx
+        if (fileName.includes('dinh_duong_1_1')) return ' 🇻🇳 ';
+        if (fileName.includes('dinh_duong_1_3')) return ' 🌪️ ';
+        if (fileName.includes('dinh_duong_1_4')) return ' 👼 ';
+        if (fileName.includes('dinh_duong_1_6')) return ' 💞 ';
+        if (fileName.includes('dinh_duong_1_11')) return ' ⭐ ';
+
+        // Các ảnh emoji trích xuất thủ công khác
         if (/img_(107|138|140|144|153|155|157)\.png/.test(fileName)) {
           return ' 🌿 ';
         }
@@ -135,19 +168,14 @@ export default async function NewsDetailPage({ params }: PageProps) {
         
         // Nếu là ảnh của phần achieve và có thuộc tính alt (chứa emoji tương ứng)
         if (fileName.toLowerCase().includes('achieve') || fileName.toLowerCase().includes('badge') || fileName.toLowerCase().includes('icon')) {
-          const altMatch = attrs.match(/alt="([^"]*)"/);
-          if (altMatch && altMatch[1] && altMatch[1].trim().length <= 3) {
-            return ` ${altMatch[1].trim()} `;
-          }
-          // NẾU KHÔNG CÓ EMOJI ALT, nhưng vẫn là ảnh achieve/badge/icon:
-          // Giới hạn kích thước của nó trong HTML bằng CSS classes để tránh bị prose kéo to 100%
-          let newAttrs = attrs;
-          if (newAttrs.includes('class="')) {
-            newAttrs = newAttrs.replace(/class="([^"]*)"/, 'class="$1 w-16 h-16 md:w-20 md:h-20 object-contain inline-block my-0 shadow-none rounded-none"');
-          } else {
-            newAttrs += ' class="w-16 h-16 md:w-20 md:h-20 object-contain inline-block my-0 shadow-none rounded-none"';
-          }
-          return `<img${newAttrs}>`;
+          // Ánh xạ các file achieve/badge/icon cụ thể sang Unicode text emoji
+          if (fileName.includes('achieve_1')) return ' 🥈 ';
+          if (fileName.includes('achieve_2')) return ' 🥇 ';
+          if (fileName.includes('achieve_3')) return ' 🥉 ';
+          if (fileName.includes('achieve_4')) return ' 🏆 ';
+          if (fileName.includes('achieve_5')) return ' ⭐ ';
+          if (fileName.includes('achieve_6')) return ' ✨ ';
+          return ' 🏆 ';
         }
       }
       return match;
@@ -277,12 +305,7 @@ export default async function NewsDetailPage({ params }: PageProps) {
                 <div className="mt-6 wp-content flex justify-center">
                   {isRawImageUrl(imageContentText) ? (
                     isSmallBadgeOrIcon(imageContentText) ? (
-                      // eslint-disable-next-line @next/next/no-img-element
-                      <img 
-                        src={fixHtmlImageUrls(imageContentText.trim())} 
-                        alt="Huy hiệu/Icon" 
-                        className="w-16 h-16 md:w-20 md:h-20 object-contain" 
-                      />
+                      <span className="text-4xl">{urlToEmoji(imageContentText)}</span>
                     ) : (
                       // eslint-disable-next-line @next/next/no-img-element
                       <img 

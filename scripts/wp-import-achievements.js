@@ -16,8 +16,8 @@ const path = require('path');
 // ================= CẤU HÌNH KẾT NỐI (CONNECTION SETUP) =================
 const WP_BASE_URL = process.env.NEXT_PUBLIC_WP_API_URL || 'http://localhost:10004/wp-json';
 const WP_URL = `${WP_BASE_URL}/wp/v2`;
-const WP_USERNAME = 'trungnguyen';
-const WP_APP_PASSWORD = 'FLfX sz1n OKz3 2BUm PccC iwSV';
+const WP_USERNAME = process.env.WP_AUTH_USERNAME || 'trungnguyen';
+const WP_APP_PASSWORD = process.env.WP_AUTH_APPLICATION_PASSWORD || 'FLfX sz1n OKz3 2BUm PccC iwSV';
 
 // Mã hóa thông tin đăng nhập thành chuỗi Basic Authentication
 const AUTH_HEADER = 'Basic ' + Buffer.from(`${WP_USERNAME}:${WP_APP_PASSWORD}`).toString('base64');
@@ -395,6 +395,7 @@ async function main() {
       
       let featuredMediaId = 0;
       let firstRealImageFound = false;
+      let firstRealImageUrl = '';
 
       for (let imgIdx = 0; imgIdx < imagesToProcess.length; imgIdx++) {
         const img = imagesToProcess[imgIdx];
@@ -428,13 +429,12 @@ async function main() {
 
         if (mediaResult) {
           // Thay thế mã base64 trong bài viết bằng link ảnh WordPress thật
-          // Escape các ký tự đặc biệt trong dataUrl để an toàn khi regex replace
-          const escapedDataUrl = img.dataUrl.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&');
-          contentMd = contentMd.replace(new RegExp(escapedDataUrl, 'g'), mediaResult.url);
+          contentMd = contentMd.split(img.dataUrl).join(mediaResult.url);
           
           // Gán ảnh lớn đầu tiên làm featured image (ảnh đại diện)
           if (isRealImage && !firstRealImageFound) {
             featuredMediaId = mediaResult.id;
+            firstRealImageUrl = mediaResult.url;
             firstRealImageFound = true;
             console.log(`  🎯 Gán ảnh "${filename}" (ID: ${mediaResult.id}) làm Ảnh đại diện (Featured Image).`);
           }
@@ -466,6 +466,7 @@ async function main() {
           }
           if (fallbackMedia) {
             featuredMediaId = fallbackMedia.id;
+            firstRealImageUrl = fallbackMedia.url;
           }
         }
       }
@@ -483,22 +484,39 @@ async function main() {
         acf: {
           title: cleanTitle,
           noi_dung_chinh: contentHtml,
-          anh: firstRealImageFound && progress.uploadedMedia[Object.keys(progress.uploadedMedia)[idx]] 
-               ? progress.uploadedMedia[Object.keys(progress.uploadedMedia)[idx]].url 
-               : `/images/${(idx % 7) + 1}.jpg`,
+          anh: firstRealImageUrl || `/images/${(idx % 7) + 1}.jpg`,
           nguoi_dang_bai: 'Ban Biên Tập Lifestyle'
         }
       };
 
       // Đẩy bài viết lên WordPress
-      const res = await fetchWithRetry(createUrl, {
-        method: 'POST',
-        headers: {
-          'Authorization': AUTH_HEADER,
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(payload)
-      });
+      let res;
+      try {
+        res = await fetchWithRetry(createUrl, {
+          method: 'POST',
+          headers: {
+            'Authorization': AUTH_HEADER,
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(payload)
+        });
+      } catch (err) {
+        if (isUpdate && (err.message.includes('404') || err.message.includes('invalid_id'))) {
+          console.log(`  ⚠️ Không tìm thấy bài viết ID: ${progress.uploadedPosts[progressKey]} (có thể đã bị xóa trên WP). Tiến hành tạo mới.`);
+          createUrl = `${WP_URL}/posts`;
+          isUpdate = false;
+          res = await fetchWithRetry(createUrl, {
+            method: 'POST',
+            headers: {
+              'Authorization': AUTH_HEADER,
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(payload)
+          });
+        } else {
+          throw err;
+        }
+      }
 
       const createdPost = await res.json();
       
