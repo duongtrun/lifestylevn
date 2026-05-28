@@ -31,13 +31,21 @@ export default function BabegoHero() {
               transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
               className="relative w-[90%] md:w-[70%] lg:w-[60%] max-w-[900px] aspect-[21/9] flex items-center justify-center"
             >
+                  {/* Nhân bản 2 lớp ảnh để tăng độ đậm đà/opacity của khung mờ */}
                   <Image 
-                          src="/img_iruka_care/iruka_care_blur_banner.svg" 
-                          alt="Iruka Care Blur Background" 
-                          fill 
-                          className="object-contain drop-shadow-[0_20px_50px_rgba(0,0,0,0.9)]" 
-                          priority
-                        />
+                    src="/img_iruka_care/iruka_care_blur_banner.svg" 
+                    alt="Iruka Care Blur Background" 
+                    fill 
+                    className="object-contain drop-shadow-[0_20px_50px_rgba(0,0,0,0.9)] opacity-90 contrast-[1.3] brightness-[1.1]" 
+                    priority
+                  />
+                  <Image 
+                    src="/img_iruka_care/iruka_care_blur_banner.svg" 
+                    alt="Iruka Care Blur Background Overlay" 
+                    fill 
+                    className="object-contain opacity-60 contrast-[1.3] mix-blend-screen" 
+                    priority
+                  />
               <div className="absolute inset-0 flex flex-col justify-center items-center text-center px-4 z-20">
                 <h1 className="text-[32px] md:text-[56px] lg:text-[72px] font-bold text-white mb-2 md:mb-4 drop-shadow-md">
                   BABEGO
