@@ -23,9 +23,13 @@ const techData = [
         <p className="text-xs md:text-sm text-white/90 mb-2">
           Trẻ cảm thấy hứng thú, chủ động khám phá với hệ thống mini-game trực quan được thiết kế:
         </p>
-        <p className="text-xs md:text-sm text-white/90">
-          Tư duy logic, Ngôn ngữ – từ vựng, Toán học nền tảng, Ghi nhớ, Khả năng quan sát – phản xạ
-        </p>
+        <ul className="text-xs md:text-sm text-white/90 space-y-1 list-disc pl-4">
+          <li>Tư duy logic</li>
+          <li>Ngôn ngữ – từ vựng</li>
+          <li>Toán học nền tảng</li>
+          <li>Ghi nhớ</li>
+          <li>Khả năng quan sát – phản xạ</li>
+        </ul>
       </>
     )
   },
