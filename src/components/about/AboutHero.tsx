@@ -13,7 +13,7 @@ import { ChevronRight } from "lucide-react";
 
 export default function AboutHero() {
   return (
-    <section className="relative w-full h-[60vh] min-h-[420px] lg:h-[70vh] flex flex-col justify-end overflow-hidden">
+    <section className="relative w-full h-[68vh] min-h-[500px] lg:h-[75vh] flex flex-col justify-end overflow-hidden">
 
       {/* ===== Ảnh nền tự thích ứng (Responsive) theo thiết bị di động & máy tính ===== */}
       <div className="absolute inset-0 z-0 bg-[#EEF8FC]">
@@ -70,7 +70,7 @@ export default function AboutHero() {
           transition={{ duration: 0.5, delay: 0.2 }}
         >
           <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#008BBD]/20 border border-[#008BBD]/40 text-[#5CC8EC] text-xs font-bold tracking-widest uppercase backdrop-blur-sm">
-            <span className="w-1.5 h-1.5 rounded-full bg-[#008BBD] animate-pulse"></span>
+            <span className="w-1.5 h-1.9 rounded-full bg-[#008BBD] animate-pulse"></span>
             LifeStyle Việt Nam
           </span>
         </motion.div>
@@ -83,7 +83,7 @@ export default function AboutHero() {
           className="text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-extrabold text-white leading-[1.0] tracking-tight"
         >
           VỀ{" "}
-          <span className="bg-clip-text text-transparent bg-gradient-to-r from-[#008BBD] to-[#5CC8EC]">
+          <span className="">
             CHÚNG
           </span>
           <br />
