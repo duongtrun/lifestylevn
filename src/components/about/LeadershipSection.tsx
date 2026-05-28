@@ -11,18 +11,18 @@ import { motion } from 'framer-motion';
 
 export default function LeadershipSection() {
   return (
-    <section className="relative w-full pt-20 pb-32 overflow-hidden bg-[#EEF8FC]">
+    <section className="relative w-full pt-20 pb-32 overflow-hidden bg-white">
       {/* --- NỀN CEO_BLUR.SVG — chỉ phủ vùng tiêu đề, không kéo dài xuống dưới --- */}
       {/* Ảnh nền xanh CEO_blur — ẨN trên mobile, chỉ hiện từ màn hình trung bình (md) trở lên */}
       <div className="hidden md:block absolute top-0 left-0 w-full h-[320px] md:h-[380px] lg:h-[420px] pointer-events-none z-0">
-        {/* <Image
+        <Image
           src="/img_about_us/CEO_blur.svg"
           alt="CEO Blur Background"
           fill
           className="object-cover object-center"
-        /> */}
-        {/* Gradient mờ dần sang nền xanh nhạt — xóa đường vạch ngang, liền mạch */}
-        <div className="absolute bottom-0 left-0 w-full h-32 bg-gradient-to-b from-transparent to-[#EEF8FC]" />
+        />
+        {/* Gradient mờ dần sang trắng — xóa đường vạch ngang, liền mạch */}
+        <div className="absolute bottom-0 left-0 w-full h-32 bg-gradient-to-b from-transparent to-white" />
       </div>
 
       <div className="container mx-auto px-4 md:px-10 relative z-20">
@@ -39,8 +39,8 @@ export default function LeadershipSection() {
           <h2 className="text-3xl md:text-5xl font-extrabold text-[#008BBD] md:text-white mb-6 drop-shadow-md">
             Đội ngũ lãnh đạo
           </h2>
-          {/* Mô tả: chữ xám đậm ở mobile, trắng mờ ở desktop */}
-          <div className="max-w-3xl mx-auto space-y-2 text-gray-700 md:text-black/95 font-medium md:text-lg">
+          {/* Mô tả: chữ xám đậm trên cả thiết bị di động và máy tính */}
+          <div className="max-w-3xl mx-auto space-y-2 text-gray-700 font-medium md:text-lg">
             <p>Con người LifeStyle – Tận tâm, chuyên nghiệp, sáng tạo</p>
             <p>LifeStyle quy tụ đội ngũ trẻ – nhiệt huyết – ham học hỏi.</p>
             <p>Chúng tôi có chuyên môn trong công nghệ, giáo dục, dinh dưỡng, sản xuất – chăm sóc sức khỏe, thiết kế – sáng tạo.</p>
