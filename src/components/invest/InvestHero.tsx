@@ -12,7 +12,7 @@ import { ChevronRight } from 'lucide-react';
 
 export default function InvestHero() {
   return (
-    <section className="relative w-full pt-32 pb-16 md:pt-40 md:pb-24 lg:pt-48 lg:pb-28 flex flex-col justify-end overflow-hidden">
+    <section className="relative w-full h-[55vh] min-h-[460px] lg:h-[65vh] max-h-[580px] flex flex-col justify-end overflow-hidden pb-14 lg:pb-20">
 
       {/* Ảnh nền banner (skyline thành phố tone xanh đậm) */}
       <div className="absolute inset-0 z-0">
