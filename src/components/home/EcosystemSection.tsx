@@ -25,7 +25,7 @@ const products = [
       'Cá nhân hoá lộ trình học tập cho bé',
       'Hơn 300+ bài học và 10,000+ trò chơi hấp dẫn',
       'Tự động phân tích và đánh giá thế mạnh',
-      'Phương pháp học tập chuẩn quốc tế'
+      'Tạo môi trường giáo dục hiện đại, bắt kịp xu hướng quốc tế.'
     ],
     cardBg: 'bg-[#008BBD]/20',
     borderColor: 'border-[#008BBD]/30',
@@ -51,7 +51,7 @@ const products = [
       'Dinh dưỡng chuyên sâu từ sữa non nguyên chất',
       'Hỗ trợ tiêu hoá khoẻ mạnh & tăng cân vượt trội',
       'Nguyên liệu thảo dược nhập khẩu New Zealand',
-      'Được khuyên dùng bởi hàng ngàn chuyên gia'
+      'Có các dòng sản phẩm chuyên biệt theo độ tuổi của từng trẻ.'
     ],
     cardBg: 'bg-[#98C04A]/20',
     borderColor: 'border-[#98C04A]/30',
@@ -77,7 +77,7 @@ const products = [
       'Bảo vệ bé khỏi vi khuẩn gây hại hằng ngày',
       'Thành phần hữu cơ lành tính từ thiên nhiên',
       'Đã được kiểm nghiệm lâm sàng của Bộ Y tế',
-      'Phân phối rộng rãi tại các siêu thị lớn'
+      'Thiết kế thân thiện, dễ sử dụng, phù hợp gia đình Việt'
     ],
     cardBg: 'bg-[#008BBD]/20',
     borderColor: 'border-[#008BBD]/30',
