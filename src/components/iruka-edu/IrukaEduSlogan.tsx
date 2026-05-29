@@ -11,7 +11,7 @@ import { motion } from 'framer-motion';
 
 export default function IrukaEduSlogan() {
   return (
-    <section className="w-full bg-white py-16 md:py-24 flex justify-center items-center overflow-hidden">
+    <section className="w-full bg-white py-10 flex justify-center items-center overflow-hidden">
       {/* Tăng min-h trên mobile và iPad lên 440px để hình tròn có đủ chiều cao chứa chữ bên trong */}
       <div className="relative w-full max-w-[1000px] px-4 flex justify-center items-center min-h-[440px] md:min-h-[640px] xl:min-h-[420px]">
 

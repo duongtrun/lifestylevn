@@ -52,7 +52,7 @@ export default function IrukaEduMission() {
   const activeData = missionData.find(t => t.id === activeTab) || missionData[0];
 
   return (
-    <section className="relative w-full bg-[#FAFAFA] py-16 md:py-24 overflow-hidden">
+    <section className="relative w-full bg-[#FAFAFA] py-10 overflow-hidden">
       {/* Tiêu đề */}
       <motion.h2
         initial={{ opacity: 0, y: -20 }}

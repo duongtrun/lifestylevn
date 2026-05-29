@@ -39,7 +39,7 @@ const coreData = [
 
 export default function IrukaEduCoreContent() {
   return (
-    <section className="relative w-full overflow-hidden py-16 md:py-24">
+    <section className="relative w-full overflow-hidden py-10">
       {/* Background kết hợp ảnh blur và dải gradient xanh xuống trắng */}
       <div className="absolute inset-0 z-0">
         <div className="absolute inset-0 bg-gradient-to-b from-[#7EC8E3] via-[#C9EAF3] to-white -z-10" />

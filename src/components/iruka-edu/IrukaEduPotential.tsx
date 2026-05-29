@@ -18,7 +18,7 @@ const potentialData = [
 
 export default function IrukaEduPotential() {
   return (
-    <section className="w-full bg-white py-16 md:py-24">
+    <section className="w-full bg-white py-10">
       {/* Title Box - bám sát lề trái */}
       <motion.div
         initial={{ opacity: 0, x: -50 }}
