@@ -117,10 +117,10 @@ export default function TimelineSection() {
           <div className="h-1 w-20 bg-[#008BBD] mx-auto rounded-full" />
         </motion.div>
 
-        <div className="max-w-5xl mx-auto flex flex-col md:flex-row items-stretch gap-8 lg:gap-16">
+        <div className="max-w-5xl mx-auto flex flex-col lg:flex-row items-stretch gap-8 lg:gap-16">
           
           {/* Cột trái: Danh sách Năm (Years) - BẢN TRƯỢT NGANG CHO MOBILE */}
-          <div className="flex md:hidden flex-row items-center justify-center w-full gap-4 py-6 z-10">
+          <div className="flex lg:hidden flex-row items-center justify-center w-full gap-4 py-6 z-10">
             {/* Nút sang trái */}
             <button 
               onClick={handlePrev}
@@ -174,7 +174,7 @@ export default function TimelineSection() {
           </div>
 
           {/* Cột trái: Danh sách Năm (Years) - BẢN DỌC TRÊN DESKTOP */}
-          <div className="hidden md:flex flex-none flex-col items-center justify-center w-48 gap-4 py-10 z-10">
+          <div className="hidden lg:flex flex-none flex-col items-center justify-center w-48 gap-4 py-10 z-10">
             {/* Nút lên */}
             <button 
               onClick={handlePrev}
@@ -228,7 +228,7 @@ export default function TimelineSection() {
           </div>
 
           {/* Cột giữa: Đường kẻ thanh trượt */}
-          <div className="hidden md:flex flex-none w-1 relative bg-gray-300 rounded-full my-10">
+          <div className="hidden lg:flex flex-none w-1 relative bg-gray-300 rounded-full my-10">
             <motion.div 
               className="absolute left-0 right-0 bg-[#008BBD] rounded-full w-1.5 -ml-[1px]"
               initial={false}
@@ -242,7 +242,7 @@ export default function TimelineSection() {
           </div>
 
           {/* Cột phải: Nội dung chi tiết */}
-          <div className="w-full md:flex-1 flex flex-col justify-start h-[620px] sm:h-[520px] md:h-[460px] lg:h-[420px]">
+          <div className="w-full lg:flex-1 flex flex-col justify-start h-[620px] sm:h-[520px] md:h-[460px] lg:h-[420px]">
             <AnimatePresence mode="wait">
               <motion.div
                 key={activeIndex}

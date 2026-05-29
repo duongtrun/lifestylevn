@@ -48,7 +48,7 @@ export default function Hero() {
             className="text-xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-extrabold leading-[1.2] pb-2 bg-clip-text text-transparent bg-gradient-to-r from-[#0F172A] to-[#1E3A8A]"
           >
             <span className="block lg:inline">
-              KIÊN TẠO{" "}
+              KIẾN TẠO{" "}
             </span>
             <span className="block lg:inline">
               HỆ SINH THÁI
