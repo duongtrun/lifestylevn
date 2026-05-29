@@ -230,7 +230,7 @@ export default function BabegoOrigin() {
           </div>
 
           {/* Cột phải: Nội dung chi tiết */}
-          <div className="w-full lg:flex-1 flex flex-col justify-start h-[620px] sm:h-[520px] md:h-[460px] lg:h-[420px]">
+          <div className="w-full lg:flex-1 flex flex-col justify-start h-auto min-h-[320px] lg:h-[420px]">
             <AnimatePresence mode="wait">
               <motion.div
                 key={activeIndex}
