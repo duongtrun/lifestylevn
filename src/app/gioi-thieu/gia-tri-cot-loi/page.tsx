@@ -208,16 +208,16 @@ export default function CoreValuesDetailPage() {
               viewport={{ once: true, margin: '-50px' }}
               transition={{ duration: 0.6 }}
               className={`bg-white rounded-3xl p-6 md:p-10 border border-[#008BBD]/10 shadow-[0_10px_30px_rgba(0,139,189,0.04)]
-                          grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-12 items-center`}
+                          grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center`}
             >
               
               {/* Cột Trái hoặc Phải tùy index chẵn lẻ: Hình ảnh thay thế cho khung cũ */}
-              <div className={`col-span-1 md:col-span-4 flex justify-center ${
-                isEven ? 'md:order-1' : 'md:order-12'
+              <div className={`col-span-1 lg:col-span-4 flex justify-center ${
+                isEven ? 'lg:order-1' : 'lg:order-12'
               }`}>
-                <div className="relative rounded-2xl overflow-hidden shadow-md border border-[#008BBD]/10 w-[338px] h-[220px] md:w-[319px] md:h-[260px] flex-shrink-0">
+                <div className="relative rounded-2xl overflow-hidden shadow-md border border-[#008BBD]/10 w-[338px] h-[220px] lg:w-[319px] lg:h-[260px] flex-shrink-0">
                   {/* Ảnh Desktop */}
-                  <div className="hidden md:block absolute inset-0 w-full h-full">
+                  <div className="hidden lg:block absolute inset-0 w-full h-full">
                     <Image
                       src={value.imageDesktop}
                       alt={value.title}
@@ -227,7 +227,7 @@ export default function CoreValuesDetailPage() {
                     />
                   </div>
                   {/* Ảnh Mobile */}
-                  <div className="block md:hidden absolute inset-0 w-full h-full">
+                  <div className="block lg:hidden absolute inset-0 w-full h-full">
                     <Image
                       src={value.imageMobile}
                       alt={value.title}
@@ -240,8 +240,8 @@ export default function CoreValuesDetailPage() {
               </div>
 
               {/* Cột Chi tiết nội dung */}
-              <div className={`col-span-1 md:col-span-8 space-y-5 ${
-                isEven ? 'md:order-12' : 'md:order-1'
+              <div className={`col-span-1 lg:col-span-8 space-y-5 ${
+                isEven ? 'lg:order-12' : 'lg:order-1'
               }`}>
                 <h2 className="text-2xl md:text-3xl font-extrabold text-[#273F68]">
                   {value.title}
