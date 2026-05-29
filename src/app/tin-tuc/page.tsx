@@ -44,7 +44,7 @@ export default async function NewsPage() {
   const hasNoPosts = eventPosts.length === 0 && educationPosts.length === 0 && nutritionPosts.length === 0 && healthPosts.length === 0;
 
   return (
-    <main className="flex min-h-screen flex-col bg-[#F8F9FA] pb-20">
+    <main className="flex min-h-screen flex-col bg-white pb-20">
       {/* Banner giới thiệu đầu trang */}
       <NewsHero />
       
