@@ -10,7 +10,7 @@ import { motion } from 'framer-motion';
 
 export default function InvestDetails() {
   return (
-    <section className="w-full py-16 md:py-24 bg-white overflow-hidden">
+    <section className="w-full pt-16 pb-8 md:py-24 bg-white overflow-hidden">
       <div className="container mx-auto px-4 max-w-5xl space-y-12 md:space-y-24">
         
         {/* Block 1: Tầm nhìn dài hạn - Định hướng phát triển */}
@@ -176,7 +176,7 @@ export default function InvestDetails() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-100px' }}
           transition={{ duration: 0.8 }}
-          className="max-w-4xl pt-8"
+          className="max-w-4xl pt-0 md:pt-6"
         >
           <h2 className="text-3xl md:text-4xl lg:text-[40px] font-bold text-[#008BBD] mb-6 leading-[1.3]">
             Lời mời đồng hành
