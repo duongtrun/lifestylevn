@@ -34,8 +34,7 @@ export default function NewsHero() {
         />
       </div>
 
-      {/* ===== Lớp phủ gradient — đậm ở dưới để chữ nổi ===== */}
-      <div className="absolute inset-0 z-10 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
+
 
       {/* ===== Thanh màu xanh ngang nhỏ ở cạnh trái (trang trí) ===== */}
       <motion.div
@@ -75,34 +74,33 @@ export default function NewsHero() {
           </span>
         </motion.h1>
 
-        {/* Đường kẻ trang trí + tagline và nút */}
-        <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 pt-2">
-          <motion.div
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.5 }}
-            className="flex items-center gap-4"
+        {/* Nút đóng góp bài viết (ngay dưới chữ TIN TỨC) */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.5 }}
+          className="w-fit"
+        >
+          <Link
+            href="/dong-gop"
+            className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-white/20 hover:bg-white/30 backdrop-blur-md text-white font-semibold border border-white/20 shadow-lg hover:shadow-xl transition-all hover:-translate-y-0.5 active:translate-y-0 text-sm md:text-base group"
           >
-            <div className="h-[2px] w-12 bg-[#008BBD] rounded-full"></div>
-            <p className="text-white text-sm md:text-base font-medium tracking-wide">
-              Cập nhật hoạt động mới nhất, sự kiện ý nghĩa và kiến thức hữu ích
-            </p>
-          </motion.div>
+            <span>✍️ Góp ý của bạn (Đăng bài)</span>
+          </Link>
+        </motion.div>
 
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.6 }}
-            className="flex-shrink-0"
-          >
-            <Link
-              href="/dong-gop"
-              className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-white/20 hover:bg-white/30 backdrop-blur-md text-white font-semibold border border-white/20 shadow-lg hover:shadow-xl transition-all hover:-translate-y-0.5 active:translate-y-0 text-sm md:text-base group"
-            >
-              <span>✍️ Góp ý của bạn (Đăng bài)</span>
-            </Link>
-          </motion.div>
-        </div>
+        {/* Đường kẻ trang trí + tagline */}
+        <motion.div
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.6 }}
+          className="flex items-center gap-4 pt-2"
+        >
+          <div className="h-[2px] w-12 bg-[#008BBD] rounded-full"></div>
+          <p className="text-white text-sm md:text-base font-medium tracking-wide">
+            Cập nhật hoạt động mới nhất, sự kiện ý nghĩa và kiến thức hữu ích
+          </p>
+        </motion.div>
       </div>
     </section>
   );
