@@ -25,7 +25,7 @@ export default function InvestOpportunity() {
       <div className="container mx-auto px-4 max-w-6xl">
         
         {/* Phần 1: Ảnh trái - Text phải */}
-        <div className="flex flex-col lg:flex-row gap-10 lg:gap-16 mb-20 items-start">
+        <div className="flex flex-col lg:flex-row gap-10 lg:gap-16 mb-20 items-stretch">
           
           {/* Cột trái: Hình ảnh */}
           <motion.div 
@@ -33,16 +33,14 @@ export default function InvestOpportunity() {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, margin: '-100px' }}
             transition={{ duration: 0.8, ease: 'easeOut' }}
-            className="w-full lg:w-5/12 shrink-0"
+            className="w-full lg:w-5/12 shrink-0 relative min-h-[300px] lg:min-h-[400px] self-stretch"
           >
-            <div className="relative aspect-[4/3] w-full">
-              <Image
-                src="/invest_img/opportunity.png"
-                alt="Cơ hội đầu tư"
-                fill
-                className="object-cover shadow-lg"
-              />
-            </div>
+            <Image
+              src="/invest_img/opportunity.png"
+              alt="Cơ hội đầu tư"
+              fill
+              className="object-cover shadow-lg rounded-2xl"
+            />
           </motion.div>
 
           {/* Cột phải: Nội dung */}
@@ -51,7 +49,7 @@ export default function InvestOpportunity() {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, margin: '-100px' }}
             transition={{ duration: 0.8, ease: 'easeOut', delay: 0.2 }}
-            className="w-full lg:w-7/12 pt-0 md:pt-4"
+            className="w-full lg:w-7/12 pt-0 md:pt-4 flex flex-col justify-center"
           >
             <h2 className="text-4xl md:text-5xl font-bold mb-6 text-[#008BBD]">
               Cơ hội
@@ -114,16 +112,14 @@ export default function InvestOpportunity() {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, margin: '-100px' }}
             transition={{ duration: 0.8, ease: 'easeOut' }}
-            className="w-full lg:w-5/12 shrink-0"
+            className="w-full lg:w-5/12 shrink-0 relative min-h-[300px] lg:min-h-[450px] self-stretch"
           >
-            <div className="relative w-full h-[300px] md:h-[400px] lg:h-full min-h-[400px]">
-              <Image
-                src="/invest_img/transformation.png"
-                alt="Hợp tác đầu tư"
-                fill
-                className="object-cover shadow-lg object-center"
-              />
-            </div>
+            <Image
+              src="/invest_img/transformation.png"
+              alt="Hợp tác đầu tư"
+              fill
+              className="object-cover shadow-lg object-center rounded-2xl"
+            />
           </motion.div>
 
         </div>
