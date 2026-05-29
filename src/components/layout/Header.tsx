@@ -149,18 +149,18 @@ export default function Header() {
                 IruKa Edu
               </Link>
               <Link 
-                href="/he-sinh-thai/iruka-care" 
-                onClick={() => setIsMobileMenuOpen(false)} 
-                className="block text-base text-gray-500 hover:text-primary"
-              >
-                IruKa Care
-              </Link>
-              <Link 
                 href="/he-sinh-thai/babego" 
                 onClick={() => setIsMobileMenuOpen(false)} 
                 className="block text-base text-gray-500 hover:text-primary"
               >
                 Babego
+              </Link>
+              <Link 
+                href="/he-sinh-thai/iruka-care" 
+                onClick={() => setIsMobileMenuOpen(false)} 
+                className="block text-base text-gray-500 hover:text-primary"
+              >
+                IruKa Care
               </Link>
             </div>
           </div>
