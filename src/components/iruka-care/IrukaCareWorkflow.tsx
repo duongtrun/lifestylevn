@@ -38,7 +38,7 @@ const workflowData = [
 
 export default function IrukaCareWorkflow() {
   return (
-    <section className="relative w-full py-16 md:py-24 lg:py-32 bg-gradient-to-b from-white to-[#6CC4E8] overflow-hidden">
+    <section className="relative w-full py-12 md:py-16 lg:py-20 bg-gradient-to-b from-white to-[#6CC4E8] overflow-hidden">
       {/* Ảnh nền mờ - workflow_blur.svg */}
       <div className="absolute inset-0 z-0 opacity-100 mix-blend-overlay pointer-events-none">
         <Image
@@ -56,7 +56,7 @@ export default function IrukaCareWorkflow() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="text-2xl md:text-3xl lg:text-4xl font-extrabold text-[#005A8C] text-center mb-16 md:mb-24 drop-shadow-sm"
+          className="text-2xl md:text-3xl lg:text-4xl font-extrabold text-[#005A8C] text-center mb-10 md:mb-12 drop-shadow-sm"
         >
           iruKa Care hoạt động như thế nào?
         </motion.h2>

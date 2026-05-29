@@ -44,7 +44,7 @@ const techData = [
 
 export default function IrukaCareTechnology() {
   return (
-    <section className="relative w-full py-16 md:py-24 lg:py-32 overflow-hidden flex flex-col items-center">
+    <section className="relative w-full py-12 md:py-16 lg:py-20 overflow-hidden flex flex-col items-center">
       {/* Background Tech - Phủ toàn bộ section, không có nền trắng */}
       <div className="absolute inset-0 z-0 bg-[#0F2A4A]"> {/* Màu nền dự phòng nếu hình chưa load */}
         <Image
@@ -57,13 +57,13 @@ export default function IrukaCareTechnology() {
       </div>
 
       {/* Title box (stick to left) */}
-      <div className="relative z-10 w-full mb-12 md:mb-16 mt-8 md:mt-12">
+      <div className="relative z-10 w-full mb-8 md:mb-10 mt-4 md:mt-6">
         <motion.div
           initial={{ opacity: 0, x: -50 }}
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="bg-white inline-block py-4 pr-10 pl-6 md:pr-16 md:pl-10 lg:pl-16 xl:pl-32 mb-12 shadow-lg"
+          className="bg-white inline-block py-4 pr-10 pl-6 md:pr-16 md:pl-10 lg:pl-16 xl:pl-32 mb-6 shadow-lg"
         >
           <h2 className="text-2xl md:text-3xl lg:text-4xl font-extrabold text-[#005A8C]">
             Nền tảng công nghệ và điểm khác biệt

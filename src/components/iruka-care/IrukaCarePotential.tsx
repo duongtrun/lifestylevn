@@ -18,7 +18,7 @@ const potentialData = [
 
 export default function IrukaCarePotential() {
   return (
-    <section className="relative w-full bg-gradient-to-b from-[#80CBE5] via-[#E6F4F9] to-white py-16 md:py-24 overflow-hidden">
+    <section className="relative w-full bg-gradient-to-b from-[#80CBE5] via-[#E6F4F9] to-white py-12 md:py-16 overflow-hidden">
       <div className="relative z-10 w-full">
         {/* Title Box - bám sát lề trái */}
         <motion.div
@@ -26,7 +26,7 @@ export default function IrukaCarePotential() {
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="bg-[#008BBD] inline-block py-5 pr-10 pl-6 md:pr-16 md:pl-10 lg:pl-16 xl:pl-32 mb-16 shadow-md rounded-r-md"
+          className="bg-[#008BBD] inline-block py-5 pr-10 pl-6 md:pr-16 md:pl-10 lg:pl-16 xl:pl-32 mb-10 shadow-md rounded-r-md"
         >
           <h2 className="text-xl md:text-2xl lg:text-3xl font-medium text-white">
             Tại sao iruKa Care có tiềm năng phát triển mạnh?
