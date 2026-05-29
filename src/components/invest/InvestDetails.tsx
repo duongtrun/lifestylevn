@@ -11,7 +11,7 @@ import { motion } from 'framer-motion';
 export default function InvestDetails() {
   return (
     <section className="w-full py-16 md:py-24 bg-white overflow-hidden">
-      <div className="container mx-auto px-4 max-w-5xl space-y-24 md:space-y-32">
+      <div className="container mx-auto px-4 max-w-5xl space-y-16 md:space-y-24">
         
         {/* Block 1: Tầm nhìn dài hạn - Định hướng phát triển */}
         <div className="flex flex-col md:flex-row gap-10 items-stretch justify-between">
@@ -20,7 +20,7 @@ export default function InvestDetails() {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, margin: '-100px' }}
             transition={{ duration: 0.8 }}
-            className="w-full md:w-7/12 flex flex-col justify-center"
+            className="w-full md:w-6/12 flex flex-col justify-center"
           >
             <h2 className="text-3xl md:text-4xl lg:text-[40px] font-bold text-[#008BBD] mb-6 leading-[1.3]">
               Tầm nhìn dài hạn<br />
@@ -51,7 +51,7 @@ export default function InvestDetails() {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, margin: '-100px' }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="w-full md:w-4/12 relative min-h-[300px] md:min-h-[450px] self-stretch"
+            className="w-full md:w-5/12 relative min-h-[300px] md:min-h-[450px] self-stretch"
           >
             <Image 
               src="/invest_img/tam_nhin_dai_han.png" 
