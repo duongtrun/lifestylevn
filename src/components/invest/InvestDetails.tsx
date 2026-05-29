@@ -54,7 +54,7 @@ export default function InvestDetails() {
             className="w-full md:w-5/12 relative h-[250px] md:h-[400px]"
           >
             <Image 
-              src="/invest_img/invest_increase.svg" 
+              src="/invest_img/tam_nhin_dai_han.png" 
               alt="Định hướng phát triển" 
               fill 
               className="object-contain object-right" 
@@ -120,7 +120,7 @@ export default function InvestDetails() {
             className="w-full md:w-6/12 relative h-[200px] md:h-[300px]"
           >
             <Image 
-              src="/invest_img/invest_commit.svg" 
+              src="/invest_img/commitment.png" 
               alt="Cam kết" 
               fill 
               className="object-contain object-right" 
@@ -138,7 +138,7 @@ export default function InvestDetails() {
             className="w-full md:w-4/12 relative h-[150px] md:h-[200px]"
           >
             <Image 
-              src="/invest_img/invest_how.svg" 
+              src="/invest_img/how.png" 
               alt="How to find partners" 
               fill 
               className="object-contain object-left" 

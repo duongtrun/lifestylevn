@@ -37,7 +37,7 @@ export default function InvestOpportunity() {
           >
             <div className="relative aspect-[4/3] w-full">
               <Image
-                src="/invest_img/invest_opportunity.svg"
+                src="/invest_img/opportunity.png"
                 alt="Cơ hội đầu tư"
                 fill
                 className="object-cover shadow-lg"
@@ -118,7 +118,7 @@ export default function InvestOpportunity() {
           >
             <div className="relative w-full h-[300px] md:h-[400px] lg:h-full min-h-[400px]">
               <Image
-                src="/invest_img/invest_cooperation.svg"
+                src="/invest_img/transformation.png"
                 alt="Hợp tác đầu tư"
                 fill
                 className="object-cover shadow-lg object-center"
