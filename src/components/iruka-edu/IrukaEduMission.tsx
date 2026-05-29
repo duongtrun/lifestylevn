@@ -35,11 +35,11 @@ const missionData = [
   },
   {
     id: 'commitment',
-    label: 'Lời cam kết',
+    label: 'Cam kết',
     icon: ShieldCheck,
     imageDesktop: '/img_iruka_edu/irukaedu_cam_ket.png',
     imageMobile: '/img_iruka_edu/irukaedu_cam_ket_mobile.png',
-    heading: 'LỜI CAM KẾT',
+    heading: 'CAM KẾT',
     text: `Chúng tôi là những con người tin vào sức mạnh của giáo dục và giá trị của sự tử tế. Ngay từ đầu, đội ngũ đã lựa chọn con đường khó: không chạy theo số lượng, không giáo dục "mì ăn liền" mà tập trung vào giá trị bền vững cho trẻ nhỏ. Chúng tôi cam kết tiếp tục đổi mới, học hỏi và cống hiến để Iruka Edu trở thành một nền tảng giáo dục hiện đại, an toàn và đầy cảm hứng.`,
     cardClass: 'absolute top-[5px] bottom-auto left-[5px] right-[5px] z-20 w-auto max-h-[245px] overflow-y-auto md:top-[5px] md:bottom-[5px] md:left-auto md:right-[5px] md:w-[415px] md:max-h-none md:overflow-y-visible',
     innerClass: 'p-2 md:p-6 h-auto md:h-full justify-start md:justify-center',
