@@ -13,8 +13,8 @@ import { ChevronLeft, ChevronRight } from 'lucide-react';
 
 const COMPANY_VALUES = [
   {
-    imageDesktop: '/img_recruit/ton_trong_minh_bach.png',
-    imageMobile: '/img_recruit/ton_trong_minh_bach_mobile.png',
+    imageDesktop: '/img_recruit/ton_trong_minh_bach.webp',
+    imageMobile: '/img_recruit/ton_trong_minh_bach_mobile.webp',
     title: 'Tôn trọng & Minh bạch',
     description:
       'Mọi ý kiến đều được lắng nghe và phản hồi minh bạch. Chúng tôi xây dựng môi trường nơi sự thật là nền tảng của mọi quyết định và sự tôn trọng lẫn nhau là kim chỉ nam cho mọi hành động lâu dài.',
@@ -27,15 +27,15 @@ const COMPANY_VALUES = [
       'Bạn có thể bắt đầu từ con số 0 — nhưng nếu sẵn sàng học hỏi và không ngại thử thách, bạn luôn có cơ hội để bứt phá. Chúng tôi hỗ trợ nhân sự bằng phản hồi rõ ràng và lộ trình phát triển.',
   },
   {
-    imageDesktop: '/img_recruit/chu_dong_trach_nhiem.png',
-    imageMobile: '/img_recruit/chu_dong_trach_nhiem_mobile.png',
+    imageDesktop: '/img_recruit/chu_dong_trach_nhiem.webp',
+    imageMobile: '/img_recruit/chu_dong_trach_nhiem_mobile.webp',
     title: 'Chủ động & Trách nhiệm',
     description:
       'Chúng tôi đề cao tính chủ động trong công việc và khuyến khích bạn đưa ra sáng kiến. Mỗi cá nhân đều đóng vai trò quan trọng và chịu trách nhiệm cho kết quả chung.',
   },
   {
     imageDesktop: '/img_recruit/gan_ket_ho_tro.png',
-    imageMobile: '/img_recruit/gan_ket_ho_tro_mobile.png',
+    imageMobile: '/img_recruit/gan_ket_ho_tro_mobile.webp',
     title: 'Gắn kết & Hỗ trợ',
     description:
       'Sự đa dạng về góc nhìn và kinh nghiệm là sức mạnh. Chúng tôi luôn hỗ trợ lẫn nhau, làm việc như một khối thống nhất để góp phần vào sứ mệnh lớn — chăm sóc và đồng hành cùng các gia đình Việt.',

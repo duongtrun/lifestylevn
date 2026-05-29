@@ -18,7 +18,7 @@ export default function CareersHero() {
       <div className="absolute inset-0 z-0 bg-[#EEF8FC]">
         {/* Banner dành riêng cho di động */}
         <Image
-          src="/img_recruit/recruit_banner_mobile.png"
+          src="/img_recruit/recruit_banner_mobile.webp"
           alt="Banner tuyển dụng di động"
           fill
           className="object-cover object-center md:hidden"
@@ -26,7 +26,7 @@ export default function CareersHero() {
         />
         {/* Banner dành riêng cho máy tính */}
         <Image
-          src="/img_recruit/recruit_banner.png"
+          src="/img_recruit/recruit_banner.webp"
           alt="Banner tuyển dụng máy tính"
           fill
           className="object-cover object-center hidden md:block"
