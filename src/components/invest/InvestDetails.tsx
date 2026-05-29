@@ -57,7 +57,7 @@ export default function InvestDetails() {
               src="/invest_img/tam_nhin_dai_han.png" 
               alt="Định hướng phát triển" 
               fill 
-              className="object-cover rounded-2xl shadow-md" 
+              className="object-contain" 
             />
           </motion.div>
         </div>
@@ -123,7 +123,7 @@ export default function InvestDetails() {
               src="/invest_img/commitment.png" 
               alt="Cam kết" 
               fill 
-              className="object-cover rounded-2xl shadow-md" 
+              className="object-contain" 
             />
           </motion.div>
         </div>
@@ -141,7 +141,7 @@ export default function InvestDetails() {
               src="/invest_img/how.png" 
               alt="How to find partners" 
               fill 
-              className="object-cover rounded-2xl shadow-md" 
+              className="object-contain" 
             />
           </motion.div>
           
