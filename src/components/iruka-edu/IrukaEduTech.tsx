@@ -118,10 +118,10 @@ const techData = [
 export default function IrukaEduTech() {
   return (
     <section className="relative w-full overflow-hidden bg-[#0A3D73] py-10">
-      {/* Background Image: tech_different.webp */}
+      {/* Background Image: tech_different.svg */}
       <div className="absolute inset-0 z-0">
         <Image
-          src="/img_iruka_edu/tech_different.webp"
+          src="/img_iruka_edu/tech_different.svg"
           alt="Tech Different Background"
           fill
           className="object-cover object-top opacity-90"
