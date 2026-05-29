@@ -20,7 +20,7 @@ export default function PartnerSection() {
           những giá trị bền vững dành cho trẻ em Việt Nam.
         </p>
         
-        <div className="flex flex-col md:flex-row justify-center items-center gap-12 md:gap-24">
+        {/* <div className="flex flex-col md:flex-row justify-center items-center gap-12 md:gap-24">
           <Image 
             src="/images/CVI.svg"
             alt="Đối tác CVI Pharma"
@@ -35,7 +35,7 @@ export default function PartnerSection() {
             height={100}
             className="w-48 md:w-64 h-auto object-contain hover:scale-105 transition-transform duration-300"
           />
-        </div>
+        </div> */}
       </div>
     </section>
   );
