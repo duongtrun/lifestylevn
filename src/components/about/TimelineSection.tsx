@@ -242,7 +242,7 @@ export default function TimelineSection() {
           </div>
 
           {/* Cột phải: Nội dung chi tiết */}
-          <div className="w-full md:flex-1 flex flex-col justify-center min-h-[320px]">
+          <div className="w-full md:flex-1 flex flex-col justify-start h-[620px] sm:h-[520px] md:h-[460px] lg:h-[420px]">
             <AnimatePresence mode="wait">
               <motion.div
                 key={activeIndex}
