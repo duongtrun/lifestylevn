@@ -32,7 +32,7 @@ export default function IrukaEduAbout() {
           />
         </div>
         {/* Nội dung: mascot trái + text phải */}
-        <div className="relative z-10 container mx-auto px-6 md:px-10 py-16 md:py-24 lg:py-32">
+        <div className="relative z-10 container mx-auto px-6 md:px-10 py-10">
           <div className="flex flex-col md:flex-row items-center justify-between gap-10 md:gap-20 lg:gap-32 max-w-6xl mx-auto">
 
             {/* Bên trái: Mascot iruKa lớn */}
@@ -82,7 +82,7 @@ export default function IrukaEduAbout() {
       </section>
 
       {/* ====== SECTION 2: Vì sao chúng tôi xây dựng iruKa Edu? — nền trắng ====== */}
-      <section className="relative w-full bg-white py-16 md:py-24 lg:py-32">
+      <section className="relative w-full bg-white py-10">
         <div className="container mx-auto px-6 md:px-10">
           <div className="flex flex-col md:flex-row items-center justify-between gap-10 md:gap-20 lg:gap-32 max-w-6xl mx-auto">
 
