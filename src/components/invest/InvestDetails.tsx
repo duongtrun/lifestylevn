@@ -51,7 +51,7 @@ export default function InvestDetails() {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, margin: '-100px' }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="w-full lg:w-5/12 relative h-[350px]"
+            className="w-full lg:w-5/12 relative h-[300px] md:h-[350px]"
           >
             <Image 
               src="/invest_img/tam_nhin_dai_han.webp" 
@@ -117,7 +117,7 @@ export default function InvestDetails() {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, margin: '-100px' }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="w-full lg:w-5/12 relative h-[450px]"
+            className="w-full lg:w-5/12 relative h-[250px] md:h-[450px]"
           >
           <Image 
             src="/invest_img/commitment.webp" 
@@ -135,7 +135,7 @@ export default function InvestDetails() {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, margin: '-100px' }}
             transition={{ duration: 0.8 }}
-            className="w-full lg:w-5/12 relative h-[450px]"
+            className="w-full lg:w-5/12 relative h-[250px] md:h-[450px]"
           >
           <Image 
             src="/invest_img/how.webp" 

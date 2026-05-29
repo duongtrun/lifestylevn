@@ -250,7 +250,7 @@ export default function DifferenceSection() {
 
                 {/* Cột phải: Hình ảnh + Badge icon đè */}
                 <div className="lg:col-span-5 relative mt-4 lg:mt-0 pl-4 lg:pl-0 w-full flex">
-                  <div className="relative w-full min-h-[550px] rounded-3xl overflow-hidden border border-neutral-200/50 shadow-xl group bg-neutral-50 flex-1">
+                  <div className="relative w-full min-h-[300px] md:min-h-[550px] rounded-3xl overflow-hidden border border-neutral-200/50 shadow-xl group bg-neutral-50 flex-1">
                     <Image
                       src={activeItem.image}
                       alt={activeItem.title}

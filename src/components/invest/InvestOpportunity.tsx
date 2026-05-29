@@ -33,7 +33,7 @@ export default function InvestOpportunity() {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, margin: '-100px' }}
             transition={{ duration: 0.8, ease: 'easeOut' }}
-            className="w-full lg:w-5/12 shrink-0 relative h-[350px]"
+            className="w-full lg:w-5/12 shrink-0 relative h-[300px] md:h-[350px]"
           >
             <Image
               src="/invest_img/opportunity.webp"
@@ -112,7 +112,7 @@ export default function InvestOpportunity() {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, margin: '-100px' }}
             transition={{ duration: 0.8, ease: 'easeOut' }}
-            className="w-full lg:w-5/12 shrink-0 relative h-[550px]"
+            className="w-full lg:w-5/12 shrink-0 relative h-[300px] md:h-[550px]"
           >
             <Image
               src="/invest_img/transformation.webp"
