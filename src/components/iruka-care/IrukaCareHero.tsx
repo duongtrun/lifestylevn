@@ -31,9 +31,9 @@ export default function IrukaCareHero() {
               initial={{ opacity: 0, x: -40 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8 }}
-              className="max-w-xl text-center md:text-left md:translate-x-12 lg:translate-x-20"
+              className="max-w-lg text-center md:text-left"
             >
-              <h1 className="text-4xl md:text-5xl lg:text-8xl font-extrabold text-[#005a8c] leading-tight mb-4 drop-shadow-md whitespace-nowrap">
+              <h1 className="text-4xl md:text-5xl lg:text-8xl font-extrabold text-[#005a8c] leading-tight mb-4 drop-shadow-md">
                 IRUKA CARE
               </h1>
               <p className="text-lg md:text-xl lg:text-2xl font-bold text-[#005a8c]/90 uppercase tracking-wide leading-snug drop-shadow-md">
