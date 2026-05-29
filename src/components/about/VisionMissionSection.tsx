@@ -120,7 +120,7 @@ export default function VisionMissionSection() {
           <div className="absolute right-0 bottom-6 w-14 md:w-16 h-[55%] bg-[#009fe3] z-0" />
 
           {/* Hộp ảnh chính — Đặt chiều cao cố định để chứa trọn hộp chữ bên trong */}
-          <div className="relative z-10 rounded-2xl overflow-hidden shadow-2xl h-[400px] md:h-[420px]">
+          <div className="relative z-10 rounded-2xl overflow-hidden shadow-2xl h-[400px] md:h-[420px] lg:h-[420px]">
             
             {/* Ảnh nền — AnimatePresence để chuyển mượt khi đổi tab */}
             <AnimatePresence mode="wait">

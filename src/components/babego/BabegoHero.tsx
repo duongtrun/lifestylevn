@@ -25,19 +25,19 @@ export default function BabegoHero() {
 
           {/* --- Overlay nội dung: text trái + mascot phải --- */}
           <div className="absolute inset-0 z-10 flex items-center">
-            <div className="container mx-auto px-6 md:px-10 flex flex-col md:flex-row items-center justify-center gap-8 md:gap-[180px] lg:gap-[300px] mt-0 md:-mt-[250px]">
+            <div className="container mx-auto px-6 lg:px-10 flex flex-col lg:flex-row items-center justify-center gap-8 lg:gap-[180px] xl:gap-[300px] mt-0 lg:-mt-[250px]">
 
               {/* Bên trái: Tiêu đề + tagline */}
               <motion.div
                 initial={{ opacity: 0, x: -40 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.8 }}
-                className="max-w-lg text-center md:text-left"
+                className="max-w-lg text-center lg:text-left"
               >
-                <h1 className="text-4xl md:text-5xl lg:text-8xl font-extrabold text-white leading-tight mb-4 drop-shadow-md">
+                <h1 className="text-4xl lg:text-8xl font-extrabold text-white leading-tight mb-4 drop-shadow-md">
                   BABEGO
                 </h1>
-                <p className="text-lg md:text-xl lg:text-2xl font-bold text-white/90 uppercase tracking-wide leading-snug drop-shadow-md">
+                <p className="text-lg lg:text-2xl font-bold text-white/90 uppercase tracking-wide leading-snug drop-shadow-md">
                   Chuyên gia dinh dưỡng<br />
                   cho trẻ em Việt
                 </p>
@@ -48,7 +48,7 @@ export default function BabegoHero() {
                 initial={{ opacity: 0, x: 40, scale: 0.9 }}
                 animate={{ opacity: 1, x: 0, scale: 1 }}
                 transition={{ duration: 0.8, delay: 0.2 }}
-                className="relative w-[220px] h-[250px] md:w-[320px] md:h-[360px] lg:w-[400px] lg:h-[450px] flex-shrink-0"
+                className="relative w-[220px] h-[250px] sm:w-[300px] sm:h-[340px] lg:w-[400px] lg:h-[450px] flex-shrink-0"
               >
                 <Image
                   src="/img_babego/babego_mascot.svg"
@@ -83,7 +83,7 @@ export default function BabegoHero() {
             whileInView={{ opacity: 1, x: 0, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.7 }}
-            className="w-[260px] sm:w-[320px] md:w-[400px] lg:w-[500px] flex-shrink-0 relative z-20 lg:absolute lg:left-[-50px] xl:left-[-100px] lg:bottom-0 mb-[-30px] lg:mb-0"
+            className="w-[260px] sm:w-[340px] lg:w-[500px] flex-shrink-0 relative z-20 lg:absolute lg:left-[-50px] xl:left-[-100px] lg:bottom-0 mb-[-30px] lg:mb-0"
           >
             <Image
               src="/img_babego/babego_mascot.svg"
@@ -100,10 +100,10 @@ export default function BabegoHero() {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.7, delay: 0.2 }}
-            className="w-full lg:w-[736px] bg-white rounded-[15px] pt-16 pb-8 px-6 sm:px-8 md:p-12 lg:p-12 shadow-[0_15px_50px_rgba(45,122,58,0.15)] relative z-10 lg:ml-auto"
+            className="w-full lg:w-[736px] bg-white rounded-[15px] pt-16 pb-8 px-6 sm:px-8 lg:p-12 shadow-[0_15px_50px_rgba(45,122,58,0.15)] relative z-10 lg:ml-auto"
           >
             {/* Logo Babego (Nổi ra ngoài góc phải trên) */}
-            <div className="absolute top-[-30px] right-[-10px] md:top-[-60px] md:right-[-20px] lg:top-[-100px] lg:right-[-120px] w-[140px] h-[95px] md:w-[220px] md:h-[160px] lg:w-[329px] lg:h-[269px] z-20 pointer-events-none">
+            <div className="absolute top-[-30px] right-[-10px] sm:top-[-40px] sm:right-[-10px] lg:top-[-100px] lg:right-[-120px] w-[140px] h-[95px] sm:w-[200px] sm:h-[140px] lg:w-[329px] lg:h-[269px] z-20 pointer-events-none">
               <Image 
                 src="/img_babego/babego_logo.svg" 
                 alt="Babego Logo" 

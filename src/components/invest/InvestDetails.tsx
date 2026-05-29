@@ -14,13 +14,13 @@ export default function InvestDetails() {
       <div className="container mx-auto px-4 max-w-5xl space-y-12 md:space-y-24">
         
         {/* Block 1: Tầm nhìn dài hạn - Định hướng phát triển */}
-        <div className="flex flex-col md:flex-row gap-10 items-stretch justify-between">
+        <div className="flex flex-col lg:flex-row gap-10 items-stretch justify-between">
           <motion.div 
             initial={{ opacity: 0, x: -50 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, margin: '-100px' }}
             transition={{ duration: 0.8 }}
-            className="w-full md:w-6/12 flex flex-col justify-center"
+            className="w-full lg:w-6/12 flex flex-col justify-center"
           >
             <h2 className="text-3xl md:text-4xl lg:text-[40px] font-bold text-[#008BBD] mb-6 leading-[1.3]">
               Tầm nhìn dài hạn<br />
@@ -51,7 +51,7 @@ export default function InvestDetails() {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, margin: '-100px' }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="w-full md:w-5/12 relative min-h-[300px] md:min-h-[450px] self-stretch"
+            className="w-full lg:w-5/12 relative h-[350px]"
           >
             <Image 
               src="/invest_img/tam_nhin_dai_han.webp" 
@@ -90,13 +90,13 @@ export default function InvestDetails() {
         </motion.div>
 
         {/* Block 3: Cam kết với đối tác & nhà đầu tư */}
-        <div className="flex flex-col md:flex-row gap-10 items-stretch justify-between">
+        <div className="flex flex-col lg:flex-row gap-10 items-stretch justify-between">
           <motion.div 
             initial={{ opacity: 0, x: -50 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, margin: '-100px' }}
             transition={{ duration: 0.8 }}
-            className="w-full md:w-6/12 flex flex-col justify-center"
+            className="w-full lg:w-6/12 flex flex-col justify-center"
           >
             <h2 className="text-3xl md:text-4xl lg:text-[40px] font-bold text-[#008BBD] mb-6 leading-[1.3]">
               Cam kết với đối tác & nhà đầu tư
@@ -117,7 +117,7 @@ export default function InvestDetails() {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, margin: '-100px' }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="w-full md:w-5/12 relative min-h-[250px] md:min-h-[350px] self-stretch"
+            className="w-full lg:w-5/12 relative h-[450px]"
           >
           <Image 
             src="/invest_img/commitment.webp" 
@@ -129,13 +129,13 @@ export default function InvestDetails() {
         </div>
 
         {/* Block 4: Chúng tôi tìm kiếm... */}
-        <div className="flex flex-col-reverse md:flex-row gap-10 items-stretch justify-between">
+        <div className="flex flex-col-reverse lg:flex-row gap-10 items-stretch justify-between">
           <motion.div 
             initial={{ opacity: 0, x: -50 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, margin: '-100px' }}
             transition={{ duration: 0.8 }}
-            className="w-full md:w-5/12 relative min-h-[250px] md:min-h-[350px] self-stretch"
+            className="w-full lg:w-5/12 relative h-[450px]"
           >
           <Image 
             src="/invest_img/how.webp" 
@@ -150,7 +150,7 @@ export default function InvestDetails() {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, margin: '-100px' }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="w-full md:w-6/12 flex flex-col justify-center"
+            className="w-full lg:w-6/12 flex flex-col justify-center"
           >
             <h2 className="text-3xl md:text-4xl lg:text-[40px] font-bold text-[#008BBD] mb-6 leading-[1.3]">
               Chúng tôi tìm kiếm nhà đầu tư<br />& đối tác như thế nào?

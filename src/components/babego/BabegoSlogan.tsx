@@ -12,10 +12,10 @@ import { motion } from 'framer-motion';
 export default function BabegoSlogan() {
   return (
     <section className="w-full bg-[#FAFAFA] py-10 flex justify-center items-center overflow-hidden">
-      <div className="relative w-full max-w-[1100px] px-4 flex justify-center items-center min-h-[440px] md:min-h-[640px] xl:min-h-[420px]">
+      <div className="relative w-full max-w-[1000px] px-4 flex justify-center items-center min-h-[440px] lg:w-[1000px] lg:h-[420px]">
 
-        {/* Khung viền vẽ tay (Oval) - Giao diện Desktop */}
-        <div className="absolute inset-0 w-[95%] xl:w-[85%] h-full z-0 pointer-events-none mx-auto opacity-100 hidden xl:block">
+        {/* Khung viền vẽ tay (Oval) - Giao diện Desktop & iPad Landscape */}
+        <div className="absolute inset-0 w-full h-full z-0 pointer-events-none hidden lg:block">
           <Image
             src="/img_babego/bg_slogan.svg"
             alt="Babego Background Outline Desktop"
@@ -25,8 +25,8 @@ export default function BabegoSlogan() {
           />
         </div>
 
-        {/* Khung viền vẽ tay (Oval) - Giao diện Mobile & iPad */}
-        <div className="absolute inset-0 w-full h-full z-0 pointer-events-none block xl:hidden opacity-95">
+        {/* Khung viền vẽ tay (Oval) - Giao diện Mobile & iPad Portrait */}
+        <div className="absolute inset-0 w-full h-full z-0 pointer-events-none block lg:hidden opacity-95">
           <Image
             src="/img_babego/bg_sloggan_mobile.svg"
             alt="Babego Background Outline Mobile"
@@ -59,10 +59,10 @@ export default function BabegoSlogan() {
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="relative z-10 flex flex-col items-center text-center px-14 sm:px-12 xl:px-24 py-2 xl:py-3 mt-1.5 w-full xl:w-[80%]"
+          className="relative lg:absolute lg:inset-0 z-10 flex flex-col items-center justify-center text-center px-14 sm:px-12 lg:px-16 py-4 lg:py-0"
         >
           {/* Logo Babego Gold */}
-          <div className="relative w-[96px] h-[48px] md:w-[130px] md:h-[58px] mb-1.5 md:mb-2">
+          <div className="relative w-[96px] h-[48px] lg:w-[120px] lg:h-[54px] mb-2 lg:mb-3">
             <Image 
               src="/img_babego/slogan_logo.webp" 
               alt="Babego Logo" 
@@ -72,12 +72,12 @@ export default function BabegoSlogan() {
           </div>
 
           {/* Tiêu đề */}
-          <h2 className="text-sm sm:text-base md:text-sm xl:text-2xl font-bold text-[#444444] mb-2 xl:mb-3 max-w-[210px] sm:max-w-[280px] md:max-w-[250px] xl:max-w-none">
+          <h2 className="text-sm sm:text-base lg:text-2xl font-bold text-[#444444] mb-2 lg:mb-3 max-w-[210px] sm:max-w-[280px] lg:max-w-none">
             Babego Gold – Tiêu hóa vững vàng, tăng cân dễ dàng
           </h2>
 
           {/* Lời hứa */}
-          <p className="text-[11px] sm:text-xs md:text-[11px] xl:text-base text-[#444444] max-w-[190px] sm:max-w-[260px] md:max-w-[250px] xl:max-w-[700px] leading-relaxed xl:leading-loose">
+          <p className="text-[11px] sm:text-xs lg:text-base text-[#444444] max-w-[190px] sm:max-w-[260px] lg:max-w-[700px] leading-relaxed lg:leading-loose">
             Mỗi đứa trẻ là một hành trình phát triển riêng biệt. Dinh dưỡng không chỉ là năng lượng, mà là nền tảng cho tương lai của con. Babego được tạo ra để nâng đỡ hành trình ấy bằng sự an toàn, khoa học và thấu hiểu thể trạng trẻ Việt.
           </p>
         </motion.div>

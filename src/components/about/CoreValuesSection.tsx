@@ -175,7 +175,7 @@ export default function CoreValuesSection() {
           className="block w-fit mx-auto relative group"
         >
           {/* Container Lục giác: Tự động scale trên mobile để fit vừa chiều ngang màn hình */}
-          <div className="relative w-[640px] h-[740px] scale-[0.48] xs:scale-[0.55] sm:scale-[0.68] md:scale-100 origin-center my-[-145px] xs:my-[-120px] sm:my-[-70px] md:my-0 mx-[-166px] xs:mx-[-144px] sm:mx-[-102px] md:mx-0 transition-transform duration-300">
+          <div className="relative w-[640px] h-[740px] scale-[0.48] xs:scale-[0.55] sm:scale-[0.68] md:scale-[0.82] lg:scale-100 origin-center my-[-145px] xs:my-[-120px] sm:my-[-70px] md:my-[-30px] lg:my-0 mx-[-166px] xs:mx-[-144px] sm:mx-[-102px] md:mx-[-55px] lg:mx-0 transition-transform duration-300">
             
             {/* Lục giác trung tâm (GIÁ TRỊ CỐT LÕI) */}
             <Hexagon

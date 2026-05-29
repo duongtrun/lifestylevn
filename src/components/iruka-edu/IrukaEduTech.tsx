@@ -143,8 +143,8 @@ export default function IrukaEduTech() {
         </motion.div>
 
         {/* 3 Columns Layout */}
-        <div className="container mx-auto px-6 md:px-10 max-w-7xl">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-10">
+        <div className="container mx-auto px-6 lg:px-10 max-w-7xl">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-10">
             
             {/* Cột 1 */}
             <div className="flex flex-col gap-6 lg:gap-10 h-full">
@@ -154,14 +154,14 @@ export default function IrukaEduTech() {
             </div>
 
             {/* Cột 2 (Căn giữa theo chiều dọc) */}
-            <div className="flex flex-col justify-center gap-6 lg:gap-10 mt-6 md:mt-0">
+            <div className="flex flex-col justify-center gap-6 lg:gap-10 mt-6 lg:mt-0">
               {techData.filter(d => d.col === 2).map((item, index) => (
                 <TechCard key={item.id} icon={item.icon} content={item.content} index={index} delay={0.3} />
               ))}
             </div>
 
             {/* Cột 3 */}
-            <div className="flex flex-col gap-6 lg:gap-10 mt-6 md:mt-0 h-full">
+            <div className="flex flex-col gap-6 lg:gap-10 mt-6 lg:mt-0 h-full">
               {techData.filter(d => d.col === 3).map((item, index) => (
                 <TechCard key={item.id} icon={item.icon} content={item.content} index={index} delay={0.5} className="flex-1 flex flex-col" />
               ))}

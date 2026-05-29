@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import { motion, AnimatePresence, Variants } from "framer-motion";
 import Image from 'next/image';
 import { Lightbulb, BookOpen, ShieldCheck, Leaf, Sparkles } from "lucide-react";
@@ -91,20 +91,27 @@ const slideVariants: Variants = {
 export default function DifferenceSection() {
   const [activeIdx, setActiveIdx] = useState(0);
   const [[page, direction], setPage] = useState([0, 0]);
+  const tabsContainerRef = useRef<HTMLDivElement>(null);
 
   const handleTabChange = (newIdx: number) => {
     const newDir = newIdx > activeIdx ? 1 : -1;
     setActiveIdx(newIdx);
     setPage([newIdx, newDir]);
 
-    // Cuộn tab active vào giữa màn hình trên di động
+    // Cuộn tab active vào giữa màn hình trên di động (chỉ cuộn thanh pill container, tránh giật/lệch toàn trang)
     setTimeout(() => {
+      const container = tabsContainerRef.current;
       const activeEl = document.getElementById(`diff-tab-${newIdx}`);
-      if (activeEl) {
-        activeEl.scrollIntoView({
-          behavior: 'smooth',
-          block: 'nearest',
-          inline: 'center'
+      if (container && activeEl) {
+        const containerWidth = container.offsetWidth;
+        const activeWidth = activeEl.offsetWidth;
+        const activeLeft = activeEl.offsetLeft;
+        
+        const targetScrollLeft = activeLeft - (containerWidth / 2) + (activeWidth / 2);
+        
+        container.scrollTo({
+          left: targetScrollLeft,
+          behavior: 'smooth'
         });
       }
     }, 50);
@@ -146,6 +153,7 @@ export default function DifferenceSection() {
         {/* ===== THANH CHỌN TABS (PILLS) ===== */}
         <div className="flex flex-col items-center mb-10">
           <div
+            ref={tabsContainerRef}
             className="flex flex-row p-1.5 bg-white/60 backdrop-blur-md rounded-full border border-neutral-200/60 max-w-full overflow-x-auto scrollbar-none gap-1 md:gap-2"
             style={{ msOverflowStyle: 'none', scrollbarWidth: 'none' }}
           >
@@ -242,7 +250,7 @@ export default function DifferenceSection() {
 
                 {/* Cột phải: Hình ảnh + Badge icon đè */}
                 <div className="lg:col-span-5 relative mt-4 lg:mt-0 pl-4 lg:pl-0 w-full flex">
-                  <div className="relative w-full min-h-[300px] rounded-3xl overflow-hidden border border-neutral-200/50 shadow-xl group bg-neutral-50 flex-1">
+                  <div className="relative w-full min-h-[550px] rounded-3xl overflow-hidden border border-neutral-200/50 shadow-xl group bg-neutral-50 flex-1">
                     <Image
                       src={activeItem.image}
                       alt={activeItem.title}

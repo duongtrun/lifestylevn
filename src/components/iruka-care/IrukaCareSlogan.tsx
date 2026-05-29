@@ -12,10 +12,10 @@ import { motion } from 'framer-motion';
 export default function IrukaCareSlogan() {
   return (
     <section className="w-full bg-white py-10 flex justify-center items-center overflow-hidden">
-      <div className="relative w-full max-w-[1000px] px-4 flex justify-center items-center min-h-[440px] md:min-h-[640px] xl:min-h-[420px]">
+      <div className="relative w-full max-w-[1000px] px-4 flex justify-center items-center min-h-[440px] lg:w-[1000px] lg:h-[420px]">
 
-        {/* Khung viền vẽ tay - Giao diện Desktop */}
-        <div className="absolute inset-0 w-full h-full z-0 pointer-events-none hidden xl:block opacity-90">
+        {/* Khung viền vẽ tay - Giao diện Desktop & iPad Landscape */}
+        <div className="absolute inset-0 w-full h-full z-0 pointer-events-none hidden lg:block opacity-90">
           {/* Tạm dùng lại khung viền của Iruka Edu vì thiết kế giống hệt */}
           <Image
             src="/img_iruka_care/bg_slogan.svg"
@@ -26,8 +26,8 @@ export default function IrukaCareSlogan() {
           />
         </div>
 
-        {/* Khung viền vẽ tay - Giao diện Mobile */}
-        <div className="absolute inset-0 w-full h-full z-0 pointer-events-none block xl:hidden opacity-90">
+        {/* Khung viền vẽ tay - Giao diện Mobile & iPad Portrait */}
+        <div className="absolute inset-0 w-full h-full z-0 pointer-events-none block lg:hidden opacity-90">
           <Image
             src="/img_iruka_edu/bg_slogan_moblie.svg"
             alt="Iruka Care Background Outline Mobile"
@@ -43,10 +43,10 @@ export default function IrukaCareSlogan() {
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="relative z-10 flex flex-col items-center text-center px-14 sm:px-12 xl:px-24 py-4 xl:py-6"
+          className="relative lg:absolute lg:inset-0 z-10 flex flex-col items-center justify-center text-center px-14 sm:px-12 lg:px-16 py-4 lg:py-0"
         >
           {/* Logo (tạm dùng mascot 1 của Iruka Care) */}
-          <div className="relative w-[50px] h-[50px] md:w-[70px] md:h-[70px] mb-2 md:mb-3">
+          <div className="relative w-[50px] h-[50px] lg:w-[70px] lg:h-[70px] mb-2 lg:mb-3">
             <Image 
               src="/img_iruka_care/logo.webp" 
               alt="Iruka Care Logo" 
@@ -56,12 +56,12 @@ export default function IrukaCareSlogan() {
           </div>
 
           {/* Tiêu đề */}
-          <h2 className="text-sm md:text-sm xl:text-2xl font-bold text-[#333333] mb-2 xl:mb-3 max-w-[190px] sm:max-w-[220px] md:max-w-[250px] xl:max-w-none">
+          <h2 className="text-sm sm:text-base lg:text-2xl font-bold text-[#333333] mb-2 lg:mb-3 max-w-[210px] sm:max-w-[280px] lg:max-w-none">
             iruKa Care – An toàn chạm đến từng khoảnh khắc
           </h2>
 
           {/* Lời hứa */}
-          <p className="text-xs md:text-[11px] xl:text-base text-[#333333] max-w-[190px] sm:max-w-[230px] md:max-w-[250px] xl:max-w-[700px] leading-relaxed xl:leading-loose">
+          <p className="text-xs sm:text-xs lg:text-base text-[#333333] max-w-[190px] sm:max-w-[260px] lg:max-w-[700px] leading-relaxed lg:leading-loose">
             Mỗi đứa trẻ đều lớn lên từ những khoảnh khắc nhỏ bé: một cái ôm
             sau giờ chơi, đôi bàn tay lấm lem khi khám phá, hay nụ cười giòn tan mà bố mẹ luôn muốn giữ mãi.{" "}
             <span className="font-medium block mt-1.5 md:mt-2 xl:inline xl:mt-0">

@@ -11,9 +11,9 @@ import { motion } from "framer-motion";
 export default function Hero() {
   return (
     <section className="relative w-full min-h-[600px] lg:h-[85vh] flex items-center overflow-hidden bg-gradient-to-r from-sky-50/80 to-white">
-      {/* Background Image Banner - Mobile */}
+      {/* Background Image Banner - Mobile & iPad Portrait */}
       <div
-        className="absolute inset-0 z-0 opacity-30 block md:hidden pointer-events-none bg-cover bg-center"
+        className="absolute inset-0 z-0 opacity-30 block lg:hidden pointer-events-none bg-cover bg-center"
         style={{
           backgroundImage: 'url("/images/banner_mobile.webp")',
         }}
@@ -21,7 +21,7 @@ export default function Hero() {
 
       {/* Background Image Banner - Tablet & Desktop */}
       <div
-        className="absolute inset-0 z-0 opacity-40 md:opacity-100 md:w-[60%] md:left-[40%] pointer-events-none bg-cover bg-center md:bg-right hidden md:block"
+        className="absolute inset-0 z-0 opacity-40 lg:opacity-100 lg:w-[50%] lg:left-[50%] xl:w-[60%] xl:left-[40%] pointer-events-none bg-cover bg-center lg:bg-right hidden lg:block"
         style={{
           backgroundImage: 'url("/images/banner_home_page.jpg")',
           WebkitMaskImage: 'linear-gradient(to right, transparent, black 30%)',
@@ -29,9 +29,9 @@ export default function Hero() {
         }}
       />
 
-      <div className="container relative z-10 mx-auto px-4 grid md:grid-cols-12 gap-8 items-center h-full">
+      <div className="container relative z-10 mx-auto px-4 grid lg:grid-cols-12 gap-8 items-center h-full">
         {/* Left Content */}
-        <div className="max-w-2xl space-y-6 pt-10 pb-20 md:py-0 md:col-span-7 lg:col-span-8">
+        <div className="max-w-2xl space-y-6 pt-10 pb-20 lg:py-0 lg:col-span-7 xl:col-span-8">
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -45,12 +45,15 @@ export default function Hero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.1 }}
-            className="text-xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-extrabold leading-[1.2] pb-2"
+            className="text-xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-extrabold leading-[1.2] pb-2 bg-clip-text text-transparent bg-gradient-to-r from-[#0F172A] to-[#1E3A8A]"
           >
-            <span className="block whitespace-nowrap bg-clip-text text-transparent bg-gradient-to-r from-[#0F172A] to-[#1E3A8A]">
-              KIẾN TẠO HỆ SINH THÁI
+            <span className="block lg:inline">
+              KIÊN TẠO{" "}
             </span>
-            <span className="block whitespace-nowrap bg-clip-text text-transparent bg-gradient-to-r from-[#0F172A] to-[#1E3A8A]">
+            <span className="block lg:inline">
+              HỆ SINH THÁI
+            </span>
+            <span className="block">
               MẸ VÀ BÉ
             </span>
           </motion.h1>
@@ -71,7 +74,7 @@ export default function Hero() {
         </div>
 
         {/* Right Content spacer */}
-        <div className="hidden md:block md:col-span-5 lg:col-span-4" />
+        <div className="hidden lg:block lg:col-span-5 xl:col-span-4" />
       </div>
     </section>
   );

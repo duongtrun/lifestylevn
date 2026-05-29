@@ -17,20 +17,20 @@ export default function AboutHero() {
 
       {/* ===== Ảnh nền tự thích ứng (Responsive) theo thiết bị di động & máy tính ===== */}
       <div className="absolute inset-0 z-0 bg-[#EEF8FC]">
-        {/* Ảnh banner dành riêng cho thiết bị di động (Mobile) */}
+        {/* Ảnh banner dành riêng cho thiết bị di động (Mobile & iPad Portrait) */}
         <Image
           src="/img_about_us/about_us_banner_mobile.webp"
           alt="Banner giới thiệu Lifestyle Việt Nam di động"
           fill
-          className="object-cover object-center md:hidden"
+          className="object-cover object-center lg:hidden"
           priority
         />
-        {/* Ảnh banner dành riêng cho máy tính (Desktop/Tablet) */}
+        {/* Ảnh banner dành riêng cho máy tính (Desktop/Tablet Landscape) */}
         <Image
           src="/img_about_us/banner_about_us.webp"
           alt="Đội ngũ Lifestyle Việt Nam trong cuộc họp máy tính"
           fill
-          className="object-cover object-center hidden md:block"
+          className="object-cover object-center hidden lg:block"
           priority
         />
       </div>

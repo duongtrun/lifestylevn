@@ -28,19 +28,19 @@ export default function IrukaEduHero() {
 
           {/* --- Overlay nội dung: text trái + mascot phải --- */}
           <div className="absolute inset-0 z-10 flex items-center">
-            <div className="container mx-auto px-6 md:px-10 flex flex-col md:flex-row items-center justify-center gap-8 md:gap-[180px] lg:gap-[300px] mt-0 md:-mt-[250px]">
+            <div className="container mx-auto px-6 lg:px-10 flex flex-col lg:flex-row items-center justify-center gap-8 lg:gap-[180px] xl:gap-[300px] mt-0 lg:-mt-[250px]">
 
               {/* Bên trái: Tiêu đề + tagline */}
               <motion.div
                 initial={{ opacity: 0, x: -40 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.8 }}
-                className="max-w-lg text-center md:text-left"
+                className="max-w-lg text-center lg:text-left"
               >
-                <h1 className="text-4xl md:text-5xl lg:text-8xl font-extrabold text-[white] leading-tight mb-4">
+                <h1 className="text-4xl lg:text-8xl font-extrabold text-[white] leading-tight mb-4">
                   IRUKA EDU
                 </h1>
-                <p className="text-lg md:text-xl lg:text-2xl font-bold text-[white]/80 uppercase tracking-wide leading-snug">
+                <p className="text-lg lg:text-2xl font-bold text-[white]/80 uppercase tracking-wide leading-snug">
                   Nền tảng giáo dục sớm<br />
                   ứng dụng AI 
                   cho trẻ 3–6 tuổi
@@ -52,7 +52,7 @@ export default function IrukaEduHero() {
                 initial={{ opacity: 0, x: 40, scale: 0.9 }}
                 animate={{ opacity: 1, x: 0, scale: 1 }}
                 transition={{ duration: 0.8, delay: 0.2 }}
-                className="relative w-[220px] h-[250px] md:w-[300px] md:h-[340px] lg:w-[380px] lg:h-[430px] flex-shrink-0"
+                className="relative w-[220px] h-[250px] sm:w-[300px] sm:h-[340px] lg:w-[380px] lg:h-[430px] flex-shrink-0"
               >
                 <Image
                   src="/img_iruka_edu/hero_banner.svg"
@@ -68,13 +68,13 @@ export default function IrukaEduHero() {
 
       {/* ====== CÂU CHUYỆN THƯƠNG HIỆU — đè lên banner ====== */}
       {/* Mobile: -mt-[100px] để tạo khoảng cách ~30-50px dưới mascot; Desktop: -mt-[250px] giữ nguyên thiết kế gốc */}
-      <div className="relative z-20 w-full flex justify-center -mt-[100px] md:-mt-[250px] pb-16">
+      <div className="relative z-20 w-full flex justify-center -mt-[100px] lg:-mt-[250px] pb-16">
         {/* Nền trắng bắt đầu từ 100px (mobile) / 250px (desktop) trở đi */}
-        <div className="absolute top-[100px] md:top-[250px] left-0 right-0 bottom-0 bg-white -z-10" />
+        <div className="absolute top-[100px] lg:top-[250px] left-0 right-0 bottom-0 bg-white -z-10" />
         
-        <section className="relative z-10 w-full max-w-[1200px] h-auto bg-white py-10 lg:py-14 px-10 md:px-16 rounded-[10px] shadow-[0_0px_40px_rgba(0,0,0,0.08)] mx-4">
+        <section className="relative z-10 w-full max-w-[1200px] h-auto bg-white py-10 lg:py-14 px-6 sm:px-10 lg:px-16 rounded-[10px] shadow-[0_0px_40px_rgba(0,0,0,0.08)] mx-4">
 
-        <div className="container mx-auto px-6 md:px-10">
+        <div className="container mx-auto px-6 lg:px-10">
           <motion.div
             initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -83,7 +83,7 @@ export default function IrukaEduHero() {
             className="max-w-4xl mx-auto"
           >
             {/* Tiêu đề */}
-            <h2 className="text-2xl md:text-4xl font-extrabold text-[#008BBD] mb-8 text-center md:text-left">
+            <h2 className="text-2xl lg:text-4xl font-extrabold text-[#008BBD] mb-8 text-center lg:text-left">
               Câu chuyện thương hiệu iruKa
             </h2>
 

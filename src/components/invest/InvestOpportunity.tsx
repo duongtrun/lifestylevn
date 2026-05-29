@@ -33,7 +33,7 @@ export default function InvestOpportunity() {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, margin: '-100px' }}
             transition={{ duration: 0.8, ease: 'easeOut' }}
-            className="w-full lg:w-5/12 shrink-0 relative min-h-[300px] lg:min-h-[400px] self-stretch"
+            className="w-full lg:w-5/12 shrink-0 relative h-[350px]"
           >
             <Image
               src="/invest_img/opportunity.webp"
@@ -49,7 +49,7 @@ export default function InvestOpportunity() {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, margin: '-100px' }}
             transition={{ duration: 0.8, ease: 'easeOut', delay: 0.2 }}
-            className="w-full lg:w-7/12 pt-0 md:pt-4 flex flex-col justify-center"
+            className="w-full lg:w-7/12 pt-0 lg:pt-4 flex flex-col justify-center"
           >
             <h2 className="text-4xl md:text-5xl font-bold mb-6 text-[#008BBD]">
               Cơ hội
@@ -112,7 +112,7 @@ export default function InvestOpportunity() {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, margin: '-100px' }}
             transition={{ duration: 0.8, ease: 'easeOut' }}
-            className="w-full lg:w-5/12 shrink-0 relative min-h-[300px] lg:min-h-[450px] self-stretch"
+            className="w-full lg:w-5/12 shrink-0 relative h-[550px]"
           >
             <Image
               src="/invest_img/transformation.webp"

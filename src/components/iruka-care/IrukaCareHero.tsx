@@ -24,19 +24,19 @@ export default function IrukaCareHero() {
 
         {/* --- Overlay nội dung: text trái + mascot phải --- */}
         <div className="absolute inset-0 z-10 flex items-center">
-          <div className="container mx-auto px-6 md:px-10 flex flex-col md:flex-row items-center justify-center gap-8 md:gap-[180px] lg:gap-[300px] mt-0 md:-mt-[250px]">
+          <div className="container mx-auto px-6 lg:px-10 flex flex-col lg:flex-row items-center justify-center gap-8 lg:gap-[180px] xl:gap-[300px] mt-0 lg:-mt-[250px]">
 
             {/* Bên trái: Tiêu đề + tagline */}
             <motion.div
               initial={{ opacity: 0, x: -40 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8 }}
-              className="max-w-lg text-center md:text-left"
+              className="max-w-lg text-center lg:text-left"
             >
-              <h1 className="text-4xl md:text-5xl lg:text-8xl font-extrabold text-[#005a8c] leading-tight mb-4 drop-shadow-md">
+              <h1 className="text-4xl lg:text-8xl font-extrabold text-[#005a8c] leading-tight mb-4 drop-shadow-md">
                 IRUKA CARE
               </h1>
-              <p className="text-lg md:text-xl lg:text-2xl font-bold text-[#005a8c]/90 uppercase tracking-wide leading-snug drop-shadow-md">
+              <p className="text-lg lg:text-2xl font-bold text-[#005a8c]/90 uppercase tracking-wide leading-snug drop-shadow-md">
                 Giải pháp vệ sinh &amp; an toàn<br />
                 cho trẻ từ sơ sinh
               </p>
@@ -47,7 +47,7 @@ export default function IrukaCareHero() {
               initial={{ opacity: 0, x: 40, scale: 0.9 }}
               animate={{ opacity: 1, x: 0, scale: 1 }}
               transition={{ duration: 0.8, delay: 0.2 }}
-              className="relative w-[220px] h-[250px] md:w-[300px] md:h-[340px] lg:w-[380px] lg:h-[430px] flex-shrink-0"
+              className="relative w-[220px] h-[250px] sm:w-[300px] sm:h-[340px] lg:w-[380px] lg:h-[430px] flex-shrink-0"
             >
               <Image
                 src="/img_iruka_care/mascot.svg"

@@ -32,12 +32,12 @@ export default function BabegoProduct() {
           className="w-full flex flex-col md:flex-row bg-white rounded-[24px] overflow-hidden shadow-[0_15px_40px_rgba(0,114,76,0.1)]"
         >
           {/* Ảnh bên trái */}
-          <div className="w-full md:w-[45%] relative aspect-[4/3] md:aspect-auto md:min-h-[350px]">
+          <div className="w-full md:w-[50%] relative aspect-[4/3] md:aspect-auto md:min-h-[500px] bg-neutral-50/40">
             <Image 
               src="/img_babego/babego_production1.svg" 
               alt="Babego - Dinh dưỡng từ thảo dược chùm ngây" 
               fill 
-              className="object-cover object-center" 
+              className="object-contain object-center p-4 md:p-6" 
             />
           </div>
           
@@ -76,7 +76,7 @@ export default function BabegoProduct() {
           className="w-full flex flex-col-reverse md:flex-row bg-white rounded-[24px] overflow-hidden shadow-[0_15px_40px_rgba(0,114,76,0.1)]"
         >
           {/* Nội dung bên trái */}
-          <div className="w-full md:w-[55%] p-8 md:p-12 lg:p-16 flex flex-col justify-center">
+          <div className="w-full md:w-[50%] p-8 md:p-12 lg:p-16 flex flex-col justify-center">
             <h3 className="text-xl md:text-2xl lg:text-[28px] font-extrabold text-[#00724C] mb-6 leading-tight">
               Babego Gold - Công thức cải tiến chuyên sâu
             </h3>
@@ -97,12 +97,12 @@ export default function BabegoProduct() {
           </div>
 
           {/* Ảnh bên phải */}
-          <div className="w-full md:w-[45%] relative aspect-[4/3] md:aspect-auto md:min-h-[350px]">
+          <div className="w-full md:w-[50%] relative aspect-[4/3] md:aspect-auto md:min-h-[500px] bg-neutral-50/40">
             <Image 
               src="/img_babego/babego_production2.svg" 
               alt="Babego Gold - Công thức cải tiến chuyên sâu" 
               fill 
-              className="object-cover object-center" 
+              className="object-contain object-center p-4 md:p-6" 
             />
           </div>
         </motion.div>
