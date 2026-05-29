@@ -7,8 +7,8 @@ import { Mail, MapPin, Phone } from 'lucide-react';
 import Image from 'next/image';
 
 export const metadata = {
-  title: 'Liên hệ | IruKa Group',
-  description: 'Gửi yêu cầu hợp tác và liên hệ với IruKa Group.',
+  title: 'Liên hệ | iruKa Group',
+  description: 'Gửi yêu cầu hợp tác và liên hệ với iruKa Group.',
 };
 
 export default function ContactPage() {
@@ -34,11 +34,11 @@ export default function ContactPage() {
           {/* Cột trái: Thông tin liên hệ */}
           <div className="w-full md:w-5/12 text-white">
             <h1 className="text-4xl md:text-5xl font-bold mb-6 drop-shadow-md">
-              Kết nối cùng IruKa
+              Kết nối cùng iruKa
             </h1>
             <p className="text-lg text-white/90 mb-10 leading-relaxed drop-shadow-sm">
               Chúng tôi luôn trân trọng mọi cơ hội hợp tác và phản hồi từ quý đối tác, 
-              khách hàng và các bậc phụ huynh. Hãy để lại thông tin, IruKa sẽ liên hệ lại trong thời gian sớm nhất.
+              khách hàng và các bậc phụ huynh. Hãy để lại thông tin, iruKa sẽ liên hệ lại trong thời gian sớm nhất.
             </p>
             
             <div className="space-y-6">

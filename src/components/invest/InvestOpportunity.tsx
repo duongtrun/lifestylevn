@@ -36,7 +36,7 @@ export default function InvestOpportunity() {
             className="w-full lg:w-5/12 shrink-0 relative min-h-[300px] lg:min-h-[400px] self-stretch"
           >
             <Image
-              src="/invest_img/opportunity.png"
+              src="/invest_img/opportunity.webp"
               alt="Cơ hội đầu tư"
               fill
               className="object-cover shadow-lg rounded-2xl"
@@ -115,7 +115,7 @@ export default function InvestOpportunity() {
             className="w-full lg:w-5/12 shrink-0 relative min-h-[300px] lg:min-h-[450px] self-stretch"
           >
             <Image
-              src="/invest_img/transformation.png"
+              src="/invest_img/transformation.webp"
               alt="Hợp tác đầu tư"
               fill
               className="object-cover shadow-lg object-center rounded-2xl"

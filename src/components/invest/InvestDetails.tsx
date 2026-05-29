@@ -54,7 +54,7 @@ export default function InvestDetails() {
             className="w-full md:w-5/12 relative min-h-[300px] md:min-h-[450px] self-stretch"
           >
             <Image 
-              src="/invest_img/tam_nhin_dai_han.png" 
+              src="/invest_img/tam_nhin_dai_han.webp" 
               alt="Định hướng phát triển" 
               fill 
               className="object-cover rounded-2xl shadow-md" 
@@ -120,7 +120,7 @@ export default function InvestDetails() {
             className="w-full md:w-5/12 relative min-h-[250px] md:min-h-[350px] self-stretch"
           >
           <Image 
-            src="/invest_img/commitment.png" 
+            src="/invest_img/commitment.webp" 
             alt="Cam kết" 
             fill 
             className="object-cover rounded-2xl shadow-md" 
@@ -138,7 +138,7 @@ export default function InvestDetails() {
             className="w-full md:w-5/12 relative min-h-[250px] md:min-h-[350px] self-stretch"
           >
           <Image 
-            src="/invest_img/how.png" 
+            src="/invest_img/how.webp" 
             alt="How to find partners" 
             fill 
             className="object-cover rounded-2xl shadow-md" 

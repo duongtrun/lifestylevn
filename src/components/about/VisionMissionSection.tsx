@@ -17,8 +17,8 @@ const tabs = [
     id: 'vision',
     label: 'Tầm nhìn',
     icon: Eye,
-    imageDesktop: '/images/tam_nhin.png',
-    imageMobile: '/images/tam_nhin_mobile.png',
+    imageDesktop: '/images/tam_nhin.webp',
+    imageMobile: '/images/tam_nhin_mobile.webp',
     heading: 'TẦM NHÌN',
     content:
       'Trở thành doanh nghiệp tiên phong trong việc xây dựng hệ sinh thái Mẹ & Bé toàn diện tại Việt Nam – nơi công nghệ, dinh dưỡng, giáo dục và sức khỏe kết hợp để mang đến giải pháp nuôi dạy con toàn diện và bền vững.',
@@ -29,8 +29,8 @@ const tabs = [
     id: 'mission',
     label: 'Sứ mệnh',
     icon: Compass,
-    imageDesktop: '/images/su_menh.png',
-    imageMobile: '/images/su_menh_mobile.png',
+    imageDesktop: '/images/su_menh.webp',
+    imageMobile: '/images/su_menh_mobile.webp',
     heading: 'SỨ MỆNH',
     content:
       'Mang đến giải pháp toàn diện và đáng tin cậy giúp trẻ phát triển khỏe mạnh – hạnh phúc – an toàn trong những năm đầu đời, đồng hành cùng các bà mẹ trong hành trình nuôi dạy con khôn lớn.',
@@ -42,8 +42,8 @@ const tabs = [
     id: 'philosophy',
     label: 'Triết lý kinh doanh',
     icon: Lightbulb,
-    imageDesktop: '/images/triet_li.png',
-    imageMobile: '/images/triet_li_mobile.png',
+    imageDesktop: '/images/triet_li.webp',
+    imageMobile: '/images/triet_li_mobile.webp',
     heading: 'TRIẾT LÝ KINH DOANH',
     content:
       'Hợp tác – Phát triển – Chia sẻ lợi nhuận. Khách hàng là người bạn đồng hành, không chỉ là người mua hàng. Cam kết cung cấp giá trị thật, minh bạch và bền vững. Tôn trọng đạo đức kinh doanh – tuân thủ pháp luật. Liên tục đổi mới để mang lại chất lượng vượt trội.',
