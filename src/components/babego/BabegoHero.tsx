@@ -51,7 +51,7 @@ export default function BabegoHero() {
                 className="relative w-[220px] h-[250px] sm:w-[300px] sm:h-[340px] lg:w-[400px] lg:h-[450px] flex-shrink-0"
               >
                 <Image
-                  src="/img_babego/babego_mascot.svg"
+                  src="/img_babego/babego_mascot.webp"
                   alt="Babego Mascot"
                   fill
                   className="object-contain drop-shadow-2xl"
@@ -86,7 +86,7 @@ export default function BabegoHero() {
             className="w-[260px] sm:w-[340px] lg:w-[500px] flex-shrink-0 relative z-20 lg:absolute lg:left-[-50px] xl:left-[-100px] lg:bottom-0 mb-[-30px] lg:mb-0"
           >
             <Image
-              src="/img_babego/babego_mascot.svg"
+              src="/img_babego/babego_mascot.webp"
               alt="Babego Mascot"
               width={500}
               height={600}

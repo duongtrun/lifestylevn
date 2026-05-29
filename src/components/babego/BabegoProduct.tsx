@@ -34,7 +34,7 @@ export default function BabegoProduct() {
           {/* Ảnh bên trái */}
           <div className="w-full md:w-[50%] relative aspect-[4/3] md:aspect-auto md:min-h-[500px] bg-neutral-50/40">
             <Image 
-              src="/img_babego/babego_production1.svg" 
+              src="/img_babego/babego_production1.webp" 
               alt="Babego - Dinh dưỡng từ thảo dược chùm ngây" 
               fill 
               className="object-contain object-center p-4 md:p-6" 
@@ -99,7 +99,7 @@ export default function BabegoProduct() {
           {/* Ảnh bên phải */}
           <div className="w-full md:w-[50%] relative aspect-[4/3] md:aspect-auto md:min-h-[500px] bg-neutral-50/40">
             <Image 
-              src="/img_babego/babego_production2.svg" 
+              src="/img_babego/babego_production2.webp" 
               alt="Babego Gold - Công thức cải tiến chuyên sâu" 
               fill 
               className="object-contain object-center p-4 md:p-6" 
