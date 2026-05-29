@@ -78,18 +78,33 @@ export default function BabegoOrigin() {
   const activeData = TIMELINE_DATA[activeIndex];
 
   return (
-    <section className="relative w-full py-20 lg:py-28 overflow-hidden bg-white">
+    <section className="relative w-full py-12 lg:py-16 overflow-hidden bg-gray-50">
       {/* Background image */}
       <div className="absolute inset-0 z-0 pointer-events-none">
         <Image 
           src="/img_babego/babego_bg_timeline.webp"
           alt="Babego Origin Background"
           fill
-          className="object-cover object-center"
+          className="object-cover object-center opacity-30"
         />
       </div>
 
       <div className="container mx-auto px-4 relative z-10">
+        
+        {/* Tiêu đề phần Lịch sử hình thành */}
+        <motion.div
+          initial={{ opacity: 0, y: -20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="text-center mb-12 md:mb-16"
+        >
+          <h2 className="text-3xl md:text-5xl font-black text-[#273F68] tracking-tight mb-4">
+            Lịch sử phát triển Babego
+          </h2>
+          <div className="h-1 w-20 bg-[#00724C] mx-auto rounded-full" />
+        </motion.div>
+
         <div className="max-w-5xl mx-auto flex flex-col md:flex-row items-stretch gap-8 lg:gap-16">
           
           {/* Cột trái: Danh sách Năm (Years) - BẢN TRƯỢT NGANG CHO MOBILE */}
@@ -155,7 +170,7 @@ export default function BabegoOrigin() {
               className={`p-2 transition-colors ${activeIndex === 0 ? 'text-gray-300 cursor-not-allowed' : 'text-[#00724C] hover:text-[#2D7A3A] cursor-pointer'}`}
               aria-label="Lên trên"
             >
-              <ChevronUp size={40} strokeWidth={2.5} />
+              <ChevronUp size={32} strokeWidth={2.5} />
             </button>
 
             {/* Các năm xếp dọc */}
@@ -196,14 +211,14 @@ export default function BabegoOrigin() {
               className={`p-2 transition-colors ${activeIndex === TIMELINE_DATA.length - 1 ? 'text-gray-300 cursor-not-allowed' : 'text-[#00724C] hover:text-[#2D7A3A] cursor-pointer'}`}
               aria-label="Xuống dưới"
             >
-              <ChevronDown size={40} strokeWidth={2.5} />
+              <ChevronDown size={32} strokeWidth={2.5} />
             </button>
           </div>
 
           {/* Cột giữa: Đường kẻ thanh trượt */}
-          <div className="hidden md:flex flex-none w-1.5 relative bg-gray-300 rounded-full my-10">
+          <div className="hidden md:flex flex-none w-1 relative bg-gray-300 rounded-full my-10">
             <motion.div 
-              className="absolute left-0 right-0 bg-[#00724C] rounded-full w-2 -ml-[1px]"
+              className="absolute left-0 right-0 bg-[#00724C] rounded-full w-1.5 -ml-[1px]"
               initial={false}
               animate={{ 
                 top: `${(activeIndex / Math.max(TIMELINE_DATA.length - 1, 1)) * 100}%`,
@@ -215,7 +230,7 @@ export default function BabegoOrigin() {
           </div>
 
           {/* Cột phải: Nội dung chi tiết */}
-          <div className="w-full md:flex-1 flex flex-col justify-start h-[520px] sm:h-[450px] md:h-[350px] lg:h-[300px] overflow-y-auto scrollbar-none">
+          <div className="w-full md:flex-1 flex flex-col justify-start h-[620px] sm:h-[520px] md:h-[460px] lg:h-[420px]">
             <AnimatePresence mode="wait">
               <motion.div
                 key={activeIndex}
@@ -225,13 +240,13 @@ export default function BabegoOrigin() {
                 transition={{ duration: 0.4, ease: "easeOut" }}
                 className="space-y-6 my-auto"
               >
-                <h3 className="text-2xl md:text-3xl lg:text-[32px] font-bold text-[#00724C] leading-snug">
+                <h3 className="text-2xl md:text-3xl lg:text-4xl font-bold text-[#00724C] leading-snug">
                   {activeData.title}
                 </h3>
                 
-                <div className="space-y-3 text-[#444444] text-sm md:text-base leading-relaxed">
+                <div className="space-y-4 text-gray-600 text-sm md:text-base leading-relaxed">
                   {activeData.content.map((paragraph, idx) => (
-                    <p key={idx} className={paragraph.startsWith('•') ? 'pl-4 whitespace-pre-line font-medium' : ''}>
+                    <p key={idx} className={paragraph.startsWith('•') ? 'pl-4 whitespace-pre-line text-gray-700 font-medium' : ''}>
                       {paragraph}
                     </p>
                   ))}
