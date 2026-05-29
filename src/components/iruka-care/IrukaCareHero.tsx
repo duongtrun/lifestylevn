@@ -47,7 +47,7 @@ export default function IrukaCareHero() {
               initial={{ opacity: 0, x: 40, scale: 0.9 }}
               animate={{ opacity: 1, x: 0, scale: 1 }}
               transition={{ duration: 0.8, delay: 0.2 }}
-              className="relative w-[220px] h-[250px] md:w-[320px] md:h-[360px] lg:w-[600px] lg:h-[650px] flex-shrink-0"
+              className="relative w-[220px] h-[250px] md:w-[300px] md:h-[340px] lg:w-[380px] lg:h-[430px] flex-shrink-0"
             >
               <Image
                 src="/img_iruka_care/mascot.svg"
