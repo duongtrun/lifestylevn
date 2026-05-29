@@ -11,7 +11,7 @@ import { motion } from 'framer-motion';
 export default function InvestDetails() {
   return (
     <section className="w-full py-16 md:py-24 bg-white overflow-hidden">
-      <div className="container mx-auto px-4 max-w-5xl space-y-16 md:space-y-24">
+      <div className="container mx-auto px-4 max-w-5xl space-y-12 md:space-y-24">
         
         {/* Block 1: Tầm nhìn dài hạn - Định hướng phát triển */}
         <div className="flex flex-col md:flex-row gap-10 items-stretch justify-between">
@@ -57,7 +57,7 @@ export default function InvestDetails() {
               src="/invest_img/tam_nhin_dai_han.png" 
               alt="Định hướng phát triển" 
               fill 
-              className="object-contain" 
+              className="object-cover rounded-2xl shadow-md" 
             />
           </motion.div>
         </div>
@@ -119,12 +119,12 @@ export default function InvestDetails() {
             transition={{ duration: 0.8, delay: 0.2 }}
             className="w-full md:w-5/12 relative min-h-[250px] md:min-h-[350px] self-stretch"
           >
-            <Image 
-              src="/invest_img/commitment.png" 
-              alt="Cam kết" 
-              fill 
-              className="object-contain" 
-            />
+          <Image 
+            src="/invest_img/commitment.png" 
+            alt="Cam kết" 
+            fill 
+            className="object-cover rounded-2xl shadow-md" 
+          />
           </motion.div>
         </div>
 
@@ -137,12 +137,12 @@ export default function InvestDetails() {
             transition={{ duration: 0.8 }}
             className="w-full md:w-5/12 relative min-h-[250px] md:min-h-[350px] self-stretch"
           >
-            <Image 
-              src="/invest_img/how.png" 
-              alt="How to find partners" 
-              fill 
-              className="object-contain" 
-            />
+          <Image 
+            src="/invest_img/how.png" 
+            alt="How to find partners" 
+            fill 
+            className="object-cover rounded-2xl shadow-md" 
+          />
           </motion.div>
           
           <motion.div 
