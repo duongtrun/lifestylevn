@@ -8,7 +8,7 @@ import Image from 'next/image';
 
 export default function PartnerSection() {
   return (
-    <section className="w-full py-16 bg-[#fafafa]">
+    <section className="w-full py-10 bg-[#fafafa]">
       <div className="container mx-auto px-4 md:px-10">
         <h2 className="text-center text-2xl md:text-4xl font-bold text-[#68412F] mb-6">
           Đối tác & đồng hành

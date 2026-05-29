@@ -115,7 +115,7 @@ export default function DifferenceSection() {
 
   return (
     <section
-      className="relative w-full py-12 lg:py-16 bg-[#008BBD]/20 overflow-hidden"
+      className="relative w-full py-10 bg-[#008BBD]/20 overflow-hidden"
     >
 
       <div className="container mx-auto px-4 relative z-10 max-w-6xl">

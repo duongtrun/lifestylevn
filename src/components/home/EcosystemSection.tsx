@@ -94,7 +94,7 @@ const products = [
 
 export default function EcosystemSection() {
   return (
-    <section className="relative w-full overflow-hidden py-12 lg:py-16 bg-white">
+    <section className="relative w-full overflow-hidden py-10 bg-white">
       {/* === NỘI DUNG CHÍNH === */}
       <div className="relative z-10 container mx-auto px-4 md:px-10 max-w-6xl">
         

@@ -78,7 +78,7 @@ export default function AchievementSection({ achievements = [] }: AchievementSec
   const hasAchievements = achievements && achievements.length > 0;
 
   return (
-    <section className="relative w-full py-16 bg-[#fafafa] overflow-hidden">
+    <section className="relative w-full py-10 bg-[#fafafa] overflow-hidden">
 
       {/* Tiêu đề lệch trái */}
       <div className="mb-12">

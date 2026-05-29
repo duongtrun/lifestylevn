@@ -74,7 +74,7 @@ export default function NewsSection({ posts }: NewsSectionProps) {
   };
 
   return (
-    <section className="w-full py-16 md:py-24 bg-[#008BBD]/20 border-t border-[#008BBD]/20 overflow-hidden select-none">
+    <section className="w-full py-10 bg-[#008BBD]/20 border-t border-[#008BBD]/20 overflow-hidden select-none">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl">
 
         {/* ================= TIÊU ĐỀ VÀ NÚT ĐIỀU HƯỚNG ================= */}
