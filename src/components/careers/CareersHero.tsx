@@ -46,7 +46,7 @@ export default function CareersHero() {
       />
 
       {/* ===== Logo overlay — đặt giữa trung tâm banner, hiệu ứng zoom nhẹ + floating nhè nhẹ ===== */}
-      <div className="absolute inset-0 z-15 flex items-center justify-center pointer-events-none">
+      <div className="absolute inset-0 z-15 flex items-start justify-center pt-15 md:items-center md:pt-0 pointer-events-none">
         <motion.div
           initial={{ opacity: 0, scale: 0.8 }}
           animate={{ opacity: 1, scale: 1 }}
