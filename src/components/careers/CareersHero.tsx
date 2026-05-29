@@ -12,22 +12,10 @@ import Image from 'next/image';
 
 export default function CareersHero() {
   return (
-    <section className="relative w-full overflow-hidden bg-neutral-900 select-none">
-      {/* Lớp phủ gradient bên trái để tăng độ tương phản và chiều sâu cho text trắng */}
-      <motion.div 
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 1 }}
-        className="absolute inset-0 z-10 bg-gradient-to-r from-black/70 via-black/30 to-transparent pointer-events-none" 
-      />
-
-      {/* Ảnh banner nền — tự thích ứng (Responsive) */}
-      <motion.div
-        initial={{ scale: 1.05, opacity: 0 }}
-        animate={{ scale: 1, opacity: 1 }}
-        transition={{ duration: 1.2, ease: 'easeOut' }}
-        className="relative w-full h-[320px] sm:h-[420px] md:h-[500px] lg:h-[600px] xl:h-[650px] z-0"
-      >
+    <section className="relative w-full h-[80vh] min-h-[660px] lg:h-[85vh] lg:min-h-[720px] flex flex-col pt-24 md:pt-28 lg:pt-32 overflow-hidden bg-neutral-900 select-none">
+      
+      {/* ===== Ảnh banner nền — tự thích ứng (Responsive) ===== */}
+      <div className="absolute inset-0 z-0 bg-[#EEF8FC]">
         {/* Banner dành riêng cho di động */}
         <Image
           src="/img_recruit/recruit_banner_mobile.png"
@@ -44,10 +32,21 @@ export default function CareersHero() {
           className="object-cover object-center hidden md:block"
           priority
         />
-      </motion.div>
+      </div>
 
-      {/* Logo overlay — đặt giữa trung tâm banner, hiệu ứng zoom nhẹ + floating nhè nhẹ */}
-      <div className="absolute inset-0 z-10 flex items-center justify-center pointer-events-none">
+      {/* ===== Lớp phủ gradient — đậm ở dưới để chữ nổi ===== */}
+      <div className="absolute inset-0 z-10 bg-gradient-to-t from-black/80 via-black/40 to-transparent pointer-events-none" />
+
+      {/* ===== Thanh màu xanh ngang nhỏ ở cạnh trái (trang trí) ===== */}
+      <motion.div
+        initial={{ scaleY: 0 }}
+        animate={{ scaleY: 1 }}
+        transition={{ duration: 0.8, ease: "easeOut" }}
+        className="absolute left-0 top-[15%] w-[5px] h-[40%] bg-[#008BBD] z-20 origin-top rounded-r-full"
+      />
+
+      {/* ===== Logo overlay — đặt giữa trung tâm banner, hiệu ứng zoom nhẹ + floating nhè nhẹ ===== */}
+      <div className="absolute inset-0 z-15 flex items-center justify-center pointer-events-none">
         <motion.div
           initial={{ opacity: 0, scale: 0.8 }}
           animate={{ opacity: 1, scale: 1 }}
@@ -75,36 +74,47 @@ export default function CareersHero() {
         </motion.div>
       </div>
 
-      {/* Breadcrumb và Tiêu đề đè lên trên banner ở góc trái */}
-      <div className="absolute inset-0 z-20 flex flex-col justify-center pt-4 sm:pt-8 md:pt-12 lg:pt-16 pointer-events-none">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 pointer-events-auto">
-          {/* Breadcrumb */}
-          <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.6, delay: 0.5, ease: 'easeOut' }}
-            className="flex items-center gap-1.5 text-white/90 text-[10px] sm:text-xs md:text-sm font-medium mb-1.5 sm:mb-3"
-          >
-            <Link href="/" className="hover:text-[#5CC8EC] transition-colors drop-shadow-sm">
-              Trang chủ
-            </Link>
-            <ChevronRight className="w-3 h-3 sm:w-3.5 sm:h-3.5 md:w-4 md:h-4 opacity-70 drop-shadow-sm" />
-            <span className="text-white font-semibold drop-shadow-sm">Tuyển dụng</span>
-          </motion.div>
+      {/* ===== Nội dung văn bản ===== */}
+      <div className="relative z-20 container mx-auto px-4 mt-auto pb-[160px] md:pb-[180px] lg:pb-[200px] space-y-5">
+        {/* Breadcrumb */}
+        <motion.div
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.1 }}
+          className="flex items-center gap-1.5 text-white/60 text-sm font-medium"
+        >
+          <Link href="/" className="hover:text-white transition-colors">
+            Trang chủ
+          </Link>
+          <ChevronRight className="w-4 h-4 opacity-50" />
+          <span className="text-white font-semibold">Tuyển dụng</span>
+        </motion.div>
 
-          {/* Tiêu đề chính "TUYỂN DỤNG" với hiệu ứng slide-in & text gradient nhẹ */}
-          <motion.h1
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.6, ease: [0.16, 1, 0.3, 1] }}
-            className="text-lg sm:text-4xl md:text-5xl lg:text-6xl font-extrabold text-white leading-tight tracking-tight drop-shadow-[0_4px_12px_rgba(0,0,0,0.5)]"
-          >
-            TUYỂN{' '}
-            <span className="">
-              DỤNG
-            </span>
-          </motion.h1>
-        </div>
+        {/* Tiêu đề chính "TUYỂN DỤNG" */}
+        <motion.h1
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
+          className="text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-extrabold text-white leading-[1.0] tracking-tight drop-shadow-[0_4px_12px_rgba(0,0,0,0.3)]"
+        >
+          TUYỂN{' '}
+          <span className="">
+            DỤNG
+          </span>
+        </motion.h1>
+
+        {/* Đường kẻ trang trí + tagline */}
+        <motion.div
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.5 }}
+          className="flex items-center gap-4"
+        >
+          <div className="h-[2px] w-12 bg-[#008BBD] rounded-full"></div>
+          <p className="text-white text-sm md:text-base font-medium tracking-wide">
+            Gia nhập đội ngũ LifeStyle Việt Nam để cùng kiến tạo giá trị nhân văn cho thế hệ tương lai
+          </p>
+        </motion.div>
       </div>
     </section>
   );
