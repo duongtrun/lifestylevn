@@ -26,7 +26,7 @@ export default function NewsHero() {
         />
         {/* Ảnh banner dành riêng cho máy tính (Desktop/Tablet) */}
         <Image
-          src="/img_news/news_banner.webp"
+          src="/img_news/news_banner.svg"
           alt="Tin tức - Lifestyle Việt Nam"
           fill
           className="object-cover object-center hidden md:block"
