@@ -99,6 +99,7 @@ export default function CareersHero() {
         >
           TUYỂN{' '}
           <span className="">
+            <br />
             DỤNG
           </span>
         </motion.h1>
