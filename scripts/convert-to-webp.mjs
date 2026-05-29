@@ -13,7 +13,19 @@ const imagesToConvert = [
   'public/invest_img/how.png',
   'public/invest_img/tam_nhin_dai_han.png',
   'public/invest_img/opportunity.png',
-  'public/invest_img/transformation.png'
+  'public/invest_img/transformation.png',
+  'public/img_core_value/con_nguoi.png',
+  'public/img_core_value/con_nguoi_mobile.png',
+  'public/img_core_value/sang_tao.png',
+  'public/img_core_value/sang_tao_mobile.png',
+  'public/img_core_value/vi_khach_hang.png',
+  'public/img_core_value/vi_khach_hang_mobile.png',
+  'public/img_core_value/biet_on.png',
+  'public/img_core_value/biet_on_mobile.png',
+  'public/img_core_value/doan_ket.png',
+  'public/img_core_value/doan_ket_mobile.png',
+  'public/img_core_value/chia_se_loi_nhuan.png',
+  'public/img_core_value/chia_se_loi_nhuan_mobile.png'
 ];
 
 async function convert() {
