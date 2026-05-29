@@ -55,7 +55,7 @@ export default function IrukaEduWorkflow() {
       </div>
 
       {/* Nội dung */}
-      <div className="relative z-10 container mx-auto px-6 md:px-10 py-16 md:py-24 lg:py-32">
+      <div className="relative z-10 container mx-auto px-6 md:px-10 py-10">
         {/* Tiêu đề */}
         <motion.h2
           initial={{ opacity: 0, y: 30 }}

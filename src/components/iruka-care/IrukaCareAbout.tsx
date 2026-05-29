@@ -71,7 +71,7 @@ export default function IrukaCareAbout() {
             className="object-cover"
           />
         </div>
-        <div className="relative z-10 container mx-auto px-6 md:px-10 pt-10 pb-4 md:py-24 lg:py-32">
+        <div className="relative z-10 container mx-auto px-6 md:px-10 py-10">
           <div className="flex flex-col md:flex-row items-center justify-between gap-6 md:gap-20 lg:gap-32 max-w-6xl mx-auto">
             {/* Bên trái: Mascot 1 */}
             <motion.div
@@ -117,7 +117,7 @@ export default function IrukaCareAbout() {
       </section>
 
       {/* ====== SECTION 3: Vì sao chúng tôi xây dựng iruKa Care ? ====== */}
-      <section className="relative w-full bg-white pt-4 pb-10 md:py-24 lg:py-32">
+      <section className="relative w-full bg-white py-10">
         <div className="container mx-auto px-6 md:px-10">
           <div className="flex flex-col md:flex-row-reverse items-center justify-between gap-6 md:gap-20 lg:gap-32 max-w-6xl mx-auto">
             {/* Bên phải: Mascot 2 */}

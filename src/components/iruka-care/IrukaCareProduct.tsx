@@ -38,7 +38,7 @@ const productTimelineData = [
 
 export default function IrukaCareProduct() {
   return (
-    <section className="relative w-full py-16 md:py-24 lg:py-32 bg-gradient-to-b from-[#E6F4F9] to-[#80CBE5] overflow-hidden flex flex-col items-center min-h-[800px]">
+    <section className="relative w-full py-10 bg-gradient-to-b from-[#E6F4F9] to-[#80CBE5] overflow-hidden flex flex-col items-center min-h-[800px]">
       {/* Ảnh nền mờ - iruka_care_product_blur.svg */}
       <div className="absolute inset-0 z-0 opacity-100 mix-blend-overlay pointer-events-none flex items-center justify-center">
         <Image

@@ -29,7 +29,7 @@ const ADVANTAGES = [
 
 export default function BabegoAdvantage() {
   return (
-    <section className="relative w-full bg-white py-16 md:py-24 overflow-hidden">
+    <section className="relative w-full bg-white py-10 overflow-hidden">
       <div className="relative z-10 w-full">
         {/* Title Box - bám sát lề trái */}
         <motion.div

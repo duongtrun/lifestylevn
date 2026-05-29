@@ -11,7 +11,7 @@ import { motion } from 'framer-motion';
 
 export default function BabegoSlogan() {
   return (
-    <section className="w-full bg-[#FAFAFA] py-16 md:py-24 flex justify-center items-center overflow-hidden">
+    <section className="w-full bg-[#FAFAFA] py-10 flex justify-center items-center overflow-hidden">
       <div className="relative w-full max-w-[1100px] px-4 flex justify-center items-center min-h-[440px] md:min-h-[640px] xl:min-h-[420px]">
 
         {/* Khung viền vẽ tay (Oval) - Giao diện Desktop */}

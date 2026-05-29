@@ -48,7 +48,7 @@ export default function BabegoAchievement() {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
 
   return (
-    <section className="relative w-full py-16 md:py-20 bg-white overflow-hidden">
+    <section className="relative w-full py-10 bg-white overflow-hidden">
       <div className="container mx-auto px-4 max-w-[1100px]">
 
         {/* Tiêu đề */}
